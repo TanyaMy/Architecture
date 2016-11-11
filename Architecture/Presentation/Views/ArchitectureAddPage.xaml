@@ -25,9 +25,8 @@
             <RowDefinition Height="0.8*"/>
             <RowDefinition Height="0.8*"/>
             <RowDefinition Height="0.8*"/>
-            <RowDefinition Height="0.8*"/>
-            <RowDefinition Height="0.8*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <TextBlock x:Name="textBlock"
                            Grid.Row="0"
@@ -181,18 +180,63 @@
                              Margin="20, 0"
                              FontSize="14"
                              Opacity="1"/>
-        
+        <TextBlock 
+                            Grid.Column="0"
+                             Grid.Row="9"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Text="Стиль"
+                           Foreground="Black"
+                           FontSize="22"
+                           Opacity="1"
+                           Margin="20, 0"
+                           FontFamily="Segoe WP Black"
+                           FontWeight="Bold"/>
+        <ListBox x:Name="architectLB"
+                 BorderThickness="0.5"
+                 BorderBrush="Gray"
+                             VerticalAlignment="Stretch"
+                             HorizontalAlignment="Left"
+                             Grid.Column="1"
+                             Grid.Row="8"
+                             Width="400"
+                             Margin="20, 8"
+                             FontSize="14"                            
+                             Opacity="1"/>
+        <TextBlock 
+                            Grid.Column="0"
+                             Grid.Row="8"
+                           HorizontalAlignment="Right"
+                           VerticalAlignment="Center"
+                           Text="Архитектор"
+                           Foreground="Black"
+                           FontSize="22"
+                           Opacity="1"
+                           Margin="20, 0"
+                           FontFamily="Segoe WP Black"
+                           FontWeight="Bold"/>
+        <ListBox x:Name="styleLB"
+                 BorderThickness="0.5"
+                 BorderBrush="Gray"
+                             VerticalAlignment="Stretch"
+                             HorizontalAlignment="Left"
+                             Grid.Column="1"
+                             Grid.Row="9"
+                             Width="400"
+                             Margin="20, 8"
+                             FontSize="14"                            
+                             Opacity="1"/>
         
 
         <Button x:Name="addBtn"
                                 Content="Добавить"
-                                Grid.Row="12"
+                                Grid.Row="10"                               
                                 Grid.ColumnSpan="2"
                                 BorderBrush="DarkBlue"
                                 HorizontalAlignment="Center"
-                                VerticalAlignment="Stretch"
+                                VerticalAlignment="Center"
                                 FontSize="20"
-                               Margin="20, 8, 50, 8"
+                                Margin="20, 8, 50, 8"
                                 Background="LightBlue"/>
       
     </Grid>
