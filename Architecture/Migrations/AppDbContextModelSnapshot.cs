@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Architecture.Data;
-using Architecture.Data.Entities;
 
 namespace Architecture.Migrations
 {
