@@ -97,8 +97,20 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Repositories\Implementations\StylesRepository.cs" />
+    <Compile Include="Data\Repositories\Implementations\SourcesRepository.cs" />
+    <Compile Include="Data\Repositories\Implementations\RestorationsRepository.cs" />
+    <Compile Include="Data\Repositories\Implementations\RepairsRepository.cs" />
+    <Compile Include="Data\Repositories\Implementations\ArchitecturesRepository.cs" />
+    <Compile Include="Data\Repositories\Implementations\ArchitectsRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\CrudRepositoryBase.cs" />
+    <Compile Include="Data\Repositories\Interfaces\IArchitectsRepository.cs" />
+    <Compile Include="Data\Repositories\Interfaces\IArchitecturesRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\ICrudRepositoryBase.cs" />
+    <Compile Include="Data\Repositories\Interfaces\IRepairsRepository.cs" />
+    <Compile Include="Data\Repositories\Interfaces\IRestorationsRepository.cs" />
+    <Compile Include="Data\Repositories\Interfaces\ISourcesRepository.cs" />
+    <Compile Include="Data\Repositories\Interfaces\IStylesRepository.cs" />
     <Compile Include="Migrations\20161112221920_DbMigration.cs" />
     <Compile Include="Migrations\20161112221920_DbMigration.designer.cs">
       <DependentUpon>20161112221920_DbMigration.cs</DependentUpon>

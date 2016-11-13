@@ -12,6 +12,8 @@ using Microsoft.Practices.ServiceLocation;
 using System.Threading;
 using System.Globalization;
 using Architecture.Data;
+using Architecture.Data.Repositories.Implementations;
+using Architecture.Data.Repositories.Interfaces;
 using Architecture.Presentation.Helpers;
 using Architecture.Presentation.Views;
 using Microsoft.EntityFrameworkCore;
@@ -116,7 +118,15 @@ namespace Architecture
         private void RegisterDependencies()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+            #region Services
+
             SimpleIoc.Default.Register(() => NavigationServiceHepler.GetService);
+
+            #endregion
+
+            #region ViewModels
+
             SimpleIoc.Default.Register<MainViewModel>();
 
             SimpleIoc.Default.Register<ArchitectureMainViewModel>();
@@ -131,6 +141,19 @@ namespace Architecture
             SimpleIoc.Default.Register<StyleMainViewModel>();
 
             SimpleIoc.Default.Register<SourceMainViewModel>();
+
+            #endregion
+
+            #region Repositories
+
+            SimpleIoc.Default.Register<IArchitectsRepository, ArchitectsRepository>();
+            SimpleIoc.Default.Register<IArchitecturesRepository, ArchitecturesRepository>();
+            SimpleIoc.Default.Register<IRestorationsRepository, RestorationsRepository>();
+            SimpleIoc.Default.Register<ISourcesRepository, SourcesRepository>();
+            SimpleIoc.Default.Register<IStylesRepository, StylesRepository>();
+            SimpleIoc.Default.Register<IRepairsRepository, RepairsRepository>();
+
+            #endregion
         }
     }
 }
