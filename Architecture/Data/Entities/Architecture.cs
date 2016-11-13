@@ -1,4 +1,6 @@
-﻿namespace Architecture.Data.Entities
+﻿using System.Collections.Generic;
+
+namespace Architecture.Data.Entities
 {
     public enum State
     {
@@ -39,7 +41,6 @@
             StyleId = styleId;
         }
 
-        
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -64,11 +65,9 @@
         public int StyleId { get; set; }
         public Style Style { get; set; }
 
-        public int BuiltBy { get; set; }
-        public Architect BuiltById { get; set; }
+        public IList<ArchitectureSource> ArchitecturesSources { get; set; }
 
-        public int RepairNeeds { get; set; }
-        public Repair RepairNeedsId { get; set; }
+        public IList<Repair> Repairs { get; set; }
 
         //еще фотка может быть
     }

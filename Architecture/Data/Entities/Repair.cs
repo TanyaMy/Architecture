@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Architecture.Data.Entities
 {
@@ -12,8 +13,7 @@ namespace Architecture.Data.Entities
             RestorationKind restorationKind, 
             int architectureId,
             DateTime restorationDate, 
-            double restorationCost,
-            Restoration correspondsWithRestorationKind)
+            double restorationCost)
         {
             RestorationKind = restorationKind;
             ArchitectureId = architectureId;
@@ -21,10 +21,10 @@ namespace Architecture.Data.Entities
             RestorationDate = restorationDate;
         }
 
-        public int Id { get; set; }
-
+        [Key]
         public RestorationKind RestorationKind { get; set; }
 
+        [Key]
         public int ArchitectureId { get; set; }
         public Architecture Architecture { get; set; }
 

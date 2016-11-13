@@ -1,5 +1,9 @@
 ﻿
 
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
 namespace Architecture.Data.Entities
 {
     public enum RestorationKind
@@ -23,12 +27,13 @@ namespace Architecture.Data.Entities
             Outlays = outlays;
         }
 
-        public int Id { get; set; }
-
+        [Key]
         public RestorationKind RestorationKind { get; set; }
 
         public string Periodicity { get; set; }
 
         public double Outlays { get; set; }
+
+        public IList<Repair> Repairs { get; set; }
     }
 }

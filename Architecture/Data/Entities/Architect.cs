@@ -34,9 +34,6 @@ namespace Architecture.Data.Entities
 
         public DateTime DeathDate { get; set; }
 
-        public int WorksInId { get; set; }
-        public Style WorksIn { get; set; }
-
         //еще фотка
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Architecture.Data.Entities
+﻿using System.Collections.Generic;
+
+namespace Architecture.Data.Entities
 {
     public enum SourceKind
     {
@@ -34,5 +36,7 @@
         public string Author { get; set; }
 
         public int CreationYear { get; set; }
+
+        public IList<ArchitectureSource> ArchitecturesSources { get; set; }
     }
 }

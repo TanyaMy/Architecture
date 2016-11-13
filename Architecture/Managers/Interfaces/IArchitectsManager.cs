@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Architecture.Data.Entities;
 
 namespace Architecture.Managers.Interfaces
 {
-    interface IArchitectsManager
+    public interface IArchitectsManager
     {
+        Task<IEnumerable<Architect>> GetArchitects();
+
+        Task<Architect> GetArchitectById(int id);
+
+        Task<Architect> AddArchitect(Architect architect);
+
+        Task<Architect> UpdateArchitect(Architect architect);
+
+        Task RemoveArchitect(int id);
     }
 }

@@ -97,6 +97,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Entities\ArchitectureSource.cs" />
     <Compile Include="Data\Repositories\Implementations\StylesRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\SourcesRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\RestorationsRepository.cs" />
