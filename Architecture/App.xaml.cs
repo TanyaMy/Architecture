@@ -14,6 +14,8 @@ using System.Globalization;
 using Architecture.Data;
 using Architecture.Data.Repositories.Implementations;
 using Architecture.Data.Repositories.Interfaces;
+using Architecture.Managers.Implementations;
+using Architecture.Managers.Interfaces;
 using Architecture.Presentation.Helpers;
 using Architecture.Presentation.Views;
 using Microsoft.EntityFrameworkCore;
@@ -152,6 +154,17 @@ namespace Architecture
             SimpleIoc.Default.Register<ISourcesRepository, SourcesRepository>();
             SimpleIoc.Default.Register<IStylesRepository, StylesRepository>();
             SimpleIoc.Default.Register<IRepairsRepository, RepairsRepository>();
+
+            #endregion
+
+            #region Managers
+
+            SimpleIoc.Default.Register<IArchitectsManager, ArchitectsManager>();
+            SimpleIoc.Default.Register<IArchitecturesManager, ArchitecturesManager>();
+            SimpleIoc.Default.Register<IRestorationsManager, RestorationsManager>();
+            SimpleIoc.Default.Register<ISourcesManager, SourcesManager>();
+            SimpleIoc.Default.Register<IStylesManager, StylesManager>();
+            SimpleIoc.Default.Register<IRepairsManager, RepairsManager>();
 
             #endregion
         }

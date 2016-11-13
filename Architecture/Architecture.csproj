@@ -111,6 +111,18 @@
     <Compile Include="Data\Repositories\Interfaces\IRestorationsRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\ISourcesRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IStylesRepository.cs" />
+    <Compile Include="Managers\Implementations\ArchitectsManager.cs" />
+    <Compile Include="Managers\Implementations\ArchitecturesManager.cs" />
+    <Compile Include="Managers\Implementations\RepairsManager.cs" />
+    <Compile Include="Managers\Implementations\RestorationsManager.cs" />
+    <Compile Include="Managers\Implementations\SourcesManager.cs" />
+    <Compile Include="Managers\Implementations\StylesManager.cs" />
+    <Compile Include="Managers\Interfaces\IArchitectsManager.cs" />
+    <Compile Include="Managers\Interfaces\IArchitecturesManager.cs" />
+    <Compile Include="Managers\Interfaces\IRepairsManager.cs" />
+    <Compile Include="Managers\Interfaces\IRestorationsManager.cs" />
+    <Compile Include="Managers\Interfaces\ISourcesManager.cs" />
+    <Compile Include="Managers\Interfaces\IStylesManager.cs" />
     <Compile Include="Migrations\20161112221920_DbMigration.cs" />
     <Compile Include="Migrations\20161112221920_DbMigration.designer.cs">
       <DependentUpon>20161112221920_DbMigration.cs</DependentUpon>
@@ -244,10 +256,7 @@
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Managers\Implementations\" />
-    <Folder Include="Managers\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
