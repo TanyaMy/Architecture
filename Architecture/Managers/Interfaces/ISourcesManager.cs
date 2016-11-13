@@ -8,7 +8,7 @@ namespace Architecture.Managers.Interfaces
     {
         Task<IEnumerable<Source>> GetSources();
 
-        Task<IEnumerable<Source>> GetSourceByArchitectureId(int architectureId);
+        Task<IEnumerable<Source>> GetSourcesByArchitectureId(int architectureId);
 
         Task<Source> GetSourceById(int id);
 

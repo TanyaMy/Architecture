@@ -17,27 +17,27 @@ namespace Architecture.Managers.Implementations
 
         public Task<IEnumerable<Style>> GetStyles()
         {
-            throw new System.NotImplementedException();
+            return _stylesRepository.GetItemsAsync();
         }
 
         public Task<Style> GetStyleById(int styleId)
         {
-            throw new System.NotImplementedException();
+            return _stylesRepository.GetItemAsync(styleId);
         }
 
         public Task<Style> AddStyle(Style style)
         {
-            throw new System.NotImplementedException();
+            return _stylesRepository.AddItemAsync(style);
         }
 
         public Task<Style> UpdateStyle(Style style)
         {
-            throw new System.NotImplementedException();
+            return _stylesRepository.UpdateItemAsync(style);
         }
 
         public Task RemoveStyle(int id)
         {
-            throw new System.NotImplementedException();
+            return _stylesRepository.RemoveItemAsync(id);
         }
     }
 }

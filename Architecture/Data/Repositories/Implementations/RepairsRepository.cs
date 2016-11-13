@@ -24,20 +24,6 @@ namespace Architecture.Data.Repositories.Implementations
                 && r.RestorationKind == restorationKind);
         }
 
-        public async Task<Repair> AddRepair(Repair repair)
-        {
-            await _repairs.AddAsync(repair);
-
-            await _appDbContext.SaveChangesAsync();
-
-            return repair;
-        }
-
-        public Task<Repair> UpdateRepair(Repair repair)
-        {
-            return UpdateItemAsync(repair);
-        }
-
         public async Task RemoveRepair(int architectureId, RestorationKind restorationKind)
         {
             var repair = await GetRepairById(architectureId, restorationKind);

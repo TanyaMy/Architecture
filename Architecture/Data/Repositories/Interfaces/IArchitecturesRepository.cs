@@ -7,5 +7,9 @@ namespace Architecture.Data.Repositories.Interfaces
     public interface IArchitecturesRepository : ICrudRepositoryBase<Entities.Architecture, int>
     {
         Task<IEnumerable<Repair>> GetLinkedRepairs(int architectureId);
+
+        Task<IEnumerable<Entities.Architecture>> GetArchitecturesBySourceId(int sourceId);
+
+        Task<IEnumerable<Entities.Architecture>> GetArchitecturesByArchitectId(int architectId);
     }
 }

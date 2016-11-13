@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Architecture.Data.Entities;
 using Architecture.Data.Repositories.Interfaces;
@@ -17,52 +18,55 @@ namespace Architecture.Managers.Implementations
 
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitectures()
         {
-            throw new System.NotImplementedException();
+            return _architecturesRepository.GetItemsAsync();
         }
 
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitecturesByStyleId(int styleId)
         {
-            throw new System.NotImplementedException();
+            return _architecturesRepository
+                .GetItemsAsync(items => items.Where(x => x.StyleId == styleId));
         }
 
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitecturesBySourceId(int sourceId)
         {
-            throw new System.NotImplementedException();
+            return _architecturesRepository.GetArchitecturesBySourceId(sourceId);
         }
 
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitecturesByArchitectId(int architectId)
         {
-            throw new System.NotImplementedException();
+            return _architecturesRepository.GetArchitecturesByArchitectId(architectId);
         }
 
-        public Task<IEnumerable<Data.Entities.Architecture>> GetArchitecturesByState(State state)
+        public async Task<IEnumerable<Data.Entities.Architecture>> GetArchitecturesByState(State state)
         {
-            throw new System.NotImplementedException();
+            var architectures = await _architecturesRepository.GetItemsAsync();
+
+            return architectures.Where(x => x.State == state);
         }
 
         public Task<Data.Entities.Architecture> GetArchitectureById(int id)
         {
-            throw new System.NotImplementedException();
+            return _architecturesRepository.GetItemAsync(id);
         }
 
         public Task<IEnumerable<Repair>> GetLinkedRepairs(int id)
         {
-            throw new System.NotImplementedException();
+            return _architecturesRepository.GetLinkedRepairs(id);
         }
 
         public Task<Data.Entities.Architecture> AddArchitecture(Data.Entities.Architecture architecture)
         {
-            throw new System.NotImplementedException();
+            return _architecturesRepository.AddItemAsync(architecture);
         }
 
         public Task<Data.Entities.Architecture> UpdateArchitecture(Data.Entities.Architecture architecture)
         {
-            throw new System.NotImplementedException();
+            return _architecturesRepository.UpdateItemAsync(architecture);
         }
 
         public Task RemoveArchitecture(int id)
         {
-            throw new System.NotImplementedException();
+            return _architecturesRepository.RemoveItemAsync(id);
         }
     }
 }

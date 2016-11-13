@@ -17,32 +17,32 @@ namespace Architecture.Managers.Implementations
 
         public Task<IEnumerable<Restoration>> GetRestorations()
         {
-            throw new System.NotImplementedException();
+            return _restorationsRepository.GetItemsAsync();
         }
 
         public Task<Restoration> GetRestorationByRestorationKind(RestorationKind restorationKind)
         {
-            throw new System.NotImplementedException();
+            return _restorationsRepository.GetItemAsync(restorationKind);
         }
 
         public Task<IEnumerable<Repair>> GetLinkedRepairs(RestorationKind restorationKind)
         {
-            throw new System.NotImplementedException();
+            return _restorationsRepository.GetLinkedRepairs(restorationKind);
         }
 
         public Task<Restoration> AddRestoration(Restoration restoration)
         {
-            throw new System.NotImplementedException();
+            return _restorationsRepository.AddItemAsync(restoration);
         }
 
         public Task<Restoration> UpdateRestoration(Restoration restoration)
         {
-            throw new System.NotImplementedException();
+            return _restorationsRepository.UpdateItemAsync(restoration);
         }
 
         public Task RemoveRestoration(RestorationKind restorationKind)
         {
-            throw new System.NotImplementedException();
+            return _restorationsRepository.RemoveItemAsync(restorationKind);
         }
     }
 }

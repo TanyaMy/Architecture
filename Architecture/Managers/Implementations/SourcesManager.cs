@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Architecture.Data.Entities;
 using Architecture.Data.Repositories.Interfaces;
@@ -17,32 +18,32 @@ namespace Architecture.Managers.Implementations
 
         public Task<IEnumerable<Source>> GetSources()
         {
-            throw new System.NotImplementedException();
+            return _sourcesRepository.GetItemsAsync();
         }
 
-        public Task<IEnumerable<Source>> GetSourceByArchitectureId(int architectureId)
+        public Task<IEnumerable<Source>> GetSourcesByArchitectureId(int architectureId)
         {
-            throw new System.NotImplementedException();
+            return _sourcesRepository.GetSourcesByArchitectureId(architectureId);
         }
 
         public Task<Source> GetSourceById(int id)
         {
-            throw new System.NotImplementedException();
+            return _sourcesRepository.GetItemAsync(id);
         }
 
         public Task<Source> AddSource(Source source)
         {
-            throw new System.NotImplementedException();
+            return _sourcesRepository.AddItemAsync(source);
         }
 
         public Task<Source> UpdateSource(Source source)
         {
-            throw new System.NotImplementedException();
+            return _sourcesRepository.UpdateItemAsync(source);
         }
 
         public Task RemoveSource(int id)
         {
-            throw new System.NotImplementedException();
+            return _sourcesRepository.RemoveItemAsync(id);
         }
     }
 }

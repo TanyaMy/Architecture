@@ -17,27 +17,27 @@ namespace Architecture.Managers.Implementations
 
         public Task<IEnumerable<Architect>> GetArchitects()
         {
-            throw new System.NotImplementedException();
+            return _architectsRepository.GetItemsAsync();
         }
 
         public Task<Architect> GetArchitectById(int id)
         {
-            throw new System.NotImplementedException();
+            return _architectsRepository.GetItemAsync(id);
         }
 
         public Task<Architect> AddArchitect(Architect architect)
         {
-            throw new System.NotImplementedException();
+            return _architectsRepository.AddItemAsync(architect);
         }
 
         public Task<Architect> UpdateArchitect(Architect architect)
         {
-            throw new System.NotImplementedException();
+            return _architectsRepository.UpdateItemAsync(architect);
         }
 
         public Task RemoveArchitect(int id)
         {
-            throw new System.NotImplementedException();
+            return _architectsRepository.RemoveItemAsync(id);
         }
     }
 }

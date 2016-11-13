@@ -17,37 +17,27 @@ namespace Architecture.Managers.Implementations
 
         public Task<IEnumerable<Repair>> GetRepairs()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<IEnumerable<Repair>> GetRepairsByArchitectureId(int architectureId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<IEnumerable<Repair>> GetRepairsByRestorationKind(RestorationKind restorationKind)
-        {
-            throw new System.NotImplementedException();
+            return _repairsRepository.GetItemsAsync();
         }
 
         public Task<Repair> GetRepairById(int architectureId, RestorationKind restorationKind)
         {
-            throw new System.NotImplementedException();
+            return _repairsRepository.GetRepairById(architectureId, restorationKind);
         }
 
         public Task<Repair> AddRepair(Repair repair)
         {
-            throw new System.NotImplementedException();
+            return _repairsRepository.AddItemAsync(repair);
         }
 
         public Task<Repair> UpdateRepair(Repair repair)
         {
-            throw new System.NotImplementedException();
+            return _repairsRepository.UpdateItemAsync(repair);
         }
 
         public Task RemoveRepair(int architectureId, RestorationKind restorationKind)
         {
-            throw new System.NotImplementedException();
+            return _repairsRepository.RemoveRepair(architectureId, restorationKind);
         }
     }
 }
