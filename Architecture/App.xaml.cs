@@ -11,8 +11,10 @@ using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using System.Threading;
 using System.Globalization;
+using Architecture.Data;
 using Architecture.Presentation.Helpers;
 using Architecture.Presentation.Views;
+using Microsoft.EntityFrameworkCore;
 
 namespace Architecture
 {
@@ -30,6 +32,12 @@ namespace Architecture
             RegisterDependencies();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            // Applying migrations
+            using (var db = new AppDbContext())
+            {
+                db.Database.Migrate();
+            }
         }
 
 

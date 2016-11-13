@@ -10,20 +10,20 @@ namespace Architecture.Presentation.Models
     {
         
             //Список архитектурных произведений.
-            public static List<Architecture> ArchitectureList
-                = new List<Architecture>();            
+            public static List<Data.Entities.Architecture> ArchitectureList
+                = new List<Data.Entities.Architecture>();            
 
             //Добавление в список.
-            public static void AddArchitecture(Architecture arch)
+            public static void AddArchitecture(Data.Entities.Architecture arch)
             {
-                arch.ArchitectureId = ArchitectureList.LastOrDefault()?.ArchitectureId + 1 ?? 1;
+                arch.Id = ArchitectureList.LastOrDefault()?.Id + 1 ?? 1;
                 ArchitectureList.Add(arch);
             }
 
             //Удаление по Id. 
             public static void DeleteArchitecture(int id)
             {
-                var foundArch = ArchitectureList.SingleOrDefault(x => x.ArchitectureId == id);
+                var foundArch = ArchitectureList.SingleOrDefault(x => x.Id == id);
                 if (foundArch != null)
                 ArchitectureList.Remove(foundArch);
                 else
@@ -31,12 +31,12 @@ namespace Architecture.Presentation.Models
             }
 
             //Замена архитектуры с указанным Id друой архитектурой.
-            public static void ChangeArchitecture(int id, Architecture arch)
+            public static void ChangeArchitecture(int id, Data.Entities.Architecture arch)
             {
-                var foundArch = ArchitectureList.SingleOrDefault(x => id == x.ArchitectureId);
+                var foundArch = ArchitectureList.SingleOrDefault(x => id == x.Id);
                 if (foundArch != null)
                 {
-                    arch.ArchitectureId = id;
+                    arch.Id = id;
                 ArchitectureList[(ArchitectureList.IndexOf(foundArch))] = arch;
                 }
                 else
@@ -44,9 +44,9 @@ namespace Architecture.Presentation.Models
             }            
 
             //получение объекта по указанному Id.
-            public static Architecture GetArchitectureById(int id)
+            public static Data.Entities.Architecture GetArchitectureById(int id)
             {
-                return ArchitectureList.SingleOrDefault(x => x.ArchitectureId == id);
+                return ArchitectureList.SingleOrDefault(x => x.Id == id);
             }        
 
     }
