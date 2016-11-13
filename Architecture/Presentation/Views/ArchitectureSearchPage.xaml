@@ -9,7 +9,7 @@
     DataContext="{Binding ArchitectureSearch, Source={StaticResource Locator}}">
 
 
-    <Grid Background="White" RenderTransformOrigin="0.258,0.286">
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.55*"/>
             <ColumnDefinition Width="0.75*"/>
@@ -52,8 +52,7 @@
                              Margin="20, 0, 50, 0"
                              FontSize="18"
                              Opacity="1"/>
-        <TextBlock 
-                            Grid.Column="2"
+        <TextBlock Grid.Column="2"
                              Grid.Row="1"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Center"

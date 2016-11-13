@@ -20,11 +20,9 @@ namespace Architecture.Data.Entities
             RestorationCost = restorationCost;
             RestorationDate = restorationDate;
         }
-
-        [Key]
+        
         public RestorationKind RestorationKind { get; set; }
-
-        [Key]
+        
         public int ArchitectureId { get; set; }
         public Architecture Architecture { get; set; }
 

@@ -40,6 +40,11 @@ namespace Architecture
             // Applying migrations
             using (var db = new AppDbContext())
             {
+                if (!db.Database.EnsureCreated())
+                {
+                    db.Database.EnsureDeleted();
+                }
+
                 db.Database.Migrate();
             }
         }

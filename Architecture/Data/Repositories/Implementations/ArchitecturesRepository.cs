@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
+using Architecture.Data.Entities;
 using Architecture.Data.Repositories.Interfaces;
+using System.Linq;
 
 namespace Architecture.Data.Repositories.Implementations
 {
@@ -10,6 +14,13 @@ namespace Architecture.Data.Repositories.Implementations
             : base (appDbContext, appDbContext.Architectures)
         {
                 
+        }
+
+        public async Task<IEnumerable<Repair>> GetLinkedRepairs(int architectureId)
+        {
+            var architecture = await GetItemAsync(architectureId);
+
+            return architecture.Repairs;
         }
 
         protected override Expression<Func<Entities.Architecture, bool>>

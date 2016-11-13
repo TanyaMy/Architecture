@@ -1,5 +1,6 @@
 ﻿using Architecture.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Architecture = Architecture.Data.Entities.Architecture;
 
 namespace Architecture.Data
 {
@@ -25,6 +26,11 @@ namespace Architecture.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ArchitectureSource>()
+                .HasKey(x => new { x.ArchitectureId, x.SourceId });
+
+            modelBuilder.Entity<Repair>()
+                .HasKey(x => new { x.ArchitectureId, x.RestorationKind });
         }
     }
 }

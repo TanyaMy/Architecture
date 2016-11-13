@@ -35,20 +35,25 @@ namespace Architecture.Data.Repositories.Implementations
 
         public virtual async Task<TEntity> AddItemAsync(TEntity item)
         {
-            DbSet.Add(item);
+            await DbSet.AddAsync(item);
+
             await SaveChangesAsync();
+
             return item;
         }
         public virtual async Task<TEntity> UpdateItemAsync(TEntity item)
         {
             DbSet.Update(item);
+
             await SaveChangesAsync();
+
             return item;
         }
 
         public virtual async Task RemoveItemAsync(TEntity item)
         {
             DbSet.Remove(item);
+
             await SaveChangesAsync();
         }
 

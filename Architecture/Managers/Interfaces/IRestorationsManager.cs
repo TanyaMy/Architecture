@@ -10,6 +10,8 @@ namespace Architecture.Managers.Interfaces
 
         Task<Restoration> GetRestorationByRestorationKind(RestorationKind restorationKind);
 
+        Task<IEnumerable<Repair>> GetLinkedRepairs(RestorationKind restorationKind);
+
         Task<Restoration> AddRestoration(Restoration restoration);
 
         Task<Restoration> UpdateRestoration(Restoration restoration);

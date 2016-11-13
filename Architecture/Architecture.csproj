@@ -98,10 +98,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\ArchitectureSource.cs" />
+    <Compile Include="Data\Repositories\Implementations\RepairsRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\StylesRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\SourcesRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\RestorationsRepository.cs" />
-    <Compile Include="Data\Repositories\Implementations\RepairsRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\ArchitecturesRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\ArchitectsRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\CrudRepositoryBase.cs" />
@@ -124,9 +124,9 @@
     <Compile Include="Managers\Interfaces\IRestorationsManager.cs" />
     <Compile Include="Managers\Interfaces\ISourcesManager.cs" />
     <Compile Include="Managers\Interfaces\IStylesManager.cs" />
-    <Compile Include="Migrations\20161112221920_DbMigration.cs" />
-    <Compile Include="Migrations\20161112221920_DbMigration.designer.cs">
-      <DependentUpon>20161112221920_DbMigration.cs</DependentUpon>
+    <Compile Include="Migrations\20161113171103_Initial.cs" />
+    <Compile Include="Migrations\20161113171103_Initial.designer.cs">
+      <DependentUpon>20161113171103_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AppDbContextModelSnapshot.cs" />
     <Compile Include="Presentation\Helpers\NavigationServiceHelper.cs" />

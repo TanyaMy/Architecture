@@ -8,10 +8,6 @@ namespace Architecture.Managers.Interfaces
     {
         Task<IEnumerable<Repair>> GetRepairs();
 
-        Task<IEnumerable<Repair>> GetRepairsByArchitectureId(int architectureId);
-
-        Task<IEnumerable<Repair>> GetRepairsByRestorationKind(RestorationKind restorationKind);
-
         Task<Repair> GetRepairById(int architectureId, RestorationKind restorationKind);
 
         Task<Repair> AddRepair(Repair repair);

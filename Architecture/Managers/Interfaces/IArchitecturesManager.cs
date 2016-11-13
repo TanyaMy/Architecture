@@ -19,6 +19,8 @@ namespace Architecture.Managers.Interfaces
 
         Task<ArchitectureModel> GetArchitectureById(int id);
 
+        Task<IEnumerable<Repair>> GetLinkedRepairs(int id);
+
         Task<ArchitectureModel> AddArchitecture(ArchitectureModel architecture);
 
         Task<ArchitectureModel> UpdateArchitecture(ArchitectureModel architecture);

@@ -9,8 +9,8 @@ using Architecture.Data.Entities;
 namespace Architecture.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20161112221920_DbMigration")]
-    partial class DbMigration
+    [Migration("20161113171103_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,11 +32,7 @@ namespace Architecture.Migrations
 
                     b.Property<string>("Surname");
 
-                    b.Property<int>("WorksInId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("WorksInId");
 
                     b.ToTable("Architects");
                 });
@@ -50,10 +46,6 @@ namespace Architecture.Migrations
 
                     b.Property<int>("ArchitectId");
 
-                    b.Property<int?>("ArchitectId1");
-
-                    b.Property<int>("BuiltBy");
-
                     b.Property<string>("City");
 
                     b.Property<string>("Country");
@@ -61,8 +53,6 @@ namespace Architecture.Migrations
                     b.Property<int>("CreationYear");
 
                     b.Property<double>("Height");
-
-                    b.Property<int>("RepairNeeds");
 
                     b.Property<double>("Square");
 
@@ -76,50 +66,50 @@ namespace Architecture.Migrations
 
                     b.HasIndex("ArchitectId");
 
-                    b.HasIndex("ArchitectId1");
-
                     b.HasIndex("StyleId");
 
                     b.ToTable("Architectures");
                 });
 
-            modelBuilder.Entity("Architecture.Data.Entities.Repair", b =>
+            modelBuilder.Entity("Architecture.Data.Entities.ArchitectureSource", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
                     b.Property<int>("ArchitectureId");
 
-                    b.Property<int>("CorrespondsWithRestorationKindId");
+                    b.Property<int>("SourceId");
+
+                    b.HasKey("ArchitectureId", "SourceId");
+
+                    b.HasIndex("SourceId");
+
+                    b.ToTable("ArchitectureSource");
+                });
+
+            modelBuilder.Entity("Architecture.Data.Entities.Repair", b =>
+                {
+                    b.Property<int>("ArchitectureId");
+
+                    b.Property<int>("RestorationKind");
 
                     b.Property<double>("RestorationCost");
 
                     b.Property<DateTime>("RestorationDate");
 
-                    b.Property<int>("RestorationKind");
+                    b.HasKey("ArchitectureId", "RestorationKind");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArchitectureId")
-                        .IsUnique();
-
-                    b.HasIndex("CorrespondsWithRestorationKindId");
+                    b.HasIndex("RestorationKind");
 
                     b.ToTable("Repairs");
                 });
 
             modelBuilder.Entity("Architecture.Data.Entities.Restoration", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("RestorationKind");
 
                     b.Property<double>("Outlays");
 
                     b.Property<string>("Periodicity");
 
-                    b.Property<int>("RestorationKind");
-
-                    b.HasKey("Id");
+                    b.HasKey("RestorationKind");
 
                     b.ToTable("Restorations");
                 });
@@ -158,14 +148,6 @@ namespace Architecture.Migrations
                     b.ToTable("Styles");
                 });
 
-            modelBuilder.Entity("Architecture.Data.Entities.Architect", b =>
-                {
-                    b.HasOne("Architecture.Data.Entities.Style", "WorksIn")
-                        .WithMany()
-                        .HasForeignKey("WorksInId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Architecture.Data.Entities.Architecture", b =>
                 {
                     b.HasOne("Architecture.Data.Entities.Architect", "Architect")
@@ -173,26 +155,35 @@ namespace Architecture.Migrations
                         .HasForeignKey("ArchitectId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Architecture.Data.Entities.Architect", "BuiltById")
-                        .WithMany()
-                        .HasForeignKey("ArchitectId1");
-
                     b.HasOne("Architecture.Data.Entities.Style", "Style")
                         .WithMany()
                         .HasForeignKey("StyleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Architecture.Data.Entities.ArchitectureSource", b =>
+                {
+                    b.HasOne("Architecture.Data.Entities.Architecture", "Architecture")
+                        .WithMany("ArchitecturesSources")
+                        .HasForeignKey("ArchitectureId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Architecture.Data.Entities.Source", "Source")
+                        .WithMany("ArchitecturesSources")
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Architecture.Data.Entities.Repair", b =>
                 {
                     b.HasOne("Architecture.Data.Entities.Architecture", "Architecture")
-                        .WithOne("RepairNeedsId")
-                        .HasForeignKey("Architecture.Data.Entities.Repair", "ArchitectureId")
+                        .WithMany("Repairs")
+                        .HasForeignKey("ArchitectureId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Architecture.Data.Entities.Restoration", "CorrespondsWithRestorationKind")
-                        .WithMany()
-                        .HasForeignKey("CorrespondsWithRestorationKindId")
+                    b.HasOne("Architecture.Data.Entities.Restoration")
+                        .WithMany("Repairs")
+                        .HasForeignKey("RestorationKind")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
