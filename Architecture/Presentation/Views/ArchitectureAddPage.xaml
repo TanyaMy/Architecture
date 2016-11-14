@@ -184,7 +184,7 @@
                            Opacity="1"
                            Margin="20, 0"
                            FontFamily="Segoe WP Black"/>
-        <ListBox x:Name="architectLB"
+        <ComboBox x:Name="architectCB"
                  BorderThickness="0.5"
                  BorderBrush="Gray"
                              VerticalAlignment="Stretch"
@@ -206,7 +206,7 @@
                            Opacity="1"
                            Margin="20, 0"
                            FontFamily="Segoe WP Black"/>
-        <ListBox x:Name="styleLB"
+        <ComboBox x:Name="styleCB"
                  BorderThickness="0.5"
                  BorderBrush="Gray"
                              VerticalAlignment="Stretch"

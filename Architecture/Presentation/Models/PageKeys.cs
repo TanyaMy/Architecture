@@ -15,6 +15,8 @@ namespace Architecture.Presentation.Models
         ArchitectureFilter,
         [PageType(typeof(ArchitectureAddPage))]
         ArchitectureAdd,
+        [PageType(typeof(ArchitectureReportsPage))]
+        ArchitectureReports,
         [PageType(typeof(ArchitectMainPage))]
         ArchitectMain,
         [PageType(typeof(ArchitectSearchPage))]

@@ -28,7 +28,7 @@
                                   FontSize="18"
                                   Background="DodgerBlue"
                                   Foreground="White"
-                                  Width="50"
+                                  Width="60"
                                   Command="{Binding GoBackCommand}"/>
                 </StackPanel>
             </CommandBar.Content>
@@ -43,7 +43,7 @@
 
         <SplitView x:Name="splitView"
                    DisplayMode="CompactInline"
-                   CompactPaneLength="50"
+                   CompactPaneLength="60"
                    Background="White"
                    PaneBackground="LightBlue"
                    Grid.Column="0"
@@ -54,8 +54,9 @@
                     <Button x:Name="HamburgerButton"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE700;"
-                            Width="50"
-                            Height="50"
+                             FontSize="22"
+                           Width="60"
+                            Height="60"
                             Background="Transparent"
                             Click="HamburgerButton_Click"/>
 
@@ -66,6 +67,7 @@
                             <TextBlock 
                                 FontFamily="Segoe MDL2 Assets"
                                 Text="&#xE71E;"
+                                 FontSize="22"
                                  VerticalAlignment="Center"
                                  Margin="5, 0, 30, 0"/>
                             <TextBlock Text="Поиск"
@@ -81,6 +83,7 @@
                             <TextBlock
                                 FontFamily="Segoe MDL2 Assets"
                                 Text="&#xE71C;"
+                                 FontSize="22"
                                  VerticalAlignment="Center"
                                  Margin="5, 0, 30, 0"/>
                             <TextBlock Text="Фильтр"
@@ -94,6 +97,7 @@
                             <TextBlock
                                 FontFamily="Segoe MDL2 Assets"
                                 Text="&#xE710;"
+                                 FontSize="22"
                                 VerticalAlignment="Center"
                                    Margin="5, 0, 30, 0"/>
                             <TextBlock Text="Добавить"

@@ -13,9 +13,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="45*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="284*" MinHeight="400"/>
-            <RowDefinition Height="31*"/>
         </Grid.RowDefinitions>
 
         <CommandBar Grid.Row="0" 
@@ -29,7 +28,7 @@
                                   FontSize="18"
                                   Background="DodgerBlue"
                                   Foreground="White"
-                                  Width="50"
+                                  Width="60"
                                   Command="{Binding GoBackCommand}"/>
                 </StackPanel>
             </CommandBar.Content>
@@ -44,44 +43,47 @@
 
         <SplitView x:Name="splitView"
                    DisplayMode="CompactInline"
-                   CompactPaneLength="50"
+                   CompactPaneLength="60"
                    Background="White"
                    PaneBackground="LightBlue"
                    Grid.Column="0"
-                   Grid.Row="1" Margin="0, -40, -10,-60">
+                   Grid.Row="1">
             <SplitView.Pane>
 
                 <StackPanel>
                     <Button x:Name="HamburgerButton"
                             FontFamily="Segoe MDL2 Assets"
                             Content="&#xE700;"
-                            Width="50"
-                            Height="50"
+                             FontSize="22"
+                            Width="60"
+                            Height="60"
                             Background="Transparent"
                             Click="HamburgerButton_Click"/>
 
 
-                    <RadioButton Tag="search" Click="RadioButtonPaneItem_Click" 
-                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <RadioButton Tag="search" Click="RadioButtonPaneItem_Click"
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock 
                                 FontFamily="Segoe MDL2 Assets"
                                 Text="&#xE71E;"
+                                 FontSize="22"
                                  VerticalAlignment="Center"
                                  Margin="5, 0, 30, 0"/>
                             <TextBlock Text="Поиск"
                                    FontSize="22"
-                                   VerticalAlignment="Center" />
+                                   VerticalAlignment="Center"/>
                         </StackPanel>
 
                     </RadioButton>
 
                     <RadioButton Tag="filter" Click="RadioButtonPaneItem_Click"
-                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 FontFamily="Segoe MDL2 Assets"
                                 Text="&#xE71C;"
+                                 FontSize="22"
                                  VerticalAlignment="Center"
                                  Margin="5, 0, 30, 0"/>
                             <TextBlock Text="Фильтр"
@@ -90,11 +92,12 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Tag="add" Click="RadioButtonPaneItem_Click" 
-                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 FontFamily="Segoe MDL2 Assets"
                                 Text="&#xE710;"
+                                 FontSize="22"
                                 VerticalAlignment="Center"
                                    Margin="5, 0, 30, 0"/>
                             <TextBlock Text="Добавить"
@@ -103,8 +106,8 @@
                         </StackPanel>
                     </RadioButton>
                 </StackPanel>
-
             </SplitView.Pane>
+            
             <SplitView.Content>
                 <Frame Name="SourceFrame"/>
             </SplitView.Content>
