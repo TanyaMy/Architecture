@@ -14,6 +14,7 @@ namespace Arcitecture.Presentation.ViewModels.Common
         public ArchitectMainViewModel ArchitectMain => GetViewModel<ArchitectMainViewModel>();
         public ArchitectSearchViewModel ArchitectSearch => GetViewModel<ArchitectSearchViewModel>();
         public ArchitectFilterViewModel ArchitectFilter => GetViewModel<ArchitectFilterViewModel>();
+        public ArchitectAddViewModel ArchitectAdd => GetViewModel<ArchitectAddViewModel>();
 
         public StyleMainViewModel StyleMain => GetViewModel<StyleMainViewModel>();
 

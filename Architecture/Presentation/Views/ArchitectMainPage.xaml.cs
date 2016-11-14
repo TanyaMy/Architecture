@@ -50,10 +50,10 @@ namespace Architecture.Presentation.Views
                         this.ArchitectFrame.Navigate(typeof(ArchitectFilterPage));
                         splitView.IsPaneOpen = !splitView.IsPaneOpen;
                         break;
-                        //case "add":
-                        //    this.ArchitectFrame.Navigate(typeof(ArchitectAddPage));
-                        //    splitView.IsPaneOpen = !splitView.IsPaneOpen;
-                        //    break;
+                    case "add":
+                        this.ArchitectFrame.Navigate(typeof(ArchitectAddPage));
+                        splitView.IsPaneOpen = !splitView.IsPaneOpen;
+                        break;
                 }
             }
         }

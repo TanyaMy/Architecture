@@ -144,6 +144,7 @@ namespace Architecture
             SimpleIoc.Default.Register<ArchitectMainViewModel>();
             SimpleIoc.Default.Register<ArchitectSearchViewModel>();
             SimpleIoc.Default.Register<ArchitectFilterViewModel>();
+            SimpleIoc.Default.Register<ArchitectAddViewModel>();
 
             SimpleIoc.Default.Register<StyleMainViewModel>();
 

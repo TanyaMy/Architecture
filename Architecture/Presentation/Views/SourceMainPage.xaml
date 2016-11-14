@@ -61,7 +61,8 @@
                             Click="HamburgerButton_Click"/>
 
 
-                    <RadioButton Tag="search" Click="RadioButtonPaneItem_Click" >
+                    <RadioButton Tag="search" Click="RadioButtonPaneItem_Click" 
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock 
                                 FontFamily="Segoe MDL2 Assets"
@@ -75,7 +76,8 @@
 
                     </RadioButton>
 
-                    <RadioButton Tag="filter" Click="RadioButtonPaneItem_Click">
+                    <RadioButton Tag="filter" Click="RadioButtonPaneItem_Click"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 FontFamily="Segoe MDL2 Assets"
@@ -87,7 +89,8 @@
                                    VerticalAlignment="Center" />
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton Tag="add" Click="RadioButtonPaneItem_Click" >
+                    <RadioButton Tag="add" Click="RadioButtonPaneItem_Click" 
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock
                                 FontFamily="Segoe MDL2 Assets"
@@ -99,33 +102,6 @@
                                    VerticalAlignment="Center" />
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton Tag="edit" Click="RadioButtonPaneItem_Click" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                FontFamily="Segoe MDL2 Assets"
-                                Text="&#xE70F;"
-                                    VerticalAlignment="Center"
-                                   Margin="5, 0, 30, 0"/>
-                            <TextBlock Text="Изменить"
-                                   FontSize="22" 
-                                    VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton Tag="delete" Click="RadioButtonPaneItem_Click" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                        FontFamily="Segoe MDL2 Assets"
-                                        Text="&#xE74D;"
-                                        VerticalAlignment="Center"
-                                     Margin="5, 0, 30, 0"/>
-                            <TextBlock Text="Удалить"
-                                           FontSize="22"
-                                           VerticalAlignment="Center" />
-                        </StackPanel>
-                    </RadioButton>
-
-
                 </StackPanel>
 
             </SplitView.Pane>
