@@ -9,15 +9,29 @@
     mc:Ignorable="d">
 
     <Page.BottomAppBar>
-        <AppBar>
-            <StackPanel Orientation="Horizontal">
-                <AppBarButton Icon="Pin" />
-                <AppBarButton Icon="Pin" />
-                <AppBarButton Icon="Pin" />
-                <AppBarButton Icon="Pin" />
-            </StackPanel>
+        <AppBar ClosedDisplayMode="Compact">
+            <ListView
+                x:Name="ListView"
+                ItemsSource="{Binding BottomMenuItems, Mode=OneWay}"
+                SelectedItem="{Binding SelectedBottomMenuItem, Mode=TwoWay}"
+                SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <AppBarButton
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="Transparent"
+                            Icon="{Binding Icon}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
         </AppBar>
     </Page.BottomAppBar>
 
-    <Frame Name="ArchitectureFrame" />
+    <Frame SourcePageType="{Binding CurrentPageType, Mode=TwoWay}" />
 </Page>
