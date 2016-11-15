@@ -17,6 +17,10 @@ using Architecture.Data.Repositories.Interfaces;
 using Architecture.Managers.Implementations;
 using Architecture.Managers.Interfaces;
 using Architecture.Presentation.Helpers;
+using Architecture.Presentation.ViewModels.Architect;
+using Architecture.Presentation.ViewModels.Architecture;
+using Architecture.Presentation.ViewModels.Source;
+using Architecture.Presentation.ViewModels.Style;
 using Architecture.Presentation.Views;
 using Microsoft.EntityFrameworkCore;
 
