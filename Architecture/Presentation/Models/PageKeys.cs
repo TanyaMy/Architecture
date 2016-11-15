@@ -1,5 +1,10 @@
 ﻿using System;
 using Architecture.Presentation.Views;
+using Architecture.Presentation.Views.Architect;
+using Architecture.Presentation.Views.Architecture;
+using Architecture.Presentation.Views.Style;
+using ArchitectAddPage = Architecture.Presentation.Views.Architect.ArchitectAddPage;
+using SourceMainPage = Architecture.Presentation.Views.Source.SourceMainPage;
 
 namespace Architecture.Presentation.Models
 {
