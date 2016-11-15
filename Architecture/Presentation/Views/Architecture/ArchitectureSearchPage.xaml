@@ -1,0 +1,123 @@
+﻿<Page
+    x:Class="Architecture.Presentation.Views.Architecture.ArchitectureSearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Architecture.Presentation.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding ArchitectureSearch, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.55*" />
+            <ColumnDefinition Width="0.75*" />
+            <ColumnDefinition Width="0.75*" />
+            <ColumnDefinition Width="0.75*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="8*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            x:Name="textBlock"
+            Grid.ColumnSpan="4"
+            Margin="0,10,0,15"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontFamily="Segoe WP Black"
+            FontSize="30"
+            FontWeight="Bold"
+            Foreground="DarkBlue"
+            Opacity="1"
+            Text="Сооружения. Поиск" />
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="20,0,20,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            FontFamily="Segoe WP Black"
+            FontSize="18"
+            FontWeight="Bold"
+            Foreground="Black"
+            Opacity="1"
+            Text="Название" />
+        <TextBox
+            x:Name="titleTB"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="20,0"
+            VerticalAlignment="Center"
+            FontSize="18"
+            Opacity="1" />
+        <Button
+            x:Name="findBtn"
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="0,10,50,10"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Background="LightBlue"
+            BorderBrush="DarkBlue"
+            Content="Найти"
+            FontSize="18" />
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="20,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            FontFamily="Segoe WP Black"
+            FontSize="18"
+            FontWeight="Bold"
+            Foreground="Black"
+            Opacity="1"
+            Text="Сортировать по:" />
+
+        <ToggleSwitch
+            x:Name="titleTS"
+            Grid.Row="2"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            IsOn="False"
+            OffContent="названию"
+            OnContent="названию" />
+        <ToggleSwitch
+            x:Name="creationYearTS"
+            Grid.Row="2"
+            Grid.Column="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            IsOn="False"
+            OffContent="году создания"
+            OnContent="году создания" />
+        <ToggleSwitch
+            x:Name="archSurnameTS"
+            Grid.Row="2"
+            Grid.Column="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            IsOn="False"
+            OffContent="фамилии архитектора"
+            OnContent="фамилии архитектора" />
+
+        <GridView
+            x:Name="gridView"
+            Grid.Row="3"
+            Grid.ColumnSpan="4"
+            Height="400"
+            Margin="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Bottom"
+            SelectionMode="Multiple" />
+
+
+    </Grid>
+
+
+</Page>

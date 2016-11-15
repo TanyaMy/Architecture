@@ -1,12 +1,16 @@
 ﻿using System;
 using Architecture.Presentation.Views;
+using Architecture.Presentation.Views.Architect;
+using Architecture.Presentation.Views.Architecture;
+using Architecture.Presentation.Views.Restoration;
+using Architecture.Presentation.Views.Style;
+using ArchitectAddPage = Architecture.Presentation.Views.Architect.ArchitectAddPage;
+using SourceMainPage = Architecture.Presentation.Views.Source.SourceMainPage;
 
 namespace Architecture.Presentation.Models
 {
     public enum PageKeys
     {
-        [PageType(typeof(MainPage))]
-        Main,
         [PageType(typeof(ArchitectureMainPage))]
         ArchitectureMain,
         [PageType(typeof(ArchitectureSearchPage))]

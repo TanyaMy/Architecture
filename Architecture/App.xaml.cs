@@ -14,9 +14,17 @@ using System.Globalization;
 using Architecture.Data;
 using Architecture.Data.Repositories.Implementations;
 using Architecture.Data.Repositories.Interfaces;
+using Architecture.Managers;
 using Architecture.Managers.Implementations;
 using Architecture.Managers.Interfaces;
 using Architecture.Presentation.Helpers;
+using Architecture.Presentation.ViewModels.Architect;
+using Architecture.Presentation.ViewModels.Architecture;
+using Architecture.Presentation.ViewModels.Source;
+using Architecture.Presentation.ViewModels.Style;
+using Architecture.Presentation.Helpers.Implementations;
+using Architecture.Presentation.Helpers.Interfaces;
+using Architecture.Presentation.ViewModels.Restoration;
 using Architecture.Presentation.Views;
 using Microsoft.EntityFrameworkCore;
 
@@ -56,14 +64,10 @@ namespace Architecture
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-#if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                this.DebugSettings.EnableFrameRateCounter = false;
-            }
-#endif
+            await DbInitializer.Seed();
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -91,7 +95,7 @@ namespace Architecture
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(ShellPage), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
@@ -125,16 +129,19 @@ namespace Architecture
         private void RegisterDependencies()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            SimpleIoc.Default.Register<AppDbContext>();
 
             #region Services
 
             SimpleIoc.Default.Register(() => NavigationServiceHepler.GetService);
 
+            SimpleIoc.Default.Register<ICustomNavigationService, CustomNavigationService>();
+
             #endregion
 
             #region ViewModels
-
-            SimpleIoc.Default.Register<MainViewModel>();
+            
+            SimpleIoc.Default.Register<ShellViewModel>();
 
             SimpleIoc.Default.Register<ArchitectureMainViewModel>();
             SimpleIoc.Default.Register<ArchitectureSearchViewModel>();
