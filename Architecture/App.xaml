@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:common="using:Architecture.Presentation.ViewModels.Common"
     xmlns:local="using:Architecture"
-    xmlns:viewModels="using:Arcitecture.Presentation.ViewModels.Common"
+    xmlns:viewModels="using:Architecture.Presentation.ViewModels.Common"
     RequestedTheme="Light">
 
     <Application.Resources>

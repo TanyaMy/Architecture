@@ -1,4 +1,8 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using Architecture.Presentation.ViewModels.Architect;
+using Architecture.Presentation.ViewModels.Architecture;
+using Architecture.Presentation.ViewModels.Source;
+using Architecture.Presentation.ViewModels.Style;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Architecture.Presentation.ViewModels.Common
 {
