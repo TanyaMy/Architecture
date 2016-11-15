@@ -1,5 +1,6 @@
 ﻿using Architecture.Presentation.ViewModels.Architect;
 using Architecture.Presentation.ViewModels.Architecture;
+using Architecture.Presentation.ViewModels.Restoration;
 using Architecture.Presentation.ViewModels.Source;
 using Architecture.Presentation.ViewModels.Style;
 using Microsoft.Practices.ServiceLocation;

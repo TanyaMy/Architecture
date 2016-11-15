@@ -139,6 +139,7 @@
     <Compile Include="Presentation\Models\ArchitectureCollection.cs" />
     <Compile Include="Presentation\Models\PageKeys.cs" />
     <Compile Include="Data\Entities\Source.cs" />
+    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureStatisticsViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectFilterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectMainViewModel.cs" />
@@ -152,7 +153,7 @@
     <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StylesMainViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\RestorationMainViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Restoration\RestorationMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\Views\Architect\ArchitectAddPage.xaml.cs">
@@ -182,11 +183,8 @@
     <Compile Include="Presentation\Views\Architecture\ArchitectureSearchPage.xaml.cs">
       <DependentUpon>ArchitectureSearchPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\ArchitectureStatisticsPage.xaml.cs">
+    <Compile Include="Presentation\Views\Architecture\ArchitectureStatisticsPage.xaml.cs">
       <DependentUpon>ArchitectureStatisticsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\Entities\Repair.cs" />
@@ -197,7 +195,7 @@
     <Compile Include="Presentation\Views\Source\SourceMainPage.xaml.cs">
       <DependentUpon>SourceMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\RestorationMainPage.xaml.cs">
+    <Compile Include="Presentation\Views\Restoration\RestorationMainPage.xaml.cs">
       <DependentUpon>RestorationMainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Style\StyleMainPage.xaml.cs">
@@ -269,7 +267,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\ArchitectureStatisticsPage.xaml">
+    <Page Include="Presentation\Views\Architecture\ArchitectureStatisticsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -277,7 +275,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\RestorationMainPage.xaml">
+    <Page Include="Presentation\Views\Restoration\RestorationMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
