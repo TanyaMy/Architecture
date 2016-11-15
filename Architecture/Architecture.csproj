@@ -129,6 +129,7 @@
       <DependentUpon>20161113171103_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AppDbContextModelSnapshot.cs" />
+    <Compile Include="Presentation\Helpers\Extensions.cs" />
     <Compile Include="Presentation\Helpers\Implementations\CustomNavigationService.cs" />
     <Compile Include="Presentation\Helpers\Interfaces\ICustomNavigationService.cs" />
     <Compile Include="Presentation\Helpers\NavigationServiceHelper.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Presentation\Models\PageKeys.cs" />
     <Compile Include="Data\Entities\Source.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectAddViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Architect\ArchitectFilterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureAddViewModel.cs" />
@@ -146,14 +148,12 @@
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureReportsViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ShellViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Common\Extensions.cs" />
+    <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Style\StyleMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StylesMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
-    <Compile Include="Presentation\ViewModels\SourceMainViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\StyleMainViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\ArchitectFilterViewModel.cs" />
-    <Compile Include="Presentation\Views\ArchitectAddPage.xaml.cs">
+    <Compile Include="Presentation\Views\Architect\ArchitectAddPage.xaml.cs">
       <DependentUpon>ArchitectAddPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Architect\ArchitectFilterPage.xaml.cs">
@@ -186,7 +186,7 @@
     <Compile Include="Presentation\Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\SourceMainPage.xaml.cs">
+    <Compile Include="Presentation\Views\Source\SourceMainPage.xaml.cs">
       <DependentUpon>SourceMainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Style\StyleMainPage.xaml.cs">
