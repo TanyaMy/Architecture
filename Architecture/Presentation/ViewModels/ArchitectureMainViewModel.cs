@@ -8,8 +8,8 @@ namespace Architecture.Presentation.ViewModels
         public ArchitectureMainViewModel()
         {
 
-
-
         }
+
+
     }
 }

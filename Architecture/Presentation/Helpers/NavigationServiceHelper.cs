@@ -12,25 +12,42 @@ namespace Architecture.Presentation.Helpers
     public static class NavigationServiceHepler
     {
         private static NavigationService AppNavigationService;
+        private static MemberInfo[] _memberInfos;
 
         static NavigationServiceHepler()
         {
             Configurate();
         }
 
+        public static Type GetPageTypeByKey(PageKeys pageKey)
+        {
+            string pageKeyName = pageKey.ToString();
+            var pageMemberInfo = _memberInfos.Single(x => x.Name == pageKeyName);
+
+            return GetTypeByMemberInfo(pageMemberInfo);
+        }
+
+
         private static void Configurate()
         {
             AppNavigationService = new NavigationService();
 
-            var memberInfos = typeof(PageKeys).GetMembers(BindingFlags.Public | BindingFlags.Static);
+            _memberInfos = typeof(PageKeys).GetMembers(BindingFlags.Public | BindingFlags.Static);
 
-            foreach (var memberInfo in memberInfos)
+            foreach (var memberInfo in _memberInfos)
             {
                 string typePath = memberInfo.CustomAttributes.First().ConstructorArguments.First().Value.ToString();
                 Type pageType = Type.GetType(typePath);
 
                 AppNavigationService.Configure(memberInfo.Name, pageType);
             }
+        }
+
+
+        private static Type GetTypeByMemberInfo(MemberInfo memberInfo)
+        {
+            string typePath = memberInfo.CustomAttributes.First().ConstructorArguments.First().Value.ToString();
+            return Type.GetType(typePath);
         }
 
         private static PropertyInfo[] GetProperties<T>()

@@ -1,11 +1,12 @@
-﻿using Architecture.Presentation.ViewModels;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 
-namespace Arcitecture.Presentation.ViewModels.Common
+namespace Architecture.Presentation.ViewModels.Common
 {
     public class ViewModelLocator
     {
-        public MainViewModel Main => GetViewModel<MainViewModel>();        
+        public ShellViewModel Shell => GetViewModel<ShellViewModel>();
+
+            
         public ArchitectureMainViewModel ArchitectureMain => GetViewModel<ArchitectureMainViewModel>();
         public ArchitectureSearchViewModel ArchitectureSearch => GetViewModel<ArchitectureSearchViewModel>();
         public ArchitectureFilterViewModel ArchitectureFilter => GetViewModel<ArchitectureFilterViewModel>();

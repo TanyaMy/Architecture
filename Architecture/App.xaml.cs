@@ -17,6 +17,8 @@ using Architecture.Data.Repositories.Interfaces;
 using Architecture.Managers.Implementations;
 using Architecture.Managers.Interfaces;
 using Architecture.Presentation.Helpers;
+using Architecture.Presentation.Helpers.Implementations;
+using Architecture.Presentation.Helpers.Interfaces;
 using Architecture.Presentation.Views;
 using Microsoft.EntityFrameworkCore;
 
@@ -91,7 +93,7 @@ namespace Architecture
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(ShellPage), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
@@ -130,11 +132,13 @@ namespace Architecture
 
             SimpleIoc.Default.Register(() => NavigationServiceHepler.GetService);
 
+            SimpleIoc.Default.Register<ICustomNavigationService, CustomNavigationService>();
+
             #endregion
 
             #region ViewModels
-
-            SimpleIoc.Default.Register<MainViewModel>();
+            
+            SimpleIoc.Default.Register<ShellViewModel>();
 
             SimpleIoc.Default.Register<ArchitectureMainViewModel>();
             SimpleIoc.Default.Register<ArchitectureSearchViewModel>();

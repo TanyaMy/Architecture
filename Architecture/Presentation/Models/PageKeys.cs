@@ -5,8 +5,6 @@ namespace Architecture.Presentation.Models
 {
     public enum PageKeys
     {
-        [PageType(typeof(MainPage))]
-        Main,
         [PageType(typeof(ArchitectureMainPage))]
         ArchitectureMain,
         [PageType(typeof(ArchitectureSearchPage))]

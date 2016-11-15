@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Architecture.Presentation.Helpers.Interfaces;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using GalaSoft.MvvmLight.Command;
@@ -11,10 +12,14 @@ namespace Arcitecture.Presentation.ViewModels.Common
         public ViewModelBase()
         {
             NavigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+            CustomNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>();
+
             DialogService = new DialogService();
 
             GoBackCommand = new RelayCommand(NavigationService.GoBack);
         }
+
+        protected ICustomNavigationService CustomNavigationService { get; }
 
         protected INavigationService NavigationService { get; }
 
