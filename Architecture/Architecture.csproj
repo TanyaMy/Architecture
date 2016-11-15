@@ -152,6 +152,7 @@
     <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StylesMainViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\RestorationMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\Views\Architect\ArchitectAddPage.xaml.cs">
@@ -181,6 +182,12 @@
     <Compile Include="Presentation\Views\Architecture\ArchitectureSearchPage.xaml.cs">
       <DependentUpon>ArchitectureSearchPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Views\ArchitectureStatisticsPage.xaml.cs">
+      <DependentUpon>ArchitectureStatisticsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\Entities\Repair.cs" />
     <Compile Include="Data\Entities\Restoration.cs" />
@@ -189,6 +196,9 @@
     </Compile>
     <Compile Include="Presentation\Views\Source\SourceMainPage.xaml.cs">
       <DependentUpon>SourceMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\RestorationMainPage.xaml.cs">
+      <DependentUpon>RestorationMainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Style\StyleMainPage.xaml.cs">
       <DependentUpon>StyleMainPage.xaml</DependentUpon>
@@ -206,6 +216,7 @@
     <Content Include="Assets\Images\architectsIcon.png" />
     <Content Include="Assets\Images\houseIcon.png" />
     <Content Include="Assets\Images\mainBackground.jpeg" />
+    <Content Include="Assets\Images\restorationIcon.png" />
     <Content Include="Assets\Images\sourceIcon.png" />
     <Content Include="Assets\Images\stylesIcon.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -258,7 +269,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Presentation\Views\ArchitectureStatisticsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Views\ShellPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\RestorationMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
