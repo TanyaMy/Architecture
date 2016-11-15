@@ -4,6 +4,11 @@ namespace Architecture.Data.Entities
 {
     public class Style
     {
+        public Style()
+        {
+            
+        }
+
         public Style(
             string title,
             string motherCountry,

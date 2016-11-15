@@ -14,6 +14,7 @@ using System.Globalization;
 using Architecture.Data;
 using Architecture.Data.Repositories.Implementations;
 using Architecture.Data.Repositories.Interfaces;
+using Architecture.Managers;
 using Architecture.Managers.Implementations;
 using Architecture.Managers.Interfaces;
 using Architecture.Presentation.Helpers;
@@ -62,8 +63,10 @@ namespace Architecture
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            await DbInitializer.Seed();
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -125,6 +128,7 @@ namespace Architecture
         private void RegisterDependencies()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            SimpleIoc.Default.Register<AppDbContext>();
 
             #region Services
 
