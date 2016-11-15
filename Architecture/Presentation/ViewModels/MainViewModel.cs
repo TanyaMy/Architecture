@@ -15,6 +15,7 @@ namespace Architecture.Presentation.ViewModels
             GoToArchitectPageCommand = new RelayCommand(() => NavigationService.NavigateTo(PageKeys.ArchitectMain));
             GoToStylePageCommand = new RelayCommand(() => NavigationService.NavigateTo(PageKeys.StyleMain));
             GoToSourcePageCommand = new RelayCommand(() => NavigationService.NavigateTo(PageKeys.SourceMain));
+            GoToRestorationPageCommand = new RelayCommand(() => NavigationService.NavigateTo(PageKeys.RestorationMain));
         }
 
         public ICommand GoToArchitecturePageCommand { get; }
@@ -24,5 +25,7 @@ namespace Architecture.Presentation.ViewModels
         public ICommand GoToStylePageCommand { get; }
 
         public ICommand GoToSourcePageCommand { get; }
+
+        public ICommand GoToRestorationPageCommand { get; }
     }
 }

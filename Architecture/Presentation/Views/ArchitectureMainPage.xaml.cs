@@ -58,6 +58,10 @@ namespace Architecture.Presentation.Views
                         this.ArchitectureFrame.Navigate(typeof(ArchitectureReportsPage));
                         splitView.IsPaneOpen = !splitView.IsPaneOpen;
                         break;
+                    case "statistics":
+                        this.ArchitectureFrame.Navigate(typeof(ArchitectureStatisticsPage));
+                        splitView.IsPaneOpen = !splitView.IsPaneOpen;
+                        break;
                 }
             }
         }

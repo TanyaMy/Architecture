@@ -56,13 +56,13 @@
                            Text="Учет сооружений архитектуры"
                            VerticalAlignment="Top"
                            Foreground="DarkBlue"
-                           FontSize="35"
+                           FontSize="36"
                            Opacity="1"
                            Margin="0, 30, 0, 0"
                            FontFamily="Segoe WP Black"
                            FontWeight="Bold"/>
             <StackPanel HorizontalAlignment="Center" 
-                        Margin="0, 20, 0, 15">
+                        Margin="0, 40, 0, 15">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -73,12 +73,13 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <Image Source="ms-appx:///Assets/Images/houseIcon.png" 
                            Grid.Column="0" Grid.Row="0"
-                           MaxHeight="80"
-                           Margin="10"
+                           MaxHeight="60"
+                           Margin="5"
                            Stretch="Uniform"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"/>
@@ -86,17 +87,16 @@
                             Grid.Column="1" Grid.Row="0"
                             Content="Сооружения"
                             Margin="5"
-                            FontSize="35"
-                            Padding="10"
+                            FontSize="30"
                             Background="DodgerBlue"
                             Foreground="White"                    
                             HorizontalAlignment="Stretch"
-                            Height="80"
+                            Height="60"
                             Width="350"
                             Command="{Binding GoToArchitecturePageCommand}"/>
                     <Image Source="ms-appx:///Assets/Images/architectsIcon.png" 
-                           Margin="10"
-                           MaxHeight="80"
+                           Margin="5"
+                           MaxHeight="60"
                            Grid.Column="0" Grid.Row="1"
                            Stretch="Uniform"
                            VerticalAlignment="Center"
@@ -104,17 +104,16 @@
                     <Button x:Name="ArchitectsBtn"
                             Grid.Column="1" Grid.Row="1"
                             Content="Архитекторы"
-                            FontSize="35"
-                            Padding="10"
+                            FontSize="30"
                             Background="DodgerBlue"
                             Foreground="White"                    
                             HorizontalAlignment="Stretch"
-                            Height="80"
+                            Height="60"
                             Width="350"
                             Command="{Binding GoToArchitectPageCommand}"/>
                     <Image Source="ms-appx:///Assets/Images/stylesIcon.png" 
-                           Margin="10"
-                           MaxHeight="80"
+                           Margin="5"
+                           MaxHeight="60"
                            Grid.Column="0" Grid.Row="2"
                            Stretch="Uniform"
                            VerticalAlignment="Center"
@@ -123,16 +122,16 @@
                             Grid.Column="1" Grid.Row="2"
                             Content="Стили"
                             Margin="5"
-                            FontSize="35"
-                            Padding="10"
+                            FontSize="30"
                             Background="DodgerBlue"
                             Foreground="White"                    
                             HorizontalAlignment="Stretch"
-                            Height="80"
+                            Height="60"
                             Width="350"
                             Command="{Binding GoToStylePageCommand}"/>
                     <Image Source="ms-appx:///Assets/Images/sourceIcon.png" 
-                           MaxHeight="80"
+                           MaxHeight="60"
+                            Margin="5"
                            Grid.Column="0" Grid.Row="3"
                            Stretch="Uniform"
                            VerticalAlignment="Center"
@@ -141,14 +140,31 @@
                             Grid.Column="1" Grid.Row="3"
                             Content="Упоминания"
                             Margin="5"
-                            FontSize="35"
-                            Padding="10"
+                            FontSize="30"
                             Background="DodgerBlue"
                             Foreground="White"                    
                             HorizontalAlignment="Stretch"
-                            Height="80"
+                            Height="60"
                             Width="350"
                             Command="{Binding GoToSourcePageCommand}"/>
+                    <Image Source="ms-appx:///Assets/Images/restorationIcon.png" 
+                           MaxHeight="60"
+                           Margin="5"
+                           Grid.Column="0" Grid.Row="4"
+                           Stretch="Uniform"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                    <Button x:Name="RestorationBtn"
+                            Grid.Column="1" Grid.Row="4"
+                            Content="Реставрация"
+                            Margin="5"
+                            FontSize="30"
+                            Background="DodgerBlue"
+                            Foreground="White"                    
+                            HorizontalAlignment="Stretch"
+                            Height="60"
+                            Width="350"
+                            Command="{Binding GoToRestorationPageCommand}"/>
                 </Grid>
             </StackPanel>
         </StackPanel>
