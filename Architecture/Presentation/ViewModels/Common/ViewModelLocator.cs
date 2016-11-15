@@ -1,7 +1,6 @@
-﻿using Architecture.Presentation.ViewModels;
-using Microsoft.Practices.ServiceLocation;
+﻿using Microsoft.Practices.ServiceLocation;
 
-namespace Arcitecture.Presentation.ViewModels.Common
+namespace Architecture.Presentation.ViewModels.Common
 {
     public class ViewModelLocator
     {

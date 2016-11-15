@@ -3,24 +3,24 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Architecture"
-    xmlns:viewModels="using:Arcitecture.Presentation.ViewModels.Common"
+    xmlns:viewModels="using:Architecture.Presentation.ViewModels.Common"
     RequestedTheme="Light">
 
     <Application.Resources>
-            <ResourceDictionary>
-                <Style TargetType="RadioButton">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <ContentPresenter Margin="15" />
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            <viewModels:ViewModelLocator x:Key="Locator"/>
-        </ResourceDictionary> 
-   </Application.Resources>
-    
-    
+        <ResourceDictionary>
+            <Style TargetType="RadioButton">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <ContentPresenter Margin="15" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <viewModels:ViewModelLocator x:Key="Locator" />
+        </ResourceDictionary>
+    </Application.Resources>
+
+
 
 </Application>
