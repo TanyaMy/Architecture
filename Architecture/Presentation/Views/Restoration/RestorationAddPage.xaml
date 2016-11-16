@@ -1,11 +1,11 @@
 ﻿<Page
-    x:Class="Architecture.Presentation.Views.Architect.ArchitectAddPage"
+    x:Class="Architecture.Presentation.Views.Restoration.RestorationAddPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Architecture.Presentation.Views.Restoration"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding ArchitectAdd, Source={StaticResource Locator}}"
+     DataContext="{Binding RestorationAdd, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -26,47 +26,31 @@
                     FontWeight="Bold"
                     Foreground="DarkBlue"
                     Opacity="1"
-                    Text="Архитекторы. Добавление" />
+                    Text="Реставрация. Добавление" />
                 <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     FontSize="14"
-                    Header="Имя"
+                    Header="Вид реставрации"
                     Opacity="1"
-                    Text="{Binding Name, Mode=TwoWay}" />
+                    Text="{Binding RestorationKind, Mode=TwoWay}" />
                 <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     FontSize="14"
-                    Header="Фамилия"
+                    Header="Периодичность"
                     Opacity="1"
-                    Text="{Binding Surname, Mode=TwoWay}" />
+                    Text="{Binding Periodicity, Mode=TwoWay}" />
                 <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     FontSize="14"
-                    Header="Национальность"
+                    Header="Затраты"
                     Opacity="1"
-                    Text="{Binding Nationality, Mode=TwoWay}" />
-                <DatePicker
-                    Margin="0,10"
-                    HorizontalAlignment="Stretch"
-                    Date="{Binding BirthDate, Mode=TwoWay}"
-                    FontSize="14"
-                    Header="Дата рождения"
-                    Opacity="1" />
-                <DatePicker
-                    Margin="0,10"
-                    HorizontalAlignment="Stretch"
-                    Date="{Binding DeathDate, Mode=TwoWay}"
-                    FontSize="14"
-                    Header="Дата смерти"
-                    Opacity="1" />
-
-
+                    Text="{Binding Outlays, Mode=TwoWay}" />
 
                 <Button
                     Height="50"

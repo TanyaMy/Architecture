@@ -29,6 +29,8 @@ namespace Architecture.Presentation.ViewModels.Common
         public SourceMainViewModel SourceMain => GetViewModel<SourceMainViewModel>();
 
         public RestorationMainViewModel RestorationMain => GetViewModel<RestorationMainViewModel>();
+        public RestorationSearchViewModel RestorationSearch => GetViewModel<RestorationSearchViewModel>();
+        public RestorationAddViewModel RestorationAdd => GetViewModel<RestorationAddViewModel>();
 
 
         private T GetViewModel<T>()

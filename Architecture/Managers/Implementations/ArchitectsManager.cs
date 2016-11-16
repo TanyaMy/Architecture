@@ -6,7 +6,7 @@ using Architecture.Managers.Interfaces;
 
 namespace Architecture.Managers.Implementations
 {
-    class ArchitectsManager : IArchitectsManager
+    class ArchitectsManager : IRestorationManager
     {
         private readonly IArchitectsRepository _architectsRepository;
 

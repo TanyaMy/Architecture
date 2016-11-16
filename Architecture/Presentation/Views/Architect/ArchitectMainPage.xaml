@@ -8,128 +8,30 @@
     DataContext="{Binding ArchitectMain, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20*" />
-            <RowDefinition Height="284*" MinHeight="400" />
-        </Grid.RowDefinitions>
+    <Page.BottomAppBar>
+        <AppBar ClosedDisplayMode="Compact">
+            <ListView
+                x:Name="ListView"
+                ItemsSource="{Binding BottomMenuItems, Mode=OneWay}"
+                SelectedItem="{Binding SelectedBottomMenuItem, Mode=TwoWay}"
+                SelectionMode="Single">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <AppBarButton
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="Transparent"
+                            Icon="{Binding Icon}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </AppBar>
+    </Page.BottomAppBar>
 
-        <CommandBar
-            Grid.Row="0"
-            Height="48"
-            Background="DodgerBlue"
-            CompositeMode="SourceOver">
-            <CommandBar.Content>
-                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
-
-                    <AppBarButton
-                        x:Name="backBtn"
-                        Width="60"
-                        VerticalAlignment="Stretch"
-                        Background="DodgerBlue"
-                        Command="{Binding GoBackCommand}"
-                        FontSize="18"
-                        Foreground="White"
-                        Icon="Back" />
-                </StackPanel>
-            </CommandBar.Content>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton
-                    x:Name="a"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Background="DodgerBlue"
-                    Foreground="White" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-
-        <SplitView
-            x:Name="splitView"
-            Grid.Row="1"
-            Grid.Column="0"
-            Background="White"
-            CompactPaneLength="60"
-            DisplayMode="CompactInline"
-            PaneBackground="LightBlue">
-            <SplitView.Pane>
-
-                <StackPanel>
-                    <Button
-                        x:Name="HamburgerButton"
-                        Width="60"
-                        Height="60"
-                        Background="Transparent"
-                        Click="HamburgerButton_Click"
-                        Content="&#xE700;"
-                        FontFamily="Segoe MDL2 Assets"
-                        FontSize="22" />
-
-
-                    <RadioButton
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        Click="RadioButtonPaneItem_Click"
-                        Tag="search">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                Margin="5,0,30,0"
-                                VerticalAlignment="Center"
-                                FontFamily="Segoe MDL2 Assets"
-                                FontSize="22"
-                                Text="&#xE71E;" />
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                FontSize="22"
-                                Text="Поиск" />
-                        </StackPanel>
-
-                    </RadioButton>
-
-                    <RadioButton
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        Click="RadioButtonPaneItem_Click"
-                        Tag="filter">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                Margin="5,0,30,0"
-                                VerticalAlignment="Center"
-                                FontFamily="Segoe MDL2 Assets"
-                                FontSize="22"
-                                Text="&#xE71C;" />
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                FontSize="22"
-                                Text="Фильтр" />
-                        </StackPanel>
-                    </RadioButton>
-                    <RadioButton
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        Click="RadioButtonPaneItem_Click"
-                        Tag="add">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                Margin="5,0,30,0"
-                                VerticalAlignment="Center"
-                                FontFamily="Segoe MDL2 Assets"
-                                FontSize="22"
-                                Text="&#xE710;" />
-                            <TextBlock
-                                VerticalAlignment="Center"
-                                FontSize="22"
-                                Text="Добавить" />
-                        </StackPanel>
-                    </RadioButton>
-                </StackPanel>
-            </SplitView.Pane>
-
-            <SplitView.Content>
-                <Frame Name="ArchitectFrame" />
-            </SplitView.Content>
-        </SplitView>
-    </Grid>
+    <Frame SourcePageType="{Binding CurrentPageType, Mode=TwoWay}" />
 </Page>

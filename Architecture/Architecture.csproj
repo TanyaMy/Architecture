@@ -149,10 +149,11 @@
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureReportsViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Restoration\RestorationAddViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Restoration\RestorationSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ShellViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleMainViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Style\StylesMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Restoration\RestorationMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
@@ -189,6 +190,12 @@
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\Entities\Repair.cs" />
     <Compile Include="Data\Entities\Restoration.cs" />
+    <Compile Include="Presentation\Views\Restoration\RestorationAddPage.xaml.cs">
+      <DependentUpon>RestorationAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Restoration\RestorationSearchPage.xaml.cs">
+      <DependentUpon>RestorationSearchPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
     </Compile>
@@ -268,6 +275,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\Architecture\ArchitectureStatisticsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Restoration\RestorationAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Restoration\RestorationSearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

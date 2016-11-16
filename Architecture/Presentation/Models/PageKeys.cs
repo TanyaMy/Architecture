@@ -36,7 +36,11 @@ namespace Architecture.Presentation.Models
         [PageType(typeof(SourceMainPage))]
         SourceMain,
         [PageType(typeof(RestorationMainPage))]
-        RestorationMain
+        RestorationMain,
+        [PageType(typeof(RestorationSearchPage))]
+        RestorationSearch,        
+        [PageType(typeof(RestorationAddPage))]
+        RestorationAdd
     }
 
     public class PageTypeAttribute : Attribute

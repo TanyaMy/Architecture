@@ -15,7 +15,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
     {
         private readonly IArchitecturesManager _architecturesManager;
         private readonly IStylesManager _stylesManager;
-        private readonly IArchitectsManager _architectsManager;
+        private readonly IRestorationManager _architectsManager;
 
         private List<Data.Entities.Style> _stylesList;
         private List<Data.Entities.Architect> _architectsList;
@@ -34,7 +34,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         public ArchitectureAddViewModel(
             IArchitecturesManager architecturesManager,
             IStylesManager stylesManager,
-            IArchitectsManager architectsManager)
+            IRestorationManager architectsManager)
         {
             _architecturesManager = architecturesManager;
             _stylesManager = stylesManager;

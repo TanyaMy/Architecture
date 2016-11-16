@@ -13,36 +13,6 @@ namespace Architecture.Presentation.Views.Restoration
         public RestorationMainPage()
         {
             this.InitializeComponent();
-        }
-
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            splitView.IsPaneOpen = !splitView.IsPaneOpen;
-        }
-
-        private void RadioButtonPaneItem_Click(object sender, RoutedEventArgs e)
-        {
-            var radioButton = sender as RadioButton;
-
-            if (radioButton != null)
-            {
-
-                //switch (radioButton.Tag.ToString())
-                //{
-                //    case "search":
-                //        this.RestorationFrame.Navigate(typeof(RestorationSearchPage));
-                //        splitView.IsPaneOpen = !splitView.IsPaneOpen;
-                //        break;
-                //    case "filter":
-                //        this.RestorationFrame.Navigate(typeof(RestorationFilterPage));
-                //        splitView.IsPaneOpen = !splitView.IsPaneOpen;
-                //        break;
-                //    case "add":
-                //        this.RestorationFrame.Navigate(typeof(RestorationAddPage));
-                //        splitView.IsPaneOpen = !splitView.IsPaneOpen;
-                //        break;
-                //}
-            }
-        }
+        }      
     }
 }

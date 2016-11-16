@@ -87,18 +87,14 @@ namespace Architecture.Presentation.ViewModels.Architecture
                 new LeftMenuItem
                 {
                     Text = "Отчеты",
-                    Icon = new SymbolIcon(Symbol.Document),
-
-                    //TODO: Set correct page
-                    InnerPageKey = PageKeys.ArchitectureAdd
+                    Icon = new SymbolIcon(Symbol.Document),                    
+                    InnerPageKey = PageKeys.ArchitectureReports
                 },
                 new LeftMenuItem
                 {
                     Text = "Статистика",
-                    Icon = new SymbolIcon(Symbol.List),
-
-                    //TODO: Set correct page
-                    InnerPageKey = PageKeys.ArchitectureAdd
+                    Icon = new SymbolIcon(Symbol.ZeroBars),                                       
+                    InnerPageKey = PageKeys.ArchitectureStatistics
                 },
                 new LeftMenuItem
                 {

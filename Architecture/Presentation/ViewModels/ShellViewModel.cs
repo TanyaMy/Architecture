@@ -110,6 +110,12 @@ namespace Architecture.Presentation.ViewModels
                     Text = "Упоминания",
                     TextLogo = "\xE8A5",
                     InnerPageKey = PageKeys.SourceMain
+                },
+                 new LeftMenuItem
+                {
+                    Text = "Реставрация",
+                    TextLogo = "\xE825",
+                    InnerPageKey = PageKeys.RestorationMain
                 }
             };
         }

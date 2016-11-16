@@ -4,7 +4,7 @@ using Architecture.Data.Entities;
 
 namespace Architecture.Managers.Interfaces
 {
-    public interface IArchitectsManager
+    public interface IRestorationManager
     {
         Task<IEnumerable<Architect>> GetArchitects();
 

@@ -160,6 +160,8 @@ namespace Architecture
             SimpleIoc.Default.Register<SourceMainViewModel>();
 
             SimpleIoc.Default.Register<RestorationMainViewModel>();
+            SimpleIoc.Default.Register<RestorationSearchViewModel>();
+            SimpleIoc.Default.Register<RestorationAddViewModel>();
 
             #endregion
 
@@ -176,7 +178,7 @@ namespace Architecture
 
             #region Managers
 
-            SimpleIoc.Default.Register<IArchitectsManager, ArchitectsManager>();
+            SimpleIoc.Default.Register<IRestorationManager, ArchitectsManager>();
             SimpleIoc.Default.Register<IArchitecturesManager, ArchitecturesManager>();
             SimpleIoc.Default.Register<IRestorationsManager, RestorationsManager>();
             SimpleIoc.Default.Register<ISourcesManager, SourcesManager>();
