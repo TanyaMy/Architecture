@@ -57,7 +57,7 @@ namespace Architecture.Presentation.ViewModels.Restoration
 
         private void SetDefaultSelectedMenuItem()
         {
-            //SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.RestorationSearch);
+            SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.RestorationSearch);
         }
 
         private void CreateBottomMenuItems()
@@ -69,12 +69,6 @@ namespace Architecture.Presentation.ViewModels.Restoration
                     Text = "Поиск",
                     Icon = new SymbolIcon(Symbol.Find),
                     InnerPageKey = PageKeys.RestorationSearch
-                },               
-                new LeftMenuItem
-                {
-                    Text = "Добавление",
-                    Icon = new SymbolIcon(Symbol.Add),
-                    InnerPageKey = PageKeys.RestorationAdd
                 }
             };
         }

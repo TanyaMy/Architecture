@@ -23,6 +23,8 @@ namespace Architecture.Presentation.Models
         ArchitectureReports,
         [PageType(typeof(ArchitectureStatisticsPage))]
         ArchitectureStatistics,
+        [PageType(typeof(ArchitectureRepairPage))]
+        ArchitectureRepair,
         [PageType(typeof(ArchitectMainPage))]
         ArchitectMain,
         [PageType(typeof(ArchitectSearchPage))]
@@ -39,8 +41,8 @@ namespace Architecture.Presentation.Models
         RestorationMain,
         [PageType(typeof(RestorationSearchPage))]
         RestorationSearch,        
-        [PageType(typeof(RestorationAddPage))]
-        RestorationAdd
+        [PageType(typeof(RestorationUpdatePage))]
+        RestorationUpdate
     }
 
     public class PageTypeAttribute : Attribute

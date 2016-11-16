@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Architecture.Presentation.ViewModels.Restoration
 {
-    public class RestorationAddViewModel : ViewModelBase
+    public class RestorationUpdateViewModel : ViewModelBase
     {
         private readonly IRestorationsManager _restorationManager;
 
@@ -23,7 +23,7 @@ namespace Architecture.Presentation.ViewModels.Restoration
         private double _outlays;
       
 
-        public RestorationAddViewModel(IRestorationsManager restorationManager)
+        public RestorationUpdateViewModel(IRestorationsManager restorationManager)
         {
             _restorationManager = restorationManager;
 
@@ -59,7 +59,7 @@ namespace Architecture.Presentation.ViewModels.Restoration
             var restoration = new Data.Entities.Restoration(
                RestorationKind, Periodicity, Outlays);
 
-            await _restorationManager.AddRestoration(restoration);
+            await _restorationManager.UpdateRestoration(restoration);
         }
     }
 }

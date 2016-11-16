@@ -100,9 +100,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
                 {
                     Text = "Ремонт",
                     Icon = new SymbolIcon(Symbol.Repair),
-
-                    //TODO: Set correct page
-                    InnerPageKey = PageKeys.ArchitectureAdd
+                    InnerPageKey = PageKeys.ArchitectureRepair
                 }
             };
         }

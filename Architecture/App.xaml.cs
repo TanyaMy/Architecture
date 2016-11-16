@@ -149,6 +149,7 @@ namespace Architecture
             SimpleIoc.Default.Register<ArchitectureAddViewModel>();
             SimpleIoc.Default.Register<ArchitectureReportsViewModel>();
             SimpleIoc.Default.Register<ArchitectureStatisticsViewModel>();
+            SimpleIoc.Default.Register<ArchitectureRepairViewModel>();
 
             SimpleIoc.Default.Register<ArchitectMainViewModel>();
             SimpleIoc.Default.Register<ArchitectSearchViewModel>();
@@ -161,7 +162,7 @@ namespace Architecture
 
             SimpleIoc.Default.Register<RestorationMainViewModel>();
             SimpleIoc.Default.Register<RestorationSearchViewModel>();
-            SimpleIoc.Default.Register<RestorationAddViewModel>();
+            SimpleIoc.Default.Register<RestorationUpdateViewModel>();
 
             #endregion
 
