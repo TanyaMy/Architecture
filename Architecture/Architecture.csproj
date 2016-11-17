@@ -140,6 +140,7 @@
     <Compile Include="Presentation\Models\PageKeys.cs" />
     <Compile Include="Data\Entities\Source.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureStatisticsViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectFilterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectMainViewModel.cs" />
@@ -149,11 +150,13 @@
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureReportsViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Architect\ArchitectUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairAutomatisationViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairFilterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Repair\RepairUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Restoration\RestorationUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Restoration\RestorationSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ShellViewModel.cs" />
@@ -161,12 +164,17 @@
     <Compile Include="Presentation\ViewModels\Source\SourceFilterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Source\SourceUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleFilterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Style\StyleUpdateViewModel.cs" />
+    <Compile Include="Presentation\Views\Architecture\ArchitectureUpdatePage.xaml.cs">
+      <DependentUpon>ArchitectureUpdatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Views\Architect\ArchitectAddPage.xaml.cs">
       <DependentUpon>ArchitectAddPage.xaml</DependentUpon>
     </Compile>
@@ -200,6 +208,9 @@
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\Entities\Repair.cs" />
     <Compile Include="Data\Entities\Restoration.cs" />
+    <Compile Include="Presentation\Views\Architect\ArchitectUpdatePage.xaml.cs">
+      <DependentUpon>ArchitectUpdatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Views\Repair\RepairAddPage.xaml.cs">
       <DependentUpon>RepairAddPage.xaml</DependentUpon>
     </Compile>
@@ -214,6 +225,9 @@
     </Compile>
     <Compile Include="Presentation\Views\Repair\RepairSearchPage.xaml.cs">
       <DependentUpon>RepairSearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Repair\RepairUpdatePage.xaml.cs">
+      <DependentUpon>RepairUpdatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Restoration\RestorationUpdatePage.xaml.cs">
       <DependentUpon>RestorationUpdatePage.xaml</DependentUpon>
@@ -236,6 +250,9 @@
     <Compile Include="Presentation\Views\Source\SourceSearchPage.xaml.cs">
       <DependentUpon>SourceSearchPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Views\Source\SourceUpdatePage.xaml.cs">
+      <DependentUpon>SourceUpdatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Views\Style\StyleAddPage.xaml.cs">
       <DependentUpon>StyleAddPage.xaml</DependentUpon>
     </Compile>
@@ -247,6 +264,9 @@
     </Compile>
     <Compile Include="Presentation\Views\Style\StyleSearchPage.xaml.cs">
       <DependentUpon>StyleSearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Style\StyleUpdatePage.xaml.cs">
+      <DependentUpon>StyleUpdatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Entities\Style.cs" />
@@ -278,6 +298,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Presentation\Views\Architecture\ArchitectureUpdatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Views\Architect\ArchitectAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -318,6 +342,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Presentation\Views\Architect\ArchitectUpdatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Views\Repair\RepairAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -335,6 +363,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\Repair\RepairSearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Repair\RepairUpdatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,6 +398,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Presentation\Views\Source\SourceUpdatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Views\Style\StyleAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -379,6 +415,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\Style\StyleSearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Style\StyleUpdatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

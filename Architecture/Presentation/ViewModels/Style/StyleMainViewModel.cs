@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using Architecture.Presentation.Helpers;
 using Architecture.Presentation.Models;

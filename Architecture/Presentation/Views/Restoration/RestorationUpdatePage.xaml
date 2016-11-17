@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden">
-            <StackPanel>
+            <StackPanel Margin="0, 60">
                 <TextBlock
                     Margin="0,8,0,10"
                     HorizontalAlignment="Center"
@@ -58,7 +58,7 @@
                     HorizontalAlignment="Stretch"
                     Background="LightBlue"
                     BorderBrush="DarkBlue"
-                    Command="{Binding SaveCommand}"
+                    Command="{Binding SaveChangesCommand}"
                     Content="Сохранить"
                     FontSize="20" />
             </StackPanel>

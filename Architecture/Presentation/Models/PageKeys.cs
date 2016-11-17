@@ -18,6 +18,8 @@ namespace Architecture.Presentation.Models
         ArchitectureFilter,
         [PageType(typeof(ArchitectureAddPage))]
         ArchitectureAdd,
+        [PageType(typeof(ArchitectureUpdatePage))]
+        ArchitectureUpdate,
         [PageType(typeof(ArchitectureReportsPage))]
         ArchitectureReports,
         [PageType(typeof(ArchitectureStatisticsPage))]
@@ -30,6 +32,8 @@ namespace Architecture.Presentation.Models
         ArchitectFilter,
         [PageType(typeof(ArchitectAddPage))]
         ArchitectAdd,
+        [PageType(typeof(ArchitectUpdatePage))]
+        ArchitectUpdate,
         [PageType(typeof(StyleMainPage))]
         StyleMain,
         [PageType(typeof(StyleSearchPage))]
@@ -38,6 +42,8 @@ namespace Architecture.Presentation.Models
         StyleFilter,
         [PageType(typeof(StyleAddPage))]
         StyleAdd,
+        [PageType(typeof(StyleUpdatePage))]
+        StyleUpdate,
         [PageType(typeof(SourceMainPage))]
         SourceMain,
         [PageType(typeof(SourceSearchPage))]
@@ -46,6 +52,8 @@ namespace Architecture.Presentation.Models
         SourceFilter,
         [PageType(typeof(SourceAddPage))]
         SourceAdd,
+        [PageType(typeof(SourceUpdatePage))]
+        SourceUpdate,
         [PageType(typeof(RestorationSearchPage))]
         RestorationSearch,        
         [PageType(typeof(RestorationUpdatePage))]
@@ -58,6 +66,8 @@ namespace Architecture.Presentation.Models
         RepairFilter,
         [PageType(typeof(RepairAddPage))]
         RepairAdd,
+        [PageType(typeof(RepairUpdatePage))]
+        RepairUpdate,
         [PageType(typeof(RepairAutomatisationPage))]
         RepairAutomatisation
     }

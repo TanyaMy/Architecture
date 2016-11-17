@@ -1,7 +1,6 @@
 ﻿using Architecture.Data.Entities;
 using Architecture.Managers.Interfaces;
 using Arcitecture.Presentation.ViewModels.Common;
-using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;

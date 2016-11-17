@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Input;
-using Windows.ApplicationModel.Contacts;
-using Architecture.Data.Entities;
 using Architecture.Managers.Interfaces;
 using Arcitecture.Presentation.ViewModels.Common;
 using GalaSoft.MvvmLight.Command;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Architecture.Presentation.ViewModels.Architect

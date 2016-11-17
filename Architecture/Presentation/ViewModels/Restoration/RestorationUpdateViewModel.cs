@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
-using Windows.ApplicationModel.Contacts;
+﻿using System.Windows.Input;
 using Architecture.Data.Entities;
 using Architecture.Managers.Interfaces;
 using Arcitecture.Presentation.ViewModels.Common;
 using GalaSoft.MvvmLight.Command;
-using System.Linq;
 using System.Threading.Tasks;
 
 
@@ -27,11 +23,11 @@ namespace Architecture.Presentation.ViewModels.Restoration
         {
             _restorationManager = restorationManager;
 
-            SaveCommand = new RelayCommand(async () => await SaveToDb());
+            SaveChangesCommand = new RelayCommand(async () => await SaveToDb());
           
         }       
 
-        public ICommand SaveCommand { get; }
+        public ICommand SaveChangesCommand { get; }
 
       
         public RestorationKind RestorationKind
