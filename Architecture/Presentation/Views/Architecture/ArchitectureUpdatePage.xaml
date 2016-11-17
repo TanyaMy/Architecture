@@ -5,9 +5,146 @@
     xmlns:local="using:Architecture.Presentation.Views.Architecture"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding ArchitectureUpdate, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" MaxWidth="375" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden">
+            <StackPanel>
+                <TextBlock
+                    Margin="0,8,0,10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Segoe WP Black"
+                    FontSize="25"
+                    FontWeight="Bold"
+                    Foreground="DarkBlue"
+                    Opacity="1"
+                    Text="Сооружения. Редактирование" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Название"
+                    Opacity="1"
+                    Text="{Binding Title, Mode=TwoWay}" />
+                <DatePicker
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    Date="{Binding CreatedDate, Mode=TwoWay}"
+                    FontSize="14"
+                    Header="Год создания"
+                    Opacity="1" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Страна"
+                    Opacity="1"
+                    Text="{Binding Country, Mode=TwoWay}" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Город"
+                    Opacity="1"
+                    Text="{Binding City, Mode=TwoWay}" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Адрес"
+                    Opacity="1"
+                    Text="{Binding Address, Mode=TwoWay}" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Площадь"
+                    Opacity="1"
+                    Text="{Binding Square, Mode=TwoWay}" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Высота"
+                    Opacity="1"
+                    Text="{Binding Heigth, Mode=TwoWay}" />
+                <ComboBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="Gray"
+                    BorderThickness="0.5"
+                    FontSize="14"
+                    Header="Состояние сооружения"
+                    ItemsSource="{Binding StatesList}"
+                    Opacity="1"
+                    PlaceholderText="Выберите состояние сооружения"
+                    SelectedItem="{Binding State, Mode=TwoWay}" />
+                <ComboBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="Gray"
+                    BorderThickness="0.5"
+                    DisplayMemberPath="Title"
+                    FontSize="14"
+                    Header="Стиль"
+                    ItemsSource="{Binding StylesList}"
+                    Opacity="1"
+                    PlaceholderText="Выберите стиль"
+                    SelectedItem="{Binding Style, Mode=TwoWay}" />
+                <ComboBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="Gray"
+                    BorderThickness="0.5"
+                    FontSize="14"
+                    Header="Архитектор"
+                    ItemsSource="{Binding ArchitectsList}"
+                    Opacity="1"
+                    PlaceholderText="Выберите архитектора"
+                    SelectedItem="{Binding Architect, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Padding="5"
+                                BorderBrush="Transparent"
+                                BorderThickness="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" />
+                                    <TextBlock Text="{Binding Surname}" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+
+                <Button
+                    Height="50"
+                    Margin="0,30"
+                    HorizontalAlignment="Stretch"
+                    Background="LightBlue"
+                    BorderBrush="DarkBlue"
+                    Command="{Binding SaveChangesCommand}"
+                    Content="Сохранить"
+                    FontSize="20" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

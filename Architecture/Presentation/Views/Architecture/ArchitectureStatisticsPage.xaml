@@ -52,9 +52,9 @@
             BorderBrush="Gray"
             BorderThickness="1"
             SelectedIndex="0">
-            <TextBlock>Реставрации и затраты</TextBlock>
-            <TextBlock>Наистарейшие сооружения</TextBlock>
-            <TextBlock>Состояние сооружений</TextBlock>
+            <TextBlock>Состояние сооружений по странам</TextBlock>
+            <TextBlock>Стиль сооружений по странам</TextBlock>
+            <TextBlock>Количество сооружений по странам</TextBlock>
         </ComboBox>
 
         <GridView

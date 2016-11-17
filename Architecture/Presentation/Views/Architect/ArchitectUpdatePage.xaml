@@ -5,9 +5,79 @@
     xmlns:local="using:Architecture.Presentation.Views.Architect"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding ArchitectUpdate, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" MaxWidth="375" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden">
+            <StackPanel Margin="0, 50">
+                <TextBlock
+                    Margin="0,8,0,10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Segoe WP Black"
+                    FontSize="25"
+                    FontWeight="Bold"
+                    Foreground="DarkBlue"
+                    Opacity="1"
+                    Text="Архитекторы. Редактирование" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Имя"
+                    Opacity="1"
+                    Text="{Binding Name, Mode=TwoWay}" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Фамилия"
+                    Opacity="1"
+                    Text="{Binding Surname, Mode=TwoWay}" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Национальность"
+                    Opacity="1"
+                    Text="{Binding Nationality, Mode=TwoWay}" />
+                <DatePicker
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    Date="{Binding BirthDate, Mode=TwoWay}"
+                    FontSize="14"
+                    Header="Дата рождения"
+                    Opacity="1" />
+                <DatePicker
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    Date="{Binding DeathDate, Mode=TwoWay}"
+                    FontSize="14"
+                    Header="Дата смерти"
+                    Opacity="1" />
+
+
+
+                <Button
+                    Height="50"
+                    Margin="0,30"
+                    HorizontalAlignment="Stretch"
+                    Background="LightBlue"
+                    BorderBrush="DarkBlue"
+                    Command="{Binding SaveChangesCommand}"
+                    Content="Сохранить"
+                    FontSize="20" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

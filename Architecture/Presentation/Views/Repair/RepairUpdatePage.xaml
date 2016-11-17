@@ -5,9 +5,77 @@
     xmlns:local="using:Architecture.Presentation.Views.Repair"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding RepairUpdate, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" MaxWidth="375" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden">
+            <StackPanel Margin="0, 50">
+                <TextBlock
+                    Margin="0,8,0,10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Segoe WP Black"
+                    FontSize="28"
+                    FontWeight="Bold"
+                    Foreground="DarkBlue"
+                    Opacity="1"
+                    Text="Ремонт. Редактирование" />
+                <ComboBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="Gray"
+                    BorderThickness="0.5"                    
+                    DisplayMemberPath="Title"
+                    FontSize="14"
+                    Header="Сооружение"
+                    ItemsSource="{Binding ArchitecturesList}"
+                    Opacity="1"
+                    SelectedItem="{Binding Architecture, Mode=TwoWay}"/>
+                <ComboBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="Gray"
+                    BorderThickness="0.5"
+                    FontSize="14"
+                    Header="Вид реставрации"
+                    Opacity="1"
+                    ItemsSource="{Binding RestorationKindsList}"
+                    SelectedItem="{Binding RestorationKind, Mode=TwoWay}" />
+                <DatePicker
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    Date="{Binding RestorationDate, Mode=TwoWay}"
+                    FontSize="14"
+                    Header="Дата ремонта"
+                    Opacity="1" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Стоимость"
+                    Opacity="1"
+                    Text="{Binding RestorationCost, Mode=TwoWay}" />
+
+                <Button
+                    Height="50"
+                    Margin="0,30"
+                    HorizontalAlignment="Stretch"
+                    Background="LightBlue"
+                    BorderBrush="DarkBlue"
+                    Command="{Binding SaveChangesCommand}"
+                    Content="Сохранить"
+                    FontSize="20" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
