@@ -1,23 +1,22 @@
 ﻿<Page
-    x:Class="Architecture.Presentation.Views.Architecture.ArchitectureFilterPage"
+    x:Class="Architecture.Presentation.Views.Repair.RepairFilterPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Architecture.Presentation.Views.Repair"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding ArchitectureFilter, Source={StaticResource Locator}}"
+    DataContext="{Binding RepairFilter, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.55*" />
-            <ColumnDefinition Width="0.75*" />
-            <ColumnDefinition Width="0.85*" />
-            <ColumnDefinition Width="0.75*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.1*" />
-            <RowDefinition Height="0.7*" />
             <RowDefinition Height="0.7*" />
             <RowDefinition Height="0.7*" />
             <RowDefinition Height="0.8*" />
@@ -34,7 +33,7 @@
             FontWeight="Bold"
             Foreground="DarkBlue"
             Opacity="1"
-            Text="Сооружения. Фильтрация" />
+            Text="Ремонт. Фильтрация" />
         <TextBlock
             Grid.Row="1"
             Grid.Column="0"
@@ -45,58 +44,17 @@
             FontSize="18"
             Foreground="Black"
             Opacity="1"
-            Text="Название" />
-        <TextBox
-            x:Name="titleTB"
-            Grid.Row="1"
-            Grid.Column="1"
-            Margin="20,0"
-            VerticalAlignment="Center"
-            FontSize="16"
-            Opacity="1" />
-        <TextBlock
-            Grid.Row="1"
-            Grid.Column="2"
-            Margin="20,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            FontFamily="Segoe WP Black"
-            FontSize="18"
-            Foreground="Black"
-            Opacity="1"
-            Text="Фамилия архитекора" />
-        <TextBox
-            x:Name="architectSurnameTB"
-            Grid.Row="1"
-            Grid.Column="3"
-            Margin="20,0"
-            VerticalAlignment="Center"
-            FontSize="16"
-            Opacity="1" />
-        <TextBlock
-            Grid.Row="2"
-            Grid.Column="0"
-            Margin="20,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Center"
-            FontFamily="Segoe WP Black"
-            FontSize="18"
-            Foreground="Black"
-            Opacity="1"
-            Text="Состояние" />
+            Text="Вид реставрации" />
         <ComboBox
-            x:Name="stateCB"
-            Grid.Row="2"
+            Grid.Row="1"
             Grid.Column="1"
-            Margin="20,5"
-            HorizontalAlignment="Stretch"
+            Margin="20,0"
             VerticalAlignment="Center"
-            BorderBrush="Gray"
-            BorderThickness="0.5"
+            HorizontalAlignment="Stretch"
             FontSize="16"
             Opacity="1" />
         <TextBlock
-            Grid.Row="2"
+            Grid.Row="1"
             Grid.Column="2"
             Margin="20,0"
             HorizontalAlignment="Right"
@@ -105,17 +63,17 @@
             FontSize="18"
             Foreground="Black"
             Opacity="1"
-            Text="Страна" />
-        <TextBox
-            x:Name="countryTB"
-            Grid.Row="2"
+            Text="Дата ремонта" />
+        <DatePicker
+            Grid.Row="1"
             Grid.Column="3"
             Margin="20,0"
             VerticalAlignment="Center"
+            HorizontalAlignment="Stretch"
             FontSize="16"
             Opacity="1" />
         <TextBlock
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="0"
             Margin="20,0"
             HorizontalAlignment="Right"
@@ -124,17 +82,16 @@
             FontSize="18"
             Foreground="Black"
             Opacity="1"
-            Text="Город" />
+            Text="Сооружение" />
         <TextBox
-            x:Name="cityTB"
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="1"
             Margin="20,0"
             VerticalAlignment="Center"
             FontSize="16"
             Opacity="1" />
         <TextBlock
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="2"
             Margin="20,0"
             HorizontalAlignment="Right"
@@ -143,21 +100,17 @@
             FontSize="18"
             Foreground="Black"
             Opacity="1"
-            Text="Стиль" />
-        <ComboBox
-            x:Name="styleCB"
-            Grid.Row="3"
+            Text="Затраты" />
+        <TextBox
+            Grid.Row="2"
             Grid.Column="3"
-            Margin="20,5"
-            HorizontalAlignment="Stretch"
+            Margin="20,0"
             VerticalAlignment="Center"
-            BorderBrush="Gray"
-            BorderThickness="0.5"
             FontSize="16"
-            Opacity="1" />
+            Opacity="1" />        
         <Button
             x:Name="filterBtn"
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="3"
             Margin="20,5"
             HorizontalAlignment="Stretch"
@@ -170,7 +123,7 @@
             x:Name="gridView"
             Grid.Row="5"
             Grid.ColumnSpan="4"
-            Height="400"
+            Height="450"
             Margin="0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Bottom"

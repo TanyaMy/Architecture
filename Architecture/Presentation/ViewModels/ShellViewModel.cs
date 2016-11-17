@@ -113,9 +113,9 @@ namespace Architecture.Presentation.ViewModels
                 },
                  new LeftMenuItem
                 {
-                    Text = "Реставрация",
-                    TextLogo = "\xE825",
-                    InnerPageKey = PageKeys.RestorationMain
+                    Text = "Ремонт",
+                    TextLogo = "\xE90F",
+                    InnerPageKey = PageKeys.RepairMain
                 }
             };
         }

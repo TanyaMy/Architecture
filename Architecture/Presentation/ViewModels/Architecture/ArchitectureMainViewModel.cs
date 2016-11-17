@@ -95,13 +95,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
                     Text = "Статистика",
                     Icon = new SymbolIcon(Symbol.ZeroBars),                                       
                     InnerPageKey = PageKeys.ArchitectureStatistics
-                },
-                new LeftMenuItem
-                {
-                    Text = "Ремонт",
-                    Icon = new SymbolIcon(Symbol.Repair),
-                    InnerPageKey = PageKeys.ArchitectureRepair
-                }
+                }              
             };
         }
     }

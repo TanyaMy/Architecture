@@ -27,6 +27,7 @@ using Architecture.Presentation.Helpers.Interfaces;
 using Architecture.Presentation.ViewModels.Restoration;
 using Architecture.Presentation.Views;
 using Microsoft.EntityFrameworkCore;
+using Architecture.Presentation.ViewModels.Repair;
 
 namespace Architecture
 {
@@ -160,9 +161,14 @@ namespace Architecture
 
             SimpleIoc.Default.Register<SourceMainViewModel>();
 
-            SimpleIoc.Default.Register<RestorationMainViewModel>();
             SimpleIoc.Default.Register<RestorationSearchViewModel>();
             SimpleIoc.Default.Register<RestorationUpdateViewModel>();
+
+            SimpleIoc.Default.Register<RepairMainViewModel>();
+            SimpleIoc.Default.Register<RepairSearchViewModel>();
+            SimpleIoc.Default.Register<RepairFilterViewModel>();
+            SimpleIoc.Default.Register<RepairAddViewModel>();
+            SimpleIoc.Default.Register<RepairAutomatisationViewModel>();
 
             #endregion
 

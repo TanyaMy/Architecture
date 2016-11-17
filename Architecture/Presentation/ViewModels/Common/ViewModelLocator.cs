@@ -1,5 +1,6 @@
 ﻿using Architecture.Presentation.ViewModels.Architect;
 using Architecture.Presentation.ViewModels.Architecture;
+using Architecture.Presentation.ViewModels.Repair;
 using Architecture.Presentation.ViewModels.Restoration;
 using Architecture.Presentation.ViewModels.Source;
 using Architecture.Presentation.ViewModels.Style;
@@ -29,9 +30,14 @@ namespace Architecture.Presentation.ViewModels.Common
 
         public SourceMainViewModel SourceMain => GetViewModel<SourceMainViewModel>();
 
-        public RestorationMainViewModel RestorationMain => GetViewModel<RestorationMainViewModel>();
         public RestorationSearchViewModel RestorationSearch => GetViewModel<RestorationSearchViewModel>();
         public RestorationUpdateViewModel RestorationUpdate => GetViewModel<RestorationUpdateViewModel>();
+
+        public RepairMainViewModel RepairMain => GetViewModel<RepairMainViewModel>();
+        public RepairSearchViewModel RepairSearch => GetViewModel<RepairSearchViewModel>();
+        public RepairFilterViewModel RepairFilter => GetViewModel<RepairFilterViewModel>();
+        public RepairAddViewModel RepairAdd => GetViewModel<RepairAddViewModel>();
+        public RepairAutomatisationViewModel RepairAutomatisation => GetViewModel<RepairAutomatisationViewModel>();
 
 
         private T GetViewModel<T>()

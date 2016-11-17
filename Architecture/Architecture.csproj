@@ -150,12 +150,16 @@
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureReportsViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Repair\RepairAddViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Repair\RepairAutomatisationViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Repair\RepairFilterViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Repair\RepairMainViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Repair\RepairSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Restoration\RestorationUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Restoration\RestorationSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ShellViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleMainViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Restoration\RestorationMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\Views\Architecture\ArchitectureRepairPage.xaml.cs">
@@ -194,6 +198,21 @@
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\Entities\Repair.cs" />
     <Compile Include="Data\Entities\Restoration.cs" />
+    <Compile Include="Presentation\Views\Repair\RepairAddPage.xaml.cs">
+      <DependentUpon>RepairAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Repair\RepairAutomatisationPage.xaml.cs">
+      <DependentUpon>RepairAutomatisationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Repair\RepairFilterPage.xaml.cs">
+      <DependentUpon>RepairFilterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Repair\RepairMainPage.xaml.cs">
+      <DependentUpon>RepairMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Repair\RepairSearchPage.xaml.cs">
+      <DependentUpon>RepairSearchPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Views\Restoration\RestorationUpdatePage.xaml.cs">
       <DependentUpon>RestorationUpdatePage.xaml</DependentUpon>
     </Compile>
@@ -205,9 +224,6 @@
     </Compile>
     <Compile Include="Presentation\Views\Source\SourceMainPage.xaml.cs">
       <DependentUpon>SourceMainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Views\Restoration\RestorationMainPage.xaml.cs">
-      <DependentUpon>RestorationMainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Style\StyleMainPage.xaml.cs">
       <DependentUpon>StyleMainPage.xaml</DependentUpon>
@@ -286,6 +302,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Presentation\Views\Repair\RepairAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Repair\RepairAutomatisationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Repair\RepairFilterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Repair\RepairMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Repair\RepairSearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Presentation\Views\Restoration\RestorationUpdatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -295,10 +331,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\ShellPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Views\Restoration\RestorationMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,6 +6,7 @@ using Architecture.Presentation.Views.Restoration;
 using Architecture.Presentation.Views.Style;
 using ArchitectAddPage = Architecture.Presentation.Views.Architect.ArchitectAddPage;
 using SourceMainPage = Architecture.Presentation.Views.Source.SourceMainPage;
+using Architecture.Presentation.Views.Repair;
 
 namespace Architecture.Presentation.Models
 {
@@ -37,12 +38,20 @@ namespace Architecture.Presentation.Models
         StyleMain,
         [PageType(typeof(SourceMainPage))]
         SourceMain,
-        [PageType(typeof(RestorationMainPage))]
-        RestorationMain,
         [PageType(typeof(RestorationSearchPage))]
         RestorationSearch,        
         [PageType(typeof(RestorationUpdatePage))]
-        RestorationUpdate
+        RestorationUpdate,
+        [PageType(typeof(RepairMainPage))]
+        RepairMain,
+        [PageType(typeof(RepairSearchPage))]
+        RepairSearch,
+        [PageType(typeof(RepairFilterPage))]
+        RepairFilter,
+        [PageType(typeof(RepairAddPage))]
+        RepairAdd,
+        [PageType(typeof(RepairAutomatisationPage))]
+        RepairAutomatisation
     }
 
     public class PageTypeAttribute : Attribute

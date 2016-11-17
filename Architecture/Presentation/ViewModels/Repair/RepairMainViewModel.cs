@@ -7,11 +7,12 @@ using Architecture.Presentation.Helpers;
 using Architecture.Presentation.Models;
 using Arcitecture.Presentation.ViewModels.Common;
 
-namespace Architecture.Presentation.ViewModels.Restoration
+
+namespace Architecture.Presentation.ViewModels.Repair
 {
-    public class RestorationMainViewModel : ViewModelBase
+    public class RepairMainViewModel : ViewModelBase
     {
-        public class LeftMenuItem
+         public class LeftMenuItem
         {
             public SymbolIcon Icon { get; set; }
             public string Text { get; set; }
@@ -25,7 +26,7 @@ namespace Architecture.Presentation.ViewModels.Restoration
         private LeftMenuItem _selectedBottomMenuItem;
         private Type _currentPageType;
 
-        public RestorationMainViewModel()
+        public RepairMainViewModel()
         {
             CreateBottomMenuItems();
 
@@ -57,7 +58,7 @@ namespace Architecture.Presentation.ViewModels.Restoration
 
         private void SetDefaultSelectedMenuItem()
         {
-            SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.RestorationSearch);
+            SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.RepairSearch);
         }
 
         private void CreateBottomMenuItems()
@@ -68,7 +69,31 @@ namespace Architecture.Presentation.ViewModels.Restoration
                 {
                     Text = "Поиск",
                     Icon = new SymbolIcon(Symbol.Find),
+                    InnerPageKey = PageKeys.RepairSearch
+                },
+                new LeftMenuItem
+                {
+                    Text = "Фильтрация",
+                    Icon = new SymbolIcon(Symbol.Filter),
+                    InnerPageKey = PageKeys.RepairFilter
+                },
+                new LeftMenuItem
+                {
+                    Text = "Добавление",
+                    Icon = new SymbolIcon(Symbol.Add),
+                    InnerPageKey = PageKeys.RepairAdd
+                },
+                 new LeftMenuItem
+                {
+                    Text = "Реставрация",
+                    Icon = new SymbolIcon(Symbol.Refresh),
                     InnerPageKey = PageKeys.RestorationSearch
+                },
+                new LeftMenuItem
+                {
+                    Text = "Автоматизация",
+                    Icon = new SymbolIcon(Symbol.Accept),
+                    InnerPageKey = PageKeys.RepairAutomatisation
                 }
             };
         }
