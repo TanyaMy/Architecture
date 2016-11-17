@@ -56,31 +56,31 @@ namespace Architecture.Presentation.ViewModels.Source
 
         private void SetDefaultSelectedMenuItem()
         {
-           // SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.SourceSearch);
+            SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.SourceSearch);
         }
 
         private void CreateBottomMenuItems()
         {
             BottomMenuItems = new ObservableCollection<LeftMenuItem>
             {
-                //new LeftMenuItem
-                //{
-                //    Text = "Поиск",
-                //    Icon = new SymbolIcon(Symbol.Find),
-                //    InnerPageKey = PageKeys.SourceSearch
-                //},
-                //new LeftMenuItem
-                //{
-                //    Text = "Фильтрация",
-                //    Icon = new SymbolIcon(Symbol.Filter),
-                //    InnerPageKey = PageKeys.SourceFilter
-                //},
-                //new LeftMenuItem
-                //{
-                //    Text = "Добавление",
-                //    Icon = new SymbolIcon(Symbol.Add),
-                //    InnerPageKey = PageKeys.SourceAdd
-                //}
+                new LeftMenuItem
+                {
+                    Text = "Поиск",
+                    Icon = new SymbolIcon(Symbol.Find),
+                    InnerPageKey = PageKeys.SourceSearch
+                },
+                new LeftMenuItem
+                {
+                    Text = "Фильтрация",
+                    Icon = new SymbolIcon(Symbol.Filter),
+                    InnerPageKey = PageKeys.SourceFilter
+                },
+                new LeftMenuItem
+                {
+                    Text = "Добавление",
+                    Icon = new SymbolIcon(Symbol.Add),
+                    InnerPageKey = PageKeys.SourceAdd
+                }
             };
         }
     }

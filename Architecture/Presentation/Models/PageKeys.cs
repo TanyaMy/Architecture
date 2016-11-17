@@ -1,12 +1,10 @@
 ﻿using System;
-using Architecture.Presentation.Views;
 using Architecture.Presentation.Views.Architect;
 using Architecture.Presentation.Views.Architecture;
 using Architecture.Presentation.Views.Restoration;
 using Architecture.Presentation.Views.Style;
-using ArchitectAddPage = Architecture.Presentation.Views.Architect.ArchitectAddPage;
-using SourceMainPage = Architecture.Presentation.Views.Source.SourceMainPage;
 using Architecture.Presentation.Views.Repair;
+using Architecture.Presentation.Views.Source;
 
 namespace Architecture.Presentation.Models
 {
@@ -34,8 +32,20 @@ namespace Architecture.Presentation.Models
         ArchitectAdd,
         [PageType(typeof(StyleMainPage))]
         StyleMain,
+        [PageType(typeof(StyleSearchPage))]
+        StyleSearch,
+        [PageType(typeof(StyleFilterPage))]
+        StyleFilter,
+        [PageType(typeof(StyleAddPage))]
+        StyleAdd,
         [PageType(typeof(SourceMainPage))]
         SourceMain,
+        [PageType(typeof(SourceSearchPage))]
+        SourceSearch,
+        [PageType(typeof(SourceFilterPage))]
+        SourceFilter,
+        [PageType(typeof(SourceAddPage))]
+        SourceAdd,
         [PageType(typeof(RestorationSearchPage))]
         RestorationSearch,        
         [PageType(typeof(RestorationUpdatePage))]
