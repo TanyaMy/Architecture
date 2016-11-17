@@ -34,7 +34,7 @@
                     FontSize="14"
                     Header="Название"
                     Opacity="1"
-                    Text="{Binding Name, Mode=TwoWay}" />
+                    Text="{Binding Title, Mode=TwoWay}" />
                 <DatePicker
                     Margin="0,10"
                     HorizontalAlignment="Stretch"

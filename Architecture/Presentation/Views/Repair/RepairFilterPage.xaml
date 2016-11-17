@@ -16,11 +16,11 @@
             <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.1*" />
-            <RowDefinition Height="0.7*" />
-            <RowDefinition Height="0.7*" />
-            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="11*" />
             <RowDefinition Height="7*" />
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="70*" />
         </Grid.RowDefinitions>
         <TextBlock
             x:Name="textBlock"
@@ -52,7 +52,9 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Stretch"
             FontSize="16"
-            Opacity="1" />
+            Opacity="1"
+            ItemsSource="{Binding RestorationKindsList}"
+            SelectedItem="{Binding RestorationKind, Mode=TwoWay}"/>
         <TextBlock
             Grid.Row="1"
             Grid.Column="2"
@@ -71,7 +73,8 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Stretch"
             FontSize="16"
-            Opacity="1" />
+            Opacity="1"
+            Date="{Binding RestorationDate, Mode=TwoWay}"/>
         <TextBlock
             Grid.Row="2"
             Grid.Column="0"
@@ -83,13 +86,17 @@
             Foreground="Black"
             Opacity="1"
             Text="Сооружение" />
-        <TextBox
+        <ComboBox
             Grid.Row="2"
             Grid.Column="1"
             Margin="20,0"
             VerticalAlignment="Center"
             FontSize="16"
-            Opacity="1" />
+            DisplayMemberPath="Title"
+            HorizontalAlignment="Stretch"
+            ItemsSource="{Binding ArchitecturesList}"
+            Opacity="1"
+            SelectedItem="{Binding Architecture, Mode=TwoWay}"/>
         <TextBlock
             Grid.Row="2"
             Grid.Column="2"
@@ -100,14 +107,15 @@
             FontSize="18"
             Foreground="Black"
             Opacity="1"
-            Text="Затраты" />
+            Text="Стоимость" />
         <TextBox
             Grid.Row="2"
             Grid.Column="3"
             Margin="20,0"
             VerticalAlignment="Center"
             FontSize="16"
-            Opacity="1" />        
+            Opacity="1"
+            Text="{Binding RestorationCost, Mode=TwoWay}" />
         <Button
             x:Name="filterBtn"
             Grid.Row="3"
@@ -121,12 +129,11 @@
             FontSize="18" />
         <GridView
             x:Name="gridView"
-            Grid.Row="5"
+            Grid.Row="4"
+            Margin="20,10,0,10"
             Grid.ColumnSpan="4"
-            Height="450"
-            Margin="0"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Stretch"
             SelectionMode="Multiple" />
     </Grid>
 </Page>

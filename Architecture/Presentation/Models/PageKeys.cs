@@ -24,8 +24,6 @@ namespace Architecture.Presentation.Models
         ArchitectureReports,
         [PageType(typeof(ArchitectureStatisticsPage))]
         ArchitectureStatistics,
-        [PageType(typeof(ArchitectureRepairPage))]
-        ArchitectureRepair,
         [PageType(typeof(ArchitectMainPage))]
         ArchitectMain,
         [PageType(typeof(ArchitectSearchPage))]

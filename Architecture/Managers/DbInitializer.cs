@@ -12,7 +12,7 @@ namespace Architecture.Managers
 {
     public static class DbInitializer
     {
-        private static readonly IRestorationManager _architectsManager;
+        private static readonly IArchitectManager _architectsManager;
         private static readonly IArchitecturesManager _architecturesManager;
         private static readonly IRepairsManager _repairsManager;
         private static readonly IRestorationsManager _restorationsManager;
@@ -21,7 +21,7 @@ namespace Architecture.Managers
 
         static DbInitializer()
         {
-            _architectsManager = ServiceLocator.Current.GetInstance<IRestorationManager>();
+            _architectsManager = ServiceLocator.Current.GetInstance<IArchitectManager>();
             _architecturesManager = ServiceLocator.Current.GetInstance<IArchitecturesManager>();
             _repairsManager = ServiceLocator.Current.GetInstance<IRepairsManager>();
             _restorationsManager = ServiceLocator.Current.GetInstance<IRestorationsManager>();

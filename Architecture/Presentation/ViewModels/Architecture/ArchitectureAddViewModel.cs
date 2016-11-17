@@ -15,12 +15,12 @@ namespace Architecture.Presentation.ViewModels.Architecture
     {
         private readonly IArchitecturesManager _architecturesManager;
         private readonly IStylesManager _stylesManager;
-        private readonly IRestorationManager _architectsManager;
+        private readonly IArchitectManager _architectsManager;
 
         private List<Data.Entities.Style> _stylesList;
         private List<Data.Entities.Architect> _architectsList;
 
-        private string _name;
+        private string _title;
         private DateTimeOffset _createdDate;
         private string _country;
         private string _city;
@@ -34,7 +34,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         public ArchitectureAddViewModel(
             IArchitecturesManager architecturesManager,
             IStylesManager stylesManager,
-            IRestorationManager architectsManager)
+            IArchitectManager architectsManager)
         {
             _architecturesManager = architecturesManager;
             _stylesManager = stylesManager;
@@ -70,10 +70,10 @@ namespace Architecture.Presentation.ViewModels.Architecture
             set { Set(() => ArchitectsList, ref _architectsList, value); }
         }
 
-        public string Name
+        public string Title
         {
-            get { return _name; }
-            set { Set(() => Name, ref _name, value); }
+            get { return _title; }
+            set { Set(() => Title, ref _title, value); }
         }
 
         public DateTimeOffset CreatedDate
@@ -133,7 +133,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private async Task SaveToDb()
         {
             var architecture = new Data.Entities.Architecture(
-                Name, CreatedDate.Year, Country, City, Address,
+                Title, CreatedDate.Year, Country, City, Address,
                 Square, Heigth, State, Architect.Id, Style.Id);
 
             await _architecturesManager.AddArchitecture(architecture);

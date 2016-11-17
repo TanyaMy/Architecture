@@ -13,8 +13,7 @@ namespace Architecture.Presentation.ViewModels.Architect
 {
     public class ArchitectAddViewModel : ViewModelBase
     {       
-        private readonly IRestorationManager _architectsManager;
-        private List<Data.Entities.Architect> _architectsList;
+        private readonly IArchitectManager _architectsManager;
 
         private string _name;
         private string _surname;
@@ -23,7 +22,7 @@ namespace Architecture.Presentation.ViewModels.Architect
         private DateTime _deathDate;
 
         public ArchitectAddViewModel(
-            IRestorationManager architectsManager)
+            IArchitectManager architectsManager)
         {
             _architectsManager = architectsManager;
 

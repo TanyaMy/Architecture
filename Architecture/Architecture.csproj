@@ -139,7 +139,6 @@
     <Compile Include="Presentation\Models\ArchitectureCollection.cs" />
     <Compile Include="Presentation\Models\PageKeys.cs" />
     <Compile Include="Data\Entities\Source.cs" />
-    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureRepairViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureStatisticsViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectFilterViewModel.cs" />
@@ -162,9 +161,6 @@
     <Compile Include="Presentation\ViewModels\Style\StyleMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
-    <Compile Include="Presentation\Views\Architecture\ArchitectureRepairPage.xaml.cs">
-      <DependentUpon>ArchitectureRepairPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\Architect\ArchitectAddPage.xaml.cs">
       <DependentUpon>ArchitectAddPage.xaml</DependentUpon>
     </Compile>
@@ -258,10 +254,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Presentation\Views\Architecture\ArchitectureRepairPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Presentation\Views\Architect\ArchitectAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

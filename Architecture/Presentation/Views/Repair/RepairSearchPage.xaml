@@ -51,7 +51,8 @@
             Margin="20,0"
             VerticalAlignment="Center"
             FontSize="18"
-            Opacity="1" />
+            Opacity="1" 
+            Text="{Binding Title, Mode=TwoWay}"/>
 
         <Button
             x:Name="findBtn"
@@ -106,10 +107,9 @@
             x:Name="gridView"
             Grid.Row="3"
             Grid.ColumnSpan="4"
-            Height="500"
-            Margin="0"
+            Margin="10"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Stretch"
             SelectionMode="Multiple" />
     </Grid>
 </Page>

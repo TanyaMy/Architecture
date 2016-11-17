@@ -52,7 +52,8 @@
             Margin="20,0"
             VerticalAlignment="Center"
             FontSize="16"
-            Opacity="1" />
+            Opacity="1"
+            Text="{Binding Name, Mode=TwoWay}" />
         <TextBlock
             Grid.Row="1"
             Grid.Column="2"
@@ -63,9 +64,10 @@
             FontSize="18"
             Foreground="Black"
             Opacity="1"
-            Text="Фамилия" />
+            Text="Национальность" />
         <TextBox
-            x:Name="architectSurnameTB"
+            x:Name="nationalityTB"
+            Text="{Binding Nationality, Mode=TwoWay}"
             Grid.Row="1"
             Grid.Column="3"
             Margin="20,0"
@@ -84,13 +86,14 @@
             Opacity="1"
             Text="Фамилия" />
         <TextBox
-            x:Name="nationalityTB"
+            x:Name="architectSurnameTB"
             Grid.Row="2"
             Grid.Column="1"
             Margin="20,0"
             VerticalAlignment="Center"
             FontSize="16"
-            Opacity="1" />
+            Opacity="1" 
+            Text="{Binding Surname, Mode=TwoWay}"/>
 
         <Button
             x:Name="filterBtn"
@@ -102,15 +105,15 @@
             Background="LightBlue"
             BorderBrush="DarkBlue"
             Content="Отфильтровать"
+            Command="{Binding FilterCommand}"
             FontSize="18" />
         <GridView
             x:Name="gridView"
             Grid.Row="5"
             Grid.ColumnSpan="4"
-            Height="400"
-            Margin="0"
+            Margin="10"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Stretch"
             SelectionMode="Multiple" />
     </Grid>
 </Page>

@@ -150,8 +150,7 @@ namespace Architecture
             SimpleIoc.Default.Register<ArchitectureAddViewModel>();
             SimpleIoc.Default.Register<ArchitectureReportsViewModel>();
             SimpleIoc.Default.Register<ArchitectureStatisticsViewModel>();
-            SimpleIoc.Default.Register<ArchitectureRepairViewModel>();
-
+            
             SimpleIoc.Default.Register<ArchitectMainViewModel>();
             SimpleIoc.Default.Register<ArchitectSearchViewModel>();
             SimpleIoc.Default.Register<ArchitectFilterViewModel>();
@@ -185,7 +184,7 @@ namespace Architecture
 
             #region Managers
 
-            SimpleIoc.Default.Register<IRestorationManager, ArchitectsManager>();
+            SimpleIoc.Default.Register<IArchitectManager, ArchitectsManager>();
             SimpleIoc.Default.Register<IArchitecturesManager, ArchitecturesManager>();
             SimpleIoc.Default.Register<IRestorationsManager, RestorationsManager>();
             SimpleIoc.Default.Register<ISourcesManager, SourcesManager>();
