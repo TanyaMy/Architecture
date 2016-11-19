@@ -16,8 +16,6 @@ namespace Architecture.Presentation.Models
         ArchitectureMain,
         [PageType(typeof(ArchitectureAddPage))]
         ArchitectureAdd,
-        [PageType(typeof(ArchitectureUpdatePage))]
-        ArchitectureUpdate,
         [PageType(typeof(ArchitectureReportsPage))]
         ArchitectureReports,
         [PageType(typeof(ArchitectureStatisticsPage))]

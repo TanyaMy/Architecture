@@ -2,9 +2,11 @@
     x:Class="Architecture.Presentation.Views.Architecture.ArchitectureMainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:MyToolkit.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
     DataContext="{Binding ArchitectureMain, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -26,53 +28,24 @@
             Foreground="DarkBlue"
             Text="Сооружения" />
 
-        <GridView
+        <syncfusion:SfDataGrid
+            x:Name="SyncDataGrid"
             Grid.Row="1"
-            IsItemClickEnabled="True"
-            IsSwipeEnabled="True"
+            AllowFiltering="True"
+            AutoGenerateColumns="False"
             ItemsSource="{Binding ArchitectureList}"
-            SelectionMode="Multiple">
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapGrid
-                        HorizontalAlignment="Stretch"
-                        Width="800"
-                        VerticalAlignment="Stretch"
-                        Orientation="Vertical" />
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
+            SelectionMode="Multiple"
+            ColumnSizer="Star">
 
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="3*" />
-                        </Grid.ColumnDefinitions>
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn MappingName="Title" />
+                <syncfusion:GridTextColumn MappingName="Country" />
+                <syncfusion:GridTextColumn MappingName="City" />
+                <syncfusion:GridComboBoxColumn HeaderText="Состояние сооружения" MappingName="State" />
+            </syncfusion:SfDataGrid.Columns>
 
-                        <TextBlock Grid.Column="0" Text="{Binding Id}" />
-                        <TextBlock Grid.Column="1" Text="{Binding Title}" />
-                        <TextBlock Grid.Column="2" Text="{Binding CreationYear}" />
-                        <TextBlock Grid.Column="3" Text="{Binding Country}" />
-                        <TextBlock Grid.Column="4" Text="{Binding City}" />
-                        <TextBlock Grid.Column="5" Text="{Binding Address}" />
-                        <TextBlock Grid.Column="6" Text="{Binding Square}" />
-                        <TextBlock Grid.Column="7" Text="{Binding Height}" />
-                        <TextBlock Grid.Column="8" Text="{Binding State}" />
-                        <TextBlock Grid.Column="9" Text="{Binding Architect.Name}" />
-                        <TextBlock Grid.Column="10" Text="{Binding Style.Title}" />
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+
+        </syncfusion:SfDataGrid>
+
     </Grid>
 </Page>

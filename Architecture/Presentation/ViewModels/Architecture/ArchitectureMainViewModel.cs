@@ -2,9 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Architecture.Managers.Interfaces;
-using Windows.UI.Xaml.Controls;
-using Architecture.Presentation.Helpers;
-using Architecture.Presentation.Models;
 using Arcitecture.Presentation.ViewModels.Common;
 using ArchitectureModel = Architecture.Data.Entities.Architecture;
 
@@ -15,7 +12,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
     {
         private readonly IArchitecturesManager _architecturesManager;
 
-        private readonly IList<ArchitectureModel> _architectures;
+        private IList<ArchitectureModel> _architectures;
 
         public ArchitectureMainViewModel(IArchitecturesManager architecturesManager)
         {
@@ -24,7 +21,11 @@ namespace Architecture.Presentation.ViewModels.Architecture
             InitData();
         }
 
-        public IList<ArchitectureModel> ArchitectureList { get; set; }
+        public IList<ArchitectureModel> ArchitectureList
+        {
+            get { return _architectures; }
+            set { Set(() => ArchitectureList, ref _architectures, value); }
+        }
 
 
         private async Task InitData()

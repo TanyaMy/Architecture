@@ -139,8 +139,8 @@
     <Compile Include="Presentation\Models\ArchitectureCollection.cs" />
     <Compile Include="Presentation\Models\PageKeys.cs" />
     <Compile Include="Data\Entities\Source.cs" />
+    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureStatisticsViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectFilterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectMainViewModel.cs" />
@@ -148,7 +148,6 @@
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureReportsViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairAutomatisationViewModel.cs" />
@@ -171,9 +170,6 @@
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleUpdateViewModel.cs" />
-    <Compile Include="Presentation\Views\Architecture\ArchitectureUpdatePage.xaml.cs">
-      <DependentUpon>ArchitectureUpdatePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\Architect\ArchitectAddPage.xaml.cs">
       <DependentUpon>ArchitectAddPage.xaml</DependentUpon>
     </Compile>
@@ -188,9 +184,6 @@
     </Compile>
     <Compile Include="Presentation\Views\Architect\ArchitectMainPage.xaml.cs">
       <DependentUpon>ArchitectMainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Views\Architecture\ArchitectureFilterPage.xaml.cs">
-      <DependentUpon>ArchitectureFilterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Architecture\ArchitecturePage.xaml.cs">
       <DependentUpon>ArchitecturePage.xaml</DependentUpon>
@@ -297,10 +290,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Presentation\Views\Architecture\ArchitectureUpdatePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Presentation\Views\Architect\ArchitectAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -318,10 +307,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\Architect\ArchitectMainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Views\Architecture\ArchitectureFilterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -425,6 +410,9 @@
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
+    <SDKReference Include="Syncfusion Controls for UWP XAML, Version=14.4.0.15">
+      <Name>Syncfusion Controls for UWP XAML</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>

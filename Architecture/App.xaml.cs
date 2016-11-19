@@ -139,7 +139,6 @@ namespace Architecture
             SimpleIoc.Default.Register<ArchitectureViewModel>();
             SimpleIoc.Default.Register<ArchitectureMainViewModel>();
             SimpleIoc.Default.Register<ArchitectureAddViewModel>();
-            SimpleIoc.Default.Register<ArchitectureUpdateViewModel>();
             SimpleIoc.Default.Register<ArchitectureReportsViewModel>();
             SimpleIoc.Default.Register<ArchitectureStatisticsViewModel>();
             
