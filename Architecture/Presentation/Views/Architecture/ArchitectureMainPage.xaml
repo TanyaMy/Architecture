@@ -8,30 +8,71 @@
     DataContext="{Binding ArchitectureMain, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Page.BottomAppBar>
-        <AppBar ClosedDisplayMode="Compact">
-            <ListView
-                x:Name="ListView"
-                ItemsSource="{Binding BottomMenuItems, Mode=OneWay}"
-                SelectedItem="{Binding SelectedBottomMenuItem, Mode=TwoWay}"
-                SelectionMode="Single">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <AppBarButton
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Background="Transparent"
-                            Icon="{Binding Icon}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </AppBar>
-    </Page.BottomAppBar>
 
-    <Frame SourcePageType="{Binding CurrentPageType, Mode=TwoWay}" />
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            HorizontalAlignment="Center"
+            FontFamily="Segoe WP Black"
+            FontSize="30"
+            FontWeight="Bold"
+            Foreground="DarkBlue"
+            Text="Сооружения" />
+
+        <GridView
+            Grid.Row="1"
+            IsItemClickEnabled="True"
+            IsSwipeEnabled="True"
+            ItemsSource="{Binding ArchitectureList}"
+            SelectionMode="Multiple">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid
+                        HorizontalAlignment="Stretch"
+                        Width="800"
+                        VerticalAlignment="Stretch"
+                        Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="{Binding Id}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Title}" />
+                        <TextBlock Grid.Column="2" Text="{Binding CreationYear}" />
+                        <TextBlock Grid.Column="3" Text="{Binding Country}" />
+                        <TextBlock Grid.Column="4" Text="{Binding City}" />
+                        <TextBlock Grid.Column="5" Text="{Binding Address}" />
+                        <TextBlock Grid.Column="6" Text="{Binding Square}" />
+                        <TextBlock Grid.Column="7" Text="{Binding Height}" />
+                        <TextBlock Grid.Column="8" Text="{Binding State}" />
+                        <TextBlock Grid.Column="9" Text="{Binding Architect.Name}" />
+                        <TextBlock Grid.Column="10" Text="{Binding Style.Title}" />
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+    </Grid>
 </Page>

@@ -145,10 +145,9 @@
     <Compile Include="Presentation\ViewModels\Architect\ArchitectMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureAddViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureFilterViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureMainViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureReportsViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Architecture\ArchitectureMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ShellViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleMainViewModel.cs" />
@@ -174,14 +173,14 @@
     <Compile Include="Presentation\Views\Architecture\ArchitectureFilterPage.xaml.cs">
       <DependentUpon>ArchitectureFilterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Architecture\ArchitectureMainPage.xaml.cs">
-      <DependentUpon>ArchitectureMainPage.xaml</DependentUpon>
+    <Compile Include="Presentation\Views\Architecture\ArchitecturePage.xaml.cs">
+      <DependentUpon>ArchitecturePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Architecture\ArchitectureReportsPage.xaml.cs">
       <DependentUpon>ArchitectureReportsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Architecture\ArchitectureSearchPage.xaml.cs">
-      <DependentUpon>ArchitectureSearchPage.xaml</DependentUpon>
+    <Compile Include="Presentation\Views\Architecture\ArchitectureMainPage.xaml.cs">
+      <DependentUpon>ArchitectureMainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Architecture\ArchitectureStatisticsPage.xaml.cs">
       <DependentUpon>ArchitectureStatisticsPage.xaml</DependentUpon>
@@ -255,7 +254,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Architecture\ArchitectureMainPage.xaml">
+    <Page Include="Presentation\Views\Architecture\ArchitecturePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -263,7 +262,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Architecture\ArchitectureSearchPage.xaml">
+    <Page Include="Presentation\Views\Architecture\ArchitectureMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Architecture.Presentation.Helpers;
-using Architecture.Presentation.Helpers.Interfaces;
 using Architecture.Presentation.Models;
 using Arcitecture.Presentation.ViewModels.Common;
 using GalaSoft.MvvmLight.Command;
@@ -75,7 +71,7 @@ namespace Architecture.Presentation.ViewModels
 
         private void SetDefaultSelectedMenuItem()
         {
-            SelectedLeftMenuItem = _leftMenuItems.Single(i => i.InnerPageKey == PageKeys.ArchitectureMain);
+            SelectedLeftMenuItem = _leftMenuItems.Single(i => i.InnerPageKey == PageKeys.Architecture);
         }
 
         private void PaneOpenClose()
@@ -91,7 +87,7 @@ namespace Architecture.Presentation.ViewModels
                 {
                     Text = "Сооружения",
                     TextLogo = "\xE71E",
-                    InnerPageKey = PageKeys.ArchitectureMain
+                    InnerPageKey = PageKeys.Architecture
                 },
                 new LeftMenuItem
                 {

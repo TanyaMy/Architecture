@@ -11,12 +11,10 @@ namespace Architecture.Presentation.Models
 {
     public enum PageKeys
     {
+        [PageType(typeof(ArchitecturePage))]
+        Architecture,
         [PageType(typeof(ArchitectureMainPage))]
         ArchitectureMain,
-        [PageType(typeof(ArchitectureSearchPage))]
-        ArchitectureSearch,
-        [PageType(typeof(ArchitectureFilterPage))]
-        ArchitectureFilter,
         [PageType(typeof(ArchitectureAddPage))]
         ArchitectureAdd,
         [PageType(typeof(ArchitectureReportsPage))]

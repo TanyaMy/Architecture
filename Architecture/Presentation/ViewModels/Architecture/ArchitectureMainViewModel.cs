@@ -1,114 +1,32 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Input;
-using Windows.UI.Xaml.Controls;
-using Architecture.Presentation.Helpers;
-using Architecture.Presentation.Models;
+using System.Threading.Tasks;
+using Architecture.Managers.Interfaces;
 using Arcitecture.Presentation.ViewModels.Common;
-using GalaSoft.MvvmLight.Command;
+using ArchitectureModel = Architecture.Data.Entities.Architecture;
+
 
 namespace Architecture.Presentation.ViewModels.Architecture
 {
     public class ArchitectureMainViewModel : ViewModelBase
     {
+        private readonly IArchitecturesManager _architecturesManager;
 
-        public class LeftMenuItem
+        private readonly IList<ArchitectureModel> _architectures;
+
+        public ArchitectureMainViewModel(IArchitecturesManager architecturesManager)
         {
-            public SymbolIcon Icon { get; set; }
-            public string Text { get; set; }
+            _architecturesManager = architecturesManager;
 
-            public PageKeys InnerPageKey { get; set; }
-            public object Params { get; set; }
+            InitData();
         }
 
-        private ObservableCollection<LeftMenuItem> _bottomMenuItems;
+        public IList<ArchitectureModel> ArchitectureList { get; set; }
 
-        private LeftMenuItem _selectedBottomMenuItem;
-        private Type _currentPageType;
 
-        public ArchitectureMainViewModel()
+        private async Task InitData()
         {
-            CreateBottomMenuItems();
-
-            SetDefaultSelectedMenuItem();
-        }
-
-        public ObservableCollection<LeftMenuItem> BottomMenuItems
-        {
-            get { return _bottomMenuItems; }
-            private set { Set(() => BottomMenuItems, ref _bottomMenuItems, value); }
-        }
-
-        public LeftMenuItem SelectedBottomMenuItem
-        {
-            get { return _selectedBottomMenuItem; }
-            set
-            {
-                _selectedBottomMenuItem = value;
-                
-                CurrentPageType = value.InnerPageKey.GetPageType();
-            }
-        }
-
-        public Type CurrentPageType
-        {
-            get { return _currentPageType; }
-            set { Set(() => CurrentPageType, ref _currentPageType, value); }
-        }
-
-        private void SetDefaultSelectedMenuItem()
-        {
-            SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.ArchitectureSearch);
-        }
-
-        private void CreateBottomMenuItems()
-        {
-            BottomMenuItems = new ObservableCollection<LeftMenuItem>
-            {
-                new LeftMenuItem
-                {
-                    Text = "Поиск",
-                    Icon = new SymbolIcon(Symbol.Find),
-                    InnerPageKey = PageKeys.ArchitectureSearch
-                },
-                new LeftMenuItem
-                {
-                    Text = "Фильтрация",
-                    Icon = new SymbolIcon(Symbol.Filter),
-                    InnerPageKey = PageKeys.ArchitectureFilter
-                },
-                new LeftMenuItem
-                {
-                    Text = "Добавление",
-                    Icon = new SymbolIcon(Symbol.Add),
-                    InnerPageKey = PageKeys.ArchitectureAdd
-                },
-                new LeftMenuItem
-                {
-                    Text = "Отчеты",
-                    Icon = new SymbolIcon(Symbol.Document),
-
-                    //TODO: Set correct page
-                    InnerPageKey = PageKeys.ArchitectureAdd
-                },
-                new LeftMenuItem
-                {
-                    Text = "Статистика",
-                    Icon = new SymbolIcon(Symbol.List),
-
-                    //TODO: Set correct page
-                    InnerPageKey = PageKeys.ArchitectureAdd
-                },
-                new LeftMenuItem
-                {
-                    Text = "Ремонт",
-                    Icon = new SymbolIcon(Symbol.Repair),
-
-                    //TODO: Set correct page
-                    InnerPageKey = PageKeys.ArchitectureAdd
-                }
-            };
+            ArchitectureList = (await _architecturesManager.GetArchitectures()).ToList();
         }
     }
 }
