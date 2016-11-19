@@ -15,19 +15,18 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        
         <CommandBar Grid.Row="0">
             <CommandBar.Content>
-                <RelativePanel Padding="10">
-                    <Button
+                    <AppBarButton
                         x:Name="PaneOpen"
-                        Margin="0,0,40,0"
-                        Background="Transparent"
+                        HorizontalContentAlignment="Center"
+                        Background="Transparent"                       
                         Command="{Binding PaneOpenCloseCommand}"
                         Content="&#xE8FD;"
                         FontFamily="Segoe MDL2 Assets"
-                        FontSize="22"
-                        RelativePanel.AlignLeftWithPanel="True" />
-                </RelativePanel>
+                        FontSize="22"/>
+               
             </CommandBar.Content>
         </CommandBar>
 
@@ -49,9 +48,11 @@
                                     <RelativePanel>
                                         <TextBlock
                                             x:Name="MenuItemLogo"
-                                            Margin="5,0,30,0"
+                                            Margin="5,6,30,0"
                                             FontFamily="Segoe MDL2 Assets"
-                                            FontSize="22"
+                                            FontSize="20"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"                                            
                                             RelativePanel.AlignHorizontalCenterWithPanel="True"
                                             RelativePanel.AlignLeftWithPanel="True"
                                             Text="{Binding TextLogo}" />
@@ -59,6 +60,7 @@
                                             x:Name="MenuItemText"
                                             Padding="5"
                                             FontSize="18"
+                                            VerticalAlignment="Center"
                                             RelativePanel.AlignHorizontalCenterWithPanel="True"
                                             RelativePanel.RightOf="MenuItemLogo"
                                             Text="{Binding Text}" />

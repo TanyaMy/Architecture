@@ -11,7 +11,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="2*" MaxWidth="400" />
+            <ColumnDefinition Width="2*" MaxWidth="375" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -22,7 +22,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     FontFamily="Segoe WP Black"
-                    FontSize="30"
+                    FontSize="28"
                     FontWeight="Bold"
                     Foreground="DarkBlue"
                     Opacity="1"
@@ -34,7 +34,7 @@
                     FontSize="14"
                     Header="Название"
                     Opacity="1"
-                    Text="{Binding Name, Mode=TwoWay}" />
+                    Text="{Binding Title, Mode=TwoWay}" />
                 <DatePicker
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
@@ -136,7 +136,7 @@
 
 
                 <Button
-                    Height="70"
+                    Height="50"
                     Margin="0,30"
                     HorizontalAlignment="Stretch"
                     Background="LightBlue"

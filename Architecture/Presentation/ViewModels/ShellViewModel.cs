@@ -98,14 +98,20 @@ namespace Architecture.Presentation.ViewModels
                 new LeftMenuItem
                 {
                     Text = "Стили",
-                    TextLogo = "\xE710",
+                    TextLogo = "\xE2B1",
                     InnerPageKey = PageKeys.StyleMain
                 },
                 new LeftMenuItem
                 {
                     Text = "Упоминания",
-                    TextLogo = "\xE8A5",
+                    TextLogo = "\xE1D3",
                     InnerPageKey = PageKeys.SourceMain
+                },
+                 new LeftMenuItem
+                {
+                    Text = "Ремонт",
+                    TextLogo = "\xE90F",
+                    InnerPageKey = PageKeys.RepairMain
                 }
             };
         }

@@ -25,36 +25,6 @@ namespace Architecture.Presentation.Views.Style
         public StyleMainPage()
         {
             this.InitializeComponent();
-        }
-
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            splitView.IsPaneOpen = !splitView.IsPaneOpen;
-        }
-
-        private void RadioButtonPaneItem_Click(object sender, RoutedEventArgs e)
-        {
-            var radioButton = sender as RadioButton;
-
-            if (radioButton != null)
-            {
-
-                switch (radioButton.Tag.ToString())
-                {
-                    //case "search":
-                    //    this.StyleFrame.Navigate(typeof(StyleSearchPage));
-                    //    splitView.IsPaneOpen = !splitView.IsPaneOpen;
-                    //    break;
-                    //case "filter":
-                    //    this.StyleFrame.Navigate(typeof(StyleFilterPage));
-                    //    splitView.IsPaneOpen = !splitView.IsPaneOpen;
-                    //    break;
-                    //case "add":
-                    //    this.StyleFrame.Navigate(typeof(StyleAddPage));
-                    //    splitView.IsPaneOpen = !splitView.IsPaneOpen;
-                    //    break;
-                }
-            }
-        }
+        }       
     }
 }

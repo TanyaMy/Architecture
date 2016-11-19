@@ -1,0 +1,79 @@
+﻿<Page
+    x:Class="Architecture.Presentation.Views.Source.SourceUpdatePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Architecture.Presentation.Views.Source"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     DataContext="{Binding SourceAdd, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" MaxWidth="375" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden">
+            <StackPanel Margin="0, 50">
+                <TextBlock
+                    Margin="0,8,0,10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Segoe WP Black"
+                    FontSize="25"
+                    FontWeight="Bold"
+                    Foreground="DarkBlue"
+                    Opacity="1"
+                    Text="Упоминания. Редактирование" />
+                <ComboBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="Gray"
+                    BorderThickness="0.5"
+                    FontSize="14"
+                    Header="Вид"
+                    ItemsSource="{Binding SourceKindsList}"
+                    Opacity="1"
+                    SelectedItem="{Binding SourceKind, Mode=TwoWay}"/>
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Название"
+                    Opacity="1"
+                    Text="{Binding Title, Mode=TwoWay}" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Автор"
+                    Opacity="1"
+                    Text="{Binding Author, Mode=TwoWay}" />
+                <TextBox
+                    Margin="0,10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    FontSize="14"
+                    Header="Год создания"
+                    Opacity="1"
+                    Text="{Binding CreationYear, Mode=TwoWay}" />
+
+                <Button
+                    Height="50"
+                    Margin="0,30"
+                    HorizontalAlignment="Stretch"
+                    Background="LightBlue"
+                    BorderBrush="DarkBlue"
+                    Command="{Binding SaveChangesCommand}"
+                    Content="Сохранить"
+                    FontSize="20" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
+

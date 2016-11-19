@@ -7,10 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
-using System.Threading;
-using System.Globalization;
 using Architecture.Data;
 using Architecture.Data.Repositories.Implementations;
 using Architecture.Data.Repositories.Interfaces;
@@ -27,6 +24,7 @@ using Architecture.Presentation.Helpers.Interfaces;
 using Architecture.Presentation.ViewModels.Restoration;
 using Architecture.Presentation.Views;
 using Microsoft.EntityFrameworkCore;
+using Architecture.Presentation.ViewModels.Repair;
 
 namespace Architecture
 {
@@ -141,19 +139,37 @@ namespace Architecture
             SimpleIoc.Default.Register<ArchitectureViewModel>();
             SimpleIoc.Default.Register<ArchitectureMainViewModel>();
             SimpleIoc.Default.Register<ArchitectureAddViewModel>();
+            SimpleIoc.Default.Register<ArchitectureUpdateViewModel>();
             SimpleIoc.Default.Register<ArchitectureReportsViewModel>();
             SimpleIoc.Default.Register<ArchitectureStatisticsViewModel>();
-
+            
             SimpleIoc.Default.Register<ArchitectMainViewModel>();
             SimpleIoc.Default.Register<ArchitectSearchViewModel>();
             SimpleIoc.Default.Register<ArchitectFilterViewModel>();
             SimpleIoc.Default.Register<ArchitectAddViewModel>();
+            SimpleIoc.Default.Register<ArchitectUpdateViewModel>();
 
             SimpleIoc.Default.Register<StyleMainViewModel>();
+            SimpleIoc.Default.Register<StyleSearchViewModel>();
+            SimpleIoc.Default.Register<StyleFilterViewModel>();
+            SimpleIoc.Default.Register<StyleAddViewModel>();
+            SimpleIoc.Default.Register<StyleUpdateViewModel>();
 
             SimpleIoc.Default.Register<SourceMainViewModel>();
+            SimpleIoc.Default.Register<SourceSearchViewModel>();
+            SimpleIoc.Default.Register<SourceFilterViewModel>();
+            SimpleIoc.Default.Register<SourceAddViewModel>();
+            SimpleIoc.Default.Register<SourceUpdateViewModel>();
 
-            SimpleIoc.Default.Register<RestorationMainViewModel>();
+            SimpleIoc.Default.Register<RestorationSearchViewModel>();
+            SimpleIoc.Default.Register<RestorationUpdateViewModel>();
+
+            SimpleIoc.Default.Register<RepairMainViewModel>();
+            SimpleIoc.Default.Register<RepairSearchViewModel>();
+            SimpleIoc.Default.Register<RepairFilterViewModel>();
+            SimpleIoc.Default.Register<RepairAddViewModel>();
+            SimpleIoc.Default.Register<RepairUpdateViewModel> ();
+            SimpleIoc.Default.Register<RepairAutomatisationViewModel>();
 
             #endregion
 
@@ -170,7 +186,7 @@ namespace Architecture
 
             #region Managers
 
-            SimpleIoc.Default.Register<IArchitectsManager, ArchitectsManager>();
+            SimpleIoc.Default.Register<IArchitectManager, ArchitectsManager>();
             SimpleIoc.Default.Register<IArchitecturesManager, ArchitecturesManager>();
             SimpleIoc.Default.Register<IRestorationsManager, RestorationsManager>();
             SimpleIoc.Default.Register<ISourcesManager, SourcesManager>();

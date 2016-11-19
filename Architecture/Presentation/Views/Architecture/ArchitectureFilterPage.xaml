@@ -5,22 +5,23 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding ArchitectureFilter, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.55*" />
-            <ColumnDefinition Width="0.75*" />
-            <ColumnDefinition Width="0.85*" />
-            <ColumnDefinition Width="0.75*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.1*" />
-            <RowDefinition Height="0.7*" />
-            <RowDefinition Height="0.7*" />
-            <RowDefinition Height="0.7*" />
-            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="11*" />
             <RowDefinition Height="7*" />
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="70*" />
         </Grid.RowDefinitions>
         <TextBlock
             x:Name="textBlock"
@@ -29,7 +30,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontFamily="Segoe WP Black"
-            FontSize="30"
+            FontSize="28"
             FontWeight="Bold"
             Foreground="DarkBlue"
             Opacity="1"
@@ -52,7 +53,8 @@
             Margin="20,0"
             VerticalAlignment="Center"
             FontSize="16"
-            Opacity="1" />
+            Opacity="1" 
+            Text="{Binding Title, Mode=TwoWay}"/>
         <TextBlock
             Grid.Row="1"
             Grid.Column="2"
@@ -63,15 +65,28 @@
             FontSize="18"
             Foreground="Black"
             Opacity="1"
-            Text="Фамилия архитекора" />
-        <TextBox
-            x:Name="architectSurnameTB"
+            Text="Архитекор" />
+        <ComboBox
             Grid.Row="1"
             Grid.Column="3"
             Margin="20,0"
             VerticalAlignment="Center"
-            FontSize="16"
-            Opacity="1" />
+            HorizontalAlignment="Stretch"
+            FontSize="14"
+            BorderBrush="Gray"
+            BorderThickness="0.5"
+            Opacity="1"
+            ItemsSource="{Binding ArchitectsList}"
+            SelectedItem="{Binding Architect, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>                    
+                        <StackPanel Orientation="Horizontal" Padding="0">
+                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text="{Binding Surname}" />
+                        </StackPanel>                    
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <TextBlock
             Grid.Row="2"
             Grid.Column="0"
@@ -87,13 +102,15 @@
             x:Name="stateCB"
             Grid.Row="2"
             Grid.Column="1"
-            Margin="20,5"
+            Margin="20,0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
             BorderBrush="Gray"
             BorderThickness="0.5"
             FontSize="16"
-            Opacity="1" />
+            Opacity="1"
+            ItemsSource="{Binding StatesList}"
+            SelectedItem="{Binding State, Mode=TwoWay}"/>
         <TextBlock
             Grid.Row="2"
             Grid.Column="2"
@@ -112,7 +129,8 @@
             Margin="20,0"
             VerticalAlignment="Center"
             FontSize="16"
-            Opacity="1" />
+            Opacity="1"
+            Text="{Binding Country, Mode=TwoWay}"/>
         <TextBlock
             Grid.Row="3"
             Grid.Column="0"
@@ -131,7 +149,8 @@
             Margin="20,0"
             VerticalAlignment="Center"
             FontSize="16"
-            Opacity="1" />
+            Opacity="1" 
+            Text="{Binding City, Mode=TwoWay}"/>
         <TextBlock
             Grid.Row="3"
             Grid.Column="2"
@@ -147,13 +166,16 @@
             x:Name="styleCB"
             Grid.Row="3"
             Grid.Column="3"
-            Margin="20,5"
+            Margin="20,0"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Center"
+            DisplayMemberPath="Title"
             BorderBrush="Gray"
             BorderThickness="0.5"
             FontSize="16"
-            Opacity="1" />
+            Opacity="1"
+            ItemsSource="{Binding StylesList}"
+            SelectedItem="{Binding Style, Mode=TwoWay}"/>
         <Button
             x:Name="filterBtn"
             Grid.Row="4"
@@ -164,15 +186,15 @@
             Background="LightBlue"
             BorderBrush="DarkBlue"
             Content="Отфильтровать"
-            FontSize="18" />
+            FontSize="18"
+            Command="{Binding FilterCommand}"/>
         <GridView
             x:Name="gridView"
             Grid.Row="5"
             Grid.ColumnSpan="4"
-            Height="400"
-            Margin="0"
+            Margin="10"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Stretch"
             SelectionMode="Multiple" />
     </Grid>
 </Page>

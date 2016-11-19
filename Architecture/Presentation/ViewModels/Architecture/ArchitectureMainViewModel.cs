@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Architecture.Managers.Interfaces;
+using Windows.UI.Xaml.Controls;
+using Architecture.Presentation.Helpers;
+using Architecture.Presentation.Models;
 using Arcitecture.Presentation.ViewModels.Common;
 using ArchitectureModel = Architecture.Data.Entities.Architecture;
 

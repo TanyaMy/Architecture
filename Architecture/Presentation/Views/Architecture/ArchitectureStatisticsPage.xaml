@@ -10,7 +10,7 @@
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.8*" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontFamily="Segoe WP Black"
-            FontSize="30"
+            FontSize="28"
             FontWeight="Bold"
             Foreground="DarkBlue"
             Opacity="1"
@@ -52,19 +52,18 @@
             BorderBrush="Gray"
             BorderThickness="1"
             SelectedIndex="0">
-            <TextBlock>Реставрации и затраты</TextBlock>
-            <TextBlock>Наистарейшие сооружения</TextBlock>
-            <TextBlock>Состояние сооружений</TextBlock>
+            <TextBlock>Состояние сооружений по странам</TextBlock>
+            <TextBlock>Стиль сооружений по странам</TextBlock>
+            <TextBlock>Количество сооружений по странам</TextBlock>
         </ComboBox>
 
         <GridView
             x:Name="gridView"
             Grid.Row="3"
             Grid.ColumnSpan="5"
-            Height="450"
-            Margin="0"
+            Margin="10"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Stretch"
             SelectionMode="Multiple" />
 
 

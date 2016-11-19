@@ -15,33 +15,6 @@ namespace Architecture.Presentation.Views.Source
             this.InitializeComponent();
         }
 
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            splitView.IsPaneOpen = !splitView.IsPaneOpen;
-        }
-
-        private void RadioButtonPaneItem_Click(object sender, RoutedEventArgs e)
-        {
-            var radioButton = sender as RadioButton;
-
-            if (radioButton != null)
-            {
-                switch (radioButton.Tag.ToString())
-                {
-                    //case "search":
-                    //    this.SourceFrame.Navigate(typeof(SourceSearchPage));
-                    //    splitView.IsPaneOpen = !splitView.IsPaneOpen;
-                    //    break;
-                    //case "filter":
-                    //    this.SourceFrame.Navigate(typeof(SourceFilterPage));
-                    //    splitView.IsPaneOpen = !splitView.IsPaneOpen;
-                    //    break;
-                    //case "add":
-                    //    this.SourceFrame.Navigate(typeof(SourceAddPage));
-                    //    splitView.IsPaneOpen = !splitView.IsPaneOpen;
-                    //    break;
-                }
-            }
-        }
+       
     }
 }
