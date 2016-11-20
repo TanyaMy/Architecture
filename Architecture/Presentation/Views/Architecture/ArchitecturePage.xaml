@@ -10,32 +10,45 @@
 
     <Page.BottomAppBar>
         <AppBar ClosedDisplayMode="Compact">
-            <ListView
-                x:Name="ListView"
-                ItemsSource="{Binding BottomMenuItems, Mode=OneWay}"
-                SelectedItem="{Binding SelectedBottomMenuItem, Mode=TwoWay}"
-                SelectionMode="Single">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <RelativePanel>
-                            <Grid>
-                                <AppBarButton
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Background="Transparent"
-                                    Content="{Binding Icon}" />
-                            </Grid>
-                        </RelativePanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"
+                    Command="{Binding NavTo}"
+                    CommandParameter="{Binding Main}"
+                    Icon="Home"/>
+                <AppBarButton
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"
+                    Command="{Binding NavTo}"
+                    CommandParameter="{Binding Add}"
+                    Icon="Add" />
+                <AppBarButton
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"
+                    Command="{Binding NavTo}"
+                    CommandParameter="{Binding Reports}"
+                    Icon="Document" />
+                <AppBarButton
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"
+                    Command="{Binding NavTo}"
+                    CommandParameter="{Binding Statistics}"
+                    Icon="List" />
+                <AppBarButton
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"
+                    Command="{Binding NavTo}"
+                    CommandParameter="{Binding Repair}"
+                    Icon="Repair" />
+            </StackPanel>
         </AppBar>
     </Page.BottomAppBar>
 
-    <Frame SourcePageType="{Binding CurrentPageType, Mode=TwoWay}" />
+    <Frame SourcePageType="{Binding CurrentInnerPageType, Mode=TwoWay}" />
 </Page>
