@@ -2,36 +2,60 @@
     x:Class="Architecture.Presentation.Views.Architecture.ArchitectureMainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:MyToolkit.Controls"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
     DataContext="{Binding ArchitectureMain, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Page.BottomAppBar>
-        <AppBar ClosedDisplayMode="Compact">
-            <ListView
-                x:Name="ListView"
-                ItemsSource="{Binding BottomMenuItems, Mode=OneWay}"
-                SelectedItem="{Binding SelectedBottomMenuItem, Mode=TwoWay}"
-                SelectionMode="Single">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <AppBarButton
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Background="Transparent"
-                            Icon="{Binding Icon}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </AppBar>
-    </Page.BottomAppBar>
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:EventTriggerBehavior.Actions>
+                <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
+            </core:EventTriggerBehavior.Actions>
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
-    <Frame SourcePageType="{Binding CurrentPageType, Mode=TwoWay}" />
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            HorizontalAlignment="Center"
+            FontFamily="Segoe WP Black"
+            FontSize="30"
+            FontWeight="Bold"
+            Foreground="DarkBlue"
+            Text="Сооружения" />
+
+        <syncfusion:SfDataGrid
+            Grid.Row="1"
+            AllowFiltering="True"
+            AutoGenerateColumns="False"
+            ColumnSizer="Star"
+            ItemsSource="{Binding ArchitectureList}"
+            SelectionMode="Single"
+            AllowDeleting="True"
+            RecordDeleting="SfDataGrid_OnRecordDeleting">
+
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn MappingName="Title" />
+                <syncfusion:GridTextColumn MappingName="Country" />
+                <syncfusion:GridTextColumn MappingName="City" />
+                <syncfusion:GridComboBoxColumn HeaderText="Состояние сооружения" MappingName="State" />
+            </syncfusion:SfDataGrid.Columns>
+
+
+        </syncfusion:SfDataGrid>
+
+    </Grid>
 </Page>

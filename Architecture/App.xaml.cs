@@ -46,11 +46,6 @@ namespace Architecture
             // Applying migrations
             using (var db = new AppDbContext())
             {
-                if (!db.Database.EnsureCreated())
-                {
-                    db.Database.EnsureDeleted();
-                }
-
                 db.Database.Migrate();
             }
         }
@@ -141,11 +136,9 @@ namespace Architecture
             
             SimpleIoc.Default.Register<ShellViewModel>();
 
+            SimpleIoc.Default.Register<ArchitectureViewModel>();
             SimpleIoc.Default.Register<ArchitectureMainViewModel>();
-            SimpleIoc.Default.Register<ArchitectureSearchViewModel>();
-            SimpleIoc.Default.Register<ArchitectureFilterViewModel>();
             SimpleIoc.Default.Register<ArchitectureAddViewModel>();
-            SimpleIoc.Default.Register<ArchitectureUpdateViewModel>();
             SimpleIoc.Default.Register<ArchitectureReportsViewModel>();
             SimpleIoc.Default.Register<ArchitectureStatisticsViewModel>();
             

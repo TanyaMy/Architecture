@@ -71,7 +71,7 @@ namespace Architecture.Presentation.ViewModels
 
         private void SetDefaultSelectedMenuItem()
         {
-            SelectedLeftMenuItem = _leftMenuItems.Single(i => i.InnerPageKey == PageKeys.ArchitectureMain);
+            SelectedLeftMenuItem = _leftMenuItems.Single(i => i.InnerPageKey == PageKeys.Architecture);
         }
 
         private void PaneOpenClose()
@@ -87,7 +87,7 @@ namespace Architecture.Presentation.ViewModels
                 {
                     Text = "Сооружения",
                     TextLogo = "\xE71E",
-                    InnerPageKey = PageKeys.ArchitectureMain
+                    InnerPageKey = PageKeys.Architecture
                 },
                 new LeftMenuItem
                 {

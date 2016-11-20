@@ -17,6 +17,10 @@ namespace Arcitecture.Presentation.ViewModels.Common
             DialogService = new DialogService();
 
             GoBackCommand = new RelayCommand(NavigationService.GoBack);
+
+            PageLoadingCommand = new RelayCommand(OnPageLoading);
+            PageLoadedCommand = new RelayCommand(OnPageLoaded);
+            PageUnloadedCommand = new RelayCommand(OnPageUnloaded);
         }
 
         protected ICustomNavigationService CustomNavigationService { get; }
@@ -24,7 +28,25 @@ namespace Arcitecture.Presentation.ViewModels.Common
         protected INavigationService NavigationService { get; }
 
         protected IDialogService DialogService { get; }
+        public ICommand PageLoadingCommand { get; }
+        public ICommand PageLoadedCommand { get; }
+        public ICommand PageUnloadedCommand { get; }
 
         public ICommand GoBackCommand { get; }
+
+        protected virtual void OnPageLoading()
+        {
+
+        }
+
+        protected virtual void OnPageLoaded()
+        {
+
+        }
+
+        protected virtual void OnPageUnloaded()
+        {
+
+        }
     }
 }

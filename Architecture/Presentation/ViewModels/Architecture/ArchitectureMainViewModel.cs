@@ -1,100 +1,52 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Windows.UI.Xaml.Controls;
-using Architecture.Presentation.Helpers;
-using Architecture.Presentation.Models;
+using System.Threading.Tasks;
+using Architecture.Managers.Interfaces;
 using Arcitecture.Presentation.ViewModels.Common;
+using ArchitectureModel = Architecture.Data.Entities.Architecture;
+
 
 namespace Architecture.Presentation.ViewModels.Architecture
 {
     public class ArchitectureMainViewModel : ViewModelBase
     {
+        private readonly IArchitecturesManager _architecturesManager;
 
-        public class LeftMenuItem
+        private IList<ArchitectureModel> _architectures;
+
+        public ArchitectureMainViewModel(IArchitecturesManager architecturesManager)
         {
-            public SymbolIcon Icon { get; set; }
-            public string Text { get; set; }
+            _architecturesManager = architecturesManager;
 
-            public PageKeys InnerPageKey { get; set; }
-            public object Params { get; set; }
+            InitData();
         }
 
-        private ObservableCollection<LeftMenuItem> _bottomMenuItems;
-
-        private LeftMenuItem _selectedBottomMenuItem;
-        private Type _currentPageType;
-
-        public ArchitectureMainViewModel()
+        public IList<ArchitectureModel> ArchitectureList
         {
-            CreateBottomMenuItems();
-
-            SetDefaultSelectedMenuItem();
+            get { return _architectures; }
+            set { Set(() => ArchitectureList, ref _architectures, value); }
         }
 
-        public ObservableCollection<LeftMenuItem> BottomMenuItems
+        public async Task DeleteArchitecture(object architecture)
         {
-            get { return _bottomMenuItems; }
-            private set { Set(() => BottomMenuItems, ref _bottomMenuItems, value); }
+            var arch = architecture as ArchitectureModel;
+
+            if (arch == null)
+                return;
+
+            await _architecturesManager.RemoveArchitecture(arch.Id);
         }
 
-        public LeftMenuItem SelectedBottomMenuItem
+        protected override void OnPageLoaded()
         {
-            get { return _selectedBottomMenuItem; }
-            set
-            {
-                _selectedBottomMenuItem = value;
-                
-                CurrentPageType = value.InnerPageKey.GetPageType();
-            }
+            base.OnPageLoaded();
+
+            InitData();
         }
 
-        public Type CurrentPageType
+        private async void InitData()
         {
-            get { return _currentPageType; }
-            set { Set(() => CurrentPageType, ref _currentPageType, value); }
-        }
-
-        private void SetDefaultSelectedMenuItem()
-        {
-            SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.ArchitectureSearch);
-        }
-
-        private void CreateBottomMenuItems()
-        {
-            BottomMenuItems = new ObservableCollection<LeftMenuItem>
-            {
-                new LeftMenuItem
-                {
-                    Text = "Поиск",
-                    Icon = new SymbolIcon(Symbol.Find),
-                    InnerPageKey = PageKeys.ArchitectureSearch
-                },
-                new LeftMenuItem
-                {
-                    Text = "Фильтрация",
-                    Icon = new SymbolIcon(Symbol.Filter),
-                    InnerPageKey = PageKeys.ArchitectureFilter
-                },
-                new LeftMenuItem
-                {
-                    Text = "Добавление",
-                    Icon = new SymbolIcon(Symbol.Add),
-                    InnerPageKey = PageKeys.ArchitectureAdd
-                },
-                new LeftMenuItem
-                {
-                    Text = "Отчеты",
-                    Icon = new SymbolIcon(Symbol.Document),                    
-                    InnerPageKey = PageKeys.ArchitectureReports
-                },
-                new LeftMenuItem
-                {
-                    Text = "Статистика",
-                    Icon = new SymbolIcon(Symbol.ZeroBars),                                       
-                    InnerPageKey = PageKeys.ArchitectureStatistics
-                }              
-            };
+            ArchitectureList = (await _architecturesManager.GetArchitectures()).ToList();
         }
     }
 }

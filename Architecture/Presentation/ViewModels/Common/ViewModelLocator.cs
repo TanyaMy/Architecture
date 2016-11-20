@@ -13,11 +13,9 @@ namespace Architecture.Presentation.ViewModels.Common
         public ShellViewModel Shell => GetViewModel<ShellViewModel>();
 
             
+        public ArchitectureViewModel Architecture => GetViewModel<ArchitectureViewModel>();
         public ArchitectureMainViewModel ArchitectureMain => GetViewModel<ArchitectureMainViewModel>();
-        public ArchitectureSearchViewModel ArchitectureSearch => GetViewModel<ArchitectureSearchViewModel>();
-        public ArchitectureFilterViewModel ArchitectureFilter => GetViewModel<ArchitectureFilterViewModel>();
         public ArchitectureAddViewModel ArchitectureAdd => GetViewModel<ArchitectureAddViewModel>();
-        public ArchitectureUpdateViewModel ArchitectureUpdate => GetViewModel<ArchitectureUpdateViewModel>();
         public ArchitectureReportsViewModel ArchitectureReports => GetViewModel<ArchitectureReportsViewModel>();
         public ArchitectureStatisticsViewModel ArchitectureStatistics => GetViewModel<ArchitectureStatisticsViewModel>();
         
