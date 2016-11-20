@@ -1,86 +1,51 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Windows.UI.Xaml.Controls;
-using Architecture.Presentation.Helpers;
-using Architecture.Presentation.Models;
+﻿using System.Linq;
 using Arcitecture.Presentation.ViewModels.Common;
+using StyleModel = Architecture.Data.Entities.Style;
+using Architecture.Managers.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace Architecture.Presentation.ViewModels.Style
 {
     public class StyleMainViewModel : ViewModelBase
     {
-        public class LeftMenuItem
-        {
-            public SymbolIcon Icon { get; set; }
-            public string Text { get; set; }
+        private readonly IStylesManager _stylesManager;
 
-            public PageKeys InnerPageKey { get; set; }
-            public object Params { get; set; }
+        private IList<StyleModel> _styles;
+
+        public StyleMainViewModel(IStylesManager stylesManager)
+        {
+            _stylesManager = stylesManager;
+
+            InitData();
         }
 
-        private ObservableCollection<LeftMenuItem> _bottomMenuItems;
-
-        private LeftMenuItem _selectedBottomMenuItem;
-        private Type _currentPageType;
-
-        public StyleMainViewModel()
+        public IList<StyleModel> StyleList
         {
-            CreateBottomMenuItems();
-
-            SetDefaultSelectedMenuItem();
+            get { return _styles; }
+            set { Set(() => StyleList, ref _styles, value); }
         }
 
-        public ObservableCollection<LeftMenuItem> BottomMenuItems
+        public async Task DeleteStyle(object style)
         {
-            get { return _bottomMenuItems; }
-            private set { Set(() => BottomMenuItems, ref _bottomMenuItems, value); }
+            var styl = style as StyleModel;
+
+            if (styl == null)
+                return;
+
+            await _stylesManager.RemoveStyle(styl.Id);
         }
 
-        public LeftMenuItem SelectedBottomMenuItem
+        protected override void OnPageLoaded()
         {
-            get { return _selectedBottomMenuItem; }
-            set
-            {
-                _selectedBottomMenuItem = value;
+            base.OnPageLoaded();
 
-                CurrentPageType = value.InnerPageKey.GetPageType();
-            }
+            InitData();
         }
 
-        public Type CurrentPageType
+        private async void InitData()
         {
-            get { return _currentPageType; }
-            set { Set(() => CurrentPageType, ref _currentPageType, value); }
-        }
-
-        private void SetDefaultSelectedMenuItem()
-        {
-            SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.StyleSearch);
-        }
-
-        private void CreateBottomMenuItems()
-        {
-            BottomMenuItems = new ObservableCollection<LeftMenuItem>
-            {
-                new LeftMenuItem
-                {
-                    Text = "Поиск",
-                    Icon = new SymbolIcon(Symbol.Find),
-                    InnerPageKey = PageKeys.StyleSearch
-                },
-                new LeftMenuItem
-                {
-                    Text = "Фильтрация",
-                    Icon = new SymbolIcon(Symbol.Filter),
-                    InnerPageKey = PageKeys.StyleFilter
-                },
-                new LeftMenuItem
-                {
-                    Text = "Добавление",
-                    Icon = new SymbolIcon(Symbol.Add),
-                    InnerPageKey = PageKeys.StyleAdd
-                }
-            };
+            StyleList = (await _stylesManager.GetStyles()).ToList();
         }
     }
 }

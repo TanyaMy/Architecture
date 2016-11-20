@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden">
-            <StackPanel Margin="0, 50">
+            <StackPanel Margin="0,50">
                 <TextBlock
                     Margin="0,8,0,10"
                     HorizontalAlignment="Center"

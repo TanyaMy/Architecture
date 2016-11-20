@@ -1,87 +1,51 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Windows.UI.Xaml.Controls;
-using Architecture.Presentation.Helpers;
-using Architecture.Presentation.Models;
+﻿using Architecture.Managers.Interfaces;
 using Arcitecture.Presentation.ViewModels.Common;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ArchitectModel = Architecture.Data.Entities.Architect;
 
 namespace Architecture.Presentation.ViewModels.Architect
 {
     public class ArchitectMainViewModel : ViewModelBase
     {
-        public class LeftMenuItem
-        {
-            public SymbolIcon Icon { get; set; }
-            public string Text { get; set; }
+        private readonly IArchitectManager _architectsManager;
 
-            public PageKeys InnerPageKey { get; set; }
-            public object Params { get; set; }
+        private IList<ArchitectModel> _architects;
+
+        public ArchitectMainViewModel(IArchitectManager architectsManager)
+        {
+            _architectsManager = architectsManager;
+
+            InitData();
         }
 
-        private ObservableCollection<LeftMenuItem> _bottomMenuItems;
-
-        private LeftMenuItem _selectedBottomMenuItem;
-        private Type _currentPageType;
-
-        public ArchitectMainViewModel()
+        public IList<ArchitectModel> ArchitectList
         {
-            CreateBottomMenuItems();
-
-            SetDefaultSelectedMenuItem();
+            get { return _architects; }
+            set { Set(() => ArchitectList, ref _architects, value); }
         }
 
-        public ObservableCollection<LeftMenuItem> BottomMenuItems
+        public async Task DeleteArchitect(object architect)
         {
-            get { return _bottomMenuItems; }
-            private set { Set(() => BottomMenuItems, ref _bottomMenuItems, value); }
+            var arch = architect as ArchitectModel;
+
+            if (arch == null)
+                return;
+
+            await _architectsManager.RemoveArchitect(arch.Id);
         }
 
-        public LeftMenuItem SelectedBottomMenuItem
+        protected override void OnPageLoaded()
         {
-            get { return _selectedBottomMenuItem; }
-            set
-            {
-                _selectedBottomMenuItem = value;
+            base.OnPageLoaded();
 
-                CurrentPageType = value.InnerPageKey.GetPageType();
-            }
+            InitData();
         }
 
-        public Type CurrentPageType
+        private async void InitData()
         {
-            get { return _currentPageType; }
-            set { Set(() => CurrentPageType, ref _currentPageType, value); }
-        }
-
-        private void SetDefaultSelectedMenuItem()
-        {
-            SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.ArchitectSearch);
-        }
-
-        private void CreateBottomMenuItems()
-        {
-            BottomMenuItems = new ObservableCollection<LeftMenuItem>
-            {
-                new LeftMenuItem
-                {
-                    Text = "Поиск",
-                    Icon = new SymbolIcon(Symbol.Find),
-                    InnerPageKey = PageKeys.ArchitectSearch
-                },
-                new LeftMenuItem
-                {
-                    Text = "Фильтрация",
-                    Icon = new SymbolIcon(Symbol.Filter),
-                    InnerPageKey = PageKeys.ArchitectFilter
-                },
-                new LeftMenuItem
-                {
-                    Text = "Добавление",
-                    Icon = new SymbolIcon(Symbol.Add),
-                    InnerPageKey = PageKeys.ArchitectAdd
-                }               
-            };
+            ArchitectList = (await _architectsManager.GetArchitects()).ToList();
         }
     }
 }

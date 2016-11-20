@@ -20,32 +20,26 @@ namespace Architecture.Presentation.Models
         ArchitectureReports,
         [PageType(typeof(ArchitectureStatisticsPage))]
         ArchitectureStatistics,
+        [PageType(typeof(ArchitectPage))]
+        Architect,
         [PageType(typeof(ArchitectMainPage))]
-        ArchitectMain,
-        [PageType(typeof(ArchitectSearchPage))]
-        ArchitectSearch,
-        [PageType(typeof(ArchitectFilterPage))]
-        ArchitectFilter,
+        ArchitectMain,   
         [PageType(typeof(ArchitectAddPage))]
         ArchitectAdd,
         [PageType(typeof(ArchitectUpdatePage))]
         ArchitectUpdate,
+        [PageType(typeof(StylePage))]
+        Style,
         [PageType(typeof(StyleMainPage))]
-        StyleMain,
-        [PageType(typeof(StyleSearchPage))]
-        StyleSearch,
-        [PageType(typeof(StyleFilterPage))]
-        StyleFilter,
+        StyleMain,  
         [PageType(typeof(StyleAddPage))]
         StyleAdd,
         [PageType(typeof(StyleUpdatePage))]
         StyleUpdate,
+        [PageType(typeof(SourcePage))]
+        Source,
         [PageType(typeof(SourceMainPage))]
-        SourceMain,
-        [PageType(typeof(SourceSearchPage))]
-        SourceSearch,
-        [PageType(typeof(SourceFilterPage))]
-        SourceFilter,
+        SourceMain,       
         [PageType(typeof(SourceAddPage))]
         SourceAdd,
         [PageType(typeof(SourceUpdatePage))]

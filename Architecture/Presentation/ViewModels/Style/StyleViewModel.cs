@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using Arcitecture.Presentation.ViewModels.Common;
 using System.Windows.Input;
-using Windows.UI.Xaml.Controls;
+using System;
 using Architecture.Presentation.Helpers;
 using Architecture.Presentation.Models;
-using Arcitecture.Presentation.ViewModels.Common;
 using GalaSoft.MvvmLight.Command;
 
-namespace Architecture.Presentation.ViewModels.Architecture
+namespace Architecture.Presentation.ViewModels.Style
 {
-    public class ArchitectureViewModel : ViewModelBase
-    {
+    public class StyleViewModel : ViewModelBase
+    {       
         private Type _currentPageType;
 
-        public ArchitectureViewModel()
+        public StyleViewModel()
         {
             NavTo = new RelayCommand<PageKeys>(NavigateTo);
 
@@ -23,10 +20,8 @@ namespace Architecture.Presentation.ViewModels.Architecture
 
         public ICommand NavTo { get; set; }
 
-        public PageKeys Main => PageKeys.ArchitectureMain;
-        public PageKeys Add => PageKeys.ArchitectureAdd;
-        public PageKeys Reports => PageKeys.ArchitectureReports;
-        public PageKeys Statistics => PageKeys.ArchitectureStatistics;
+        public PageKeys Main => PageKeys.StyleMain;
+        public PageKeys Add => PageKeys.StyleAdd;
 
         public Type CurrentInnerPageType
         {
@@ -41,7 +36,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
 
         private void SetDefaultInnerPage()
         {
-            CurrentInnerPageType = PageKeys.ArchitectureMain.GetPageType();
+            CurrentInnerPageType = PageKeys.StyleMain.GetPageType();
         }
     }
 }

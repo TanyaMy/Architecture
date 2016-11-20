@@ -20,9 +20,9 @@ namespace Architecture.Presentation.Views.Style
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class StyleSearchPage : Page
+    public sealed partial class StylePage : Page
     {
-        public StyleSearchPage()
+        public StylePage()
         {
             this.InitializeComponent();
         }

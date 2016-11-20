@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using Architecture.Presentation.ViewModels.Source;
+using Syncfusion.UI.Xaml.Grid;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -10,11 +12,21 @@ namespace Architecture.Presentation.Views.Source
     /// </summary>
     public sealed partial class SourceMainPage : Page
     {
+        private readonly SourceMainViewModel _viewModel;
+
         public SourceMainPage()
         {
             this.InitializeComponent();
+
+            _viewModel = (SourceMainViewModel)DataContext;
         }
 
-       
+        private async void SfDataGrid_OnRecordDeleting(object sender, RecordDeletingEventArgs e)
+        {
+            var itemToDelete = e.Items[0];
+
+            await _viewModel.DeleteSource(itemToDelete);
+        }
+           
     }
 }

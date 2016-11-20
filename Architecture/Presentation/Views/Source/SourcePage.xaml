@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Architecture.Presentation.Views.Architecture.ArchitecturePage"
+    x:Class="Architecture.Presentation.Views.Source.SourcePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
@@ -7,7 +7,7 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding Architecture, Source={StaticResource Locator}}"
+    DataContext="{Binding Source, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Page.BottomAppBar>
@@ -27,23 +27,10 @@
                     Command="{Binding NavTo}"
                     CommandParameter="{Binding Add}"
                     Icon="Add" />
-                <AppBarButton
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Background="Transparent"
-                    Command="{Binding NavTo}"
-                    CommandParameter="{Binding Reports}"
-                    Icon="Document" />
-                <AppBarButton
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Background="Transparent"
-                    Command="{Binding NavTo}"
-                    CommandParameter="{Binding Statistics}"
-                    Icon="ZeroBars" />
             </StackPanel>
         </AppBar>
     </Page.BottomAppBar>
 
     <Frame SourcePageType="{Binding CurrentInnerPageType, Mode=TwoWay}" />
 </Page>
+

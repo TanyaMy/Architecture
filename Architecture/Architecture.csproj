@@ -142,9 +142,8 @@
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureStatisticsViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectAddViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Architect\ArchitectFilterViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Architect\ArchitectViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architect\ArchitectMainViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Architect\ArchitectSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureReportsViewModel.cs" />
@@ -159,31 +158,20 @@
     <Compile Include="Presentation\ViewModels\Restoration\RestorationSearchViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ShellViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceAddViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Source\SourceFilterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Source\SourceSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Source\SourceViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleAddViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Style\StyleFilterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
-    <Compile Include="Presentation\ViewModels\Style\StyleSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Style\StyleViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleUpdateViewModel.cs" />
     <Compile Include="Presentation\Views\Architect\ArchitectAddPage.xaml.cs">
       <DependentUpon>ArchitectAddPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Architect\ArchitectFilterPage.xaml.cs">
-      <DependentUpon>ArchitectFilterPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Views\Architect\ArchitectSearchPage.xaml.cs">
-      <DependentUpon>ArchitectSearchPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\Architecture\ArchitectureAddPage.xaml.cs">
       <DependentUpon>ArchitectureAddPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Views\Architect\ArchitectMainPage.xaml.cs">
-      <DependentUpon>ArchitectMainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Architecture\ArchitecturePage.xaml.cs">
       <DependentUpon>ArchitecturePage.xaml</DependentUpon>
@@ -200,6 +188,12 @@
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\Entities\Repair.cs" />
     <Compile Include="Data\Entities\Restoration.cs" />
+    <Compile Include="Presentation\Views\Architect\ArchitectMainPage.xaml.cs">
+      <DependentUpon>ArchitectMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Architect\ArchitectPage.xaml.cs">
+      <DependentUpon>ArchitectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Views\Architect\ArchitectUpdatePage.xaml.cs">
       <DependentUpon>ArchitectUpdatePage.xaml</DependentUpon>
     </Compile>
@@ -233,14 +227,11 @@
     <Compile Include="Presentation\Views\Source\SourceAddPage.xaml.cs">
       <DependentUpon>SourceAddPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Source\SourceFilterPage.xaml.cs">
-      <DependentUpon>SourceFilterPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\Source\SourceMainPage.xaml.cs">
       <DependentUpon>SourceMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Source\SourceSearchPage.xaml.cs">
-      <DependentUpon>SourceSearchPage.xaml</DependentUpon>
+    <Compile Include="Presentation\Views\Source\SourcePage.xaml.cs">
+      <DependentUpon>SourcePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Source\SourceUpdatePage.xaml.cs">
       <DependentUpon>SourceUpdatePage.xaml</DependentUpon>
@@ -248,14 +239,11 @@
     <Compile Include="Presentation\Views\Style\StyleAddPage.xaml.cs">
       <DependentUpon>StyleAddPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Style\StyleFilterPage.xaml.cs">
-      <DependentUpon>StyleFilterPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\Style\StyleMainPage.xaml.cs">
       <DependentUpon>StyleMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Style\StyleSearchPage.xaml.cs">
-      <DependentUpon>StyleSearchPage.xaml</DependentUpon>
+    <Compile Include="Presentation\Views\Style\StylePage.xaml.cs">
+      <DependentUpon>StylePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Style\StyleUpdatePage.xaml.cs">
       <DependentUpon>StyleUpdatePage.xaml</DependentUpon>
@@ -294,19 +282,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Architect\ArchitectFilterPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Views\Architect\ArchitectSearchPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Presentation\Views\Architecture\ArchitectureAddPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Views\Architect\ArchitectMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -323,6 +299,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\Architecture\ArchitectureStatisticsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Architect\ArchitectMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Architect\ArchitectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -370,15 +354,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Source\SourceFilterPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Presentation\Views\Source\SourceMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Source\SourceSearchPage.xaml">
+    <Page Include="Presentation\Views\Source\SourcePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -390,15 +370,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Style\StyleFilterPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Presentation\Views\Style\StyleMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Style\StyleSearchPage.xaml">
+    <Page Include="Presentation\Views\Style\StylePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
