@@ -2,11 +2,11 @@
     x:Class="Architecture.Presentation.Views.Architecture.ArchitectureAddPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     DataContext="{Binding ArchitectureAdd, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -19,24 +19,36 @@
     </interactivity:Interaction.Behaviors>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" MaxWidth="375" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden">
+        <TextBlock
+            Grid.Row="0"
+            Grid.ColumnSpan="3"
+            Margin="0,8,0,10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontFamily="Segoe WP Black"
+            FontSize="28"
+            FontWeight="Bold"
+            Foreground="DarkBlue"
+            Opacity="1">
+            <Run>Сооружения.</Run>
+            <Run Text="{Binding ActionText}" />
+        </TextBlock>
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalScrollBarVisibility="Hidden">
             <StackPanel>
-                <TextBlock
-                    Margin="0,8,0,10"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontFamily="Segoe WP Black"
-                    FontSize="28"
-                    FontWeight="Bold"
-                    Foreground="DarkBlue"
-                    Opacity="1"
-                    Text="Сооружения. Добавление" />
                 <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
@@ -152,7 +164,7 @@
                     Background="LightBlue"
                     BorderBrush="DarkBlue"
                     Command="{Binding SaveCommand}"
-                    Content="Добавить"
+                    Content="{Binding ButtonText}"
                     FontSize="20" />
             </StackPanel>
         </ScrollViewer>

@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Architecture.Managers.Interfaces;
+using Architecture.Presentation.Helpers.Interfaces;
+using Architecture.Presentation.Models;
 using Arcitecture.Presentation.ViewModels.Common;
+using Microsoft.Practices.ServiceLocation;
 using ArchitectureModel = Architecture.Data.Entities.Architecture;
 
 
@@ -10,21 +12,35 @@ namespace Architecture.Presentation.ViewModels.Architecture
 {
     public class ArchitectureMainViewModel : ViewModelBase
     {
+        private readonly ICustomNavigationService _customNavigationService;
         private readonly IArchitecturesManager _architecturesManager;
 
-        private IList<ArchitectureModel> _architectures;
+        private ObservableCollection<ArchitectureModel> _architectures;
+        private ArchitectureModel _selectedTableItem;
 
         public ArchitectureMainViewModel(IArchitecturesManager architecturesManager)
         {
             _architecturesManager = architecturesManager;
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ArchitectureInternal");
 
-            InitData();
+            LoadData();
         }
 
-        public IList<ArchitectureModel> ArchitectureList
+        public ObservableCollection<ArchitectureModel> ArchitectureList
         {
             get { return _architectures; }
             set { Set(() => ArchitectureList, ref _architectures, value); }
+        }
+
+        public ArchitectureModel SelectedTableItem
+        {
+            get { return _selectedTableItem; }
+            set { Set(() => SelectedTableItem, ref _selectedTableItem, value); }
+        }
+
+        public void EditArchitecture(ArchitectureModel itemToEdit)
+        {
+            _customNavigationService.NavigateTo(PageKeys.ArchitectureAdd, itemToEdit);
         }
 
         public async Task DeleteArchitecture(object architecture)
@@ -35,18 +51,13 @@ namespace Architecture.Presentation.ViewModels.Architecture
                 return;
 
             await _architecturesManager.RemoveArchitecture(arch.Id);
+
+            ArchitectureList.Remove(arch);
         }
 
-        protected override void OnPageLoaded()
+        private async void LoadData()
         {
-            base.OnPageLoaded();
-
-            InitData();
-        }
-
-        private async void InitData()
-        {
-            ArchitectureList = (await _architecturesManager.GetArchitectures()).ToList();
+            ArchitectureList = new ObservableCollection<ArchitectureModel>(await _architecturesManager.GetArchitectures());
         }
     }
 }

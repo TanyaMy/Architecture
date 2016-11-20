@@ -1,4 +1,5 @@
-﻿using Architecture.Presentation.ViewModels.Architect;
+﻿using System;
+using Architecture.Presentation.ViewModels.Architect;
 using Architecture.Presentation.ViewModels.Architecture;
 using Architecture.Presentation.ViewModels.Repair;
 using Architecture.Presentation.ViewModels.Restoration;
@@ -50,7 +51,7 @@ namespace Architecture.Presentation.ViewModels.Common
 
         private T GetViewModel<T>()
         {
-            return ServiceLocator.Current.GetInstance<T>();
+            return ServiceLocator.Current.GetInstance<T>(Guid.NewGuid().ToString());
         }
     }
 }

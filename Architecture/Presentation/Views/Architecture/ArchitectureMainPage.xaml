@@ -38,14 +38,25 @@
             Text="Сооружения" />
 
         <syncfusion:SfDataGrid
+            x:Name="SfDataGrid"
             Grid.Row="1"
+            AllowDeleting="True"
             AllowFiltering="True"
             AutoGenerateColumns="False"
             ColumnSizer="Star"
-            ItemsSource="{Binding ArchitectureList}"
-            SelectionMode="Single"
-            AllowDeleting="True"
-            RecordDeleting="SfDataGrid_OnRecordDeleting">
+            ItemsSource="{Binding ArchitectureList, Mode=TwoWay}"
+            RecordDeleting="SfDataGrid_OnRecordDeleting"
+            SelectedItem="{Binding SelectedTableItem, Mode=TwoWay}"
+            SelectionMode="Single">
+
+            <syncfusion:SfDataGrid.RecordContextMenu>
+                <MenuFlyout>
+                    <MenuFlyout.Items>
+                        <MenuFlyoutItem Click="EditRowMenuFlyoutItem_OnClick" Text="Edit architecture" />
+                        <MenuFlyoutItem Click="DeleteRowFlyoutItem_OnClick" Text="Delete architecture" />
+                    </MenuFlyout.Items>
+                </MenuFlyout>
+            </syncfusion:SfDataGrid.RecordContextMenu>
 
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn MappingName="Title" />
