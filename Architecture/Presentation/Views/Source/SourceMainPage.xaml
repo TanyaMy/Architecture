@@ -52,7 +52,10 @@
                 <syncfusion:GridTextColumn HeaderText="Вид" MappingName="SourceKind" />
                 <syncfusion:GridTextColumn HeaderText="Название" MappingName="Title" />
                 <syncfusion:GridTextColumn HeaderText="Автор" MappingName="Author" />
-                <syncfusion:GridTextColumn HeaderText="Год создания" MappingName="CreationYear" />
+                <syncfusion:GridTextColumn
+                    HeaderText="Год создания"
+                    MappingName="CreationYear"
+                    TextAlignment="Center" />
                 <syncfusion:GridTextColumn HeaderText="Сооружения" MappingName="ArchitecturesSources.Title" />
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>

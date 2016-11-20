@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Architecture.Presentation.Views.Architect.ArchitectMainPage"
+    x:Class="Architecture.Presentation.Views.Restoration.RestorationMainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:MyToolkit.Controls"
@@ -9,7 +9,7 @@
     xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
-    DataContext="{Binding ArchitectMain, Source={StaticResource Locator}}"
+    DataContext="{Binding RestorationMain, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
@@ -36,7 +36,7 @@
             FontSize="30"
             FontWeight="Bold"
             Foreground="DarkBlue"
-            Text="Архитекторы" />
+            Text="Реставрации" />
 
         <syncfusion:SfDataGrid
             Grid.Row="1"
@@ -44,24 +44,22 @@
             AllowFiltering="True"
             AutoGenerateColumns="False"
             ColumnSizer="Star"
-            ItemsSource="{Binding ArchitectList}"
+            ItemsSource="{Binding RestorationList}"
             RecordDeleting="SfDataGrid_OnRecordDeleting"
             SelectionMode="Single">
 
             <syncfusion:SfDataGrid.Columns>
-                <syncfusion:GridTextColumn HeaderText="Фамилия" MappingName="Surname" />
-                <syncfusion:GridTextColumn HeaderText="Имя" MappingName="Name" />
                 <syncfusion:GridTextColumn
-                    HeaderText="Национальность"
-                    MappingName="Nationality"
+                    HeaderText="Вид"
+                    MappingName="RestorationKind"
                     TextAlignment="Center" />
-                <syncfusion:GridDateTimeColumn
-                    HeaderText="Год рождения"
-                    MappingName="BirthDate"
+                <syncfusion:GridTextColumn
+                    HeaderText="Периодичность"
+                    MappingName="Periodicity"
                     TextAlignment="Center" />
-                <syncfusion:GridDateTimeColumn
-                    HeaderText="Год смерти"
-                    MappingName="DeathDate"
+                <syncfusion:GridTextColumn
+                    HeaderText="Затраты за м3"
+                    MappingName="Outlays"
                     TextAlignment="Center" />
             </syncfusion:SfDataGrid.Columns>
 

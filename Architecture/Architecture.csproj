@@ -150,12 +150,11 @@
     <Compile Include="Presentation\ViewModels\Architect\ArchitectUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairAutomatisationViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Repair\RepairFilterViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairMainViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Repair\RepairSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Repair\RepairViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Restoration\RestorationUpdateViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Restoration\RestorationSearchViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Restoration\RestorationMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ShellViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
@@ -203,23 +202,20 @@
     <Compile Include="Presentation\Views\Repair\RepairAutomatisationPage.xaml.cs">
       <DependentUpon>RepairAutomatisationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Repair\RepairFilterPage.xaml.cs">
-      <DependentUpon>RepairFilterPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\Repair\RepairMainPage.xaml.cs">
       <DependentUpon>RepairMainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Repair\RepairSearchPage.xaml.cs">
-      <DependentUpon>RepairSearchPage.xaml</DependentUpon>
+    <Compile Include="Presentation\Views\Repair\RepairPage.xaml.cs">
+      <DependentUpon>RepairPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Repair\RepairUpdatePage.xaml.cs">
       <DependentUpon>RepairUpdatePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\Views\Restoration\RestorationMainPage.xaml.cs">
+      <DependentUpon>RestorationMainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\Views\Restoration\RestorationUpdatePage.xaml.cs">
       <DependentUpon>RestorationUpdatePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Views\Restoration\RestorationSearchPage.xaml.cs">
-      <DependentUpon>RestorationSearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
@@ -322,15 +318,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Repair\RepairFilterPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Presentation\Views\Repair\RepairMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Repair\RepairSearchPage.xaml">
+    <Page Include="Presentation\Views\Repair\RepairPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -338,11 +330,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Restoration\RestorationUpdatePage.xaml">
+    <Page Include="Presentation\Views\Restoration\RestorationMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Restoration\RestorationSearchPage.xaml">
+    <Page Include="Presentation\Views\Restoration\RestorationUpdatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

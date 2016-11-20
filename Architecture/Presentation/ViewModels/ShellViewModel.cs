@@ -111,7 +111,7 @@ namespace Architecture.Presentation.ViewModels
                 {
                     Text = "Ремонт",
                     TextLogo = "\xE90F",
-                    InnerPageKey = PageKeys.RepairMain
+                    InnerPageKey = PageKeys.Repair
                 }
             };
         }

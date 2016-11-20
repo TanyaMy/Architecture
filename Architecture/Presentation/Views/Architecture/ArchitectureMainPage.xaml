@@ -50,12 +50,21 @@
 
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn HeaderText="Название" MappingName="Title" />
-                <syncfusion:GridTextColumn HeaderText="Год создания" MappingName="CreationYear" />
+                <syncfusion:GridTextColumn
+                    HeaderText="Год создания"
+                    MappingName="CreationYear"
+                    TextAlignment="Center" />
                 <syncfusion:GridTextColumn HeaderText="Страна" MappingName="Country" />
                 <syncfusion:GridTextColumn HeaderText="Город" MappingName="City" />
                 <syncfusion:GridTextColumn HeaderText="Адрес" MappingName="Address" />
-                <syncfusion:GridTextColumn HeaderText="Площадь" MappingName="Square" />
-                <syncfusion:GridTextColumn HeaderText="Высота" MappingName="Height" />
+                <syncfusion:GridTextColumn
+                    HeaderText="Площадь"
+                    MappingName="Square"
+                    TextAlignment="Center" />
+                <syncfusion:GridTextColumn
+                    HeaderText="Высота"
+                    MappingName="Height"
+                    TextAlignment="Center" />
                 <syncfusion:GridTextColumn HeaderText="Архитектор" MappingName="Architect.Surname" />
                 <syncfusion:GridTextColumn HeaderText="Стиль" MappingName="Style.Title" />
                 <syncfusion:GridComboBoxColumn HeaderText="Состояние сооружения" MappingName="State" />

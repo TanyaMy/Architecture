@@ -44,16 +44,14 @@ namespace Architecture.Presentation.Models
         SourceAdd,
         [PageType(typeof(SourceUpdatePage))]
         SourceUpdate,
-        [PageType(typeof(RestorationSearchPage))]
-        RestorationSearch,        
+        [PageType(typeof(RestorationMainPage))]
+        RestorationMain,        
         [PageType(typeof(RestorationUpdatePage))]
         RestorationUpdate,
+        [PageType(typeof(RepairPage))]
+        Repair,
         [PageType(typeof(RepairMainPage))]
-        RepairMain,
-        [PageType(typeof(RepairSearchPage))]
-        RepairSearch,
-        [PageType(typeof(RepairFilterPage))]
-        RepairFilter,
+        RepairMain,       
         [PageType(typeof(RepairAddPage))]
         RepairAdd,
         [PageType(typeof(RepairUpdatePage))]

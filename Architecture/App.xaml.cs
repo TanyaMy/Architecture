@@ -157,12 +157,11 @@ namespace Architecture
             SimpleIoc.Default.Register<SourceAddViewModel>();
             SimpleIoc.Default.Register<SourceUpdateViewModel>();
 
-            SimpleIoc.Default.Register<RestorationSearchViewModel>();
+            SimpleIoc.Default.Register<RestorationMainViewModel>();
             SimpleIoc.Default.Register<RestorationUpdateViewModel>();
 
-            SimpleIoc.Default.Register<RepairMainViewModel>();
-            SimpleIoc.Default.Register<RepairSearchViewModel>();
-            SimpleIoc.Default.Register<RepairFilterViewModel>();
+            SimpleIoc.Default.Register<RepairViewModel>();
+            SimpleIoc.Default.Register<RepairMainViewModel>();            
             SimpleIoc.Default.Register<RepairAddViewModel>();
             SimpleIoc.Default.Register<RepairUpdateViewModel> ();
             SimpleIoc.Default.Register<RepairAutomatisationViewModel>();

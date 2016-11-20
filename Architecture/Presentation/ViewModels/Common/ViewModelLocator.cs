@@ -34,12 +34,11 @@ namespace Architecture.Presentation.ViewModels.Common
         public SourceAddViewModel SourceAdd => GetViewModel<SourceAddViewModel>();
         public SourceUpdateViewModel SourceUpdate => GetViewModel<SourceUpdateViewModel>();
 
-        public RestorationSearchViewModel RestorationSearch => GetViewModel<RestorationSearchViewModel>();
+        public RestorationMainViewModel RestorationMain => GetViewModel<RestorationMainViewModel>();
         public RestorationUpdateViewModel RestorationUpdate => GetViewModel<RestorationUpdateViewModel>();
 
-        public RepairMainViewModel RepairMain => GetViewModel<RepairMainViewModel>();
-        public RepairSearchViewModel RepairSearch => GetViewModel<RepairSearchViewModel>();
-        public RepairFilterViewModel RepairFilter => GetViewModel<RepairFilterViewModel>();
+        public RepairViewModel Repair => GetViewModel<RepairViewModel>();
+        public RepairMainViewModel RepairMain => GetViewModel<RepairMainViewModel>();        
         public RepairAddViewModel RepairAdd => GetViewModel<RepairAddViewModel>();
         public RepairUpdateViewModel RepairUpdate => GetViewModel<RepairUpdateViewModel>();
         public RepairAutomatisationViewModel RepairAutomatisation => GetViewModel<RepairAutomatisationViewModel>();
