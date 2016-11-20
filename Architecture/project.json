@@ -7,6 +7,7 @@
     "Microsoft.Toolkit.Uwp": "1.1.0",
     "Microsoft.Toolkit.Uwp.UI": "1.1.0",
     "Microsoft.Toolkit.Uwp.UI.Controls": "1.1.0",
+    "Microsoft.Xaml.Behaviors.Uwp.Managed": "2.0.0",
     "MvvmLightLibs": "5.3.0",
     "MyToolkit.Extended": "2.5.15",
     "System.Text.Encoding": "4.0.11"

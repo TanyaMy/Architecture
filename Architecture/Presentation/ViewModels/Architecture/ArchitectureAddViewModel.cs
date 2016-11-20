@@ -7,6 +7,7 @@ using Arcitecture.Presentation.ViewModels.Common;
 using GalaSoft.MvvmLight.Command;
 using System.Linq;
 using System.Threading.Tasks;
+using Architecture.Presentation.Models;
 
 namespace Architecture.Presentation.ViewModels.Architecture
 {
@@ -129,6 +130,13 @@ namespace Architecture.Presentation.ViewModels.Architecture
             set { Set(() => Architect, ref _architect, value); }
         }
 
+        protected override void OnPageLoading()
+        {
+            base.OnPageLoading();
+
+            CleanupFields();
+        }
+
         private async Task SaveToDb()
         {
             var architecture = new Data.Entities.Architecture(
@@ -136,6 +144,22 @@ namespace Architecture.Presentation.ViewModels.Architecture
                 Square, Heigth, State, Architect.Id, Style.Id);
 
             await _architecturesManager.AddArchitecture(architecture);
+
+            CleanupFields();
+        }
+
+        private void CleanupFields()
+        {
+            Title = string.Empty;
+            CreatedDate = new DateTimeOffset();
+            Country = string.Empty;
+            City = string.Empty;
+            Address = string.Empty;
+            Square = 0;
+            Heigth = 0;
+            State = State.Great;
+            Architect = null;
+            Style = null;
         }
     }
 }

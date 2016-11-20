@@ -27,8 +27,24 @@ namespace Architecture.Presentation.ViewModels.Architecture
             set { Set(() => ArchitectureList, ref _architectures, value); }
         }
 
+        public async Task DeleteArchitecture(object architecture)
+        {
+            var arch = architecture as ArchitectureModel;
 
-        private async Task InitData()
+            if (arch == null)
+                return;
+
+            await _architecturesManager.RemoveArchitecture(arch.Id);
+        }
+
+        protected override void OnPageLoaded()
+        {
+            base.OnPageLoaded();
+
+            InitData();
+        }
+
+        private async void InitData()
         {
             ArchitectureList = (await _architecturesManager.GetArchitectures()).ToList();
         }
