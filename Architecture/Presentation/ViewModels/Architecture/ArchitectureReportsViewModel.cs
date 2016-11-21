@@ -5,6 +5,9 @@ using Microsoft.Practices.ServiceLocation;
 using System.Collections.ObjectModel;
 using RepairModel = Architecture.Data.Entities.Repair;
 using ArchitectureModel = Architecture.Data.Entities.Architecture;
+using System.Collections.Generic;
+using System.Linq;
+using System;
 
 namespace Architecture.Presentation.ViewModels.Architecture
 {
@@ -14,8 +17,8 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private readonly IRepairsManager _repairsManager;
         private readonly IArchitecturesManager _architecturesManager;
 
-        private ObservableCollection<RepairModel> _repairs;
-        private ObservableCollection<ArchitectureModel> _architectures;
+        private List<RepairModel> _repairs;
+        private List<ArchitectureModel> _architectures;
 
         public ArchitectureReportsViewModel(IRepairsManager repairsManager, IArchitecturesManager architecturesManager)
         {
@@ -26,30 +29,38 @@ namespace Architecture.Presentation.ViewModels.Architecture
             LoadData();
         }
 
-        public ObservableCollection<RepairModel> RepairList
+        public List<RepairModel> RepairList
         {
             get { return _repairs; }
             set { Set(() => RepairList, ref _repairs, value); }
         }
 
-        public ObservableCollection<ArchitectureModel> ArchitectureList
+        public List<ArchitectureModel> ArchitectureOldList
         {
             get { return _architectures; }
-            set { Set(() => ArchitectureList, ref _architectures, value); }
+            set { Set(() => ArchitectureOldList, ref _architectures, value); }
+        }
+
+        public List<ArchitectureModel> ArchitectureStateList
+        {
+            get { return _architectures; }
+            set { Set(() => ArchitectureOldList, ref _architectures, value); }
         }
 
         private async void LoadData()
         {
             //вид реставрации, название сооружения, дата ремонта не ранее 2006, затраты ремонта
-            //_architecturesManager.GetArchitectures().
+            //
             //название сооружения, дата создания ранее 1800 года в порядке возрастания
             //
             // название сооружения, его состояние
             //
 
-            ArchitectureList = new ObservableCollection<ArchitectureModel>(await _architecturesManager.GetArchitectures());            
+            ArchitectureOldList = _architectures.Where(a => a.CreationYear < 1800).ToList();
 
-            RepairList = new ObservableCollection<RepairModel>(await _repairsManager.GetRepairs());
+            ArchitectureStateList = new List<ArchitectureModel>(await _architecturesManager.GetArchitectures());
+
+            RepairList = _repairs.Where(r => r.RestorationDate > DateTime.Now.AddYears(-10)).ToList();
         }
     }
 }
