@@ -15,14 +15,14 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Architecture.Presentation.Views.Source
+namespace Architecture.Presentation.Views.Architect
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class SourceSearchPage : Page
+    public sealed partial class ArchitectPage : Page
     {
-        public SourceSearchPage()
+        public ArchitectPage()
         {
             this.InitializeComponent();
         }

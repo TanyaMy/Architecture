@@ -33,7 +33,6 @@ namespace Architecture.Data.Entities
         public DateTime BirthDate { get; set; }
 
         public DateTime DeathDate { get; set; }
-
-        //еще фотка
+ 
     }
 }

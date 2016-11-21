@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Architecture.Presentation.ViewModels.Repair;
+using Syncfusion.UI.Xaml.Grid;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,21 @@ namespace Architecture.Presentation.Views.Repair
     /// </summary>
     public sealed partial class RepairMainPage : Page
     {
+        private readonly RepairMainViewModel _viewModel;
+
         public RepairMainPage()
         {
             this.InitializeComponent();
+
+            _viewModel = (RepairMainViewModel)DataContext;
         }
+
+        private async void SfDataGrid_OnRecordDeleting(object sender, RecordDeletingEventArgs e)
+        {
+            var itemToDelete = e.Items[0];
+
+            await _viewModel.DeleteRepair(itemToDelete);
+        }
+
     }
 }

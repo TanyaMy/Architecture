@@ -2,36 +2,60 @@
     x:Class="Architecture.Presentation.Views.Repair.RepairMainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Architecture.Presentation.Views.Repair"
+    xmlns:controls="using:MyToolkit.Controls"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-     DataContext="{Binding RepairMain, Source={StaticResource Locator}}"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
+    DataContext="{Binding RepairMain, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Page.BottomAppBar>
-        <AppBar ClosedDisplayMode="Compact">
-            <ListView
-                x:Name="ListView"
-                ItemsSource="{Binding BottomMenuItems, Mode=OneWay}"
-                SelectedItem="{Binding SelectedBottomMenuItem, Mode=TwoWay}"
-                SelectionMode="Single">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <AppBarButton
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Background="Transparent"
-                            Icon="{Binding Icon}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </AppBar>
-    </Page.BottomAppBar>
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:EventTriggerBehavior.Actions>
+                <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
+            </core:EventTriggerBehavior.Actions>
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
-    <Frame SourcePageType="{Binding CurrentPageType, Mode=TwoWay}" />
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="7*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontFamily="Segoe WP Black"
+            FontSize="30"
+            FontWeight="Bold"
+            Foreground="DarkBlue"
+            Text="Ремонты" />
+
+        <syncfusion:SfDataGrid
+            Grid.Row="1"
+            Margin="10"
+            AllowDeleting="True"
+            AllowFiltering="True"
+            AutoGenerateColumns="False"
+            ColumnSizer="Star"
+            ItemsSource="{Binding RepairList}"
+            RecordDeleting="SfDataGrid_OnRecordDeleting"
+            SelectionMode="Single">
+
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn HeaderText="Вид реставрации" MappingName="RestorationKind" />
+                <syncfusion:GridTextColumn HeaderText="Название сооружения" MappingName="Architecture.Title" />
+                <syncfusion:GridTextColumn HeaderText="Дата ремонта" MappingName="RestorationDate" />
+                <syncfusion:GridTextColumn HeaderText="Стоимость ремонта" MappingName="RestorationCost" />
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+
+    </Grid>
 </Page>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Architecture.Presentation.ViewModels.Restoration;
+using Syncfusion.UI.Xaml.Grid;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,16 +17,27 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Architecture.Presentation.Views.Repair
+namespace Architecture.Presentation.Views.Restoration
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RepairSearchPage : Page
+    public sealed partial class RestorationMainPage : Page
     {
-        public RepairSearchPage()
+        private readonly RestorationMainViewModel _viewModel;
+
+        public RestorationMainPage()
         {
             this.InitializeComponent();
+
+            _viewModel = (RestorationMainViewModel)DataContext;
+        }
+
+        private async void SfDataGrid_OnRecordDeleting(object sender, RecordDeletingEventArgs e)
+        {
+            var itemToDelete = e.Items[0];
+
+            await _viewModel.DeleteRestoration(itemToDelete);
         }
     }
 }

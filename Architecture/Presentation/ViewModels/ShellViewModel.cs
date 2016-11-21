@@ -92,26 +92,26 @@ namespace Architecture.Presentation.ViewModels
                 new LeftMenuItem
                 {
                     Text = "Архитекторы",
-                    TextLogo = "\xE71C",
-                    InnerPageKey = PageKeys.ArchitectMain
+                    TextLogo = "\xE716",
+                    InnerPageKey = PageKeys.Architect
                 },
                 new LeftMenuItem
                 {
                     Text = "Стили",
                     TextLogo = "\xE2B1",
-                    InnerPageKey = PageKeys.StyleMain
+                    InnerPageKey = PageKeys.Style
                 },
                 new LeftMenuItem
                 {
                     Text = "Упоминания",
                     TextLogo = "\xE1D3",
-                    InnerPageKey = PageKeys.SourceMain
+                    InnerPageKey = PageKeys.Source
                 },
                  new LeftMenuItem
                 {
                     Text = "Ремонт",
                     TextLogo = "\xE90F",
-                    InnerPageKey = PageKeys.RepairMain
+                    InnerPageKey = PageKeys.Repair
                 }
             };
         }

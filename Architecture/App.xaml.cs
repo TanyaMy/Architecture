@@ -142,30 +142,26 @@ namespace Architecture
             SimpleIoc.Default.Register<ArchitectureReportsViewModel>();
             SimpleIoc.Default.Register<ArchitectureStatisticsViewModel>();
             
+            SimpleIoc.Default.Register<ArchitectViewModel>();
             SimpleIoc.Default.Register<ArchitectMainViewModel>();
-            SimpleIoc.Default.Register<ArchitectSearchViewModel>();
-            SimpleIoc.Default.Register<ArchitectFilterViewModel>();
             SimpleIoc.Default.Register<ArchitectAddViewModel>();
             SimpleIoc.Default.Register<ArchitectUpdateViewModel>();
 
-            SimpleIoc.Default.Register<StyleMainViewModel>();
-            SimpleIoc.Default.Register<StyleSearchViewModel>();
-            SimpleIoc.Default.Register<StyleFilterViewModel>();
+            SimpleIoc.Default.Register<StyleViewModel>();
+            SimpleIoc.Default.Register<StyleMainViewModel>();            
             SimpleIoc.Default.Register<StyleAddViewModel>();
             SimpleIoc.Default.Register<StyleUpdateViewModel>();
 
-            SimpleIoc.Default.Register<SourceMainViewModel>();
-            SimpleIoc.Default.Register<SourceSearchViewModel>();
-            SimpleIoc.Default.Register<SourceFilterViewModel>();
+            SimpleIoc.Default.Register<SourceViewModel>();
+            SimpleIoc.Default.Register<SourceMainViewModel>();            
             SimpleIoc.Default.Register<SourceAddViewModel>();
             SimpleIoc.Default.Register<SourceUpdateViewModel>();
 
-            SimpleIoc.Default.Register<RestorationSearchViewModel>();
+            SimpleIoc.Default.Register<RestorationMainViewModel>();
             SimpleIoc.Default.Register<RestorationUpdateViewModel>();
 
-            SimpleIoc.Default.Register<RepairMainViewModel>();
-            SimpleIoc.Default.Register<RepairSearchViewModel>();
-            SimpleIoc.Default.Register<RepairFilterViewModel>();
+            SimpleIoc.Default.Register<RepairViewModel>();
+            SimpleIoc.Default.Register<RepairMainViewModel>();            
             SimpleIoc.Default.Register<RepairAddViewModel>();
             SimpleIoc.Default.Register<RepairUpdateViewModel> ();
             SimpleIoc.Default.Register<RepairAutomatisationViewModel>();

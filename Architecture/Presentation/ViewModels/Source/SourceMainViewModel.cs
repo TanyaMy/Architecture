@@ -1,87 +1,51 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Windows.UI.Xaml.Controls;
-using Architecture.Presentation.Helpers;
-using Architecture.Presentation.Models;
+﻿using System.Linq;
 using Arcitecture.Presentation.ViewModels.Common;
+using SourceModel = Architecture.Data.Entities.Source;
+using Architecture.Managers.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Architecture.Presentation.ViewModels.Source
 {
     public class SourceMainViewModel : ViewModelBase
     {
-        public class LeftMenuItem
-        {
-            public SymbolIcon Icon { get; set; }
-            public string Text { get; set; }
+        private readonly ISourcesManager _sourcesManager;
 
-            public PageKeys InnerPageKey { get; set; }
-            public object Params { get; set; }
+        private IList<SourceModel> _sources;
+
+        public SourceMainViewModel(ISourcesManager stylesManager)
+        {
+            _sourcesManager = stylesManager;
+
+            InitData();
         }
 
-        private ObservableCollection<LeftMenuItem> _bottomMenuItems;
-
-        private LeftMenuItem _selectedBottomMenuItem;
-        private Type _currentPageType;
-
-        public SourceMainViewModel()
+        public IList<SourceModel> SourceList
         {
-            CreateBottomMenuItems();
-
-            SetDefaultSelectedMenuItem();
+            get { return _sources; }
+            set { Set(() => SourceList, ref _sources, value); }
         }
 
-        public ObservableCollection<LeftMenuItem> BottomMenuItems
+        public async Task DeleteSource(object source)
         {
-            get { return _bottomMenuItems; }
-            private set { Set(() => BottomMenuItems, ref _bottomMenuItems, value); }
+            var sourc = source as SourceModel;
+
+            if (sourc == null)
+                return;
+
+            await _sourcesManager.RemoveSource(sourc.Id);
         }
 
-        public LeftMenuItem SelectedBottomMenuItem
+        protected override void OnPageLoaded()
         {
-            get { return _selectedBottomMenuItem; }
-            set
-            {
-                _selectedBottomMenuItem = value;
+            base.OnPageLoaded();
 
-                CurrentPageType = value.InnerPageKey.GetPageType();
-            }
+            InitData();
         }
 
-        public Type CurrentPageType
+        private async void InitData()
         {
-            get { return _currentPageType; }
-            set { Set(() => CurrentPageType, ref _currentPageType, value); }
-        }
-
-        private void SetDefaultSelectedMenuItem()
-        {
-            SelectedBottomMenuItem = _bottomMenuItems.Single(i => i.InnerPageKey == PageKeys.SourceSearch);
-        }
-
-        private void CreateBottomMenuItems()
-        {
-            BottomMenuItems = new ObservableCollection<LeftMenuItem>
-            {
-                new LeftMenuItem
-                {
-                    Text = "Поиск",
-                    Icon = new SymbolIcon(Symbol.Find),
-                    InnerPageKey = PageKeys.SourceSearch
-                },
-                new LeftMenuItem
-                {
-                    Text = "Фильтрация",
-                    Icon = new SymbolIcon(Symbol.Filter),
-                    InnerPageKey = PageKeys.SourceFilter
-                },
-                new LeftMenuItem
-                {
-                    Text = "Добавление",
-                    Icon = new SymbolIcon(Symbol.Add),
-                    InnerPageKey = PageKeys.SourceAdd
-                }
-            };
+            SourceList = (await _sourcesManager.GetSources()).ToList();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Architecture.Presentation.ViewModels.Style;
+using Syncfusion.UI.Xaml.Grid;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,22 @@ namespace Architecture.Presentation.Views.Style
     /// </summary>
     public sealed partial class StyleMainPage : Page
     {
+
+        private readonly StyleMainViewModel _viewModel;
+
         public StyleMainPage()
         {
             this.InitializeComponent();
-        }       
+
+            _viewModel = (StyleMainViewModel)DataContext;
+        }
+
+        private async void SfDataGrid_OnRecordDeleting(object sender, RecordDeletingEventArgs e)
+        {
+            var itemToDelete = e.Items[0];
+
+            await _viewModel.DeleteStyle(itemToDelete);
+        }
+          
     }
 }

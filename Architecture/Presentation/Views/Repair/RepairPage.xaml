@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Architecture.Presentation.Views.Architecture.ArchitecturePage"
+    x:Class="Architecture.Presentation.Views.Repair.RepairPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
@@ -7,7 +7,7 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    DataContext="{Binding Architecture, Source={StaticResource Locator}}"
+    DataContext="{Binding Repair, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Page.BottomAppBar>
@@ -32,15 +32,15 @@
                     VerticalAlignment="Stretch"
                     Background="Transparent"
                     Command="{Binding NavTo}"
-                    CommandParameter="{Binding Reports}"
-                    Icon="Document" />
+                    CommandParameter="{Binding Automatisation}"
+                    Icon="Accept" />
                 <AppBarButton
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Background="Transparent"
                     Command="{Binding NavTo}"
-                    CommandParameter="{Binding Statistics}"
-                    Icon="ZeroBars" />
+                    CommandParameter="{Binding Restoration}"
+                    Icon="Refresh" />
             </StackPanel>
         </AppBar>
     </Page.BottomAppBar>

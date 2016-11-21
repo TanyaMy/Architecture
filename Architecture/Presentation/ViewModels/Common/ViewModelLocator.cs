@@ -20,30 +20,26 @@ namespace Architecture.Presentation.ViewModels.Common
         public ArchitectureReportsViewModel ArchitectureReports => GetViewModel<ArchitectureReportsViewModel>();
         public ArchitectureStatisticsViewModel ArchitectureStatistics => GetViewModel<ArchitectureStatisticsViewModel>();
         
+        public ArchitectViewModel Architect => GetViewModel<ArchitectViewModel>();
         public ArchitectMainViewModel ArchitectMain => GetViewModel<ArchitectMainViewModel>();
-        public ArchitectSearchViewModel ArchitectSearch => GetViewModel<ArchitectSearchViewModel>();
-        public ArchitectFilterViewModel ArchitectFilter => GetViewModel<ArchitectFilterViewModel>();
         public ArchitectAddViewModel ArchitectAdd => GetViewModel<ArchitectAddViewModel>();
         public ArchitectUpdateViewModel ArchitectUpdate => GetViewModel<ArchitectUpdateViewModel>();
 
-        public StyleMainViewModel StyleMain => GetViewModel<StyleMainViewModel>();
-        public StyleSearchViewModel StyleSearch => GetViewModel<StyleSearchViewModel>();
-        public StyleFilterViewModel StyleFilter => GetViewModel<StyleFilterViewModel>();
+        public StyleViewModel Style => GetViewModel<StyleViewModel>();
+        public StyleMainViewModel StyleMain => GetViewModel<StyleMainViewModel>();       
         public StyleAddViewModel StyleAdd => GetViewModel<StyleAddViewModel>();
         public StyleUpdateViewModel StyleUpdate => GetViewModel<StyleUpdateViewModel>();
 
+        public SourceViewModel Source => GetViewModel<SourceViewModel>();
         public SourceMainViewModel SourceMain => GetViewModel<SourceMainViewModel>();
-        public SourceSearchViewModel SourceSearch => GetViewModel<SourceSearchViewModel>();
-        public SourceFilterViewModel SourceFilter => GetViewModel<SourceFilterViewModel>();
         public SourceAddViewModel SourceAdd => GetViewModel<SourceAddViewModel>();
         public SourceUpdateViewModel SourceUpdate => GetViewModel<SourceUpdateViewModel>();
 
-        public RestorationSearchViewModel RestorationSearch => GetViewModel<RestorationSearchViewModel>();
+        public RestorationMainViewModel RestorationMain => GetViewModel<RestorationMainViewModel>();
         public RestorationUpdateViewModel RestorationUpdate => GetViewModel<RestorationUpdateViewModel>();
 
-        public RepairMainViewModel RepairMain => GetViewModel<RepairMainViewModel>();
-        public RepairSearchViewModel RepairSearch => GetViewModel<RepairSearchViewModel>();
-        public RepairFilterViewModel RepairFilter => GetViewModel<RepairFilterViewModel>();
+        public RepairViewModel Repair => GetViewModel<RepairViewModel>();
+        public RepairMainViewModel RepairMain => GetViewModel<RepairMainViewModel>();        
         public RepairAddViewModel RepairAdd => GetViewModel<RepairAddViewModel>();
         public RepairUpdateViewModel RepairUpdate => GetViewModel<RepairUpdateViewModel>();
         public RepairAutomatisationViewModel RepairAutomatisation => GetViewModel<RepairAutomatisationViewModel>();

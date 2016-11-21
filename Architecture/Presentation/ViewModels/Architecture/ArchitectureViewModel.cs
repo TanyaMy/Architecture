@@ -39,7 +39,6 @@ namespace Architecture.Presentation.ViewModels.Architecture
         public PageKeys Add => PageKeys.ArchitectureAdd;
         public PageKeys Reports => PageKeys.ArchitectureReports;
         public PageKeys Statistics => PageKeys.ArchitectureStatistics;
-        public PageKeys Repair => PageKeys.ArchitectureStatistics;
 
         public Type CurrentInnerPageType
         {
