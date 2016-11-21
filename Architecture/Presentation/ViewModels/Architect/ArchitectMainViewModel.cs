@@ -1,6 +1,10 @@
 ﻿using Architecture.Managers.Interfaces;
+using Architecture.Presentation.Helpers.Interfaces;
+using Architecture.Presentation.Models;
 using Arcitecture.Presentation.ViewModels.Common;
+using Microsoft.Practices.ServiceLocation;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using ArchitectModel = Architecture.Data.Entities.Architect;
@@ -9,21 +13,36 @@ namespace Architecture.Presentation.ViewModels.Architect
 {
     public class ArchitectMainViewModel : ViewModelBase
     {
+        private readonly ICustomNavigationService _customNavigationService;
         private readonly IArchitectManager _architectsManager;
 
-        private IList<ArchitectModel> _architects;
+        private ObservableCollection<ArchitectModel> _architects;
+        private ArchitectModel _selectedTableItem;
 
         public ArchitectMainViewModel(IArchitectManager architectsManager)
         {
             _architectsManager = architectsManager;
 
-            InitData();
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ArchitectInternal");
+
+            LoadData();
         }
 
-        public IList<ArchitectModel> ArchitectList
+        public ObservableCollection<ArchitectModel> ArchitectList
         {
             get { return _architects; }
             set { Set(() => ArchitectList, ref _architects, value); }
+        }
+
+        public ArchitectModel SelectedTableItem
+        {
+            get { return _selectedTableItem; }
+            set { Set(() => SelectedTableItem, ref _selectedTableItem, value); }
+        }
+
+        public void EditArchitect(ArchitectModel itemToEdit)
+        {
+            _customNavigationService.NavigateTo(PageKeys.ArchitectAdd, itemToEdit);
         }
 
         public async Task DeleteArchitect(object architect)
@@ -34,18 +53,13 @@ namespace Architecture.Presentation.ViewModels.Architect
                 return;
 
             await _architectsManager.RemoveArchitect(arch.Id);
+
+            ArchitectList.Remove(arch);
         }
 
-        protected override void OnPageLoaded()
+        private async void LoadData()
         {
-            base.OnPageLoaded();
-
-            InitData();
-        }
-
-        private async void InitData()
-        {
-            ArchitectList = (await _architectsManager.GetArchitects()).ToList();
+            ArchitectList = new ObservableCollection<ArchitectModel>(await _architectsManager.GetArchitects());
         }
     }
 }
