@@ -30,7 +30,7 @@ namespace Architecture.Presentation.ViewModels.Restoration
         {
             _restorationManager = restorationManager;
 
-            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("RestorationInternal");
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("RepairInternal");
 
             _restoration = _customNavigationService.CurrentPageParams as RestorationModel;
 
@@ -50,7 +50,7 @@ namespace Architecture.Presentation.ViewModels.Restoration
         public string ButtonText { get; }
         public List<RestorationKind> RestorationKindsList { get; private set; }
 
-        private async void InitData()
+        private void InitData()
         {
             RestorationKindsList = Enum.GetValues(typeof(RestorationKind)).Cast<RestorationKind>().ToList();
         }
