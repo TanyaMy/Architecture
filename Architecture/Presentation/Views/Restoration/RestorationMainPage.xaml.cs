@@ -33,11 +33,11 @@ namespace Architecture.Presentation.Views.Restoration
             _viewModel = (RestorationMainViewModel)DataContext;
         }
 
-        private async void SfDataGrid_OnRecordDeleting(object sender, RecordDeletingEventArgs e)
+        private void EditRowMenuFlyoutItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var itemToDelete = e.Items[0];
+            var itemToEdit = _viewModel.SelectedTableItem;
 
-            await _viewModel.DeleteRestoration(itemToDelete);
+            _viewModel.EditRestoration(itemToEdit);
         }
     }
 }

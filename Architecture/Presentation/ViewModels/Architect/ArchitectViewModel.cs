@@ -4,18 +4,30 @@ using Architecture.Presentation.Models;
 using Arcitecture.Presentation.ViewModels.Common;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
+using Architecture.Presentation.Helpers.Interfaces;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Architecture.Presentation.ViewModels.Architect
 {
     public class ArchitectViewModel : ViewModelBase
     {
+        private readonly ICustomNavigationService _customNavigationService;
+
         private Type _currentPageType;
 
         public ArchitectViewModel()
         {
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ArchitectInternal");
+            _customNavigationService.OnPageChanged += CustomNavigationServiceOnOnPageChanged;
+
             NavTo = new RelayCommand<PageKeys>(NavigateTo);
 
             SetDefaultInnerPage();
+        }
+
+        private void CustomNavigationServiceOnOnPageChanged(PageKeys pageKey, object @params)
+        {
+            CurrentInnerPageType = pageKey.GetPageType();
         }
 
         public ICommand NavTo { get; set; }
@@ -31,12 +43,12 @@ namespace Architecture.Presentation.ViewModels.Architect
 
         private void NavigateTo(PageKeys pageKey)
         {
-            CurrentInnerPageType = pageKey.GetPageType();
+            _customNavigationService.NavigateTo(pageKey);
         }
 
         private void SetDefaultInnerPage()
         {
-            CurrentInnerPageType = PageKeys.ArchitectMain.GetPageType();
+            _customNavigationService.NavigateTo(PageKeys.ArchitectMain);
         }
     }
 }

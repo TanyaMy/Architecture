@@ -54,8 +54,8 @@
             <syncfusion:SfDataGrid.RecordContextMenu>
                 <MenuFlyout>
                     <MenuFlyout.Items>
-                        <MenuFlyoutItem Click="EditRowMenuFlyoutItem_OnClick" Text="Edit architecture" />
-                        <MenuFlyoutItem Click="DeleteRowFlyoutItem_OnClick" Text="Delete architecture" />
+                        <MenuFlyoutItem Click="EditRowMenuFlyoutItem_OnClick" Text="Редактировать сооружение" />
+                        <MenuFlyoutItem Click="DeleteRowFlyoutItem_OnClick" Text="Удалить сооружение" />
                     </MenuFlyout.Items>
                 </MenuFlyout>
             </syncfusion:SfDataGrid.RecordContextMenu>

@@ -40,6 +40,20 @@ namespace Architecture.Presentation.Views.Style
 
             await _viewModel.DeleteStyle(itemToDelete);
         }
-          
+
+        private async void DeleteRowFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var itemToDelete = _viewModel.SelectedTableItem;
+
+            await _viewModel.DeleteStyle(itemToDelete);
+        }
+
+        private void EditRowMenuFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var itemToEdit = _viewModel.SelectedTableItem;
+
+            _viewModel.EditStyle(itemToEdit);
+        }
+
     }
 }

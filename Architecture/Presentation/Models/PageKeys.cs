@@ -25,25 +25,19 @@ namespace Architecture.Presentation.Models
         [PageType(typeof(ArchitectMainPage))]
         ArchitectMain,   
         [PageType(typeof(ArchitectAddPage))]
-        ArchitectAdd,
-        [PageType(typeof(ArchitectUpdatePage))]
-        ArchitectUpdate,
+        ArchitectAdd,       
         [PageType(typeof(StylePage))]
         Style,
         [PageType(typeof(StyleMainPage))]
         StyleMain,  
         [PageType(typeof(StyleAddPage))]
-        StyleAdd,
-        [PageType(typeof(StyleUpdatePage))]
-        StyleUpdate,
+        StyleAdd,       
         [PageType(typeof(SourcePage))]
         Source,
         [PageType(typeof(SourceMainPage))]
         SourceMain,       
         [PageType(typeof(SourceAddPage))]
-        SourceAdd,
-        [PageType(typeof(SourceUpdatePage))]
-        SourceUpdate,
+        SourceAdd,       
         [PageType(typeof(RestorationMainPage))]
         RestorationMain,        
         [PageType(typeof(RestorationUpdatePage))]
@@ -53,9 +47,7 @@ namespace Architecture.Presentation.Models
         [PageType(typeof(RepairMainPage))]
         RepairMain,       
         [PageType(typeof(RepairAddPage))]
-        RepairAdd,
-        [PageType(typeof(RepairUpdatePage))]
-        RepairUpdate,
+        RepairAdd,       
         [PageType(typeof(RepairAutomatisationPage))]
         RepairAutomatisation
     }

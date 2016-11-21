@@ -147,25 +147,21 @@
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Architecture\ArchitectureReportsViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Architect\ArchitectUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairAutomatisationViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Repair\RepairViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Repair\RepairUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Restoration\RestorationUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Restoration\RestorationMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ShellViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Source\SourceUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelBase.cs" />
     <Compile Include="Presentation\ViewModels\Common\ViewModelLocator.cs" />
     <Compile Include="Presentation\ViewModels\Style\StyleViewModel.cs" />
-    <Compile Include="Presentation\ViewModels\Style\StyleUpdateViewModel.cs" />
     <Compile Include="Presentation\Views\Architect\ArchitectAddPage.xaml.cs">
       <DependentUpon>ArchitectAddPage.xaml</DependentUpon>
     </Compile>
@@ -193,9 +189,6 @@
     <Compile Include="Presentation\Views\Architect\ArchitectPage.xaml.cs">
       <DependentUpon>ArchitectPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Architect\ArchitectUpdatePage.xaml.cs">
-      <DependentUpon>ArchitectUpdatePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\Repair\RepairAddPage.xaml.cs">
       <DependentUpon>RepairAddPage.xaml</DependentUpon>
     </Compile>
@@ -207,9 +200,6 @@
     </Compile>
     <Compile Include="Presentation\Views\Repair\RepairPage.xaml.cs">
       <DependentUpon>RepairPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Views\Repair\RepairUpdatePage.xaml.cs">
-      <DependentUpon>RepairUpdatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Restoration\RestorationMainPage.xaml.cs">
       <DependentUpon>RestorationMainPage.xaml</DependentUpon>
@@ -229,9 +219,6 @@
     <Compile Include="Presentation\Views\Source\SourcePage.xaml.cs">
       <DependentUpon>SourcePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Presentation\Views\Source\SourceUpdatePage.xaml.cs">
-      <DependentUpon>SourceUpdatePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Presentation\Views\Style\StyleAddPage.xaml.cs">
       <DependentUpon>StyleAddPage.xaml</DependentUpon>
     </Compile>
@@ -240,9 +227,6 @@
     </Compile>
     <Compile Include="Presentation\Views\Style\StylePage.xaml.cs">
       <DependentUpon>StylePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Presentation\Views\Style\StyleUpdatePage.xaml.cs">
-      <DependentUpon>StyleUpdatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Entities\Style.cs" />
@@ -306,10 +290,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Architect\ArchitectUpdatePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Presentation\Views\Repair\RepairAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -323,10 +303,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\Repair\RepairPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Views\Repair\RepairUpdatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -354,10 +330,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Presentation\Views\Source\SourceUpdatePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Presentation\Views\Style\StyleAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -367,10 +339,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\Style\StylePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Presentation\Views\Style\StyleUpdatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

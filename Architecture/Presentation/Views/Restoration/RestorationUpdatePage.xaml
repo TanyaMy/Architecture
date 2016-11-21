@@ -2,39 +2,52 @@
     x:Class="Architecture.Presentation.Views.Restoration.RestorationUpdatePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Architecture.Presentation.Views.Restoration"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-     DataContext="{Binding RestorationUpdate, Source={StaticResource Locator}}"
+    DataContext="{Binding RestorationUpdate, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" MaxWidth="375" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <TextBlock
+            Grid.Row="0"
+            Grid.ColumnSpan="3"
+            Margin="0,30,0,10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontFamily="Segoe WP Black"
+            FontSize="28"
+            FontWeight="Bold"
+            Foreground="DarkBlue"
+            Opacity="1">
+            <Run>Реставрация.</Run>
+            <Run Text="{Binding ActionText}" />
+        </TextBlock>
+
+
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden">
-            <StackPanel Margin="0, 60">
+            <StackPanel Margin="0,80">
                 <TextBlock
-                    Margin="0,8,0,10"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontFamily="Segoe WP Black"
-                    FontSize="26"
-                    FontWeight="Bold"
-                    Foreground="DarkBlue"
-                    Opacity="1"
-                    Text="Реставрация. Редактирование" />
-                <ComboBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
-                    FontSize="14"
-                    Header="Вид реставрации"
+                    FontSize="20"
+                    FontWeight="Bold"
                     Opacity="1"
-                    ItemsSource="{Binding RestorationKind, Mode=TwoWay}" />
+                    Text="{Binding RestorationKind}" />
                 <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
@@ -59,7 +72,7 @@
                     Background="LightBlue"
                     BorderBrush="DarkBlue"
                     Command="{Binding SaveChangesCommand}"
-                    Content="Сохранить"
+                    Content="{Binding ButtonText}"
                     FontSize="20" />
             </StackPanel>
         </ScrollViewer>

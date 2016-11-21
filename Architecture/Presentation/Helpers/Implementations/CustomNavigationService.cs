@@ -31,7 +31,7 @@ namespace Architecture.Presentation.Helpers.Implementations
         {
             _pagePair = new NavigationPageHelper(pageKey, @params);
 
-            OnPageChanged?.Invoke(pageKey, pageKey);
+            OnPageChanged?.Invoke(pageKey, @params);
         }
 
         public PageKeys CurrentPageKey => _pagePair.PageKey;

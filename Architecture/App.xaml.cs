@@ -145,17 +145,14 @@ namespace Architecture
             SimpleIoc.Default.Register<ArchitectViewModel>();
             SimpleIoc.Default.Register<ArchitectMainViewModel>();
             SimpleIoc.Default.Register<ArchitectAddViewModel>();
-            SimpleIoc.Default.Register<ArchitectUpdateViewModel>();
 
             SimpleIoc.Default.Register<StyleViewModel>();
             SimpleIoc.Default.Register<StyleMainViewModel>();            
             SimpleIoc.Default.Register<StyleAddViewModel>();
-            SimpleIoc.Default.Register<StyleUpdateViewModel>();
 
             SimpleIoc.Default.Register<SourceViewModel>();
             SimpleIoc.Default.Register<SourceMainViewModel>();            
             SimpleIoc.Default.Register<SourceAddViewModel>();
-            SimpleIoc.Default.Register<SourceUpdateViewModel>();
 
             SimpleIoc.Default.Register<RestorationMainViewModel>();
             SimpleIoc.Default.Register<RestorationUpdateViewModel>();
@@ -163,7 +160,6 @@ namespace Architecture
             SimpleIoc.Default.Register<RepairViewModel>();
             SimpleIoc.Default.Register<RepairMainViewModel>();            
             SimpleIoc.Default.Register<RepairAddViewModel>();
-            SimpleIoc.Default.Register<RepairUpdateViewModel> ();
             SimpleIoc.Default.Register<RepairAutomatisationViewModel>();
 
             #endregion

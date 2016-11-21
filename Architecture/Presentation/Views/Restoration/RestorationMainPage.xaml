@@ -45,9 +45,18 @@
             AllowFiltering="True"
             AutoGenerateColumns="False"
             ColumnSizer="Star"
-            ItemsSource="{Binding RestorationList}"
-            RecordDeleting="SfDataGrid_OnRecordDeleting"
+            ItemsSource="{Binding RestorationList, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedTableItem, Mode=TwoWay}"
             SelectionMode="Single">
+
+            <syncfusion:SfDataGrid.RecordContextMenu>
+                <MenuFlyout>
+                    <MenuFlyout.Items>
+                        <MenuFlyoutItem Click="EditRowMenuFlyoutItem_OnClick" Text="Редактировать реставрацию" />
+                    </MenuFlyout.Items>
+                </MenuFlyout>
+            </syncfusion:SfDataGrid.RecordContextMenu>
+
 
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn

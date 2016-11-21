@@ -45,9 +45,20 @@
             AllowFiltering="True"
             AutoGenerateColumns="False"
             ColumnSizer="Star"
-            ItemsSource="{Binding StyleList}"
+            ItemsSource="{Binding StyleList, Mode=TwoWay}"
             RecordDeleting="SfDataGrid_OnRecordDeleting"
+            SelectedItem="{Binding SelectedTableItem, Mode=TwoWay}"
             SelectionMode="Single">
+
+            <syncfusion:SfDataGrid.RecordContextMenu>
+                <MenuFlyout>
+                    <MenuFlyout.Items>
+                        <MenuFlyoutItem Click="EditRowMenuFlyoutItem_OnClick" Text="Редактировать стиль" />
+                        <MenuFlyoutItem Click="DeleteRowFlyoutItem_OnClick" Text="Удалить стиль" />
+                    </MenuFlyout.Items>
+                </MenuFlyout>
+            </syncfusion:SfDataGrid.RecordContextMenu>
+
 
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn HeaderText="Название" MappingName="Title" />

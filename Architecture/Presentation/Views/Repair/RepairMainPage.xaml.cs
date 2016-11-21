@@ -40,5 +40,19 @@ namespace Architecture.Presentation.Views.Repair
             await _viewModel.DeleteRepair(itemToDelete);
         }
 
+        private async void DeleteRowFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var itemToDelete = _viewModel.SelectedTableItem;
+
+            await _viewModel.DeleteRepair(itemToDelete);
+        }
+
+        private void EditRowMenuFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var itemToEdit = _viewModel.SelectedTableItem;
+
+            _viewModel.EditRepair(itemToEdit);
+        }
+
     }
 }
