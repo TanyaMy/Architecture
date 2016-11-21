@@ -23,7 +23,7 @@ namespace Architecture.Presentation.ViewModels.Restoration
         {
             _restorationsManager = restorationsManager;
 
-            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("RestorationInternal");
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("RepairInternal");
 
             LoadData();
         }

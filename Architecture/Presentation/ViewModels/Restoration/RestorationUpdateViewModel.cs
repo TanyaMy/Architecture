@@ -8,6 +8,9 @@ using Architecture.Presentation.Helpers.Interfaces;
 using RestorationModel = Architecture.Data.Entities.Restoration;
 using Microsoft.Practices.ServiceLocation;
 using Architecture.Presentation.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Architecture.Presentation.ViewModels.Restoration
 {
@@ -35,7 +38,8 @@ namespace Architecture.Presentation.ViewModels.Restoration
 
             ActionText = "Редактирование";
             ButtonText = "Сохранить изменения";
-                     
+
+            InitData();
             SetupFields();
 
         }       
@@ -44,6 +48,12 @@ namespace Architecture.Presentation.ViewModels.Restoration
 
         public string ActionText { get; }
         public string ButtonText { get; }
+        public List<RestorationKind> RestorationKindsList { get; private set; }
+
+        private async void InitData()
+        {
+            RestorationKindsList = Enum.GetValues(typeof(RestorationKind)).Cast<RestorationKind>().ToList();
+        }
 
         public RestorationKind RestorationKind
         {

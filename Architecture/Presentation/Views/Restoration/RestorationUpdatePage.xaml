@@ -46,8 +46,9 @@
                     VerticalAlignment="Center"
                     FontSize="14"
                     Header="Вид реставрации"
-                    ItemsSource="{Binding RestorationKind, Mode=TwoWay}"
-                    Opacity="1" />
+                    ItemsSource="{Binding RestorationKindsList}"
+                    Opacity="1"
+                    SelectedItem="{Binding RestorationKind, Mode=TwoWay}" />
                 <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
