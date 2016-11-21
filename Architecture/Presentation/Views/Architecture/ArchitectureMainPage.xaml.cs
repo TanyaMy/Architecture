@@ -1,6 +1,8 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Architecture.Presentation.ViewModels.Architecture;
 using Syncfusion.UI.Xaml.Grid;
+using Syncfusion.UI.Xaml.Grid.Helpers;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,6 +28,20 @@ namespace Architecture.Presentation.Views.Architecture
             var itemToDelete = e.Items[0];
 
             await _viewModel.DeleteArchitecture(itemToDelete);
+        }
+
+        private async void DeleteRowFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var itemToDelete = _viewModel.SelectedTableItem;
+
+            await _viewModel.DeleteArchitecture(itemToDelete);
+        }
+
+        private void EditRowMenuFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var itemToEdit = _viewModel.SelectedTableItem;
+
+            _viewModel.EditArchitecture(itemToEdit);
         }
     }
 }

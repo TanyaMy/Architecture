@@ -19,24 +19,36 @@
     </interactivity:Interaction.Behaviors>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" MaxWidth="375" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden">
+        <TextBlock
+            Grid.Row="0"
+            Grid.ColumnSpan="3"
+            Margin="0,8,0,10"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            FontFamily="Segoe WP Black"
+            FontSize="28"
+            FontWeight="Bold"
+            Foreground="DarkBlue"
+            Opacity="1">
+            <Run>Сооружения.</Run>
+            <Run Text="{Binding ActionText}" />
+        </TextBlock>
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalScrollBarVisibility="Hidden">
             <StackPanel>
-                <TextBlock
-                    Margin="0,8,0,10"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontFamily="Segoe WP Black"
-                    FontSize="28"
-                    FontWeight="Bold"
-                    Foreground="DarkBlue"
-                    Opacity="1"
-                    Text="Сооружения. Добавление" />
                 <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
@@ -152,7 +164,7 @@
                     Background="LightBlue"
                     BorderBrush="DarkBlue"
                     Command="{Binding SaveCommand}"
-                    Content="Добавить"
+                    Content="{Binding ButtonText}"
                     FontSize="20" />
             </StackPanel>
         </ScrollViewer>

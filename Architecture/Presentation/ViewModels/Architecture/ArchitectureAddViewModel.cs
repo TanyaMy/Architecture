@@ -7,18 +7,24 @@ using Arcitecture.Presentation.ViewModels.Common;
 using GalaSoft.MvvmLight.Command;
 using System.Linq;
 using System.Threading.Tasks;
+using Architecture.Presentation.Helpers.Interfaces;
 using Architecture.Presentation.Models;
+using Microsoft.Practices.ServiceLocation;
+using ArchitectureModel = Architecture.Data.Entities.Architecture;
 
 namespace Architecture.Presentation.ViewModels.Architecture
 {
     public class ArchitectureAddViewModel : ViewModelBase
     {
+        private readonly ICustomNavigationService _customNavigationService;
         private readonly IArchitecturesManager _architecturesManager;
         private readonly IStylesManager _stylesManager;
         private readonly IArchitectManager _architectsManager;
 
         private List<Data.Entities.Style> _stylesList;
         private List<Data.Entities.Architect> _architectsList;
+
+        private readonly ArchitectureModel _architecture;
 
         private string _title;
         private DateTimeOffset _createdDate;
@@ -39,10 +45,19 @@ namespace Architecture.Presentation.ViewModels.Architecture
             _architecturesManager = architecturesManager;
             _stylesManager = stylesManager;
             _architectsManager = architectsManager;
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ArchitectureInternal");
 
-            SaveCommand = new RelayCommand(async () => await SaveToDb());
+            _architecture = _customNavigationService.CurrentPageParams as ArchitectureModel;
+
+            SaveCommand = _architecture == null 
+                ? new RelayCommand(async () => await AddArchitecture())
+                : new RelayCommand(async () => await UpdateArchitecture());
+
+            ActionText = _architecture == null ? "Добавление" : "Редактирование";
+            ButtonText = _architecture == null ? "Добавить" : "Сохранить изменения";
 
             InitData();
+            SetupFields();
         }
 
         private async void InitData()
@@ -55,6 +70,9 @@ namespace Architecture.Presentation.ViewModels.Architecture
         }
 
         public ICommand SaveCommand { get; }
+
+        public string ActionText { get; }
+        public string ButtonText { get; }
 
         public List<State> StatesList { get; private set; }
 
@@ -130,36 +148,52 @@ namespace Architecture.Presentation.ViewModels.Architecture
             set { Set(() => Architect, ref _architect, value); }
         }
 
-        protected override void OnPageLoading()
+        private async Task AddArchitecture()
         {
-            base.OnPageLoading();
-
-            CleanupFields();
-        }
-
-        private async Task SaveToDb()
-        {
-            var architecture = new Data.Entities.Architecture(
+            var architecture = new ArchitectureModel(
                 Title, CreatedDate.Year, Country, City, Address,
                 Square, Heigth, State, Architect.Id, Style.Id);
 
             await _architecturesManager.AddArchitecture(architecture);
 
-            CleanupFields();
+            _customNavigationService.NavigateTo(PageKeys.ArchitectureMain);
         }
 
-        private void CleanupFields()
+        private async Task UpdateArchitecture()
         {
-            Title = string.Empty;
-            CreatedDate = new DateTimeOffset();
-            Country = string.Empty;
-            City = string.Empty;
-            Address = string.Empty;
-            Square = 0;
-            Heigth = 0;
-            State = State.Great;
-            Architect = null;
-            Style = null;
+            _architecture.Title = Title;
+            _architecture.CreationYear = CreatedDate.Year;
+            _architecture.Country = Country;
+            _architecture.City = City;
+            _architecture.Address = Address;
+            _architecture.Square = Square;
+            _architecture.Height = Heigth;
+            _architecture.State = State;
+            _architecture.ArchitectId = Architect.Id;
+            _architecture.StyleId = Style.Id;
+
+            await _architecturesManager.UpdateArchitecture(_architecture);
+
+            _customNavigationService.NavigateTo(PageKeys.ArchitectureMain);
+        }
+
+        private void SetupFields()
+        {
+            ArchitectureModel editableArch = _architecture;
+
+            DateTimeOffset timeOffset = editableArch != null ? new DateTimeOffset(new DateTime(editableArch.CreationYear, 1, 1)) : new DateTimeOffset();
+
+
+            Title = editableArch?.Title ?? string.Empty;
+            CreatedDate = timeOffset;
+            Country = editableArch?.Country ?? string.Empty;
+            City = editableArch?.City ?? string.Empty;
+            Address = editableArch?.Address ?? string.Empty;
+            Square = editableArch?.Square ?? 0;
+            Heigth = editableArch?.Height ?? 0;
+            State = editableArch?.State ?? State.Great;
+            Architect = editableArch?.Architect;
+            Style = editableArch?.Style;
         }
     }
 }
