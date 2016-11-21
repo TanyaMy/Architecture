@@ -71,13 +71,13 @@
             AllowFiltering="True"
             AutoGenerateColumns="False"
             ColumnSizer="Star"
-            ItemsSource="{Binding RepairReport}"
+            ItemsSource="{Binding RepairList}"
             SelectionMode="Single">
 
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn
                     HeaderText="Сооружение"
-                    MappingName="Architecture"
+                    MappingName="Architecture.Title"
                     TextAlignment="Center" />
                 <syncfusion:GridTextColumn
                     HeaderText="Вид реставрации"
@@ -85,11 +85,11 @@
                     TextAlignment="Center" />
                 <syncfusion:GridTextColumn
                     HeaderText="Дата ремонта"
-                    MappingName="Periodicity"
+                    MappingName="RestorationDate"
                     TextAlignment="Center" />
                 <syncfusion:GridTextColumn
                     HeaderText="Стоимость ремонта"
-                    MappingName="Outlays"
+                    MappingName="RestorationCost"
                     TextAlignment="Center" />
             </syncfusion:SfDataGrid.Columns>
 
