@@ -4,23 +4,32 @@ using SourceModel = Architecture.Data.Entities.Source;
 using Architecture.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Architecture.Presentation.Helpers.Interfaces;
+using System.Collections.ObjectModel;
+using Microsoft.Practices.ServiceLocation;
+using System;
+using Architecture.Presentation.Models;
 
 namespace Architecture.Presentation.ViewModels.Source
 {
     public class SourceMainViewModel : ViewModelBase
     {
+        private readonly ICustomNavigationService _customNavigationService;
         private readonly ISourcesManager _sourcesManager;
 
-        private IList<SourceModel> _sources;
+        private ObservableCollection<SourceModel> _sources;
+        private SourceModel _selectedTableItem;
 
-        public SourceMainViewModel(ISourcesManager stylesManager)
+        public SourceMainViewModel(ISourcesManager sourcesManager)
         {
-            _sourcesManager = stylesManager;
+            _sourcesManager = sourcesManager;
 
-            InitData();
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("SourceInternal");
+
+            LoadData();
         }
-
-        public IList<SourceModel> SourceList
+        
+        public ObservableCollection<SourceModel> SourceList
         {
             get { return _sources; }
             set { Set(() => SourceList, ref _sources, value); }
@@ -33,19 +42,25 @@ namespace Architecture.Presentation.ViewModels.Source
             if (sourc == null)
                 return;
 
-            await _sourcesManager.RemoveSource(sourc.Id);
+            await _sourcesManager.RemoveSource(sourc.Id);           
+
+            SourceList.Remove(sourc);
         }
 
-        protected override void OnPageLoaded()
+        public SourceModel SelectedTableItem
         {
-            base.OnPageLoaded();
-
-            InitData();
+            get { return _selectedTableItem; }
+            set { Set(() => SelectedTableItem, ref _selectedTableItem, value); }
         }
 
-        private async void InitData()
+        public void EditSource(SourceModel itemToEdit)
         {
-            SourceList = (await _sourcesManager.GetSources()).ToList();
+            _customNavigationService.NavigateTo(PageKeys.SourceAdd, itemToEdit);
+        }        
+
+        private async void LoadData()
+        {
+            SourceList = new ObservableCollection<SourceModel>(await _sourcesManager.GetSources());
         }
     }
 }

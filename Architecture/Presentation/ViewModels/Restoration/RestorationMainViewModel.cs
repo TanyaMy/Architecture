@@ -4,48 +4,50 @@ using RestorationModel = Architecture.Data.Entities.Restoration;
 using Architecture.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Architecture.Presentation.Helpers.Interfaces;
+using System.Collections.ObjectModel;
+using Microsoft.Practices.ServiceLocation;
+using Architecture.Presentation.Models;
 
 namespace Architecture.Presentation.ViewModels.Restoration
 {
     public class RestorationMainViewModel : ViewModelBase
     {
+        private readonly ICustomNavigationService _customNavigationService;
         private readonly IRestorationsManager _restorationsManager;
 
-        private IList<RestorationModel> _restorations;
+        private ObservableCollection<RestorationModel> _restorations;
+        private RestorationModel _selectedTableItem;
 
         public RestorationMainViewModel(IRestorationsManager restorationsManager)
         {
             _restorationsManager = restorationsManager;
 
-            InitData();
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("RestorationInternal");
+
+            LoadData();
         }
 
-        public IList<RestorationModel> RestorationList
+        public ObservableCollection<RestorationModel> RestorationList
         {
             get { return _restorations; }
             set { Set(() => RestorationList, ref _restorations, value); }
+        }       
+
+        public RestorationModel SelectedTableItem
+        {
+            get { return _selectedTableItem; }
+            set { Set(() => SelectedTableItem, ref _selectedTableItem, value); }
         }
 
-        public async Task DeleteRestoration(object restoration)
+        public void EditRestoration(RestorationModel itemToEdit)
         {
-            var restorat = restoration as RestorationModel;
-
-            if (restorat == null)
-                return;
-
-            await _restorationsManager.RemoveRestoration(restorat.RestorationKind);
+            _customNavigationService.NavigateTo(PageKeys.RestorationUpdate, itemToEdit);
         }
 
-        protected override void OnPageLoaded()
+        private async void LoadData()
         {
-            base.OnPageLoaded();
-
-            InitData();
-        }
-
-        private async void InitData()
-        {
-            RestorationList = (await _restorationsManager.GetRestorations()).ToList();
+            RestorationList = new ObservableCollection<RestorationModel>(await _restorationsManager.GetRestorations());
         }
     }
 }

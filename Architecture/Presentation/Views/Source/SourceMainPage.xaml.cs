@@ -27,6 +27,19 @@ namespace Architecture.Presentation.Views.Source
 
             await _viewModel.DeleteSource(itemToDelete);
         }
-           
+
+        private async void DeleteRowFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var itemToDelete = _viewModel.SelectedTableItem;
+
+            await _viewModel.DeleteSource(itemToDelete);
+        }
+
+        private void EditRowMenuFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var itemToEdit = _viewModel.SelectedTableItem;
+
+            _viewModel.EditSource(itemToEdit);
+        }
     }
 }

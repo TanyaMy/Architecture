@@ -1,18 +1,25 @@
 ﻿using Architecture.Data.Entities;
 using Architecture.Managers.Interfaces;
+using Architecture.Presentation.Helpers.Interfaces;
+using Architecture.Presentation.Models;
 using Arcitecture.Presentation.ViewModels.Common;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using SourceModel = Architecture.Data.Entities.Source;
 
 namespace Architecture.Presentation.ViewModels.Source
 {
     public class SourceAddViewModel : ViewModelBase
     {
+        private readonly ICustomNavigationService _customNavigationService;
         private readonly ISourcesManager _sourcesManager;
+
+        private readonly SourceModel _source;
 
         private SourceKind _sourceKind;
         private string _title;
@@ -24,9 +31,19 @@ namespace Architecture.Presentation.ViewModels.Source
         {
             _sourcesManager = sourcesManager;
 
-            SaveCommand = new RelayCommand(async () => await SaveToDb());
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("SourceInternal");
+
+            _source = _customNavigationService.CurrentPageParams as SourceModel;
+
+            SaveCommand = _source == null
+             ? new RelayCommand(async () => await AddSource())
+             : new RelayCommand(async () => await UpdateSource());
+
+            ActionText = _source == null ? "Добавление" : "Редактирование";
+            ButtonText = _source == null ? "Добавить" : "Сохранить изменения";
 
             InitData();
+            SetupFields();
         }
 
         private void InitData()
@@ -35,6 +52,9 @@ namespace Architecture.Presentation.ViewModels.Source
         }
 
         public ICommand SaveCommand { get; }
+
+        public string ActionText { get; }
+        public string ButtonText { get; }
 
         public List<SourceKind> SourceKindsList { get; private set; }
 
@@ -62,12 +82,35 @@ namespace Architecture.Presentation.ViewModels.Source
             set { Set(() => CreationYear, ref _creationYear, value); }
         }
 
-        private async Task SaveToDb()
+        private async Task AddSource()
         {
-            var source = new Data.Entities.Source(SourceKind,
-                Title, Author, CreationYear);
+            var source = new SourceModel(SourceKind, Title, Author, CreationYear);
 
             await _sourcesManager.AddSource(source);
+
+            _customNavigationService.NavigateTo(PageKeys.SourceMain);
+        }
+
+        private async Task UpdateSource()
+        {
+            _source.SourceKind = SourceKind;
+            _source.Title = Title;
+            _source.Author = Author;
+            _source.CreationYear = CreationYear;
+
+            await _sourcesManager.UpdateSource(_source);
+
+            _customNavigationService.NavigateTo(PageKeys.SourceMain);
+        }
+
+        private void SetupFields()
+        {
+            SourceModel editableSource = _source;
+
+            SourceKind = editableSource?.SourceKind ?? SourceKind.Book;
+            Title = editableSource?.Title ?? string.Empty;
+            Author = editableSource?.Author ?? "Неизвестен";
+            CreationYear = editableSource?.CreationYear ?? 0;
         }
     }
 }

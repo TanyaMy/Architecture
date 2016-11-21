@@ -4,27 +4,44 @@ using RepairModel = Architecture.Data.Entities.Repair;
 using Architecture.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using Architecture.Presentation.Helpers.Interfaces;
+using System.Collections.ObjectModel;
+using Microsoft.Practices.ServiceLocation;
+using Architecture.Presentation.Models;
 
 namespace Architecture.Presentation.ViewModels.Repair
 {
     public class RepairMainViewModel : ViewModelBase
     {
+        private readonly ICustomNavigationService _customNavigationService;
         private readonly IRepairsManager _repairsManager;
 
-        private IList<RepairModel> _repairs;
+        private ObservableCollection<RepairModel> _repairs;
+        private RepairModel _selectedTableItem;
 
         public RepairMainViewModel(IRepairsManager repairsManager)
         {
             _repairsManager = repairsManager;
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("RepairInternal");
 
-            InitData();
+            LoadData();
         }
 
-        public IList<RepairModel> RepairList
+        public ObservableCollection<RepairModel> RepairList
         {
             get { return _repairs; }
             set { Set(() => RepairList, ref _repairs, value); }
+        }
+
+        public RepairModel SelectedTableItem
+        {
+            get { return _selectedTableItem; }
+            set { Set(() => SelectedTableItem, ref _selectedTableItem, value); }
+        }
+
+        public void EditRepair(RepairModel itemToEdit)
+        {
+            _customNavigationService.NavigateTo(PageKeys.RepairAdd, itemToEdit);
         }
 
         public async Task DeleteRepair(object repair)
@@ -35,18 +52,13 @@ namespace Architecture.Presentation.ViewModels.Repair
                 return;
 
             await _repairsManager.RemoveRepair(rep.ArchitectureId, rep.RestorationKind);
+
+            RepairList.Remove(rep);
         }
 
-        protected override void OnPageLoaded()
+        private async void LoadData()
         {
-            base.OnPageLoaded();
-
-            InitData();
-        }
-
-        private async void InitData()
-        {
-            RepairList = (await _repairsManager.GetRepairs()).ToList();
+            RepairList = new ObservableCollection<RepairModel>(await _repairsManager.GetRepairs());
         }
     }
 }
