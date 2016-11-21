@@ -23,17 +23,14 @@ namespace Architecture.Presentation.ViewModels.Common
         public ArchitectViewModel Architect => GetViewModel<ArchitectViewModel>();
         public ArchitectMainViewModel ArchitectMain => GetViewModel<ArchitectMainViewModel>();
         public ArchitectAddViewModel ArchitectAdd => GetViewModel<ArchitectAddViewModel>();
-        public ArchitectUpdateViewModel ArchitectUpdate => GetViewModel<ArchitectUpdateViewModel>();
 
         public StyleViewModel Style => GetViewModel<StyleViewModel>();
         public StyleMainViewModel StyleMain => GetViewModel<StyleMainViewModel>();       
         public StyleAddViewModel StyleAdd => GetViewModel<StyleAddViewModel>();
-        public StyleUpdateViewModel StyleUpdate => GetViewModel<StyleUpdateViewModel>();
 
         public SourceViewModel Source => GetViewModel<SourceViewModel>();
         public SourceMainViewModel SourceMain => GetViewModel<SourceMainViewModel>();
         public SourceAddViewModel SourceAdd => GetViewModel<SourceAddViewModel>();
-        public SourceUpdateViewModel SourceUpdate => GetViewModel<SourceUpdateViewModel>();
 
         public RestorationMainViewModel RestorationMain => GetViewModel<RestorationMainViewModel>();
         public RestorationUpdateViewModel RestorationUpdate => GetViewModel<RestorationUpdateViewModel>();
@@ -41,7 +38,6 @@ namespace Architecture.Presentation.ViewModels.Common
         public RepairViewModel Repair => GetViewModel<RepairViewModel>();
         public RepairMainViewModel RepairMain => GetViewModel<RepairMainViewModel>();        
         public RepairAddViewModel RepairAdd => GetViewModel<RepairAddViewModel>();
-        public RepairUpdateViewModel RepairUpdate => GetViewModel<RepairUpdateViewModel>();
         public RepairAutomatisationViewModel RepairAutomatisation => GetViewModel<RepairAutomatisationViewModel>();
 
 
