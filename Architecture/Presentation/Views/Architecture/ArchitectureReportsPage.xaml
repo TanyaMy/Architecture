@@ -77,6 +77,10 @@
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn
                     HeaderText="Сооружение"
+                    MappingName="Architecture"
+                    TextAlignment="Center" />
+                <syncfusion:GridTextColumn
+                    HeaderText="Вид реставрации"
                     MappingName="RestorationKind"
                     TextAlignment="Center" />
                 <syncfusion:GridTextColumn
