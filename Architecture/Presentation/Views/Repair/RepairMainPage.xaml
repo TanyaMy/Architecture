@@ -40,6 +40,7 @@
 
         <syncfusion:SfDataGrid
             Grid.Row="1"
+            Margin="10"
             AllowDeleting="True"
             AllowFiltering="True"
             AutoGenerateColumns="False"
