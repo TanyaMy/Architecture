@@ -4,26 +4,45 @@ using StyleModel = Architecture.Data.Entities.Style;
 using Architecture.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Architecture.Presentation.Helpers.Interfaces;
+using System.Collections.ObjectModel;
+using Microsoft.Practices.ServiceLocation;
+using Architecture.Presentation.Models;
 
 namespace Architecture.Presentation.ViewModels.Style
 {
     public class StyleMainViewModel : ViewModelBase
     {
+        private readonly ICustomNavigationService _customNavigationService;
         private readonly IStylesManager _stylesManager;
 
-        private IList<StyleModel> _styles;
+        private ObservableCollection<StyleModel> _styles;
+        private StyleModel _selectedTableItem;
 
         public StyleMainViewModel(IStylesManager stylesManager)
         {
             _stylesManager = stylesManager;
 
-            InitData();
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("StyleInternal");
+
+            LoadData();
         }
 
-        public IList<StyleModel> StyleList
+        public ObservableCollection<StyleModel> StyleList
         {
             get { return _styles; }
             set { Set(() => StyleList, ref _styles, value); }
+        }
+
+        public StyleModel SelectedTableItem
+        {
+            get { return _selectedTableItem; }
+            set { Set(() => SelectedTableItem, ref _selectedTableItem, value); }
+        }
+
+        public void EditStyle(StyleModel itemToEdit)
+        {
+            _customNavigationService.NavigateTo(PageKeys.StyleAdd, itemToEdit);
         }
 
         public async Task DeleteStyle(object style)
@@ -34,18 +53,13 @@ namespace Architecture.Presentation.ViewModels.Style
                 return;
 
             await _stylesManager.RemoveStyle(styl.Id);
+
+            StyleList.Remove(styl);
         }
 
-        protected override void OnPageLoaded()
+        private async void LoadData()
         {
-            base.OnPageLoaded();
-
-            InitData();
-        }
-
-        private async void InitData()
-        {
-            StyleList = (await _stylesManager.GetStyles()).ToList();
+            StyleList = new ObservableCollection<StyleModel>(await _stylesManager.GetStyles());
         }
     }
 }

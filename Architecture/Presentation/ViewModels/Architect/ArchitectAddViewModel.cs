@@ -14,7 +14,7 @@ namespace Architecture.Presentation.ViewModels.Architect
 {
     public class ArchitectAddViewModel : ViewModelBase
     {
-        private readonly Helpers.Interfaces.ICustomNavigationService _customNavigationService;
+        private readonly ICustomNavigationService _customNavigationService;
         private readonly IArchitectManager _architectsManager;
 
         private readonly ArchitectModel _architect;
