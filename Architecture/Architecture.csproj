@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="Data\Entities\ArchitectureSource.cs" />
     <Compile Include="Data\Repositories\Implementations\RepairsRepository.cs" />
+    <Compile Include="Data\Repositories\Implementations\ReportsRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\StylesRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\SourcesRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\RestorationsRepository.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Data\Repositories\Interfaces\IArchitecturesRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\ICrudRepositoryBase.cs" />
     <Compile Include="Data\Repositories\Interfaces\IRepairsRepository.cs" />
+    <Compile Include="Data\Repositories\Interfaces\IReportsRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IRestorationsRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\ISourcesRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IStylesRepository.cs" />
