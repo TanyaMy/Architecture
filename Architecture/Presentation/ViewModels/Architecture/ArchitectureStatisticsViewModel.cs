@@ -18,8 +18,14 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private readonly IRepairsManager _repairsManager;
         private readonly IArchitecturesManager _architecturesManager;
 
+        private List<object> _dataList;
+
         private List<ArchitectureModel> _architectures;
         private List<RepairModel> _repairs;
+
+        private List<object> _architectureCountryStateList;
+        private List<object> _architectureCountryStyleList;
+        private List<object> _restorationKindList;
 
         private string _statisticsType;
 
@@ -29,10 +35,16 @@ namespace Architecture.Presentation.ViewModels.Architecture
             _architecturesManager = architecturesManager;
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ArchitectureInternal");
 
+            DataList = new List<object>();
+
             LoadData();
         }
 
-        public event StatisticsTypeChangedDelegate OnStatisticsTypeChanged;
+        public List<object> DataList
+        {
+            get { return _dataList; }
+            set { Set(() => DataList, ref _dataList, value); }
+        }
 
         public IList<string> StatisticsTypes => new List<string>
         {
@@ -53,18 +65,18 @@ namespace Architecture.Presentation.ViewModels.Architecture
                 {
                     case "Состояние сооружений по странам":
                         {
-                            OnStatisticsTypeChanged?.Invoke(ArchitectureCountryStateList);
+                            DataList = _architectureCountryStateList;
                             break;
                         }
                     case "Стиль сооружений по странам":
                         {
-                            OnStatisticsTypeChanged?.Invoke(ArchitectureCountryStyleList);
+                            DataList = _architectureCountryStateList;
                             break;
                         }
 
                     case "Частота проведения разных видов реставрации":
                         {
-                            OnStatisticsTypeChanged?.Invoke(RestorationKindList);
+                            DataList = _restorationKindList;
                             break;
                         }
                     default:
@@ -75,12 +87,6 @@ namespace Architecture.Presentation.ViewModels.Architecture
             }
         }
 
-        public List<object> ArchitectureCountryStateList = new List<object>();
-
-        public List<object> ArchitectureCountryStyleList = new List<object>();
-
-        public List<object> RestorationKindList = new List<object>();
-
         private async void LoadData()
         {           
 
@@ -88,8 +94,8 @@ namespace Architecture.Presentation.ViewModels.Architecture
             _repairs = (await _repairsManager.GetRepairs()).ToList();
 
 
-            ArchitectureCountryStateList = _architectures.GroupBy(a => a.Country, a => a.State)
-                                            .Select(ar => (object)new
+            _architectureCountryStateList = _architectures.GroupBy(a => a.Country, a => a.State)
+                                            .Select(ar => (object) new
                                             {                                               
                                                 Quantity = ar.Count().ToString()
                                             }).ToList();

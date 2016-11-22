@@ -72,7 +72,7 @@
                 VerticalContentAlignment="Center"
                 AutoGenerateColumns="True"
                 ColumnSizer="Star"
-                ItemsSource="{Binding StatisticsList}"
+                ItemsSource="{Binding DataList, Mode=TwoWay}"
                 SelectionMode="None" />
         </ScrollViewer>
 
