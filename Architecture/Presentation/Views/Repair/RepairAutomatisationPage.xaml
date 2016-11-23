@@ -86,6 +86,7 @@
             Margin="10"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
+            AllowFiltering="True"
             AutoGenerateColumns="False"
             ColumnSizer="Star"
             ItemsSource="{Binding RepairsList, Mode=TwoWay}"

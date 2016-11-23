@@ -67,7 +67,7 @@
                     HeaderText="Год создания"
                     MappingName="CreationYear"
                     TextAlignment="Center" />
-                <syncfusion:GridTextColumn HeaderText="Сооружения" MappingName="" />
+                <syncfusion:GridTextColumn HeaderText="Сооружения" MappingName="Architectures" />
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>
 

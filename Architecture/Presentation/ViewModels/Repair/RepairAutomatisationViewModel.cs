@@ -11,7 +11,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MyToolkit.Utilities;
-using RepairModel = Architecture.Data.Entities.Repair;
 
 
 namespace Architecture.Presentation.ViewModels.Repair
