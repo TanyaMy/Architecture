@@ -51,27 +51,33 @@ namespace Architecture.Presentation.ViewModels.Repair
             _architectures = (await _architecturesManager.GetArchitectures()).ToList();
             _restorations = (await _restorationsManager.GetRestorations()).ToList();
             _restorationKindsList = Enum.GetValues(typeof(RestorationKind)).Cast<RestorationKind>().ToList();
-                      
+
+            var tmpList = new List<ArchitecturesNeedRepairModel>();
+
             var needRestorationList = _architectures.Where(a => a.State == State.Bad || a.State == State.Awful)
                 .Select(a => new ArchitecturesNeedRepairModel
                 {
-                    ArchitectureId = a.Id,
                     ArchitectureTitle = a.Title,
                     ArchitectureState = a.State,
                     Volume = a.Height * a.Square
                 }).ToList();
 
-            foreach (var arch in needRestorationList)
+            ArchitecturesNeedRepairModel tmpArch = new ArchitecturesNeedRepairModel();
+            Data.Entities.Restoration restoration = new Data.Entities.Restoration();
+
+            foreach (var rest in _restorationKindsList)
             {
-                foreach (var rest in _restorationKindsList)
+                foreach (var arch in needRestorationList)
                 {
-                    Data.Entities.Restoration restoration = await _restorationsManager.GetRestorationByRestorationKind(rest);
+                    arch.ArchitectureId = (tmpList.Count == 0) ? 1 : tmpList.Max(a => a.ArchitectureId) + 1;
+                    restoration = await _restorationsManager.GetRestorationByRestorationKind(rest);
                     arch.RepairCost = restoration.Outlays * arch.Volume;
                     arch.RestorationKind = rest;
+                    tmpList.Add(arch);
                 }                
             }
 
-            RepairsList = needRestorationList;
+            RepairsList = tmpList;
         }
     }
 
