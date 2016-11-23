@@ -2,9 +2,13 @@
     x:Class="Architecture.Presentation.Views.Repair.RepairAutomatisationPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Architecture.Presentation.Views.Repair"
+    xmlns:controls="using:MyToolkit.Controls"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:local="using:Architecture.Presentation.Views.Repair"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
     DataContext="{Binding RepairAutomatisation, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -75,13 +79,38 @@
             Content="Рассчитать"
             FontSize="18" />
 
-        <GridView
-            x:Name="gridView"
+        <syncfusion:SfDataGrid
+            x:Name="DataGrid"
             Grid.Row="3"
             Grid.ColumnSpan="4"
             Margin="10"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            SelectionMode="Multiple" />
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            AutoGenerateColumns="False"
+            ColumnSizer="Star"
+            ItemsSource="{Binding RepairsList, Mode=TwoWay}"
+            SelectionMode="None">
+
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn
+                    HeaderText="Название сооружения"
+                    MappingName="ArchitectureTitle"
+                    TextAlignment="Center" />
+                <syncfusion:GridTextColumn
+                    HeaderText="Состояние сооружения"
+                    MappingName="ArchitectureState"
+                    TextAlignment="Center" />
+                <syncfusion:GridTextColumn
+                    HeaderText="Вид реставрации"
+                    MappingName="RestorationKind"
+                    TextAlignment="Center" />
+                <syncfusion:GridTextColumn
+                    HeaderText="Стоимость ремонта"
+                    MappingName="RepairCost"
+                    TextAlignment="Center" />
+            </syncfusion:SfDataGrid.Columns>
+
+        </syncfusion:SfDataGrid>
+
     </Grid>
 </Page>
