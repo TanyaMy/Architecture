@@ -4,23 +4,24 @@ using Arcitecture.Presentation.ViewModels.Common;
 using Microsoft.Practices.ServiceLocation;
 using RepairModel = Architecture.Data.Entities.Repair;
 using ArchitectureModel = Architecture.Data.Entities.Architecture;
+using StyleModel = Architecture.Data.Entities.Style;
 using System.Collections.Generic;
 using System.Linq;
-
+using Architecture.Data.Entities;
 
 namespace Architecture.Presentation.ViewModels.Architecture
 {
-    public delegate void StatisticsTypeChangedDelegate(object collection);
-
-    public class ArchitectureStatisticsViewModel : ViewModelBase
+     public class ArchitectureStatisticsViewModel : ViewModelBase
     {
         private readonly ICustomNavigationService _customNavigationService;
         private readonly IRepairsManager _repairsManager;
         private readonly IArchitecturesManager _architecturesManager;
+        private readonly IStylesManager _stylesManager;
 
         private List<object> _dataList;
 
         private List<ArchitectureModel> _architectures;
+        private List<StyleModel> _styles;
         private List<RepairModel> _repairs;
 
         private List<object> _architectureCountryStateList;
@@ -29,12 +30,16 @@ namespace Architecture.Presentation.ViewModels.Architecture
 
         private string _statisticsType;
 
-        public ArchitectureStatisticsViewModel(IRepairsManager repairsManager, IArchitecturesManager architecturesManager)
+        public ArchitectureStatisticsViewModel(IRepairsManager repairsManager, IArchitecturesManager architecturesManager,
+            IStylesManager stylesManager)
         {
             _repairsManager = repairsManager;
             _architecturesManager = architecturesManager;
+            _stylesManager = stylesManager;
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ArchitectureInternal");
 
+            _architectureCountryStateList = new List<object>();
+            _architectureCountryStyleList = new List<object>();
             DataList = new List<object>();
 
             LoadData();
@@ -70,7 +75,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
                         }
                     case "Стиль сооружений по странам":
                         {
-                            DataList = _architectureCountryStateList;
+                            DataList = _architectureCountryStyleList;
                             break;
                         }
 
@@ -92,34 +97,45 @@ namespace Architecture.Presentation.ViewModels.Architecture
 
             _architectures = (await _architecturesManager.GetArchitectures()).ToList();
             _repairs = (await _repairsManager.GetRepairs()).ToList();
+            _styles = (await _stylesManager.GetStyles()).ToList();
 
 
-            _architectureCountryStateList = _architectures.GroupBy(a => a.Country, a => a.State)
-                                            .Select(ar => (object) new
-                                            {                                               
-                                                Quantity = ar.Count().ToString()
-                                            }).ToList();
-
-            //var m_dbConnection = new SqliteConnection("Data Source=Architecture.db;");
-            //m_dbConnection.Open();
-            //string sql = "select Architectures.Country, Architectures.State, Count(Architectures.Id) from Architectures GroupBy Country, State";
-            //SqliteCommand command = new SqliteCommand(sql, m_dbConnection);
-            //SqliteDataReader reader = command.ExecuteReader();
-            //while( reader.Read())
-            //{
-            //    System.Diagnostics.Debug.WriteLine("Country: " + reader["Country"] + "\tState: " + reader["State"] + reader["Count(Id)"]);
-            //}
+            var groupedByCountryList = _architectures.OrderBy(e => e.Country).GroupBy(ar => ar.Country);
+            foreach (var element in groupedByCountryList)
+            {
+                var groupedByStateList = element.GroupBy(e => e.State)
+                    .Select(f1 => (object)new
+                    {
+                        Страна = element.Key,
+                        Состояние = f1.Key.ToString(),
+                        Количество_сооружений = f1.Count()
+                    });
+                foreach (var arch in groupedByStateList)
+                    _architectureCountryStateList.Add(arch);
+            }
 
 
+        
+            foreach (var element in groupedByCountryList)
+            {
+                var groupedByStyleList = element.GroupBy(e => e.Style.Title, e => e.StyleId)
+                    .Select(f1 => (object)new
+                    {
+                        Страна = element.Key,
+                        Стиль = f1.Key,
+                        Количество_сооружений = f1.Count()
+                    });
+                foreach (var arch in groupedByStyleList)
+                    _architectureCountryStyleList.Add(arch);
+            }
 
-            //ArchitectureCountryStyleList = 
 
-
-
-
-
-            //RestorationKindList =
-
+            _restorationKindList = _repairs.GroupBy(r => r.RestorationKind)
+                .Select(f => (object)new
+                {
+                    Вид_реставрации = f.Key.ToString(),
+                    Количество_сооружений = f.Count()
+                }).ToList();
         }
     }
 }

@@ -57,13 +57,14 @@
                     Header="Название"
                     Opacity="1"
                     Text="{Binding Title, Mode=TwoWay}" />
-                <DatePicker
+                <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
-                    Date="{Binding CreatedDate, Mode=TwoWay}"
+                    VerticalAlignment="Center"
                     FontSize="14"
                     Header="Год создания"
-                    Opacity="1" />
+                    Opacity="1"
+                    Text="{Binding CreatedDate, Mode=TwoWay}" />
                 <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"

@@ -114,7 +114,6 @@
     <Compile Include="Data\Repositories\Interfaces\IRestorationsRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\ISourcesRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IStylesRepository.cs" />
-    <Compile Include="Managers\DbInitializer.cs" />
     <Compile Include="Managers\Implementations\ArchitectsManager.cs" />
     <Compile Include="Managers\Implementations\ArchitecturesManager.cs" />
     <Compile Include="Managers\Implementations\RepairsManager.cs" />

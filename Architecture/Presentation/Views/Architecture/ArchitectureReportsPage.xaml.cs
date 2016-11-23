@@ -11,18 +11,11 @@ namespace Architecture.Presentation.Views.Architecture
     /// </summary>
     public sealed partial class ArchitectureReportsPage : Page
     {
-        private readonly ArchitectureReportsViewModel _viewModel;
+      
         public ArchitectureReportsPage()
         {
-            this.InitializeComponent();
-
-            _viewModel = DataContext as ArchitectureReportsViewModel;
-            _viewModel.OnReportTypeChanged += ViewModelOnOnReportTypeChanged;
+            this.InitializeComponent();            
         }
-
-        private void ViewModelOnOnReportTypeChanged(object collection)
-        {
-            DataGrid.ItemsSource = collection;
-        }
+        
     }
 }

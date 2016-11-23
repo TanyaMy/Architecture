@@ -34,6 +34,7 @@ namespace Architecture.Presentation.ViewModels.Source
             get { return _sources; }
             set { Set(() => SourceList, ref _sources, value); }
         }
+              
 
         public async Task DeleteSource(object source)
         {

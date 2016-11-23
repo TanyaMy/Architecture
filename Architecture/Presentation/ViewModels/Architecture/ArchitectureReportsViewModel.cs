@@ -21,62 +21,51 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private readonly ICustomNavigationService _customNavigationService;
         private readonly IRepairsManager _repairsManager;
         private readonly IArchitecturesManager _architecturesManager;
-      
+
+        private List<object> _dataList;
+        private string _dataString;
         private List<ArchitectureModel> _architectures;
         private List<RepairModel> _repairs;
 
+        private List<object> _architectureStateList;
+        private List<object> _oldArchitectureList;
+        private List<object> _repairList;
+        private string _repairString;      
+        private string _oldArchString;
+        private string _archStateString;
+
         private string _reportType;
-        private string _stringType;
+        
 
         public ArchitectureReportsViewModel(IRepairsManager repairsManager, IArchitecturesManager architecturesManager)
         {
             _repairsManager = repairsManager;
             _architecturesManager = architecturesManager;
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ArchitectureInternal");
-  
+
+            DataList = new List<object>();
+
             LoadData();
+        }  
+
+        public List<object> DataList
+        {
+            get { return _dataList; }
+            set { Set(() => DataList, ref _dataList, value); }
         }
 
-        public event ReportTypeChangedDelegate OnReportTypeChanged;
+        public string DataString
+        {
+            get { return _dataString; }
+            set { Set(() => DataString, ref _dataString, value); }
+        }
 
         public IList<string> ReportTypes => new List<string>
         {
             "Ремонты и затраты за 10 лет",
             "Наистарейшие сооружения",
             "Состояние сооружений"
-        };
-
-        public string StringType
-        {
-            get { return _stringType; }
-            set
-            {
-                Set(() => StringType, ref _stringType, value);
-
-                switch (value)
-                {
-                    case "Ремонты и затраты за 10 лет":
-                        {
-                            OnReportTypeChanged?.Invoke(OldArchString);
-                            break;
-                        }
-                    case "Наистарейшие сооружения":
-                        {
-                            OnReportTypeChanged?.Invoke(RepairString);
-                            break;
-                        }
-                    case "Состояние сооружений":
-                        {
-                            OnReportTypeChanged?.Invoke(ArchStateString);
-                            break;
-                        }
-                    default:
-                        {
-                            break;
-                        }
-                }
-            }
-        }
+        };      
 
         public string ReportType
         {
@@ -89,22 +78,22 @@ namespace Architecture.Presentation.ViewModels.Architecture
                 {
                     case "Ремонты и затраты за 10 лет":
                     {
-                        OnReportTypeChanged?.Invoke(RepairList);
-                            StringType = RepairString;
-                        break;
+                            DataList = _repairList;
+                            DataString = _repairString;
+                            break;
                     }
                     case "Наистарейшие сооружения":
                     {
-                        OnReportTypeChanged?.Invoke(OldArchitectureList);
-                            StringType = OldArchString;
-                        break;
+                            DataList = _oldArchitectureList;
+                            DataString = _oldArchString;
+                            break;
                     }
                         
                     case "Состояние сооружений":
                     {
-                        OnReportTypeChanged?.Invoke(ArchitectureStateList);
-                            StringType = ArchStateString;
-                        break;
+                            DataList = _architectureStateList;
+                            DataString = _archStateString;
+                            break;
                     }
                     default:
                     {
@@ -112,53 +101,32 @@ namespace Architecture.Presentation.ViewModels.Architecture
                     }
                 }
             }
-        }
-
-        public List<object> RepairList = new List<object>();
-        public string RepairString = "";
-
-        public List<object> OldArchitectureList = new List<object>();
-        public string OldArchString = "";
-
-        public List<object> ArchitectureStateList = new List<object>();
-        public string ArchStateString = "";
+        }     
 
         private async void LoadData()
         {
-            //вид реставрации, название сооружения, дата ремонта не ранее 2006, затраты ремонта
-            //
-            //название сооружения, дата создания ранее 1800 года в порядке возрастания
-            //
-            // название сооружения, его состояние
-            //
-            //var m_dbConnection = new SqliteConnection("Data Source=Architecture.db;");
-            //m_dbConnection.Open();
-            //string sql = "select * from Architectures";
-            //SqliteCommand command = new SqliteCommand(sql, m_dbConnection);
-            //SqliteDataReader reader = command.ExecuteReader();
-            //for (int i = 0; i < _architectures.Count && reader.Read(); i++)
-            //{
-            //   // System.Diagnostics.Debug.WriteLine("Title: " + reader["Title"] + "\tCountry: " + reader["Country"]);
-            //    _architectures[i].Title = reader["Title"].ToString();
-            //    _architectures[i].CreationYear = Convert.ToInt32(reader["CreationYear"]);
-
-            //}
-
             _architectures = (await _architecturesManager.GetArchitectures()).ToList();
             _repairs = (await _repairsManager.GetRepairs()).ToList();
 
 
-            OldArchitectureList = (from arch in _architectures
-                                  where arch.CreationYear < 1800
-                                  orderby arch.CreationYear descending
-                                  select (object)new { arch.Title, arch.CreationYear }).ToList();
-            OldArchString = "Всего сооружений старше 1800 года: " + OldArchitectureList.Count();
+            _oldArchitectureList = _architectures.Where(a => a.CreationYear < 1800)
+                                                 .OrderByDescending(a => a.CreationYear)
+                                                 .Select(ar => (object)new
+                                                 {
+                                                     Название = ar.Title,
+                                                     Год_создания = ar.CreationYear
+                                                 }).ToList();
+            
+            _oldArchString = "Всего сооружений старше 1800 года: " + _oldArchitectureList.Count();
 
 
 
 
-            ArchitectureStateList = (from arch in _architectures
-                                 select (object)new { arch.Title, arch.State}).ToList();//не отображает State
+            _architectureStateList = _architectures.Select(ar => (object)new
+                                    {
+                                        Название = ar.Title,
+                                        Состояние = ar.State.ToString()
+                                    }).ToList();
 
             var awful = _architectures.Where(a => a.State == State.Awful).Count();
             var bad = _architectures.Where(a => a.State == State.Bad).Count();
@@ -166,22 +134,27 @@ namespace Architecture.Presentation.ViewModels.Architecture
             var good = _architectures.Where(a => a.State == State.Good).Count();
             var great = _architectures.Where(a => a.State == State.Great).Count();
 
-            ArchStateString = "Всего сооружений: " + ArchitectureStateList.Count() + ", в ужасном состоянии " + awful + 
-                ", в плохом - " + bad +
-                ", в нормальном - " + normal +
-                ", в хорошем - " + good +
-                ", в отличном - " + great;
+            _archStateString = "Всего сооружений: " + _architectureStateList.Count() +
+                                ", в ужасном состоянии " + awful + 
+                                ", в плохом - " + bad +
+                                ", в нормальном - " + normal +
+                                ", в хорошем - " + good +
+                                ", в отличном - " + great;
 
 
 
-            RepairList = (from rep in _repairs
-                          select (object)new { rep.Architecture.Title, rep.RestorationKind,//не отображает RestorationKind
-                              rep.RestorationDate.Date, rep.RestorationCost}).ToList();
+            _repairList = _repairs.Select(rep => (object)new
+            {
+                Название = rep.Architecture.Title,
+                Вид_реставрации = rep.RestorationKind.ToString(),
+                Стоимость_ремонта = rep.RestorationCost,
+                Дата_ремонта = rep.RestorationDate
+             }).ToList();        
 
             var sum = (await _repairsManager.GetRepairs())
                 .Select(a => a.RestorationCost).Sum();
 
-            RepairString = "Всего проведено ремонтов за 10 лет: " + RepairList.Count() +
+            _repairString = "Всего проведено ремонтов за 10 лет: " + _repairList.Count() +
                ". Потрачено: " + sum;
         }
     }

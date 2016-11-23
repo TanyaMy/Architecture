@@ -84,7 +84,7 @@
                 VerticalContentAlignment="Center"
                 AutoGenerateColumns="True"
                 ColumnSizer="Star"
-                ItemsSource="{Binding RepairList}"
+                ItemsSource="{Binding DataList, Mode=TwoWay}"
                 SelectionMode="None" />
         </ScrollViewer>
         <TextBlock
@@ -96,6 +96,6 @@
             FontFamily="Segoe WP Black"
             FontSize="20"
             Opacity="1"
-            Text="{Binding StringType}" />
+            Text="{Binding DataString, Mode=TwoWay}" />
     </Grid>
 </Page>
