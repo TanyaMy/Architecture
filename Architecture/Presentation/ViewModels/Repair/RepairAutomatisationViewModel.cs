@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using MyToolkit.Utilities;
 using RepairModel = Architecture.Data.Entities.Repair;
 
 
@@ -62,18 +63,20 @@ namespace Architecture.Presentation.ViewModels.Repair
                     Volume = a.Height * a.Square
                 }).ToList();
 
-            ArchitecturesNeedRepairModel tmpArch = new ArchitecturesNeedRepairModel();
-            Data.Entities.Restoration restoration = new Data.Entities.Restoration();
-
             foreach (var rest in _restorationKindsList)
             {
+                var restoration = await _restorationsManager.GetRestorationByRestorationKind(rest);
+
                 foreach (var arch in needRestorationList)
                 {
-                    arch.ArchitectureId = (tmpList.Count == 0) ? 1 : tmpList.Max(a => a.ArchitectureId) + 1;
-                    restoration = await _restorationsManager.GetRestorationByRestorationKind(rest);
-                    arch.RepairCost = restoration.Outlays * arch.Volume;
-                    arch.RestorationKind = rest;
-                    tmpList.Add(arch);
+                    ArchitecturesNeedRepairModel architecture = new ArchitecturesNeedRepairModel();
+                    arch.Clone(architecture);
+
+                    architecture.ArchitectureId = (tmpList.Count == 0) ? 1 : tmpList.Max(a => a.ArchitectureId) + 1;
+                    architecture.RepairCost = restoration.Outlays * arch.Volume;
+                    architecture.RestorationKind = rest;
+                    
+                    tmpList.Add(architecture);
                 }                
             }
 
