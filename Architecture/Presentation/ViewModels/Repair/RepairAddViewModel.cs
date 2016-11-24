@@ -134,7 +134,7 @@ namespace Architecture.Presentation.ViewModels.Repair
         {
             RepairModel editableRep = _repair;
                     
-            RestorationKind = editableRep?.RestorationKind ?? RestorationKind.Restoration1;
+            RestorationKind = editableRep?.RestorationKind ?? RestorationKind.Косметическая;
             Architecture = editableRep?.Architecture ?? null;
             RestorationDate = editableRep?.RestorationDate ?? DateTime.Now;
             RestorationCost = editableRep?.RestorationCost ?? 0;

@@ -31,7 +31,7 @@ namespace Architecture.Data
                 .HasKey(x => new { x.ArchitectureId, x.SourceId });
 
             modelBuilder.Entity<Repair>()
-                .HasKey(x => new { x.ArchitectureId, x.RestorationKind });
+                .HasKey(x => new { x.ArchitectureId, x.RestorationKind, x.RestorationDate});
         }
     }
 }

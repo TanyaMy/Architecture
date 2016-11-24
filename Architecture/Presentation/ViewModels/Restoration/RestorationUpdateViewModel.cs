@@ -88,7 +88,7 @@ namespace Architecture.Presentation.ViewModels.Restoration
         {
             RestorationModel editableRestor = _restoration;
 
-            RestorationKind = editableRestor?.RestorationKind ?? RestorationKind.Restoration1;
+            RestorationKind = editableRestor?.RestorationKind ?? RestorationKind.Косметическая;
             Periodicity = editableRestor?.Periodicity ?? "1 раз в год";
             Outlays = editableRestor?.Outlays ?? 0;
         }

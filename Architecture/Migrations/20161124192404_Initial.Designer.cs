@@ -9,7 +9,7 @@ using Architecture.Data.Entities;
 namespace Architecture.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20161113171103_Initial")]
+    [Migration("20161124192404_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,7 +81,7 @@ namespace Architecture.Migrations
 
                     b.HasIndex("SourceId");
 
-                    b.ToTable("ArchitectureSource");
+                    b.ToTable("ArchitecturesSources");
                 });
 
             modelBuilder.Entity("Architecture.Data.Entities.Repair", b =>
@@ -90,11 +90,11 @@ namespace Architecture.Migrations
 
                     b.Property<int>("RestorationKind");
 
-                    b.Property<double>("RestorationCost");
-
                     b.Property<DateTime>("RestorationDate");
 
-                    b.HasKey("ArchitectureId", "RestorationKind");
+                    b.Property<double>("RestorationCost");
+
+                    b.HasKey("ArchitectureId", "RestorationKind", "RestorationDate");
 
                     b.HasIndex("RestorationKind");
 

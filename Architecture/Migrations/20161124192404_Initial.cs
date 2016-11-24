@@ -104,7 +104,7 @@ namespace Architecture.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ArchitectureSource",
+                name: "ArchitecturesSources",
                 columns: table => new
                 {
                     ArchitectureId = table.Column<int>(nullable: false),
@@ -112,15 +112,15 @@ namespace Architecture.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ArchitectureSource", x => new { x.ArchitectureId, x.SourceId });
+                    table.PrimaryKey("PK_ArchitecturesSources", x => new { x.ArchitectureId, x.SourceId });
                     table.ForeignKey(
-                        name: "FK_ArchitectureSource_Architectures_ArchitectureId",
+                        name: "FK_ArchitecturesSources_Architectures_ArchitectureId",
                         column: x => x.ArchitectureId,
                         principalTable: "Architectures",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ArchitectureSource_Sources_SourceId",
+                        name: "FK_ArchitecturesSources_Sources_SourceId",
                         column: x => x.SourceId,
                         principalTable: "Sources",
                         principalColumn: "Id",
@@ -133,12 +133,12 @@ namespace Architecture.Migrations
                 {
                     ArchitectureId = table.Column<int>(nullable: false),
                     RestorationKind = table.Column<int>(nullable: false),
-                    RestorationCost = table.Column<double>(nullable: false),
-                    RestorationDate = table.Column<DateTime>(nullable: false)
+                    RestorationDate = table.Column<DateTime>(nullable: false),
+                    RestorationCost = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Repairs", x => new { x.ArchitectureId, x.RestorationKind });
+                    table.PrimaryKey("PK_Repairs", x => new { x.ArchitectureId, x.RestorationKind, x.RestorationDate });
                     table.ForeignKey(
                         name: "FK_Repairs_Architectures_ArchitectureId",
                         column: x => x.ArchitectureId,
@@ -164,8 +164,8 @@ namespace Architecture.Migrations
                 column: "StyleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArchitectureSource_SourceId",
-                table: "ArchitectureSource",
+                name: "IX_ArchitecturesSources_SourceId",
+                table: "ArchitecturesSources",
                 column: "SourceId");
 
             migrationBuilder.CreateIndex(
@@ -177,7 +177,7 @@ namespace Architecture.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ArchitectureSource");
+                name: "ArchitecturesSources");
 
             migrationBuilder.DropTable(
                 name: "Repairs");

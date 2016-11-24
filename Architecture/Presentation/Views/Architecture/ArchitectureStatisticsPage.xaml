@@ -58,25 +58,16 @@
             ItemsSource="{Binding StatisticsTypes}"
             SelectedItem="{Binding StatisticsType, Mode=TwoWay}" />
 
-
-        <ScrollViewer
+        <syncfusion:SfDataGrid
+            x:Name="DataGrid"
             Grid.Row="2"
             Grid.ColumnSpan="3"
-            VerticalScrollBarVisibility="Hidden">
-            <syncfusion:SfDataGrid
-                x:Name="DataGrid"
-                Grid.Row="2"
-                Grid.ColumnSpan="3"
-                Margin="10"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                AutoGenerateColumns="True"
-                ColumnSizer="Star"
-                ItemsSource="{Binding DataList, Mode=TwoWay}"
-                SelectionMode="None" />
-        </ScrollViewer>
-
-
-
+            Margin="10"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            AutoGenerateColumns="True"
+            ColumnSizer="Star"
+            ItemsSource="{Binding DataList, Mode=TwoWay}"
+            SelectionMode="None" />
     </Grid>
 </Page>

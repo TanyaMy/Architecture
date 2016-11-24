@@ -72,18 +72,20 @@
                     Opacity="1"
                     Text="{Binding Nationality, Mode=TwoWay}" />
                 <DatePicker
+                    x:Name="birthDtp"
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
                     Date="{Binding BirthDate, Mode=TwoWay}"
                     FontSize="14"
-                    Header="Год рождения"
+                    Header="Дата рождения"
                     Opacity="1" />
                 <DatePicker
+                    x:Name="deathDtp"
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
                     Date="{Binding DeathDate, Mode=TwoWay}"
                     FontSize="14"
-                    Header="Год смерти"
+                    Header="Дата смерти"
                     Opacity="1" />
                 <Button
                     Height="50"

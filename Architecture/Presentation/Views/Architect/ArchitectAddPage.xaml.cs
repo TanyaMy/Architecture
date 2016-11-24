@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -12,6 +13,10 @@ namespace Architecture.Presentation.Views.Architect
         public ArchitectAddPage()
         {
             this.InitializeComponent();
+            birthDtp.MaxYear = DateTime.Now;
+            deathDtp.MaxYear = DateTime.Now;
+            birthDtp.MinYear = DateTime.Now.AddYears(-2000);
+            deathDtp.MinYear = DateTime.Now.AddYears(-2000);
         }
     }
 }
