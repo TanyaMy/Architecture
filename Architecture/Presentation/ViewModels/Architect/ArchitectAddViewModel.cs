@@ -22,8 +22,8 @@ namespace Architecture.Presentation.ViewModels.Architect
         private string _name;
         private string _surname;
         private string _nationality;
-        private DateTime _birthDate;
-        private DateTime _deathDate;
+        private DateTimeOffset _birthDate;
+        private DateTimeOffset _deathDate;
     
 
         public ArchitectAddViewModel(
@@ -69,13 +69,13 @@ namespace Architecture.Presentation.ViewModels.Architect
             set { Set(() => Nationality, ref _nationality, value); }
         }
 
-        public DateTime BirthDate
+        public DateTimeOffset BirthDate
         {
             get { return _birthDate; }
             set { Set(() => BirthDate, ref _birthDate, value); }
         }
 
-        public DateTime DeathDate
+        public DateTimeOffset DeathDate
         {
             get { return _deathDate; }
             set { Set(() => DeathDate, ref _deathDate, value); }
@@ -85,7 +85,7 @@ namespace Architecture.Presentation.ViewModels.Architect
         private async Task AddArchitect()
         {
             var architect = new ArchitectModel(
-                Name, Surname, Nationality, BirthDate, DeathDate);
+                Name, Surname, Nationality, BirthDate.DateTime,  DeathDate.DateTime);
 
             await _architectsManager.AddArchitect(architect);
 

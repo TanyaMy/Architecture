@@ -28,7 +28,7 @@ namespace Architecture.Presentation.ViewModels.Repair
 
         private Data.Entities.Architecture _architecture;
         private RestorationKind _restorationKind;
-        private DateTime _restorationDate;
+        private DateTimeOffset _restorationDate;
         private double _restorationCost;
 
 
@@ -96,7 +96,7 @@ namespace Architecture.Presentation.ViewModels.Repair
             set { Set(() => Architecture, ref _architecture, value); }
         }
 
-        public DateTime RestorationDate
+        public DateTimeOffset RestorationDate
         {
             get { return _restorationDate; }
             set { Set(() => RestorationDate, ref _restorationDate, value); }
@@ -111,7 +111,7 @@ namespace Architecture.Presentation.ViewModels.Repair
         private async Task AddRepair()
         {
             var repair = new RepairModel(RestorationKind, 
-                Architecture.Id, RestorationDate, RestorationCost);
+                Architecture.Id, RestorationDate.DateTime, RestorationCost);
 
             await _repairsManager.AddRepair(repair);
 
@@ -122,7 +122,7 @@ namespace Architecture.Presentation.ViewModels.Repair
         {
             _repair.RestorationKind = RestorationKind;
             _repair.ArchitectureId = Architecture.Id;
-            _repair.RestorationDate = RestorationDate;
+            _repair.RestorationDate = RestorationDate.DateTime;
             _repair.RestorationCost = RestorationCost;
 
             await _repairsManager.UpdateRepair(_repair);
