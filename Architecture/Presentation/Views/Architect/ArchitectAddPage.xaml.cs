@@ -18,5 +18,7 @@ namespace Architecture.Presentation.Views.Architect
             birthDtp.MinYear = DateTime.Now.AddYears(-2000);
             deathDtp.MinYear = DateTime.Now.AddYears(-2000);
         }
+
+        
     }
 }
