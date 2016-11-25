@@ -10,6 +10,8 @@ namespace Architecture.Data.Repositories.Interfaces
 
         Task<IEnumerable<Entities.Architecture>> GetArchitecturesBySourceId(int sourceId);
 
+        List<Entities.Architecture> GetArchitecturesListBySourceId(int sourceId);
+
         Task<IEnumerable<Entities.Architecture>> GetArchitecturesByArchitectId(int architectId);
     }
 }

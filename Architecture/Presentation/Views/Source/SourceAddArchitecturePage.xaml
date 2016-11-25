@@ -2,9 +2,14 @@
     x:Class="Architecture.Presentation.Views.Source.SourceAddArchitecturePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:MyToolkit.Controls"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:local="using:Architecture.Presentation.Views.Source"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="using:Syncfusion.UI.Xaml.Controls.Input"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
     DataContext="{Binding SourceAddArchitecture, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
@@ -23,7 +28,7 @@
         <TextBlock
             Grid.Row="0"
             Grid.ColumnSpan="3"
-            Margin="0,50,0,10"
+            Margin="0,20,0,10"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             FontFamily="Segoe WP Black"
@@ -35,39 +40,57 @@
             <Run Text="{Binding ActionText}" />
         </TextBlock>
 
+        <StackPanel Grid.Column="1" Margin="0,50">
+            <TextBlock
+                Margin="0,10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center"
+                FontSize="25"
+                Opacity="1"
+                Text="{Binding Title, Mode=TwoWay}" />
+            <ComboBox
+                Margin="0,10"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                BorderBrush="Gray"
+                BorderThickness="0.5"
+                DisplayMemberPath="Title"
+                FontSize="14"
+                Header="Сооружение"
+                ItemsSource="{Binding ArchitecturesList}"
+                Opacity="1"
+                SelectedItem="{Binding Architecture, Mode=TwoWay}" />
+            <Button
+                Height="40"
+                Margin="0,10"
+                HorizontalAlignment="Stretch"
+                Background="LightBlue"
+                BorderBrush="DarkBlue"
+                Command="{Binding SaveCommand}"
+                Content="{Binding ButtonText}"
+                FontSize="20" />
+            <syncfusion:SfDataGrid
+                Margin="0,10"
+                AllowDeleting="True"
+                AllowFiltering="True"
+                AutoGenerateColumns="False"
+                ColumnSizer="Star"
+                ItemsSource="{Binding Architectures, Mode=TwoWay}"
+                RecordDeleting="SfDataGrid_OnRecordDeleting"
+                SelectedItem="{Binding SelectedTableItem, Mode=TwoWay}"
+                SelectionMode="Single">
 
-        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden">
-            <StackPanel Margin="0,100">
-                <TextBlock
-                    Margin="0,10"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center"
-                    FontSize="25"
-                    Opacity="1"
-                    Text="{Binding Title, Mode=TwoWay}" />
-                <ComboBox
-                    Margin="0,10"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    BorderBrush="Gray"
-                    BorderThickness="0.5"
-                    DisplayMemberPath="Title"
-                    FontSize="14"
-                    Header="Сооружение"
-                    ItemsSource="{Binding ArchitecturesList}"
-                    Opacity="1"
-                    SelectedItem="{Binding Architecture, Mode=TwoWay}" />
+                <syncfusion:SfDataGrid.RecordContextMenu>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Click="DeleteRowFlyoutItem_OnClick" Text="Удалить сооружение" />
+                    </MenuFlyout>
+                </syncfusion:SfDataGrid.RecordContextMenu>
 
-                <Button
-                    Height="50"
-                    Margin="0,30"
-                    HorizontalAlignment="Stretch"
-                    Background="LightBlue"
-                    BorderBrush="DarkBlue"
-                    Command="{Binding SaveCommand}"
-                    Content="{Binding ButtonText}"
-                    FontSize="20" />
-            </StackPanel>
-        </ScrollViewer>
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:GridTextColumn HeaderText="Название" MappingName="Title" />
+                    <syncfusion:GridTextColumn HeaderText="Страна" MappingName="Country" />
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+        </StackPanel>
     </Grid>
 </Page>

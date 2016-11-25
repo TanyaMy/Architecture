@@ -34,6 +34,14 @@ namespace Architecture.Data.Repositories.Implementations
                 .ToArrayAsync();
         }
 
+        public List<Entities.Architecture> GetArchitecturesListBySourceId(int sourceId)
+        {
+            return _architectureSources
+                .Where(x => x.SourceId == sourceId)
+                .Select(x => x.Architecture)
+                .ToList();
+        }
+
         public async Task<IEnumerable<Entities.Architecture>> GetArchitecturesByArchitectId(int architectId)
         {
             return await _architectureSources

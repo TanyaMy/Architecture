@@ -72,14 +72,12 @@
                     Header="Национальность"
                     Opacity="1"
                     Text="{Binding Nationality, Mode=TwoWay}" />
-                <my:SfNumericTextBox
+                <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     FontSize="14"
-                    FormatString="n"
                     Header="Год рождения"
-                    MaximumNumberDecimalDigits="0"
                     Opacity="1"
                     Text="{Binding BirthYear, Mode=TwoWay}" />
                 <StackPanel>
@@ -89,15 +87,13 @@
                         VerticalAlignment="Top"
                         Content="Умер"
                         IsChecked="{Binding IsDead, Mode=TwoWay}" />
-                    <my:SfNumericTextBox
+                    <TextBox
                         Margin="0,10"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         FontSize="14"
-                        FormatString="n"
                         Header="Год смерти"
                         IsEnabled="{Binding IsDead, Mode=TwoWay}"
-                        MaximumNumberDecimalDigits="0"
                         Opacity="1"
                         Text="{Binding DeathYear, Mode=TwoWay}" />
                 </StackPanel>

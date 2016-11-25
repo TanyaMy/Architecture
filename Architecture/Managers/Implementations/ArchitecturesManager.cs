@@ -34,6 +34,11 @@ namespace Architecture.Managers.Implementations
             return _architecturesRepository.GetArchitecturesBySourceId(sourceId);
         }
 
+        public List<Data.Entities.Architecture> GetArchitecturesListBySourceId(int sourceId)
+        {
+            return _architecturesRepository.GetArchitecturesListBySourceId(sourceId);
+        }
+
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitecturesByArchitectId(int architectId)
         {
             return _architecturesRepository.GetArchitecturesByArchitectId(architectId);
