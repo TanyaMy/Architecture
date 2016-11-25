@@ -34,16 +34,71 @@ namespace Architecture.Presentation.ViewModels.Repair
             _architecturesManager = architecturesManager;
             _restorationsManager = restorationsManager;
 
-            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("RepairInternal");         
+            _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("RepairInternal");
+
+            CalcAutomatisationCommand = new RelayCommand(CalcAutomatisation);
 
             LoadData();
         }
+
+        public ICommand CalcAutomatisationCommand { get; set; }
+
+        public double AvailableSum { get; set; }
 
         public List<ArchitecturesNeedRepairModel> RepairsList
         {
             get { return _repairsList; }
             set { Set(() => RepairsList, ref _repairsList, value); }
-        }        
+        }
+
+        private void CalcAutomatisation()
+        {
+            RepairsList.Sort((x, y) => Convert.ToInt32(y.RepairCost - x.RepairCost));
+
+            var resultList = new List<IList<ArchitecturesNeedRepairModel>>(); 
+
+            for (int i = 0; i < RepairsList.Count; i++)
+            {
+                if (RepairsList[i].RepairCost > AvailableSum)
+                {
+                    continue;
+                }
+
+                var tmpCollection = new List<ArchitecturesNeedRepairModel> {RepairsList[i]};
+
+                for (int j = i + 1, holdJ = j; j < RepairsList.Count; j++)
+                {
+                    if (tmpCollection.Sum(x => x.RepairCost) + RepairsList[j].RepairCost <= AvailableSum)
+                    {
+                        tmpCollection.Add(RepairsList[j]);
+                    }
+
+                    if (j == RepairsList.Count - 1)
+                    {
+                        if (tmpCollection.Count > 0)
+                        {
+                            resultList.Add(tmpCollection);
+                        }
+
+                        int tmp = holdJ;
+                        holdJ = j;
+                        j = tmp + 1;
+
+                        tmpCollection = new List<ArchitecturesNeedRepairModel> { RepairsList[i] };
+                    }
+                }
+            }
+
+            var xxx = new List<ArchitecturesNeedRepairModel>();
+
+            foreach (var v in resultList)
+            {
+                xxx.AddRange(v);
+                xxx.Add(new ArchitecturesNeedRepairModel());
+            }
+
+            RepairsList = xxx;
+        }
 
         private async void LoadData()
         {
@@ -65,6 +120,9 @@ namespace Architecture.Presentation.ViewModels.Repair
             foreach (var rest in _restorationKindsList)
             {
                 var restoration = await _restorationsManager.GetRestorationByRestorationKind(rest);
+
+                if (restoration == null)
+                    continue;
 
                 foreach (var arch in needRestorationList)
                 {
