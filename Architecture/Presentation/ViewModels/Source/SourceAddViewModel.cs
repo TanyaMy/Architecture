@@ -104,18 +104,11 @@ namespace Architecture.Presentation.ViewModels.Source
         {
             var source = new SourceModel(SourceKind, Title, Author, CreationYear);
 
-            source = await _sourcesManager.AddSource(source);
-
-            source.ArchitecturesSources = new List<ArchitectureSource>
-            {
-                new ArchitectureSourceModel
-                {
-                    ArchitectureId = Architecture.Id,
-                    SourceId = source.Id
-                }
-            };
+            source = await _sourcesManager.AddSource(source);           
 
             await _sourcesManager.UpdateSource(source);
+
+            _customNavigationService.NavigateTo(PageKeys.SourceAddArchitecture, source);
         }
 
         private async Task UpdateSource()

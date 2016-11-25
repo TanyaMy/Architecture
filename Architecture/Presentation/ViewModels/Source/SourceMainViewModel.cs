@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Arcitecture.Presentation.ViewModels.Common;
 using SourceModel = Architecture.Data.Entities.Source;
+using ArchitectureSourceModel = Architecture.Data.Entities.ArchitectureSource;
 using Architecture.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -57,7 +58,17 @@ namespace Architecture.Presentation.ViewModels.Source
         public void EditSource(SourceModel itemToEdit)
         {
             _customNavigationService.NavigateTo(PageKeys.SourceAdd, itemToEdit);
-        }        
+        }
+
+        public void EditArchitectureSource(SourceModel itemToEdit)
+        {
+            _customNavigationService.NavigateTo(PageKeys.SourceAddArchitecture, itemToEdit);
+        }
+
+        public void AddArchitectureSource(SourceModel itemToAdd)
+        {
+            _customNavigationService.NavigateTo(PageKeys.SourceAddArchitecture, itemToAdd);
+        }
 
         private async void LoadData()
         {

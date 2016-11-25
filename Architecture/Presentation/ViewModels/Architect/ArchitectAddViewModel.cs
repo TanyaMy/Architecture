@@ -24,7 +24,7 @@ namespace Architecture.Presentation.ViewModels.Architect
         private string _nationality;
         private DateTimeOffset _birthDate;
         private DateTimeOffset _deathDate;
-    
+        private bool _isDead;
 
         public ArchitectAddViewModel(
             IArchitectManager architectsManager)
@@ -80,7 +80,13 @@ namespace Architecture.Presentation.ViewModels.Architect
             get { return _deathDate; }
             set { Set(() => DeathDate, ref _deathDate, value); }
         }
-                
+
+        public bool IsDead
+        {
+            get { return _isDead; }
+            set { Set(() => IsDead, ref _isDead, value); }
+        }
+
 
         private async Task AddArchitect()
         {
@@ -113,7 +119,7 @@ namespace Architecture.Presentation.ViewModels.Architect
             Surname = editableArch?.Surname ?? string.Empty;
             Nationality = editableArch?.Nationality ?? string.Empty;
             BirthDate = editableArch?.BirthDate ?? DateTime.Now.AddYears(-80);
-            DeathDate = editableArch?.DeathDate ?? DateTime.Now.AddYears(-10); ;           
+            DeathDate = editableArch?.DeathDate ?? new DateTime(1, 1, 10);
         }
     }
 }

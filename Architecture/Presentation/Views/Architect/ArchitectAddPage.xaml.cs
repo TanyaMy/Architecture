@@ -15,8 +15,8 @@ namespace Architecture.Presentation.Views.Architect
             this.InitializeComponent();
             birthDtp.MaxYear = DateTime.Now;
             deathDtp.MaxYear = DateTime.Now;
-            birthDtp.MinYear = DateTime.Now.AddYears(-2000);
-            deathDtp.MinYear = DateTime.Now.AddYears(-2000);
+            birthDtp.MinYear = DateTime.Now.AddYears(-2006);
+            deathDtp.MinYear = DateTime.Now.AddYears(-2006);
         }
 
         

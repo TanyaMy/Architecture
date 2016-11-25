@@ -41,5 +41,13 @@ namespace Architecture.Presentation.Views.Source
 
             _viewModel.EditSource(itemToEdit);
         }
+
+        private void AddSourceArchFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var itemToAdd = _viewModel.SelectedTableItem;
+
+            _viewModel.AddArchitectureSource(itemToAdd);
+        }       
+      
     }
 }

@@ -53,8 +53,9 @@
             <syncfusion:SfDataGrid.RecordContextMenu>
                 <MenuFlyout>
                     <MenuFlyout.Items>
-                        <MenuFlyoutItem Click="EditRowMenuFlyoutItem_OnClick" Text="Редактировать источник" />
-                        <MenuFlyoutItem Click="DeleteRowFlyoutItem_OnClick" Text="Удалить источник" />
+                        <MenuFlyoutItem Click="EditRowMenuFlyoutItem_OnClick" Text="Редактировать упоминание" />
+                        <MenuFlyoutItem Click="DeleteRowFlyoutItem_OnClick" Text="Удалить упоминание" />
+                        <MenuFlyoutItem Click="AddSourceArchFlyoutItem_OnClick" Text="Добавить сооружение в упоминание" />
                     </MenuFlyout.Items>
                 </MenuFlyout>
             </syncfusion:SfDataGrid.RecordContextMenu>

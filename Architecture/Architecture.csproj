@@ -155,6 +155,7 @@
     <Compile Include="Presentation\ViewModels\Restoration\RestorationUpdateViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Restoration\RestorationMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\ShellViewModel.cs" />
+    <Compile Include="Presentation\ViewModels\Source\SourceAddArchitectureViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceAddViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceMainViewModel.cs" />
     <Compile Include="Presentation\ViewModels\Source\SourceViewModel.cs" />
@@ -210,6 +211,9 @@
     </Compile>
     <Compile Include="Presentation\Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation\Views\Source\SourceAddArchitecturePage.xaml.cs">
+      <DependentUpon>SourceAddArchitecturePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presentation\Views\Source\SourceAddPage.xaml.cs">
       <DependentUpon>SourceAddPage.xaml</DependentUpon>
@@ -316,6 +320,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Presentation\Views\ShellPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Presentation\Views\Source\SourceAddArchitecturePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

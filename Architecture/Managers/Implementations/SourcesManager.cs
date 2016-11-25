@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Architecture.Data.Entities;
 using Architecture.Data.Repositories.Interfaces;
 using Architecture.Managers.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Architecture.Managers.Implementations
 {
@@ -18,7 +19,8 @@ namespace Architecture.Managers.Implementations
 
         public Task<IEnumerable<Source>> GetSources()
         {
-            return _sourcesRepository.GetItemsAsync();
+            return _sourcesRepository.GetItemsAsync(x =>
+            x.Include(y => y.ArchitecturesSources));
         }
 
         public Task<IEnumerable<Source>> GetSourcesByArchitectureId(int architectureId)

@@ -153,6 +153,7 @@ namespace Architecture
             SimpleIoc.Default.Register<SourceViewModel>();
             SimpleIoc.Default.Register<SourceMainViewModel>();            
             SimpleIoc.Default.Register<SourceAddViewModel>();
+            SimpleIoc.Default.Register<SourceAddArchitectureViewModel>();
 
             SimpleIoc.Default.Register<RestorationMainViewModel>();
             SimpleIoc.Default.Register<RestorationUpdateViewModel>();

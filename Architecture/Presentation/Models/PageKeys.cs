@@ -37,7 +37,9 @@ namespace Architecture.Presentation.Models
         [PageType(typeof(SourceMainPage))]
         SourceMain,       
         [PageType(typeof(SourceAddPage))]
-        SourceAdd,       
+        SourceAdd,
+        [PageType(typeof(SourceAddArchitecturePage))]
+        SourceAddArchitecture,
         [PageType(typeof(RestorationMainPage))]
         RestorationMain,        
         [PageType(typeof(RestorationUpdatePage))]

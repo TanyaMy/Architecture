@@ -2,6 +2,8 @@
     x:Class="Architecture.Presentation.Views.Architect.ArchitectAddPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Charts="using:Syncfusion.UI.Xaml.Charts"
+    xmlns:Input="using:Syncfusion.UI.Xaml.Controls.Input"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
@@ -12,9 +14,7 @@
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loading">
-            <core:EventTriggerBehavior.Actions>
-                <core:InvokeCommandAction Command="{Binding PageLoadingCommand}" />
-            </core:EventTriggerBehavior.Actions>
+            <core:InvokeCommandAction Command="{Binding PageLoadingCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
@@ -41,7 +41,7 @@
             FontWeight="Bold"
             Foreground="DarkBlue"
             Opacity="1">
-            <Run>Архитекторы.</Run>
+            <Run Text="Архитекторы." />
             <Run Text="{Binding ActionText}" />
         </TextBlock>
 
@@ -79,16 +79,23 @@
                     FontSize="14"
                     Header="Дата рождения"
                     Opacity="1" />
-                <DatePicker
-                    x:Name="deathDtp"
-                    Margin="0,10"
-                    HorizontalAlignment="Stretch"
-                    Date="{Binding DeathDate, Mode=TwoWay}"
-                    FontSize="14"
-                    Header="Дата смерти"
-                    IsEnabled="False"
-                    Opacity="1" />
-
+                <StackPanel>
+                    <CheckBox
+                        x:Name="checkBox"
+                        Margin="0,10"
+                        VerticalAlignment="Top"
+                        Content="Умер"
+                        IsChecked="{Binding IsDead, Mode=TwoWay}" />
+                    <DatePicker
+                        x:Name="deathDtp"
+                        Margin="0"
+                        HorizontalAlignment="Stretch"
+                        Date="{Binding DeathDate, Mode=TwoWay}"
+                        FontSize="14"
+                        Header="Дата смерти"
+                        IsEnabled="{Binding IsDead, Mode=TwoWay}"
+                        Opacity="1" />
+                </StackPanel>
 
                 <Button
                     Height="50"
@@ -101,11 +108,5 @@
                     FontSize="20" />
             </StackPanel>
         </ScrollViewer>
-        <CheckBox
-            x:Name="checkBox"
-            Margin="328,396,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Умер" />
     </Grid>
 </Page>
