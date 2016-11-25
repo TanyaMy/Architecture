@@ -86,7 +86,10 @@
                     Date="{Binding DeathDate, Mode=TwoWay}"
                     FontSize="14"
                     Header="Дата смерти"
+                    IsEnabled="False"
                     Opacity="1" />
+
+
                 <Button
                     Height="50"
                     Margin="0,30"
@@ -98,5 +101,11 @@
                     FontSize="20" />
             </StackPanel>
         </ScrollViewer>
+        <CheckBox
+            x:Name="checkBox"
+            Margin="328,396,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Умер" />
     </Grid>
 </Page>

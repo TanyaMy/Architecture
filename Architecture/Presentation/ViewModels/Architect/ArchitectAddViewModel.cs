@@ -80,7 +80,7 @@ namespace Architecture.Presentation.ViewModels.Architect
             get { return _deathDate; }
             set { Set(() => DeathDate, ref _deathDate, value); }
         }
-
+                
 
         private async Task AddArchitect()
         {
