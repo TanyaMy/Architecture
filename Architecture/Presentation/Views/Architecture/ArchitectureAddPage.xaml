@@ -60,12 +60,14 @@
                     Header="Название"
                     Opacity="1"
                     Text="{Binding Title, Mode=TwoWay}" />
-                <TextBox
+                <my:SfNumericTextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     FontSize="14"
+                    FormatString="n"
                     Header="Год создания"
+                    MaximumNumberDecimalDigits="0"
                     Opacity="1"
                     Text="{Binding CreatedDate, Mode=TwoWay}" />
                 <TextBox
@@ -180,5 +182,6 @@
                     FontSize="20" />
             </StackPanel>
         </ScrollViewer>
+
     </Grid>
 </Page>

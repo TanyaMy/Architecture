@@ -67,6 +67,7 @@
             Margin="20,0"
             VerticalAlignment="Center"
             FontSize="18"
+            FormatString="c"
             Opacity="1"
             Value="{Binding AvailableSum, Mode=TwoWay}" />
 

@@ -21,9 +21,9 @@ namespace Architecture.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("BirthDate");
+                    b.Property<int>("BirthYear");
 
-                    b.Property<DateTime>("DeathDate");
+                    b.Property<int>("DeathYear");
 
                     b.Property<string>("Name");
 

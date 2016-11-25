@@ -14,8 +14,8 @@ namespace Architecture.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    BirthDate = table.Column<DateTime>(nullable: false),
-                    DeathDate = table.Column<DateTime>(nullable: false),
+                    BirthYear = table.Column<int>(nullable: false),
+                    DeathYear = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Nationality = table.Column<string>(nullable: true),
                     Surname = table.Column<string>(nullable: true)

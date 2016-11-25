@@ -13,10 +13,7 @@ namespace Architecture.Presentation.Views.Architect
         public ArchitectAddPage()
         {
             this.InitializeComponent();
-            birthDtp.MaxYear = DateTime.Now;
-            deathDtp.MaxYear = DateTime.Now;
-            birthDtp.MinYear = DateTime.Now.AddYears(-2006);
-            deathDtp.MinYear = DateTime.Now.AddYears(-2006);
+           
         }
 
         
