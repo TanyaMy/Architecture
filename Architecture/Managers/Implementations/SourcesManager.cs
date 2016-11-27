@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Architecture.Data.Entities;
@@ -47,5 +48,11 @@ namespace Architecture.Managers.Implementations
         {
             return _sourcesRepository.RemoveItemAsync(id);
         }
+              
+
+        //Task ISourcesManager.RemoveSourceArchitecture(int sourceId, int architectureId)
+        //{
+        //    return GetSourceById(sourceId)
+        //}
     }
 }

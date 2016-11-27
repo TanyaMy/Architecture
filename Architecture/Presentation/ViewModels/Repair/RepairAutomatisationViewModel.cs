@@ -94,7 +94,15 @@ namespace Architecture.Presentation.ViewModels.Repair
             foreach (var v in resultList)
             {
                 xxx.AddRange(v);
-                xxx.Add(new ArchitecturesNeedRepairModel());
+                xxx.Add(new ArchitecturesNeedRepairModel
+                {
+                    ArchitectureId = 0,
+                    ArchitectureTitle = "",
+                    ArchitectureState = State.Normal,
+                    RepairCost = 0,
+                    RestorationKind = RestorationKind.Целостная,
+                    Volume = 0
+                });
             }
 
             RepairsList = xxx;

@@ -33,6 +33,6 @@ namespace Architecture.Presentation.Views.Source
             var itemToDelete = _viewModel.SelectedTableItem;
 
             await _viewModel.DeleteSourceArchitecture(itemToDelete);
-        }
+        }        
     }
 }

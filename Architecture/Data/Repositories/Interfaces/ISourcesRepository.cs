@@ -6,6 +6,6 @@ namespace Architecture.Data.Repositories.Interfaces
 {
     public interface ISourcesRepository : ICrudRepositoryBase<Source, int>
     {
-        Task<IEnumerable<Source>> GetSourcesByArchitectureId(int architectureId);
+        Task<IEnumerable<Source>> GetSourcesByArchitectureId(int architectureId);      
     }
 }

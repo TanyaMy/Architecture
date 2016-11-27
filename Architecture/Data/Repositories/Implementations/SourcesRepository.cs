@@ -12,6 +12,7 @@ namespace Architecture.Data.Repositories.Implementations
     class SourcesRepository : CrudRepositoryBase<Source, int>, ISourcesRepository
     {
         private readonly DbSet<ArchitectureSource> _architectureSources;
+        private readonly DbSet<Source> _sources;
 
         public SourcesRepository(AppDbContext appDbContext) 
             : base (appDbContext, appDbContext.Sources)
@@ -26,7 +27,7 @@ namespace Architecture.Data.Repositories.Implementations
                 .Select(x => x.Source)
                 .ToArrayAsync();
         }
-
+     
         protected override Expression<Func<Source, bool>>
             KeyPredicate(int id) => (a => a.Id == id);
     }

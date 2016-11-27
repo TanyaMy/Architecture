@@ -14,6 +14,7 @@ using SourceModel = Architecture.Data.Entities.Source;
 using ArchitectureSourceModel = Architecture.Data.Entities.ArchitectureSource;
 
 using ArchitectureModel = Architecture.Data.Entities.Architecture;
+using System.Collections.ObjectModel;
 
 namespace Architecture.Presentation.ViewModels.Source
 {
@@ -22,22 +23,29 @@ namespace Architecture.Presentation.ViewModels.Source
         private readonly ICustomNavigationService _customNavigationService;
         private readonly ISourcesManager _sourcesManager;
         private readonly IArchitecturesManager _architecturesManager;
+        private readonly IArchitectureSourceManager _architectureSourceManager;
 
         private readonly SourceModel _source;
-        private List<Data.Entities.Architecture> _architecturesList;
-      
-        private Data.Entities.Architecture _architecture;
+        private ObservableCollection<ArchitectureModel> _architecturesList;//для выпадающего списка
+        private ObservableCollection<ArchitectureModel> _architectures;//для таблички
+
+        private ArchitectureModel _architecture;
         private ArchitectureModel _selectedTableItem;
 
 
-        public SourceAddArchitectureViewModel(ISourcesManager sourcesManager, IArchitecturesManager architecturesManager)
+        public SourceAddArchitectureViewModel(ISourcesManager sourcesManager, IArchitecturesManager architecturesManager,
+            IArchitectureSourceManager architectureSourceManager)
         {
             _sourcesManager = sourcesManager;
             _architecturesManager = architecturesManager;
+            _architectureSourceManager = architectureSourceManager;
 
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("SourceInternal");
 
             _source = _customNavigationService.CurrentPageParams as SourceModel;
+
+            _architectures = new ObservableCollection<ArchitectureModel>(
+                _architecturesManager.GetArchitecturesListBySourceId(_source.Id));
 
             SaveCommand = new RelayCommand(async () => await AddSourceArchitecture());
 
@@ -49,7 +57,10 @@ namespace Architecture.Presentation.ViewModels.Source
 
         private async void InitData()
         {
-            ArchitecturesList = (await _architecturesManager.GetArchitectures()).ToList();
+            var x = (await _architecturesManager.GetArchitectures()).ToList();
+            x.RemoveAll(a => Architectures.Contains(a));
+
+            ArchitecturesList = new ObservableCollection<ArchitectureModel>(x);         
         }
 
         public ICommand SaveCommand { get; }
@@ -58,7 +69,7 @@ namespace Architecture.Presentation.ViewModels.Source
         public string ButtonText { get; }
      
 
-        public List<Data.Entities.Architecture> ArchitecturesList
+        public ObservableCollection<ArchitectureModel> ArchitecturesList
         {
             get { return _architecturesList; }
             set { Set(() => ArchitecturesList, ref _architecturesList, value); }
@@ -70,12 +81,13 @@ namespace Architecture.Presentation.ViewModels.Source
             set { Set(() => SelectedTableItem, ref _selectedTableItem, value); }
         }
 
-        public List<ArchitectureModel> Architectures
-        {
-            get { return _architecturesManager.GetArchitecturesListBySourceId(_source.Id); }
+        public ObservableCollection<ArchitectureModel> Architectures
+        {          
+            get { return _architectures; }
+            set { Set(() => Architectures, ref _architectures, value); }
         }
 
-        public Data.Entities.Architecture Architecture
+        public ArchitectureModel Architecture
         {
             get { return _architecture; }
             set { Set(() => Architecture, ref _architecture, value); }
@@ -84,7 +96,7 @@ namespace Architecture.Presentation.ViewModels.Source
         public string Title
         {
             get { return _source.Title; }
-        }
+        }    
 
         private async Task AddSourceArchitecture()
         {
@@ -100,7 +112,15 @@ namespace Architecture.Presentation.ViewModels.Source
                 SourceId = source.Id
             });
 
+            var architecture = await _architecturesManager.GetArchitectureById(Architecture.Id);
+            if (architecture == null)
+                return;
+
             await _sourcesManager.UpdateSource(source);
+
+            Architectures.Add(architecture);
+
+            ArchitecturesList.Remove(architecture);
         }
 
         public async Task DeleteSourceArchitecture(object arch)
@@ -117,11 +137,21 @@ namespace Architecture.Presentation.ViewModels.Source
                 SourceId = source.Id
             };
 
-            _source.ArchitecturesSources.Remove(ArchSour);
+            await _architectureSourceManager.RemoveArchitectureSource(architecture.Id, source.Id);
+
+            source.ArchitecturesSources.Remove(ArchSour);
           
-            await _sourcesManager.UpdateSource(_source);
+            await _sourcesManager.UpdateSource(source);
 
             Architectures.Remove(architecture);
+
+            ArchitecturesList.Add(architecture);
+        }
+
+        public ObservableCollection<ArchitectureModel> SuggestBox_TextChanged(string text)
+        {
+           return new ObservableCollection<ArchitectureModel>(
+               ArchitecturesList.Where(i => i.Title.ToLower().Contains(text)));
         }
     }
 }

@@ -98,8 +98,8 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Entities\ArchitectureSource.cs" />
+    <Compile Include="Data\Repositories\Implementations\ArchitectureSourcesRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\RepairsRepository.cs" />
-    <Compile Include="Data\Repositories\Implementations\ReportsRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\StylesRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\SourcesRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\RestorationsRepository.cs" />
@@ -107,21 +107,23 @@
     <Compile Include="Data\Repositories\Implementations\ArchitectsRepository.cs" />
     <Compile Include="Data\Repositories\Implementations\CrudRepositoryBase.cs" />
     <Compile Include="Data\Repositories\Interfaces\IArchitectsRepository.cs" />
+    <Compile Include="Data\Repositories\Interfaces\IArchitectureSourcesRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IArchitecturesRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\ICrudRepositoryBase.cs" />
     <Compile Include="Data\Repositories\Interfaces\IRepairsRepository.cs" />
-    <Compile Include="Data\Repositories\Interfaces\IReportsRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IRestorationsRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\ISourcesRepository.cs" />
     <Compile Include="Data\Repositories\Interfaces\IStylesRepository.cs" />
     <Compile Include="Managers\Implementations\ArchitectsManager.cs" />
     <Compile Include="Managers\Implementations\ArchitecturesManager.cs" />
+    <Compile Include="Managers\Implementations\ArchitectureSourceManager.cs" />
     <Compile Include="Managers\Implementations\RepairsManager.cs" />
     <Compile Include="Managers\Implementations\RestorationsManager.cs" />
     <Compile Include="Managers\Implementations\SourcesManager.cs" />
     <Compile Include="Managers\Implementations\StylesManager.cs" />
     <Compile Include="Managers\Interfaces\IArchitectsManager.cs" />
     <Compile Include="Managers\Interfaces\IArchitecturesManager.cs" />
+    <Compile Include="Managers\Interfaces\IArchitectureSourceManager.cs" />
     <Compile Include="Managers\Interfaces\IRepairsManager.cs" />
     <Compile Include="Managers\Interfaces\IRestorationsManager.cs" />
     <Compile Include="Managers\Interfaces\ISourcesManager.cs" />

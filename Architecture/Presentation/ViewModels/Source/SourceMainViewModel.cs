@@ -68,12 +68,7 @@ namespace Architecture.Presentation.ViewModels.Source
         {
             _customNavigationService.NavigateTo(PageKeys.SourceAdd, itemToEdit);
         }
-
-        public void EditArchitectureSource(SourceModel itemToEdit)
-        {
-            _customNavigationService.NavigateTo(PageKeys.SourceAddArchitecture, itemToEdit);
-        }
-
+        
         public void ShowArchitectures(SourceModel item)
         {
             _customNavigationService.NavigateTo(PageKeys.SourceAddArchitecture, item);

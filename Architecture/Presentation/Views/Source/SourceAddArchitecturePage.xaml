@@ -92,5 +92,6 @@
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
         </StackPanel>
+
     </Grid>
 </Page>

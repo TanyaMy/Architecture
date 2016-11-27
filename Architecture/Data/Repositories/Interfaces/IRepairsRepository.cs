@@ -4,7 +4,7 @@ using System;
 
 namespace Architecture.Data.Repositories.Interfaces
 {
-    public interface IRepairsRepository : ICrudRepositoryBase<Repair>
+    public interface IArchitectureSourceRepository : ICrudRepositoryBase<Repair>
     {
         Task<Repair> GetRepairById(int architectureId, RestorationKind restorationKind, DateTime restorationDate);
 
