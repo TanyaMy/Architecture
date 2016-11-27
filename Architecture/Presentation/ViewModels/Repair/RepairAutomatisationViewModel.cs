@@ -36,9 +36,11 @@ namespace Architecture.Presentation.ViewModels.Repair
 
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("RepairInternal");
 
-            CalcAutomatisationCommand = new RelayCommand(CalcAutomatisation);
-
             LoadData();
+
+            LoadCombinations();
+
+            CalcAutomatisationCommand = new RelayCommand(CalcAutomatisation);
         }
 
         public ICommand CalcAutomatisationCommand { get; set; }
@@ -51,11 +53,13 @@ namespace Architecture.Presentation.ViewModels.Repair
             set { Set(() => RepairsList, ref _repairsList, value); }
         }
 
-        private void CalcAutomatisation()
+        private async void CalcAutomatisation()
         {
+            RepairsList = await LoadCombinations();
+
             RepairsList.Sort((x, y) => Convert.ToInt32(y.RepairCost - x.RepairCost));
 
-            var resultList = new List<IList<ArchitecturesNeedRepairModel>>(); 
+            var resultList = new List<List<ArchitecturesNeedRepairModel>>(); 
 
             for (int i = 0; i < RepairsList.Count; i++)
             {
@@ -77,7 +81,15 @@ namespace Architecture.Presentation.ViewModels.Repair
                     {
                         if (tmpCollection.Count > 0)
                         {
-                            resultList.Add(tmpCollection);
+                            if(resultList.Count == 0)
+                                resultList.Add(tmpCollection);
+                            else
+                            {
+                                if(CheckIfContains(resultList, tmpCollection))
+                                    continue;
+                                else
+                                    resultList.Add(tmpCollection);
+                            }                            
                         }
 
                         int tmp = holdJ;
@@ -108,13 +120,17 @@ namespace Architecture.Presentation.ViewModels.Repair
             RepairsList = xxx;
         }
 
+
         private async void LoadData()
         {
-
             _architectures = (await _architecturesManager.GetArchitectures()).ToList();
             _restorations = (await _restorationsManager.GetRestorations()).ToList();
             _restorationKindsList = Enum.GetValues(typeof(RestorationKind)).Cast<RestorationKind>().ToList();
+        }
 
+
+        private async Task<List<ArchitecturesNeedRepairModel>> LoadCombinations()
+        {
             var tmpList = new List<ArchitecturesNeedRepairModel>();
 
             var needRestorationList = _architectures.Where(a => a.State == State.Bad || a.State == State.Awful)
@@ -140,12 +156,30 @@ namespace Architecture.Presentation.ViewModels.Repair
                     architecture.ArchitectureId = (tmpList.Count == 0) ? 1 : tmpList.Max(a => a.ArchitectureId) + 1;
                     architecture.RepairCost = restoration.Outlays * arch.Volume;
                     architecture.RestorationKind = rest;
-                    
+
                     tmpList.Add(architecture);
-                }                
+                }
             }
 
             RepairsList = tmpList;
+
+            return RepairsList;
+        }
+
+        public bool CheckIfContains<T>(List<List<T>> mainList, List<T> innerList)
+        {
+            foreach (var el in mainList)
+            {
+                if (el.Count != innerList.Count)
+                    continue;
+
+                var tmpCol = new List<T>(el);
+                tmpCol.RemoveAll(innerList.Contains);
+
+                if (tmpCol.Count == 0)
+                    return true;
+            }
+            return false;
         }
     }
 

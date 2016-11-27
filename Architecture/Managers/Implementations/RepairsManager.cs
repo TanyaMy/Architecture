@@ -9,9 +9,9 @@ namespace Architecture.Managers.Implementations
 {
     class RepairsManager : IRepairsManager
     {
-        private readonly IArchitectureSourceRepository _repairsRepository;
+        private readonly IRepairsRepository _repairsRepository;
 
-        public RepairsManager(IArchitectureSourceRepository repairsRepository)
+        public RepairsManager(IRepairsRepository repairsRepository)
         {
             _repairsRepository = repairsRepository;
         }
