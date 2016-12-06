@@ -38,6 +38,11 @@
             Foreground="DarkBlue"
             Text="Сооружения" />
 
+        <Button HorizontalAlignment="Right"
+                Content="Сбросить фильтры"
+                Margin="0,0,60,0"
+                Click="ButtonBase_OnClick"/>
+
         <syncfusion:SfDataGrid
             x:Name="SfDataGrid"
             Grid.Row="1"
