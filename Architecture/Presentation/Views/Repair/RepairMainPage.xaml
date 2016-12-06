@@ -62,7 +62,7 @@
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn HeaderText="Вид реставрации" MappingName="RestorationKind" />
                 <syncfusion:GridTextColumn HeaderText="Название сооружения" MappingName="Architecture.Title" />
-                <syncfusion:GridTextColumn HeaderText="Дата ремонта" MappingName="RestorationDate" />
+                <syncfusion:GridTextColumn HeaderText="Дата ремонта" MappingName="RestorationDate.Date" />
                 <syncfusion:GridTextColumn HeaderText="Стоимость ремонта" MappingName="RestorationCost" />
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>

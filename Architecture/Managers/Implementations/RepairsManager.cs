@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Architecture.Data.Entities;
 using Architecture.Data.Repositories.Interfaces;
 using Architecture.Managers.Interfaces;
+using System;
 
 namespace Architecture.Managers.Implementations
 {
@@ -20,9 +21,9 @@ namespace Architecture.Managers.Implementations
             return _repairsRepository.GetItemsAsync();
         }
 
-        public Task<Repair> GetRepairById(int architectureId, RestorationKind restorationKind)
+        public Task<Repair> GetRepairById(int architectureId, RestorationKind restorationKind, DateTime restorationDate)
         {
-            return _repairsRepository.GetRepairById(architectureId, restorationKind);
+            return _repairsRepository.GetRepairById(architectureId, restorationKind, restorationDate);
         }
 
         public Task<Repair> AddRepair(Repair repair)
@@ -35,9 +36,9 @@ namespace Architecture.Managers.Implementations
             return _repairsRepository.UpdateItemAsync(repair);
         }
 
-        public Task RemoveRepair(int architectureId, RestorationKind restorationKind)
+        public Task RemoveRepair(int architectureId, RestorationKind restorationKind, DateTime restorationDate)
         {
-            return _repairsRepository.RemoveRepair(architectureId, restorationKind);
+            return _repairsRepository.RemoveRepair(architectureId, restorationKind, restorationDate);
         }
     }
 }

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SourceModel = Architecture.Data.Entities.Source;
+using ArchitectureSourceModel = Architecture.Data.Entities.ArchitectureSource;
 
 namespace Architecture.Presentation.ViewModels.Source
 {
@@ -18,18 +19,22 @@ namespace Architecture.Presentation.ViewModels.Source
     {
         private readonly ICustomNavigationService _customNavigationService;
         private readonly ISourcesManager _sourcesManager;
+        private readonly IArchitecturesManager _architecturesManager;
 
         private readonly SourceModel _source;
+        private List<Data.Entities.Architecture> _architecturesList;
 
         private SourceKind _sourceKind;
         private string _title;
         private string _author;
         private int _creationYear;
+        private Data.Entities.Architecture _architecture;
 
 
-        public SourceAddViewModel(ISourcesManager sourcesManager)
+        public SourceAddViewModel(ISourcesManager sourcesManager, IArchitecturesManager architecturesManager)
         {
             _sourcesManager = sourcesManager;
+            _architecturesManager = architecturesManager;
 
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("SourceInternal");
 
@@ -46,8 +51,9 @@ namespace Architecture.Presentation.ViewModels.Source
             SetupFields();
         }
 
-        private void InitData()
+        private async void InitData()
         {
+            ArchitecturesList = (await _architecturesManager.GetArchitectures()).ToList();
             SourceKindsList = Enum.GetValues(typeof(SourceKind)).Cast<SourceKind>().ToList();
         }
 
@@ -57,6 +63,12 @@ namespace Architecture.Presentation.ViewModels.Source
         public string ButtonText { get; }
 
         public List<SourceKind> SourceKindsList { get; private set; }
+
+        public List<Data.Entities.Architecture> ArchitecturesList
+        {
+            get { return _architecturesList; }
+            set { Set(() => ArchitecturesList, ref _architecturesList, value); }
+        }
 
         public SourceKind SourceKind
         {
@@ -82,13 +94,21 @@ namespace Architecture.Presentation.ViewModels.Source
             set { Set(() => CreationYear, ref _creationYear, value); }
         }
 
+        public Data.Entities.Architecture Architecture
+        {
+            get { return _architecture; }
+            set { Set(() => Architecture, ref _architecture, value); }
+        }
+
         private async Task AddSource()
         {
             var source = new SourceModel(SourceKind, Title, Author, CreationYear);
 
-            await _sourcesManager.AddSource(source);
+            source = await _sourcesManager.AddSource(source);           
 
-            _customNavigationService.NavigateTo(PageKeys.SourceMain);
+            await _sourcesManager.UpdateSource(source);
+
+            _customNavigationService.NavigateTo(PageKeys.SourceAddArchitecture, source);
         }
 
         private async Task UpdateSource()
@@ -96,7 +116,7 @@ namespace Architecture.Presentation.ViewModels.Source
             _source.SourceKind = SourceKind;
             _source.Title = Title;
             _source.Author = Author;
-            _source.CreationYear = CreationYear;
+            _source.CreationYear = CreationYear;         
 
             await _sourcesManager.UpdateSource(_source);
 

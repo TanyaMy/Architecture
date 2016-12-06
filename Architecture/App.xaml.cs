@@ -46,6 +46,7 @@ namespace Architecture
             // Applying migrations
             using (var db = new AppDbContext())
             {
+                db.Database.EnsureDeletedAsync();
                 db.Database.Migrate();
             }
         }
@@ -57,9 +58,9 @@ namespace Architecture
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override async void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            await DbInitializer.Seed();
+            //await DbInitializer.Seed();
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -153,6 +154,7 @@ namespace Architecture
             SimpleIoc.Default.Register<SourceViewModel>();
             SimpleIoc.Default.Register<SourceMainViewModel>();            
             SimpleIoc.Default.Register<SourceAddViewModel>();
+            SimpleIoc.Default.Register<SourceAddArchitectureViewModel>();
 
             SimpleIoc.Default.Register<RestorationMainViewModel>();
             SimpleIoc.Default.Register<RestorationUpdateViewModel>();
@@ -172,6 +174,7 @@ namespace Architecture
             SimpleIoc.Default.Register<ISourcesRepository, SourcesRepository>();
             SimpleIoc.Default.Register<IStylesRepository, StylesRepository>();
             SimpleIoc.Default.Register<IRepairsRepository, RepairsRepository>();
+            SimpleIoc.Default.Register<IArchitectureSourcesRepository, ArchitectureSourcesRepository>();
 
             #endregion
 
@@ -183,6 +186,7 @@ namespace Architecture
             SimpleIoc.Default.Register<ISourcesManager, SourcesManager>();
             SimpleIoc.Default.Register<IStylesManager, StylesManager>();
             SimpleIoc.Default.Register<IRepairsManager, RepairsManager>();
+            SimpleIoc.Default.Register<IArchitectureSourceManager, ArchitectureSourceManager>();
 
             #endregion
         }

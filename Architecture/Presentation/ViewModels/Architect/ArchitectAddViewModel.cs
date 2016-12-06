@@ -22,9 +22,9 @@ namespace Architecture.Presentation.ViewModels.Architect
         private string _name;
         private string _surname;
         private string _nationality;
-        private DateTime _birthDate;
-        private DateTime _deathDate;
-    
+        private int _birthYear;
+        private int _deathYear;
+        private bool _isDead;
 
         public ArchitectAddViewModel(
             IArchitectManager architectsManager)
@@ -69,23 +69,29 @@ namespace Architecture.Presentation.ViewModels.Architect
             set { Set(() => Nationality, ref _nationality, value); }
         }
 
-        public DateTime BirthDate
+        public int BirthYear
         {
-            get { return _birthDate; }
-            set { Set(() => BirthDate, ref _birthDate, value); }
+            get { return _birthYear; }
+            set { Set(() => BirthYear, ref _birthYear, value); }
         }
 
-        public DateTime DeathDate
+        public int DeathYear
         {
-            get { return _deathDate; }
-            set { Set(() => DeathDate, ref _deathDate, value); }
+            get { return _deathYear; }
+            set { Set(() => DeathYear, ref _deathYear, value); }
+        }
+
+        public bool IsDead
+        {
+            get { return _isDead; }
+            set { Set(() => IsDead, ref _isDead, value); }
         }
 
 
         private async Task AddArchitect()
         {
             var architect = new ArchitectModel(
-                Name, Surname, Nationality, BirthDate, DeathDate);
+                Name, Surname, Nationality, BirthYear,  DeathYear);
 
             await _architectsManager.AddArchitect(architect);
 
@@ -97,8 +103,8 @@ namespace Architecture.Presentation.ViewModels.Architect
             _architect.Name = Name;
             _architect.Surname = Surname;
             _architect.Nationality = Nationality;
-            _architect.BirthDate = BirthDate.Date;
-            _architect.DeathDate = DeathDate.Date;
+            _architect.BirthYear = BirthYear;
+            _architect.DeathYear = DeathYear;
 
             await _architectsManager.UpdateArchitect(_architect);
 
@@ -112,8 +118,8 @@ namespace Architecture.Presentation.ViewModels.Architect
             Name = editableArch?.Name ?? string.Empty;
             Surname = editableArch?.Surname ?? string.Empty;
             Nationality = editableArch?.Nationality ?? string.Empty;
-            BirthDate = editableArch?.BirthDate ?? DateTime.Now.AddYears(-80);
-            DeathDate = editableArch?.DeathDate ?? DateTime.Now.AddYears(-10); ;           
+            BirthYear = editableArch?.BirthYear ?? 0;
+            DeathYear = editableArch?.DeathYear ?? 0;
         }
     }
 }

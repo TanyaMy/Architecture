@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Architecture.Data.Entities;
 using Architecture.Data.Repositories.Interfaces;
 using Architecture.Managers.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Architecture.Managers.Implementations
 {
@@ -18,7 +19,8 @@ namespace Architecture.Managers.Implementations
 
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitectures()
         {
-            return _architecturesRepository.GetItemsAsync();
+            return _architecturesRepository.GetItemsAsync(x => 
+            x.Include(y => y.Architect).Include(y => y.Style));
         }
 
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitecturesByStyleId(int styleId)
@@ -30,6 +32,11 @@ namespace Architecture.Managers.Implementations
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitecturesBySourceId(int sourceId)
         {
             return _architecturesRepository.GetArchitecturesBySourceId(sourceId);
+        }
+
+        public List<Data.Entities.Architecture> GetArchitecturesListBySourceId(int sourceId)
+        {
+            return _architecturesRepository.GetArchitecturesListBySourceId(sourceId);
         }
 
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitecturesByArchitectId(int architectId)

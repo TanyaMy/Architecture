@@ -2,19 +2,20 @@
     x:Class="Architecture.Presentation.Views.Architect.ArchitectAddPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:MyToolkit.Controls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="using:Syncfusion.UI.Xaml.Controls.Input"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
     DataContext="{Binding ArchitectAdd, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loading">
-            <core:EventTriggerBehavior.Actions>
-                <core:InvokeCommandAction Command="{Binding PageLoadingCommand}" />
-            </core:EventTriggerBehavior.Actions>
+            <core:InvokeCommandAction Command="{Binding PageLoadingCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
@@ -41,7 +42,7 @@
             FontWeight="Bold"
             Foreground="DarkBlue"
             Opacity="1">
-            <Run>Архитекторы.</Run>
+            <Run Text="Архитекторы." />
             <Run Text="{Binding ActionText}" />
         </TextBlock>
 
@@ -71,20 +72,32 @@
                     Header="Национальность"
                     Opacity="1"
                     Text="{Binding Nationality, Mode=TwoWay}" />
-                <DatePicker
+                <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
-                    Date="{Binding BirthDate, Mode=TwoWay}"
+                    VerticalAlignment="Center"
                     FontSize="14"
                     Header="Год рождения"
-                    Opacity="1" />
-                <DatePicker
-                    Margin="0,10"
-                    HorizontalAlignment="Stretch"
-                    Date="{Binding DeathDate, Mode=TwoWay}"
-                    FontSize="14"
-                    Header="Год смерти"
-                    Opacity="1" />
+                    Opacity="1"
+                    Text="{Binding BirthYear, Mode=TwoWay}" />
+                <StackPanel>
+                    <CheckBox
+                        x:Name="checkBox"
+                        Margin="0,10"
+                        VerticalAlignment="Top"
+                        Content="Умер"
+                        IsChecked="{Binding IsDead, Mode=TwoWay}" />
+                    <TextBox
+                        Margin="0,10"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        Header="Год смерти"
+                        IsEnabled="{Binding IsDead, Mode=TwoWay}"
+                        Opacity="1"
+                        Text="{Binding DeathYear, Mode=TwoWay}" />
+                </StackPanel>
+
                 <Button
                     Height="50"
                     Margin="0,30"

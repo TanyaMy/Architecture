@@ -17,5 +17,7 @@ namespace Architecture.Managers.Interfaces
         Task<Source> UpdateSource(Source source);
 
         Task RemoveSource(int id);
+
+        //Task RemoveSourceArchitecture(int sourceId, int architectureId);
     }
 }

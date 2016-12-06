@@ -21,7 +21,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock
             x:Name="textBlock"
@@ -46,7 +47,6 @@
             Opacity="1"
             Text="Тип отчета" />
         <ComboBox
-            x:Name="kindOfReportLB"
             Grid.Row="1"
             Grid.Column="1"
             Height="35"
@@ -55,41 +55,43 @@
             VerticalAlignment="Center"
             BorderBrush="Gray"
             BorderThickness="1"
-            SelectedIndex="0">
-            <TextBlock>Реставрации и затраты за 10 лет</TextBlock>
+            ItemsSource="{Binding ReportTypes}"
+            SelectedIndex="1"
+            SelectedItem="{Binding ReportType, Mode=TwoWay}">
+
+
+            <!--  вид реставрации, название сооружения, дата ремонта не ранее 2006, затраты ремонта  -->
+            <TextBlock>Ремонты и затраты за 10 лет</TextBlock>
+
+            <!--  название сооружения, дата создания ранее 1800 года в порядке возрастания  -->
             <TextBlock>Наистарейшие сооружения</TextBlock>
+
+            <!--  название сооружения, его состояние  -->
             <TextBlock>Состояние сооружений</TextBlock>
         </ComboBox>
+
+
         <syncfusion:SfDataGrid
+            x:Name="DataGrid"
             Grid.Row="2"
             Grid.ColumnSpan="3"
             Margin="10"
-            AllowDeleting="True"
-            AllowFiltering="True"
-            AutoGenerateColumns="False"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            AutoGenerateColumns="True"
             ColumnSizer="Star"
-            ItemsSource="{Binding RepairReport}"
-            SelectionMode="Single">
+            ItemsSource="{Binding DataList, Mode=TwoWay}"
+            SelectionMode="None" />
 
-            <syncfusion:SfDataGrid.Columns>
-                <syncfusion:GridTextColumn
-                    HeaderText="Сооружение"
-                    MappingName="RestorationKind"
-                    TextAlignment="Center" />
-                <syncfusion:GridTextColumn
-                    HeaderText="Дата ремонта"
-                    MappingName="Periodicity"
-                    TextAlignment="Center" />
-                <syncfusion:GridTextColumn
-                    HeaderText="Стоимость ремонта"
-                    MappingName="Outlays"
-                    TextAlignment="Center" />
-            </syncfusion:SfDataGrid.Columns>
-
-        </syncfusion:SfDataGrid>
-
-
-
-
+        <TextBlock
+            Grid.Row="3"
+            Grid.ColumnSpan="3"
+            Margin="10,0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            FontFamily="Segoe WP Black"
+            FontSize="20"
+            Opacity="1"
+            Text="{Binding DataString, Mode=TwoWay}" />
     </Grid>
 </Page>

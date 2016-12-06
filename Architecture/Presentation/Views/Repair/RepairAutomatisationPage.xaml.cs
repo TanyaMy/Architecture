@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Architecture.Presentation.ViewModels.Repair;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,13 @@ namespace Architecture.Presentation.Views.Repair
     /// </summary>
     public sealed partial class RepairAutomatisationPage : Page
     {
+        private readonly RepairAutomatisationViewModel _viewModel;
+
         public RepairAutomatisationPage()
         {
             this.InitializeComponent();
+
+            _viewModel = (RepairAutomatisationViewModel)DataContext;
         }
     }
 }

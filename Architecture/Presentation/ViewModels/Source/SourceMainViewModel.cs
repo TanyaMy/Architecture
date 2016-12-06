@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Arcitecture.Presentation.ViewModels.Common;
 using SourceModel = Architecture.Data.Entities.Source;
+using ArchitectureModel = Architecture.Data.Entities.Architecture;
+using ArchitectureSourceModel = Architecture.Data.Entities.ArchitectureSource;
 using Architecture.Managers.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,6 +11,8 @@ using System.Collections.ObjectModel;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using Architecture.Presentation.Models;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace Architecture.Presentation.ViewModels.Source
 {
@@ -20,11 +24,15 @@ namespace Architecture.Presentation.ViewModels.Source
         private ObservableCollection<SourceModel> _sources;
         private SourceModel _selectedTableItem;
 
+        private void ArchitectureListHandler(IList<ArchitectureModel> architecture) { }
+
         public SourceMainViewModel(ISourcesManager sourcesManager)
         {
             _sourcesManager = sourcesManager;
 
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("SourceInternal");
+
+         //   ShowArchitectures = new RelayCommand<IList<ArchitectureModel>>( x => ArchitectureListHandler(x));
 
             LoadData();
         }
@@ -34,6 +42,9 @@ namespace Architecture.Presentation.ViewModels.Source
             get { return _sources; }
             set { Set(() => SourceList, ref _sources, value); }
         }
+
+       // public ICommand ShowArchitectures { get; set; }        
+
 
         public async Task DeleteSource(object source)
         {
@@ -56,7 +67,17 @@ namespace Architecture.Presentation.ViewModels.Source
         public void EditSource(SourceModel itemToEdit)
         {
             _customNavigationService.NavigateTo(PageKeys.SourceAdd, itemToEdit);
-        }        
+        }
+        
+        public void ShowArchitectures(SourceModel item)
+        {
+            _customNavigationService.NavigateTo(PageKeys.SourceAddArchitecture, item);
+        }
+
+        public void AddArchitectureSource(SourceModel itemToAdd)
+        {
+            _customNavigationService.NavigateTo(PageKeys.SourceAddArchitecture, itemToAdd);
+        }
 
         private async void LoadData()
         {

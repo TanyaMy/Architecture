@@ -2,6 +2,7 @@
     x:Class="Architecture.Presentation.Views.Source.SourceMainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Schedule="using:Syncfusion.UI.Xaml.Schedule"
     xmlns:controls="using:MyToolkit.Controls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,9 +15,7 @@
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:EventTriggerBehavior.Actions>
-                <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
-            </core:EventTriggerBehavior.Actions>
+            <core:InvokeCommandAction Command="{Binding PageLoadedCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
@@ -52,10 +51,10 @@
 
             <syncfusion:SfDataGrid.RecordContextMenu>
                 <MenuFlyout>
-                    <MenuFlyout.Items>
-                        <MenuFlyoutItem Click="EditRowMenuFlyoutItem_OnClick" Text="Редактировать источник" />
-                        <MenuFlyoutItem Click="DeleteRowFlyoutItem_OnClick" Text="Удалить источник" />
-                    </MenuFlyout.Items>
+                    <MenuFlyoutItem Click="EditRowMenuFlyoutItem_OnClick" Text="Редактировать упоминание" />
+                    <MenuFlyoutItem Click="DeleteRowFlyoutItem_OnClick" Text="Удалить упоминание" />
+                    <MenuFlyoutItem Click="ShowArchitecturesFlyoutItem_OnClick" Text="Просмотреть сооружения" />
+                    <MenuFlyoutItem Click="AddSourceArchFlyoutItem_OnClick" Text="Добавить сооружение в упоминание" />
                 </MenuFlyout>
             </syncfusion:SfDataGrid.RecordContextMenu>
 
@@ -67,7 +66,6 @@
                     HeaderText="Год создания"
                     MappingName="CreationYear"
                     TextAlignment="Center" />
-                <syncfusion:GridTextColumn HeaderText="Сооружения" MappingName="ArchitecturesSources.Title" />
             </syncfusion:SfDataGrid.Columns>
         </syncfusion:SfDataGrid>
 

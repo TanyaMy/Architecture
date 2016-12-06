@@ -2,11 +2,14 @@
     x:Class="Architecture.Presentation.Views.Source.SourceAddPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:MyToolkit.Controls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="using:Syncfusion.UI.Xaml.Controls.Input"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
     DataContext="{Binding SourceAdd, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 

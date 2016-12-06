@@ -38,6 +38,11 @@
             Foreground="DarkBlue"
             Text="Сооружения" />
 
+        <Button HorizontalAlignment="Right"
+                Content="Сбросить фильтры"
+                Margin="0,0,60,0"
+                Click="ButtonBase_OnClick"/>
+
         <syncfusion:SfDataGrid
             x:Name="SfDataGrid"
             Grid.Row="1"
@@ -63,23 +68,38 @@
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn HeaderText="Название" MappingName="Title" />
                 <syncfusion:GridTextColumn
+                    Width="110"
                     HeaderText="Год создания"
                     MappingName="CreationYear"
                     TextAlignment="Center" />
-                <syncfusion:GridTextColumn HeaderText="Страна" MappingName="Country" />
-                <syncfusion:GridTextColumn HeaderText="Город" MappingName="City" />
+                <syncfusion:GridTextColumn
+                    Width="110"
+                    HeaderText="Страна"
+                    MappingName="Country" />
+                <syncfusion:GridTextColumn
+                    Width="110"
+                    HeaderText="Город"
+                    MappingName="City" />
                 <syncfusion:GridTextColumn HeaderText="Адрес" MappingName="Address" />
                 <syncfusion:GridTextColumn
+                    Width="100"
                     HeaderText="Площадь"
                     MappingName="Square"
                     TextAlignment="Center" />
                 <syncfusion:GridTextColumn
+                    Width="100"
                     HeaderText="Высота"
                     MappingName="Height"
                     TextAlignment="Center" />
-                <syncfusion:GridTextColumn HeaderText="Архитектор" MappingName="Architect.Surname" />
+                <syncfusion:GridTextColumn
+                    Width="110"
+                    HeaderText="Архитектор"
+                    MappingName="Architect.Surname" />
                 <syncfusion:GridTextColumn HeaderText="Стиль" MappingName="Style.Title" />
-                <syncfusion:GridComboBoxColumn HeaderText="Состояние сооружения" MappingName="State" />
+                <syncfusion:GridComboBoxColumn
+                    Width="100"
+                    HeaderText="Состояние"
+                    MappingName="State" />
             </syncfusion:SfDataGrid.Columns>
 
         </syncfusion:SfDataGrid>

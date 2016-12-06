@@ -43,5 +43,10 @@ namespace Architecture.Presentation.Views.Architecture
 
             _viewModel.EditArchitecture(itemToEdit);
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            SfDataGrid.ClearFilters();
+        }
     }
 }

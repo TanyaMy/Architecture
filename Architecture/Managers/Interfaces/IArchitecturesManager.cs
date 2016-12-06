@@ -13,6 +13,8 @@ namespace Architecture.Managers.Interfaces
 
         Task<IEnumerable<ArchitectureModel>> GetArchitecturesBySourceId(int sourceId);
 
+        List<ArchitectureModel> GetArchitecturesListBySourceId(int sourceId);
+
         Task<IEnumerable<ArchitectureModel>> GetArchitecturesByArchitectId(int architectId);
 
         Task<IEnumerable<ArchitectureModel>> GetArchitecturesByState(State state);

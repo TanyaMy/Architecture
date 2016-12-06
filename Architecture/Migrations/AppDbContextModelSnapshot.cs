@@ -21,9 +21,9 @@ namespace Architecture.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("BirthDate");
+                    b.Property<int>("BirthYear");
 
-                    b.Property<DateTime>("DeathDate");
+                    b.Property<int>("DeathYear");
 
                     b.Property<string>("Name");
 
@@ -80,7 +80,7 @@ namespace Architecture.Migrations
 
                     b.HasIndex("SourceId");
 
-                    b.ToTable("ArchitectureSource");
+                    b.ToTable("ArchitecturesSources");
                 });
 
             modelBuilder.Entity("Architecture.Data.Entities.Repair", b =>
@@ -89,11 +89,11 @@ namespace Architecture.Migrations
 
                     b.Property<int>("RestorationKind");
 
-                    b.Property<double>("RestorationCost");
-
                     b.Property<DateTime>("RestorationDate");
 
-                    b.HasKey("ArchitectureId", "RestorationKind");
+                    b.Property<double>("RestorationCost");
+
+                    b.HasKey("ArchitectureId", "RestorationKind", "RestorationDate");
 
                     b.HasIndex("RestorationKind");
 

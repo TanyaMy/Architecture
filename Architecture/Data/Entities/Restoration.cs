@@ -6,9 +6,11 @@ namespace Architecture.Data.Entities
 {
     public enum RestorationKind
     {
-        Restoration1, 
-        Restoration2,
-        Restoration3
+        Консервация, 
+        Фрагментарная,
+        Целостная,
+        Реконструкция,
+        Косметическая
     }
 
     public class Restoration

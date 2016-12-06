@@ -12,14 +12,14 @@ namespace Architecture.Data.Entities
             string name, 
             string surname, 
             string nationality,
-            DateTime birthDate,
-            DateTime deathDate)
+            int birthYear,
+            int deathYear)
         {
             Name = name;
             Surname = surname;
             Nationality = nationality;
-            BirthDate = birthDate;
-            DeathDate = deathDate;
+            BirthYear = birthYear;
+            DeathYear = deathYear;
         }
 
         public int Id { get; set; }
@@ -30,9 +30,9 @@ namespace Architecture.Data.Entities
 
         public string Nationality { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public int BirthYear { get; set; }
 
-        public DateTime DeathDate { get; set; }
+        public int DeathYear { get; set; }
  
     }
 }

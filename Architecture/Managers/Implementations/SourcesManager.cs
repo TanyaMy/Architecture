@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Architecture.Data.Entities;
 using Architecture.Data.Repositories.Interfaces;
 using Architecture.Managers.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Architecture.Managers.Implementations
 {
@@ -18,7 +20,8 @@ namespace Architecture.Managers.Implementations
 
         public Task<IEnumerable<Source>> GetSources()
         {
-            return _sourcesRepository.GetItemsAsync();
+            return _sourcesRepository.GetItemsAsync(x =>
+            x.Include(y => y.ArchitecturesSources));
         }
 
         public Task<IEnumerable<Source>> GetSourcesByArchitectureId(int architectureId)
@@ -45,5 +48,11 @@ namespace Architecture.Managers.Implementations
         {
             return _sourcesRepository.RemoveItemAsync(id);
         }
+              
+
+        //Task ISourcesManager.RemoveSourceArchitecture(int sourceId, int architectureId)
+        //{
+        //    return GetSourceById(sourceId)
+        //}
     }
 }

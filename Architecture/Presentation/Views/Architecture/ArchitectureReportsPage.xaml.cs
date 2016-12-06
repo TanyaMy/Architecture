@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml.Controls;
+using Architecture.Presentation.ViewModels.Architecture;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -9,9 +11,11 @@ namespace Architecture.Presentation.Views.Architecture
     /// </summary>
     public sealed partial class ArchitectureReportsPage : Page
     {
+      
         public ArchitectureReportsPage()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();            
         }
+        
     }
 }

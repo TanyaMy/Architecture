@@ -11,7 +11,7 @@
     mc:Ignorable="d">
 
     <Page.BottomAppBar>
-        <AppBar ClosedDisplayMode="Compact">
+        <AppBar Background="LightBlue" ClosedDisplayMode="Compact">
             <StackPanel Orientation="Horizontal">
                 <AppBarButton
                     HorizontalAlignment="Stretch"

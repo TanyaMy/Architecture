@@ -31,6 +31,7 @@ namespace Architecture.Presentation.ViewModels.Common
         public SourceViewModel Source => GetViewModel<SourceViewModel>();
         public SourceMainViewModel SourceMain => GetViewModel<SourceMainViewModel>();
         public SourceAddViewModel SourceAdd => GetViewModel<SourceAddViewModel>();
+        public SourceAddArchitectureViewModel SourceAddArchitecture => GetViewModel<SourceAddArchitectureViewModel>();
 
         public RestorationMainViewModel RestorationMain => GetViewModel<RestorationMainViewModel>();
         public RestorationUpdateViewModel RestorationUpdate => GetViewModel<RestorationUpdateViewModel>();
