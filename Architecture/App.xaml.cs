@@ -173,6 +173,7 @@ namespace Architecture
             SimpleIoc.Default.Register<IRestorationsRepository, RestorationsRepository>();
             SimpleIoc.Default.Register<ISourcesRepository, SourcesRepository>();
             SimpleIoc.Default.Register<IStylesRepository, StylesRepository>();
+            SimpleIoc.Default.Register<IRepairsRepository, RepairsRepository>();
             SimpleIoc.Default.Register<IArchitectureSourcesRepository, ArchitectureSourcesRepository>();
 
             #endregion

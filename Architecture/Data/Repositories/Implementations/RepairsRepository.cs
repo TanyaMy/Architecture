@@ -6,7 +6,7 @@ using System;
 
 namespace Architecture.Data.Repositories.Implementations
 {
-    class RepairsRepository : CrudRepositoryBase<Repair>, IArchitectureSourceRepository
+    class RepairsRepository : CrudRepositoryBase<Repair>, IRepairsRepository
     {
         private readonly AppDbContext _appDbContext;
         private readonly DbSet<Repair> _repairs;
