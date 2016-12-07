@@ -1,4 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Architecture.Presentation.ViewModels.Architecture;
 using Syncfusion.UI.Xaml.Grid;
@@ -25,14 +28,19 @@ namespace Architecture.Presentation.Views.Architecture
 
         private async void SfDataGrid_OnRecordDeleting(object sender, RecordDeletingEventArgs e)
         {
-            var itemToDelete = e.Items[0];
-
-            await _viewModel.DeleteArchitecture(itemToDelete);
+            var itemToDelete = e.Items[0] as Data.Entities.Architecture;
+            if (await Confirm($"Do you really want to delete architecture {itemToDelete?.Title}?",
+                $"Confirm removing {itemToDelete?.Title}"))
+            {
+                await _viewModel.DeleteArchitecture(itemToDelete);
+            }
         }
 
         private async void DeleteRowFlyoutItem_OnClick(object sender, RoutedEventArgs e)
         {
             var itemToDelete = _viewModel.SelectedTableItem;
+            if(!await Confirm($"Do you really want to delete architecture {itemToDelete.Title}?", "Confirm removing"))
+                return;
 
             await _viewModel.DeleteArchitecture(itemToDelete);
         }
@@ -42,6 +50,24 @@ namespace Architecture.Presentation.Views.Architecture
             var itemToEdit = _viewModel.SelectedTableItem;
 
             _viewModel.EditArchitecture(itemToEdit);
+        }
+
+        private async Task<bool> Confirm(string message, string title)
+        {
+            bool answer = false;
+
+            MessageDialog msgDialog = new MessageDialog(message, title);
+
+            //OK Button
+            UICommand okBtn = new UICommand("OK") {Invoked = command => answer = true};
+            msgDialog.Commands.Add(okBtn);
+
+            //Cancel Button
+            UICommand cancelBtn = new UICommand("Cancel") {Invoked = command => answer = false};
+            msgDialog.Commands.Add(cancelBtn);
+            
+            await msgDialog.ShowAsync();
+            return answer;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

@@ -47,7 +47,7 @@
             x:Name="SfDataGrid"
             Grid.Row="1"
             Margin="10"
-            AllowDeleting="True"
+            AllowDeleting="False"
             AllowFiltering="True"
             AutoGenerateColumns="False"
             ColumnSizer="Star"

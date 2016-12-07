@@ -46,8 +46,7 @@ namespace Architecture
             // Applying migrations
             using (var db = new AppDbContext())
             {
-                db.Database.EnsureDeletedAsync();
-                db.Database.Migrate();
+                db.Database.MigrateAsync();
             }
         }
 

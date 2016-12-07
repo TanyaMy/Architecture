@@ -128,13 +128,13 @@ namespace Architecture.Presentation.ViewModels.Architecture
                                         Состояние = ar.State.ToString()
                                     }).ToList();
 
-            var awful = _architectures.Where(a => a.State == State.Awful).Count();
-            var bad = _architectures.Where(a => a.State == State.Bad).Count();
-            var normal = _architectures.Where(a => a.State == State.Normal).Count();
-            var good = _architectures.Where(a => a.State == State.Good).Count();
-            var great = _architectures.Where(a => a.State == State.Great).Count();
+            var awful = _architectures.Count(a => a.State == State.Awful);
+            var bad = _architectures.Count(a => a.State == State.Bad);
+            var normal = _architectures.Count(a => a.State == State.Normal);
+            var good = _architectures.Count(a => a.State == State.Good);
+            var great = _architectures.Count(a => a.State == State.Great);
 
-            _archStateString = "Всего сооружений: " + _architectureStateList.Count() +
+            _archStateString = "Всего сооружений: " + _architectureStateList.Count +
                                 ", в ужасном состоянии " + awful + 
                                 ", в плохом - " + bad +
                                 ", в нормальном - " + normal +
