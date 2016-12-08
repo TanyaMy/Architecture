@@ -54,5 +54,10 @@ namespace Architecture.Presentation.Views.Repair
             _viewModel.EditRepair(itemToEdit);
         }
 
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            SfDataGrid.ClearFilters();
+        }
+
     }
 }

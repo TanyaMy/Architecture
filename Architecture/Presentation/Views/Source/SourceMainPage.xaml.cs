@@ -54,7 +54,12 @@ namespace Architecture.Presentation.Views.Source
             var itemToAdd = _viewModel.SelectedTableItem;
 
             _viewModel.AddArchitectureSource(itemToAdd);
-        }       
-      
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            SfDataGrid.ClearFilters();
+        }
+
     }
 }

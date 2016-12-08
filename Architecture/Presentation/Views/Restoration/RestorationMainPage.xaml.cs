@@ -39,5 +39,10 @@ namespace Architecture.Presentation.Views.Restoration
 
             _viewModel.EditRestoration(itemToEdit);
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            SfDataGrid.ClearFilters();
+        }
     }
 }
