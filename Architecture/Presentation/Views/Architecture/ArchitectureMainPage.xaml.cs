@@ -29,8 +29,8 @@ namespace Architecture.Presentation.Views.Architecture
         private async void SfDataGrid_OnRecordDeleting(object sender, RecordDeletingEventArgs e)
         {
             var itemToDelete = e.Items[0] as Data.Entities.Architecture;
-            if (await Confirm($"Do you really want to delete architecture {itemToDelete?.Title}?",
-                $"Confirm removing {itemToDelete?.Title}"))
+            if (await Confirm($"Вы уверены, что хотите удалить архитектурное сооружение {itemToDelete?.Title}?",
+                $"Подтверждение удаления {itemToDelete?.Title}"))
             {
                 await _viewModel.DeleteArchitecture(itemToDelete);
             }
@@ -39,7 +39,8 @@ namespace Architecture.Presentation.Views.Architecture
         private async void DeleteRowFlyoutItem_OnClick(object sender, RoutedEventArgs e)
         {
             var itemToDelete = _viewModel.SelectedTableItem;
-            if(!await Confirm($"Do you really want to delete architecture {itemToDelete.Title}?", "Confirm removing"))
+            if(!await Confirm($"Вы уверены, что хотите удалить архитектурное сооружение {itemToDelete.Title}?",
+                "Подтверждение удаления"))
                 return;
 
             await _viewModel.DeleteArchitecture(itemToDelete);

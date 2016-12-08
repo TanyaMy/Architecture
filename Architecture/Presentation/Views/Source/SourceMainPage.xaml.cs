@@ -1,5 +1,8 @@
 ﻿using Architecture.Presentation.ViewModels.Source;
 using Syncfusion.UI.Xaml.Grid;
+using System;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -23,14 +26,22 @@ namespace Architecture.Presentation.Views.Source
 
         private async void SfDataGrid_OnRecordDeleting(object sender, RecordDeletingEventArgs e)
         {
-            var itemToDelete = e.Items[0];
+            var itemToDelete = e.Items[0] as Data.Entities.Source;
 
-            await _viewModel.DeleteSource(itemToDelete);
+            if (await Confirm($"Вы уверены, что хотите удалить упоминание {itemToDelete?.Title}?",
+                $"Подтверждение удаления {itemToDelete?.Title}"))
+            {
+                await _viewModel.DeleteSource(itemToDelete);
+            }
         }
 
         private async void DeleteRowFlyoutItem_OnClick(object sender, RoutedEventArgs e)
         {
             var itemToDelete = _viewModel.SelectedTableItem;
+
+            if (!await Confirm($"Вы уверены, что хотите удалить упоминание {itemToDelete.Title}?",
+                "Подтверждение удаления"))
+                return;
 
             await _viewModel.DeleteSource(itemToDelete);
         }
@@ -54,6 +65,24 @@ namespace Architecture.Presentation.Views.Source
             var itemToAdd = _viewModel.SelectedTableItem;
 
             _viewModel.AddArchitectureSource(itemToAdd);
+        }
+
+        private async Task<bool> Confirm(string message, string title)
+        {
+            bool answer = false;
+
+            MessageDialog msgDialog = new MessageDialog(message, title);
+
+            //OK Button
+            UICommand okBtn = new UICommand("OK") { Invoked = command => answer = true };
+            msgDialog.Commands.Add(okBtn);
+
+            //Cancel Button
+            UICommand cancelBtn = new UICommand("Cancel") { Invoked = command => answer = false };
+            msgDialog.Commands.Add(cancelBtn);
+
+            await msgDialog.ShowAsync();
+            return answer;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
