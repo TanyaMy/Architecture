@@ -1,19 +1,10 @@
 ﻿using Architecture.Presentation.ViewModels.Repair;
 using Syncfusion.UI.Xaml.Grid;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Threading.Tasks;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -35,14 +26,23 @@ namespace Architecture.Presentation.Views.Repair
 
         private async void SfDataGrid_OnRecordDeleting(object sender, RecordDeletingEventArgs e)
         {
-            var itemToDelete = e.Items[0];
+            var itemToDelete = e.Items[0] as Data.Entities.Repair;
 
-            await _viewModel.DeleteRepair(itemToDelete);
+
+            if (await Confirm($"Вы уверены, что хотите удалить реставрацию {itemToDelete?.RestorationKind} для сооружения {itemToDelete?.Architecture.Title}?",
+                $"Подтверждение удаления {itemToDelete?.RestorationKind}"))
+            {
+                await _viewModel.DeleteRepair(itemToDelete);
+            }
         }
 
         private async void DeleteRowFlyoutItem_OnClick(object sender, RoutedEventArgs e)
         {
             var itemToDelete = _viewModel.SelectedTableItem;
+
+            if (!await Confirm($"Вы уверены, что хотите удалить реставрацию {itemToDelete?.RestorationKind} для сооружения {itemToDelete?.Architecture.Title}?",
+                "Подтверждение удаления"))
+                return;
 
             await _viewModel.DeleteRepair(itemToDelete);
         }
@@ -54,5 +54,27 @@ namespace Architecture.Presentation.Views.Repair
             _viewModel.EditRepair(itemToEdit);
         }
 
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            SfDataGrid.ClearFilters();
+        }
+
+        private async Task<bool> Confirm(string message, string title)
+        {
+            bool answer = false;
+
+            MessageDialog msgDialog = new MessageDialog(message, title);
+
+            //OK Button
+            UICommand okBtn = new UICommand("OK") { Invoked = command => answer = true };
+            msgDialog.Commands.Add(okBtn);
+
+            //Cancel Button
+            UICommand cancelBtn = new UICommand("Cancel") { Invoked = command => answer = false };
+            msgDialog.Commands.Add(cancelBtn);
+
+            await msgDialog.ShowAsync();
+            return answer;
+        }
     }
 }

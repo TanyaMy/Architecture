@@ -37,10 +37,18 @@
             Foreground="DarkBlue"
             Text="Упоминания" />
 
+        <Button
+            Margin="0,0,60,0"
+            HorizontalAlignment="Right"
+            Background="LightBlue"
+            Click="ButtonBase_OnClick"
+            Content="Сбросить фильтры" />
+
         <syncfusion:SfDataGrid
+            x:Name="SfDataGrid"
             Grid.Row="1"
             Margin="10"
-            AllowDeleting="True"
+            AllowDeleting="False"
             AllowFiltering="True"
             AutoGenerateColumns="False"
             ColumnSizer="Star"
