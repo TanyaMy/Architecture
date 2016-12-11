@@ -26,6 +26,7 @@ namespace Architecture.Presentation.ViewModels.Repair
         private List<RestorationKind> _restorationKindsList;
 
         private List<ArchitecturesNeedRepairModel> _repairsList;
+        private object _bindingList;
 
         public RepairAutomatisationViewModel(
            IArchitecturesManager architecturesManager,
@@ -53,6 +54,12 @@ namespace Architecture.Presentation.ViewModels.Repair
         {
             get { return _repairsList; }
             set { Set(() => RepairsList, ref _repairsList, value); }
+        }
+
+        public object BindingList
+        {
+            get { return _bindingList; }
+            set { Set(() => BindingList, ref _bindingList, value); }
         }
 
         private async void CalcAutomatisation()
@@ -102,24 +109,10 @@ namespace Architecture.Presentation.ViewModels.Repair
                 resultList.Add(tmpCollection);
             }
 
-
-            var xxx = new List<ArchitecturesNeedRepairModel>();
-
-            foreach (var v in resultList)
-            {
-                xxx.AddRange(v);
-                xxx.Add(new ArchitecturesNeedRepairModel
-                {
-                    ArchitectureId = 0,
-                    ArchitectureTitle = "",
-                    ArchitectureState = State.Normal,
-                    RepairCost = 0,
-                    RestorationKind = RestorationKind.Целостная,
-                    Volume = 0
-                });
-            }
-
-            RepairsList = xxx;
+            int counter = 1;
+            BindingList = resultList
+                .Select(x => new {Key = counter++, Value = x})
+                .GroupBy(x => new {Key = x.Key, Count = x.Value.Count, Total =x.Value.Sum(y => y.RepairCost), Remains = AvailableSum - x.Value.Sum(y => y.RepairCost), Repairs = x.Value}  );
         }
 
 

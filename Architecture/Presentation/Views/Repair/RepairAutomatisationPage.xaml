@@ -93,30 +93,53 @@
             VerticalContentAlignment="Center"
             AllowFiltering="True"
             AutoGenerateColumns="False"
+            AutoGenerateRelations="False"
             ColumnSizer="Star"
-            ItemsSource="{Binding RepairsList, Mode=TwoWay}"
-            SelectionMode="None">
-
+            ItemsSource="{Binding BindingList, Mode=TwoWay}"
+            SelectionMode="Single">
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn
-                    HeaderText="Название сооружения"
-                    MappingName="ArchitectureTitle"
+                    HeaderText="Количество сооружений"
+                    MappingName="Key.Count"
                     TextAlignment="Center" />
                 <syncfusion:GridTextColumn
-                    HeaderText="Состояние сооружения"
-                    MappingName="ArchitectureState"
+                    HeaderText="Всего"
+                    MappingName="Key.Total"
                     TextAlignment="Center" />
                 <syncfusion:GridTextColumn
-                    HeaderText="Вид реставрации"
-                    MappingName="RestorationKind"
-                    TextAlignment="Center" />
-                <syncfusion:GridTextColumn
-                    HeaderText="Стоимость ремонта"
-                    MappingName="RepairCost"
+                    HeaderText="Остаток"
+                    MappingName="Key.Remains"
                     TextAlignment="Center" />
             </syncfusion:SfDataGrid.Columns>
 
+            <syncfusion:SfDataGrid.DetailsViewDefinition>
+                <syncfusion:GridViewDefinition RelationalColumn="Key.Repairs">
+                    <syncfusion:GridViewDefinition.DataGrid>
+                        <syncfusion:SfDataGrid
+                            ColumnSizer="Star"
+                            AutoGenerateColumns="False">
+                            <syncfusion:SfDataGrid.Columns>
+                                <syncfusion:GridTextColumn
+                                    HeaderText="Название сооружения"
+                                    MappingName="ArchitectureTitle"
+                                    TextAlignment="Center" />
+                                <syncfusion:GridTextColumn
+                                    HeaderText="Состояние сооружения"
+                                    MappingName="ArchitectureState"
+                                    TextAlignment="Center" />
+                                <syncfusion:GridTextColumn
+                                    HeaderText="Вид реставрации"
+                                    MappingName="RestorationKind"
+                                    TextAlignment="Center" />
+                                <syncfusion:GridTextColumn
+                                    HeaderText="Стоимость ремонта"
+                                    MappingName="RepairCost"
+                                    TextAlignment="Center" />
+                            </syncfusion:SfDataGrid.Columns>
+                        </syncfusion:SfDataGrid>
+                    </syncfusion:GridViewDefinition.DataGrid>
+                </syncfusion:GridViewDefinition>
+            </syncfusion:SfDataGrid.DetailsViewDefinition>
         </syncfusion:SfDataGrid>
-
     </Grid>
 </Page>
