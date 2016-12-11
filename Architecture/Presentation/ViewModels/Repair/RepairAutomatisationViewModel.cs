@@ -1,7 +1,6 @@
 ﻿using Architecture.Data.Entities;
 using Architecture.Managers.Interfaces;
-using Architecture.Presentation.Helpers.Interfaces;
-using Architecture.Presentation.Models;
+using Architecture.Presentation.Helpers.Interfaces;using Architecture.Presentation.Models;
 using Arcitecture.Presentation.ViewModels.Common;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
@@ -20,6 +19,7 @@ namespace Architecture.Presentation.ViewModels.Repair
         private readonly ICustomNavigationService _customNavigationService;
         private readonly IArchitecturesManager _architecturesManager;
         private readonly IRestorationsManager _restorationsManager;
+        private readonly IRepairsManager _repairsManager;
 
         private List<Data.Entities.Architecture> _architectures;
         private List<Data.Entities.Restoration> _restorations;
@@ -29,10 +29,12 @@ namespace Architecture.Presentation.ViewModels.Repair
 
         public RepairAutomatisationViewModel(
            IArchitecturesManager architecturesManager,
-           IRestorationsManager restorationsManager)
+           IRestorationsManager restorationsManager,
+           IRepairsManager repairsManager)
         {
             _architecturesManager = architecturesManager;
             _restorationsManager = restorationsManager;
+            _repairsManager = repairsManager;
 
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("RepairInternal");
 
@@ -56,21 +58,21 @@ namespace Architecture.Presentation.ViewModels.Repair
         private async void CalcAutomatisation()
         {
             RepairsList = await LoadCombinations();
+            RepairsList = RepairsList.Where(x => x.RepairCost <= AvailableSum).OrderByDescending(x => x.RepairCost).ToList();
 
-            RepairsList.Sort((x, y) => Convert.ToInt32(y.RepairCost - x.RepairCost));
-
-            var resultList = new List<List<ArchitecturesNeedRepairModel>>(); 
-
+            var resultList = new List<List<ArchitecturesNeedRepairModel>>();
+            var tmpCollection = new List<ArchitecturesNeedRepairModel>();
             for (int i = 0; i < RepairsList.Count; i++)
             {
-                if (RepairsList[i].RepairCost > AvailableSum)
+                tmpCollection = new List<ArchitecturesNeedRepairModel>();
+                if (RepairsList[i].RepairCost <= AvailableSum)
                 {
-                    continue;
+                    tmpCollection.Add(RepairsList[i]);
                 }
 
-                var tmpCollection = new List<ArchitecturesNeedRepairModel> {RepairsList[i]};
+                int holdJPosition = i + 1;
 
-                for (int j = i + 1, holdJ = j; j < RepairsList.Count; j++)
+                for (int j = holdJPosition; j < RepairsList.Count; j++)
                 {
                     if (tmpCollection.Sum(x => x.RepairCost) + RepairsList[j].RepairCost <= AvailableSum)
                     {
@@ -81,25 +83,25 @@ namespace Architecture.Presentation.ViewModels.Repair
                     {
                         if (tmpCollection.Count > 0)
                         {
-                            if(resultList.Count == 0)
-                                resultList.Add(tmpCollection);
-                            else
+                            if (CheckIfContains(resultList, tmpCollection))
                             {
-                                if(CheckIfContains(resultList, tmpCollection))
-                                    continue;
-                                else
-                                    resultList.Add(tmpCollection);
-                            }                            
+                                continue;
+                            }
+
+                            resultList.Add(tmpCollection);
                         }
 
-                        int tmp = holdJ;
-                        holdJ = j;
-                        j = tmp + 1;
+                        j = holdJPosition++;
 
                         tmpCollection = new List<ArchitecturesNeedRepairModel> { RepairsList[i] };
                     }
                 }
             }
+            if (!CheckIfContains(resultList, tmpCollection))
+            {
+                resultList.Add(tmpCollection);
+            }
+
 
             var xxx = new List<ArchitecturesNeedRepairModel>();
 
@@ -133,7 +135,11 @@ namespace Architecture.Presentation.ViewModels.Repair
         {
             var tmpList = new List<ArchitecturesNeedRepairModel>();
 
-            var needRestorationList = _architectures.Where(a => a.State == State.Bad || a.State == State.Awful)
+            var repairs = await _repairsManager.GetRepairs();
+            var needRestorationList = _architectures
+                .Where(a => 
+                    (a.State == State.Bad || a.State == State.Awful) 
+                  && !repairs.Any(x => x.ArchitectureId == a.Id && (x.RestorationDate == null || x.RestorationDate.Value > DateTime.Now)))
                 .Select(a => new ArchitecturesNeedRepairModel
                 {
                     ArchitectureTitle = a.Title,
@@ -170,14 +176,11 @@ namespace Architecture.Presentation.ViewModels.Repair
         {
             foreach (var el in mainList)
             {
-                if (el.Count != innerList.Count)
-                    continue;
-
-                var tmpCol = new List<T>(el);
-                tmpCol.RemoveAll(innerList.Contains);
-
-                if (tmpCol.Count == 0)
+                if ((el.Count >= innerList.Count && el.Except(innerList).Count() == el.Count - innerList.Count)
+                 || (el.Count < innerList.Count && innerList.Except(el).Count() == innerList.Count - el.Count))
+                {
                     return true;
+                }
             }
             return false;
         }
