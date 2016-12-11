@@ -57,7 +57,7 @@ namespace Architecture
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             //await DbInitializer.Seed();
 
@@ -93,6 +93,8 @@ namespace Architecture
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+
+            await DbInitializer.Seed();
         }
 
         /// <summary>

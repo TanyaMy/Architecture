@@ -51,7 +51,7 @@ namespace Architecture.Presentation.ViewModels.Repair
             if (rep == null)
                 return;
 
-            await _repairsManager.RemoveRepair(rep.ArchitectureId, rep.RestorationKind, rep.RestorationDate);
+            await _repairsManager.RemoveRepair(rep.ArchitectureId, rep.RestorationKind, rep.RestorationDate.Value);
 
             RepairList.Remove(rep);
         }

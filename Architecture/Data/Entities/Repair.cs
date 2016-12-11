@@ -26,10 +26,8 @@ namespace Architecture.Data.Entities
         public int ArchitectureId { get; set; }
         public Architecture Architecture { get; set; }
 
-        public DateTime RestorationDate { get; set; }
+        public DateTime? RestorationDate { get; set; }
 
         public double RestorationCost { get; set; }
-
-        //public DateTime ScheduledFor { get; set; }
     }
 }

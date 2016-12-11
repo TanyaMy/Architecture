@@ -39,7 +39,7 @@ namespace Architecture.Managers
             await FillRepairs();
         }
 
-        private async static Task FillArchitects()
+        private static async Task FillArchitects()
         {
             IList<Architect> architects = (await _architectsManager.GetArchitects()).ToList();
 
@@ -47,19 +47,19 @@ namespace Architecture.Managers
                 return;
 
             await _architectsManager.AddArchitect(
-                new Architect("Джон", "Петров", "Ukraine", DateTime.Now.AddYears(-50), DateTime.Now));
+                new Architect("Джон", "Петров", "Ukraine", DateTime.Now.AddYears(-50).Year, DateTime.Now.Year));
 
             await _architectsManager.AddArchitect(
-                new Architect("Андрей", "Столовый", "Russia", DateTime.Now.AddYears(-30), DateTime.Now));
+                new Architect("Андрей", "Столовый", "Russia", DateTime.Now.AddYears(-30).Year, DateTime.Now.Year));
 
             await _architectsManager.AddArchitect(
-                new Architect("Кирилл", "Справочный", "Ukraine", DateTime.Now.AddYears(-50), DateTime.Now));
+                new Architect("Кирилл", "Справочный", "Ukraine", DateTime.Now.AddYears(-50).Year, DateTime.Now.Year));
 
             await _architectsManager.AddArchitect(
-                new Architect("Никита", "Цыбусов", "Ukraine", DateTime.Now.AddYears(-50), DateTime.Now));
+                new Architect("Никита", "Цыбусов", "Ukraine", DateTime.Now.AddYears(-50).Year, DateTime.Now.Year));
         }
 
-        private async static Task FillStyles()
+        private static async Task FillStyles()
         {
             IList<Style> styles = (await _stylesManager.GetStyles()).ToList();
 
@@ -75,7 +75,7 @@ namespace Architecture.Managers
 
         }
 
-        private async static Task FillSources()
+        private static async Task FillSources()
         {
             IList<Source> sources = (await _sourcesManager.GetSources()).ToList();
 
@@ -91,7 +91,7 @@ namespace Architecture.Managers
             await _sourcesManager.AddSource(new Source(SourceKind.Book, "Source7", "Author7", 1122));
         }
 
-        private async static Task FillArchitectures()
+        private static async Task FillArchitectures()
         {
             IList<ArchitectureModel> architectures = (await _architecturesManager.GetArchitectures()).ToList();
             IList<Architect> architects = (await _architectsManager.GetArchitects()).ToList();
@@ -130,7 +130,7 @@ namespace Architecture.Managers
 
         }
 
-        private async static Task FillRestorations()
+        private static async Task FillRestorations()
         {
             IList<Restoration> restorations = (await _restorationsManager.GetRestorations()).ToList();
 
@@ -138,11 +138,11 @@ namespace Architecture.Managers
                 return;
 
             await _restorationsManager.AddRestoration(new Restoration(
-                RestorationKind.Restoration1, "Test1", 11));
+                RestorationKind.Консервация, "Test1", 11));
             await _restorationsManager.AddRestoration(new Restoration(
-                RestorationKind.Restoration2, "Test2", 12));
+                RestorationKind.Целостная, "Test2", 12));
             await _restorationsManager.AddRestoration(new Restoration(
-                RestorationKind.Restoration3, "Test3", 144));
+                RestorationKind.Косметическая, "Test3", 144));
 
         }
 
@@ -160,19 +160,19 @@ namespace Architecture.Managers
 
             await _repairsManager.AddRepair(
                 new Repair(
-                    RestorationKind.Restoration1,
+                    RestorationKind.Консервация,
                     architectures[architecturesIndex].Id,
                     DateTime.Now.AddMonths(-20),
                     22222));
             await _repairsManager.AddRepair(
                 new Repair(
-                    RestorationKind.Restoration2,
+                    RestorationKind.Консервация,
                     architectures[architecturesIndex].Id,
                     DateTime.Now.AddMonths(-20),
                     22222));
             await _repairsManager.AddRepair(
                 new Repair(
-                    RestorationKind.Restoration3,
+                    RestorationKind.Консервация,
                     architectures[architecturesIndex].Id,
                     DateTime.Now.AddMonths(-20),
                     22222));
