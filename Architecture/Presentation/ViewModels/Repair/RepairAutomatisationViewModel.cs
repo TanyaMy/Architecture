@@ -26,7 +26,7 @@ namespace Architecture.Presentation.ViewModels.Repair
         private List<RestorationKind> _restorationKindsList;
 
         private List<ArchitecturesNeedRepairModel> _repairsList;
-        private object _bindingList;
+        private IEnumerable<IGrouping<AutomatisationListItem2, AutomatisationListItem1>> _combinations;
 
         public RepairAutomatisationViewModel(
            IArchitecturesManager architecturesManager,
@@ -41,52 +41,78 @@ namespace Architecture.Presentation.ViewModels.Repair
 
             LoadData();
 
-            LoadCombinations();
-
             CalcAutomatisationCommand = new RelayCommand(CalcAutomatisation);
         }
 
         public ICommand CalcAutomatisationCommand { get; set; }
 
         public double AvailableSum { get; set; }
-
-        public List<ArchitecturesNeedRepairModel> RepairsList
+        
+        public IEnumerable<IGrouping<AutomatisationListItem2, AutomatisationListItem1>> Combinations
         {
-            get { return _repairsList; }
-            set { Set(() => RepairsList, ref _repairsList, value); }
+            get { return _combinations; }
+            set { Set(() => Combinations, ref _combinations, value); }
         }
 
-        public object BindingList
+        public IGrouping<AutomatisationListItem2, AutomatisationListItem1> SelectedCombination { get; set; }
+        public ArchitecturesNeedRepairModel SelectedRepair { get; set; }
+
+        public async Task SaveCombinationToDatabase()
         {
-            get { return _bindingList; }
-            set { Set(() => BindingList, ref _bindingList, value); }
+            foreach (var autoRepairModel in SelectedCombination.Key.Repairs)
+            {
+                var repair = new Data.Entities.Repair()
+                {
+                    ArchitectureId = autoRepairModel.ArchitectureId,
+                    RestorationCost = autoRepairModel.RepairCost,
+                    RestorationKind = autoRepairModel.RestorationKind
+                };
+
+                await _repairsManager.AddRepair(repair);
+            }
+
+            CalcAutomatisation();
+        }
+
+        public async Task SaveSingleRepairToDatabase()
+        {
+            var repair = new Data.Entities.Repair()
+            {
+                ArchitectureId = SelectedRepair.ArchitectureId,
+                RestorationCost = SelectedRepair.RepairCost,
+                RestorationKind = SelectedRepair.RestorationKind
+            };
+
+            await _repairsManager.AddRepair(repair);
+
+            CalcAutomatisation();
         }
 
         private async void CalcAutomatisation()
         {
-            RepairsList = await LoadCombinations();
-            RepairsList = RepairsList.Where(x => x.RepairCost <= AvailableSum).OrderByDescending(x => x.RepairCost).ToList();
+            _repairsList = await LoadCombinations();
+            _repairsList = _repairsList.Where(x => x.RepairCost <= AvailableSum).OrderByDescending(x => x.RepairCost).ToList();
 
             var resultList = new List<List<ArchitecturesNeedRepairModel>>();
             var tmpCollection = new List<ArchitecturesNeedRepairModel>();
-            for (int i = 0; i < RepairsList.Count; i++)
+            for (int i = 0; i < _repairsList.Count; i++)
             {
                 tmpCollection = new List<ArchitecturesNeedRepairModel>();
-                if (RepairsList[i].RepairCost <= AvailableSum)
+                if (_repairsList[i].RepairCost <= AvailableSum)
                 {
-                    tmpCollection.Add(RepairsList[i]);
+                    tmpCollection.Add(_repairsList[i]);
                 }
 
                 int holdJPosition = i + 1;
 
-                for (int j = holdJPosition; j < RepairsList.Count; j++)
+                for (int j = holdJPosition; j < _repairsList.Count; j++)
                 {
-                    if (tmpCollection.Sum(x => x.RepairCost) + RepairsList[j].RepairCost <= AvailableSum)
+                    if (tmpCollection.Sum(x => x.RepairCost) + _repairsList[j].RepairCost <= AvailableSum)
                     {
-                        tmpCollection.Add(RepairsList[j]);
+                        tmpCollection.Add(_repairsList[j]);
                     }
 
-                    if (j == RepairsList.Count - 1)
+                    if (j == _repairsList.Count - 1)
                     {
                         if (tmpCollection.Count > 0)
                         {
@@ -100,7 +126,7 @@ namespace Architecture.Presentation.ViewModels.Repair
 
                         j = holdJPosition++;
 
-                        tmpCollection = new List<ArchitecturesNeedRepairModel> { RepairsList[i] };
+                        tmpCollection = new List<ArchitecturesNeedRepairModel> { _repairsList[i] };
                     }
                 }
             }
@@ -110,11 +136,17 @@ namespace Architecture.Presentation.ViewModels.Repair
             }
 
             int counter = 1;
-            BindingList = resultList
-                .Select(x => new {Key = counter++, Value = x})
-                .GroupBy(x => new {Key = x.Key, Count = x.Value.Count, Total =x.Value.Sum(y => y.RepairCost), Remains = AvailableSum - x.Value.Sum(y => y.RepairCost), Repairs = x.Value}  );
+            Combinations = resultList
+                .Select(x => new AutomatisationListItem1 {Key = counter++, ArchitecturesNeedRepairModels = x})
+                .GroupBy(x => new AutomatisationListItem2
+                    {
+                        Count = x.ArchitecturesNeedRepairModels.Count,
+                        Total = Convert.ToInt32(x.ArchitecturesNeedRepairModels.Sum(y => y.RepairCost)),
+                        Remains = Convert.ToInt32(AvailableSum - x.ArchitecturesNeedRepairModels.Sum(y => y.RepairCost)),
+                        Repairs = x.ArchitecturesNeedRepairModels
+                    }
+                );
         }
-
 
         private async void LoadData()
         {
@@ -132,7 +164,7 @@ namespace Architecture.Presentation.ViewModels.Repair
             var needRestorationList = _architectures
                 .Where(a => 
                     (a.State == State.Bad || a.State == State.Awful) 
-                  && !repairs.Any(x => x.ArchitectureId == a.Id && (x.RestorationDate == null || x.RestorationDate.Value > DateTime.Now)))
+                  && !repairs.Any(x => x.ArchitectureId == a.Id && ((x.RestorationDate != null && x.RestorationDate.Value > DateTime.Now) || x.RestorationDate == null)))
                 .Select(a => new ArchitecturesNeedRepairModel
                 {
                     ArchitectureTitle = a.Title,
@@ -153,16 +185,14 @@ namespace Architecture.Presentation.ViewModels.Repair
                     arch.Clone(architecture);
 
                     architecture.ArchitectureId = (tmpList.Count == 0) ? 1 : tmpList.Max(a => a.ArchitectureId) + 1;
-                    architecture.RepairCost = restoration.Outlays * arch.Volume;
+                    architecture.RepairCost = Convert.ToInt32(restoration.Outlays * arch.Volume);
                     architecture.RestorationKind = rest;
 
                     tmpList.Add(architecture);
                 }
             }
 
-            RepairsList = tmpList;
-
-            return RepairsList;
+            return _repairsList = tmpList;
         }
 
         public bool CheckIfContains<T>(List<List<T>> mainList, List<T> innerList)
@@ -185,7 +215,25 @@ namespace Architecture.Presentation.ViewModels.Repair
         public string ArchitectureTitle { get; set; }
         public State ArchitectureState { get; set; }
         public double Volume { get; set; }
-        public double RepairCost { get; set; }
+        public int RepairCost { get; set; }
         public RestorationKind RestorationKind { get; set; }
-    }    
+    }
+
+    public class AutomatisationListItem1
+    {
+        public int Key { get; set; }
+
+        public IList<ArchitecturesNeedRepairModel> ArchitecturesNeedRepairModels { get; set; }
+    }
+
+    public class AutomatisationListItem2
+    {
+        public int Count { get; set; }
+
+        public int Total { get; set; }
+
+        public int Remains { get; set; }
+
+        public IList<ArchitecturesNeedRepairModel> Repairs { get; set; }
+    }
 }

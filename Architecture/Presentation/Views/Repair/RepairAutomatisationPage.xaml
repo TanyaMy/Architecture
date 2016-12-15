@@ -95,8 +95,17 @@
             AutoGenerateColumns="False"
             AutoGenerateRelations="False"
             ColumnSizer="Star"
-            ItemsSource="{Binding BindingList, Mode=TwoWay}"
+            ItemsSource="{Binding Combinations, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedCombination, Mode=TwoWay}"
             SelectionMode="Single">
+            <syncfusion:SfDataGrid.RecordContextMenu>
+                <MenuFlyout>
+                    <MenuFlyout.Items>
+                        <MenuFlyoutItem Click="SaveCombination_OnClick" Text="Записать комбинацию в базу данных" />
+                    </MenuFlyout.Items>
+                </MenuFlyout>
+            </syncfusion:SfDataGrid.RecordContextMenu>
+
             <syncfusion:SfDataGrid.Columns>
                 <syncfusion:GridTextColumn
                     HeaderText="Количество сооружений"
@@ -116,8 +125,18 @@
                 <syncfusion:GridViewDefinition RelationalColumn="Key.Repairs">
                     <syncfusion:GridViewDefinition.DataGrid>
                         <syncfusion:SfDataGrid
+                            AutoGenerateColumns="False"
                             ColumnSizer="Star"
-                            AutoGenerateColumns="False">
+                            SelectedItem="{Binding SelectedRepair, Mode=TwoWay}"
+                            SelectionMode="None">
+                            <syncfusion:SfDataGrid.RecordContextMenu>
+                                <MenuFlyout>
+                                    <MenuFlyout.Items>
+                                        <MenuFlyoutItem Click="SaveSingle_OnClick" Text="Записать элемент в базу данных" />
+                                    </MenuFlyout.Items>
+                                </MenuFlyout>
+                            </syncfusion:SfDataGrid.RecordContextMenu>
+
                             <syncfusion:SfDataGrid.Columns>
                                 <syncfusion:GridTextColumn
                                     HeaderText="Название сооружения"

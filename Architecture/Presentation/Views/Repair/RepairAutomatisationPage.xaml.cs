@@ -31,5 +31,15 @@ namespace Architecture.Presentation.Views.Repair
 
             _viewModel = (RepairAutomatisationViewModel)DataContext;
         }
+        
+        private async void SaveCombination_OnClick(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.SaveCombinationToDatabase();
+        }
+
+        private async void SaveSingle_OnClick(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.SaveSingleRepairToDatabase();
+        }
     }
 }

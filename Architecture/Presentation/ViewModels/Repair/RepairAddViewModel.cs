@@ -46,8 +46,8 @@ namespace Architecture.Presentation.ViewModels.Repair
             _repair = _customNavigationService.CurrentPageParams as RepairModel;
 
             SaveCommand = _repair == null
-                ? new RelayCommand(async () => await AddRepair())
-                : new RelayCommand(async () => await UpdateRepair());
+                ? new RelayCommand(AddRepair)
+                : new RelayCommand(UpdateRepair);
 
             ActionText = _repair == null ? "Добавление" : "Редактирование";
             ButtonText = _repair == null ? "Добавить" : "Сохранить изменения";
@@ -108,7 +108,7 @@ namespace Architecture.Presentation.ViewModels.Repair
             set { Set(() => RestorationCost, ref _restorationCost, value); }
         }
 
-        private async Task AddRepair()
+        private async void AddRepair()
         {
             var repair = new RepairModel(RestorationKind, 
                 Architecture.Id, RestorationDate.DateTime, RestorationCost);
@@ -118,7 +118,7 @@ namespace Architecture.Presentation.ViewModels.Repair
             _customNavigationService.NavigateTo(PageKeys.RepairMain);
         }
 
-        private async Task UpdateRepair()
+        private async void UpdateRepair()
         {
             _repair.RestorationKind = RestorationKind;
             _repair.ArchitectureId = Architecture.Id;
