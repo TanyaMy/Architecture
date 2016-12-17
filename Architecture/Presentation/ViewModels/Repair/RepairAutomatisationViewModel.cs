@@ -1,10 +1,11 @@
 ﻿using Architecture.Data.Entities;
 using Architecture.Managers.Interfaces;
-using Architecture.Presentation.Helpers.Interfaces;using Architecture.Presentation.Models;
+using Architecture.Presentation.Helpers.Interfaces;
 using Arcitecture.Presentation.ViewModels.Common;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using System;
+using RepairModel = Architecture.Data.Entities.Repair;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -162,11 +163,11 @@ namespace Architecture.Presentation.ViewModels.Repair
             _restorationKindsList = Enum.GetValues(typeof(RestorationKind)).Cast<RestorationKind>().ToList();
         }
 
-        private async Task<List<RestorationKind>> GetRestorationKindByDateandArchId(int archId, DateTime restDate)
-        {
-            var repairs = await _repairsManager.GetRepairs();
+        private async Task<List<RestorationKind>> GetRestorationKindByDateandArchId(IList<RepairModel> reps,
+            int archId, DateTime restDate)
+        {          
             List<RestorationKind> list = new List<RestorationKind>();
-            foreach (var r in repairs)
+            foreach (var r in reps)
                 if (r.ArchitectureId != archId && r.RestorationDate != restDate)
                     list.Add(r.RestorationKind);
             return list;
@@ -182,7 +183,9 @@ namespace Architecture.Presentation.ViewModels.Repair
                 .Where(a => (a.State == State.Bad || a.State == State.Awful) 
                   && !repairs.Any(x => x.ArchitectureId == a.Id && x.RestorationDate.Year == 2500
                   && x.RestorationDate > DateTime.Now
-                  && (!GetRestorationKindByDateandArchId(a => a.Id, a.RestorationDate).Contains(x.RestorationKind)))
+                  && GetRestorationKindByDateandArchId(repairs
+                  .GetRestorationKindByDateandArchId(repairs, a.Id, x.RestorationDate) 
+                  .Contains(x.RestorationKind)))                
                 .Select(a => new ArchitecturesNeedRepairModel
                 {
                     ArchitectureId = a.Id,
