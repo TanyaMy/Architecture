@@ -183,8 +183,7 @@ namespace Architecture.Presentation.ViewModels.Repair
                 .Where(a => (a.State == State.Bad || a.State == State.Awful) 
                   && !repairs.Any(x => x.ArchitectureId == a.Id && x.RestorationDate.Year == 2500
                   && x.RestorationDate > DateTime.Now
-                  && GetRestorationKindByDateandArchId(repairs
-                  .GetRestorationKindByDateandArchId(repairs, a.Id, x.RestorationDate) 
+                  && GetRestorationKindByDateandArchId(repairs, a.Id, x.RestorationDate) 
                   .Contains(x.RestorationKind)))                
                 .Select(a => new ArchitecturesNeedRepairModel
                 {
