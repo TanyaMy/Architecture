@@ -27,6 +27,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private List<object> _architectureCountryStateList;
         private List<object> _architectureCountryStyleList;
         private List<object> _restorationKindList;
+        private List<object> _dateSumRepairList;
 
         private string _statisticsType;
 
@@ -40,6 +41,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
 
             _architectureCountryStateList = new List<object>();
             _architectureCountryStyleList = new List<object>();
+            _dateSumRepairList = new List<object>();
             DataList = new List<object>();
 
             LoadData();
@@ -55,7 +57,8 @@ namespace Architecture.Presentation.ViewModels.Architecture
         {
             "Состояние сооружений по странам",
             "Стиль сооружений по странам",
-            "Частота проведения разных видов реставрации"
+            "Частота проведения разных видов реставрации",
+            "Затраты по годам"
         };
 
     
@@ -82,6 +85,11 @@ namespace Architecture.Presentation.ViewModels.Architecture
                     case "Частота проведения разных видов реставрации":
                         {
                             DataList = _restorationKindList;
+                            break;
+                        }
+                    case "Затраты по годам":
+                        {
+                            DataList = _dateSumRepairList;
                             break;
                         }
                     default:
@@ -136,6 +144,23 @@ namespace Architecture.Presentation.ViewModels.Architecture
                     Вид_реставрации = f.Key.ToString(),
                     Количество_сооружений = f.Count()
                 }).ToList();
+
+
+            var groupedByDateList = _repairs.OrderBy(e => e.RestorationDate.Value.Year)
+                .GroupBy(ar => ar.RestorationDate.Value.Year);
+            foreach (var element in groupedByDateList)
+            {
+                var dateSumRepairList = element.GroupBy(e => e.RestorationDate.Value.Year)
+                    .Select(f1 => (object)new
+                    {
+                        Год_реставрации = element.Key.ToString(),
+                        Количество_ремонтов = element.Count(),
+                        Количество_сооружений = element.Select(ar => ar.ArchitectureId).Distinct().Count(),
+                        Затраченная_сумма = element.Sum(r => r.RestorationCost)
+                    });
+                foreach (var arch in dateSumRepairList)
+                    _dateSumRepairList.Add(arch);
+            }
         }
     }
 }
