@@ -162,6 +162,15 @@ namespace Architecture.Presentation.ViewModels.Repair
             _restorationKindsList = Enum.GetValues(typeof(RestorationKind)).Cast<RestorationKind>().ToList();
         }
 
+        private async Task<List<RestorationKind>> GetRestorationKindByDateandArchId(int archId, DateTime restDate)
+        {
+            var repairs = await _repairsManager.GetRepairs();
+            List<RestorationKind> list = new List<RestorationKind>();
+            foreach (var r in repairs)
+                if (r.ArchitectureId != archId && r.RestorationDate != restDate)
+                    list.Add(r.RestorationKind);
+            return list;
+        }
 
         private async Task<List<ArchitecturesNeedRepairModel>> LoadCombinations()
         {
@@ -171,7 +180,9 @@ namespace Architecture.Presentation.ViewModels.Repair
             var repairs = await _repairsManager.GetRepairs();
             var needRestorationList = _architectures
                 .Where(a => (a.State == State.Bad || a.State == State.Awful) 
-                  && !repairs.Any(x => x.ArchitectureId == a.Id && x.RestorationDate.Year == 2500))
+                  && !repairs.Any(x => x.ArchitectureId == a.Id && x.RestorationDate.Year == 2500
+                  && x.RestorationDate > DateTime.Now
+                  && (!GetRestorationKindByDateandArchId(a => a.Id, a.RestorationDate).Contains(x.RestorationKind)))
                 .Select(a => new ArchitecturesNeedRepairModel
                 {
                     ArchitectureId = a.Id,
