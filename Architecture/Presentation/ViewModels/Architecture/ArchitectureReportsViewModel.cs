@@ -30,8 +30,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private List<object> _architectureStateList;
         private List<object> _oldArchitectureList;
         private List<object> _repairList;
-        private string _repairString;      
-        private string _oldArchString;
+        private string _repairString;
         private string _archStateString;
 
         private string _reportType;
@@ -63,7 +62,6 @@ namespace Architecture.Presentation.ViewModels.Architecture
         public IList<string> ReportTypes => new List<string>
         {
             "Ремонты и затраты за 10 лет",
-            "Наистарейшие сооружения",
             "Состояние сооружений"
         };      
 
@@ -81,14 +79,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
                             DataList = _repairList;
                             DataString = _repairString;
                             break;
-                    }
-                    case "Наистарейшие сооружения":
-                    {
-                            DataList = _oldArchitectureList;
-                            DataString = _oldArchString;
-                            break;
-                    }
-                        
+                    }     
                     case "Состояние сооружений":
                     {
                             DataList = _architectureStateList;
@@ -107,20 +98,6 @@ namespace Architecture.Presentation.ViewModels.Architecture
         {
             _architectures = (await _architecturesManager.GetArchitectures()).ToList();
             _repairs = (await _repairsManager.GetRepairs()).ToList();
-
-
-            _oldArchitectureList = _architectures.Where(a => a.CreationYear < 1800)
-                                                 .OrderByDescending(a => a.CreationYear)
-                                                 .Select(ar => (object)new
-                                                 {
-                                                     Название = ar.Title,
-                                                     Год_создания = ar.CreationYear
-                                                 }).ToList();
-            
-            _oldArchString = "Всего сооружений старше 1800 года: " + _oldArchitectureList.Count();
-
-
-
 
             _architectureStateList = _architectures.Select(ar => (object)new
                                     {
