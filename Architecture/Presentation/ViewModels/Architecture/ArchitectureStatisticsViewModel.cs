@@ -148,11 +148,11 @@ namespace Architecture.Presentation.ViewModels.Architecture
                 }).ToList();
 
 
-            var groupedByDateList = _repairs.OrderBy(e => e.RestorationDate.Value.Year)
-                .GroupBy(ar => ar.RestorationDate.Value.Year);
+            var groupedByDateList = _repairs.OrderBy(e => e.RestorationDate.Year)
+                .GroupBy(ar => ar.RestorationDate.Year);
             foreach (var element in groupedByDateList)
             {
-                var dateSumRepairList = element.GroupBy(e => e.RestorationDate.Value.Year)
+                var dateSumRepairList = element.GroupBy(e => e.RestorationDate.Year)
                     .Select(f1 => (object)new
                     {
                         Год_реставрации = element.Key.ToString(),
