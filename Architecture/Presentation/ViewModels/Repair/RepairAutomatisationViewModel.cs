@@ -55,7 +55,6 @@ namespace Architecture.Presentation.ViewModels.Repair
         }
 
         public IGrouping<AutomatisationListItem2, AutomatisationListItem1> SelectedCombination { get; set; }
-        public ArchitecturesNeedRepairModel SelectedRepair { get; set; }
 
         public async Task SaveCombinationToDatabase()
         {
@@ -65,7 +64,8 @@ namespace Architecture.Presentation.ViewModels.Repair
                 {
                     ArchitectureId = autoRepairModel.ArchitectureId,
                     RestorationCost = autoRepairModel.RepairCost,
-                    RestorationKind = autoRepairModel.RestorationKind
+                    RestorationKind = autoRepairModel.RestorationKind,
+                    RestorationDate = new DateTime(2500, 1, 1)
                 };
 
                 await _repairsManager.AddRepair(repair);
@@ -74,15 +74,22 @@ namespace Architecture.Presentation.ViewModels.Repair
             CalcAutomatisation();
         }
 
-        public async Task SaveSingleRepairToDatabase()
+        public async Task SaveSingleRepairToDatabase(ArchitecturesNeedRepairModel architecturesNeedRepairModel)
         {
-            var repair = new Data.Entities.Repair()
+            Data.Entities.Repair repair = new Data.Entities.Repair
             {
-                ArchitectureId = SelectedRepair.ArchitectureId,
-                RestorationCost = SelectedRepair.RepairCost,
-                RestorationKind = SelectedRepair.RestorationKind
+                ArchitectureId = architecturesNeedRepairModel.ArchitectureId,
+                RestorationCost = architecturesNeedRepairModel.RepairCost,
+                RestorationKind = architecturesNeedRepairModel.RestorationKind,
+                RestorationDate = new DateTime(2500, 1, 1)
             };
 
+            await SaveSingleRepairToDatabase(repair);
+        }
+
+        public async Task SaveSingleRepairToDatabase(Data.Entities.Repair repair)
+        {
+            repair.RestorationDate = new DateTime(2500, 1, 1);
             await _repairsManager.AddRepair(repair);
 
             CalcAutomatisation();
@@ -159,14 +166,15 @@ namespace Architecture.Presentation.ViewModels.Repair
         private async Task<List<ArchitecturesNeedRepairModel>> LoadCombinations()
         {
             var tmpList = new List<ArchitecturesNeedRepairModel>();
+            _restorations = (await _restorationsManager.GetRestorations()).ToList();
 
             var repairs = await _repairsManager.GetRepairs();
             var needRestorationList = _architectures
-                .Where(a => 
-                    (a.State == State.Bad || a.State == State.Awful) 
-                  && !repairs.Any(x => x.ArchitectureId == a.Id && ((x.RestorationDate != null && x.RestorationDate.Value > DateTime.Now) || x.RestorationDate == null)))
+                .Where(a => (a.State == State.Bad || a.State == State.Awful) 
+                  && !repairs.Any(x => x.ArchitectureId == a.Id && x.RestorationDate.Year == 2500))
                 .Select(a => new ArchitecturesNeedRepairModel
                 {
+                    ArchitectureId = a.Id,
                     ArchitectureTitle = a.Title,
                     ArchitectureState = a.State,
                     Volume = a.Height * a.Square
@@ -184,7 +192,7 @@ namespace Architecture.Presentation.ViewModels.Repair
                     ArchitecturesNeedRepairModel architecture = new ArchitecturesNeedRepairModel();
                     arch.Clone(architecture);
 
-                    architecture.ArchitectureId = (tmpList.Count == 0) ? 1 : tmpList.Max(a => a.ArchitectureId) + 1;
+                    architecture.ArchitectureId = arch.ArchitectureId;
                     architecture.RepairCost = Convert.ToInt32(restoration.Outlays * arch.Volume);
                     architecture.RestorationKind = rest;
 

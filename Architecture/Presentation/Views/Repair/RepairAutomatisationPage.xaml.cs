@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Syncfusion.UI.Xaml.Grid;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,6 +25,7 @@ namespace Architecture.Presentation.Views.Repair
     public sealed partial class RepairAutomatisationPage : Page
     {
         private readonly RepairAutomatisationViewModel _viewModel;
+        public ArchitecturesNeedRepairModel SelectedAutoItem { get; set; }
 
         public RepairAutomatisationPage()
         {
@@ -39,7 +41,13 @@ namespace Architecture.Presentation.Views.Repair
 
         private async void SaveSingle_OnClick(object sender, RoutedEventArgs e)
         {
-            await _viewModel.SaveSingleRepairToDatabase();
+            await _viewModel.SaveSingleRepairToDatabase(SelectedAutoItem);
+        }
+
+        private void SfDataGrid_OnSelectionChanged(object sender, GridSelectionChangedEventArgs e)
+        {
+            GridRowInfo tmpObj = (e.AddedItems.FirstOrDefault()) as GridRowInfo;
+            SelectedAutoItem = tmpObj?.RowData as ArchitecturesNeedRepairModel;
         }
     }
 }

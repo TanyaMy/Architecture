@@ -127,7 +127,7 @@
                         <syncfusion:SfDataGrid
                             AutoGenerateColumns="False"
                             ColumnSizer="Star"
-                            SelectedItem="{Binding SelectedRepair, Mode=TwoWay}"
+                            SelectionChanged="SfDataGrid_OnSelectionChanged"
                             SelectionMode="None">
                             <syncfusion:SfDataGrid.RecordContextMenu>
                                 <MenuFlyout>

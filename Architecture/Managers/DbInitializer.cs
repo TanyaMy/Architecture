@@ -110,15 +110,15 @@ namespace Architecture.Managers
 
             await _architecturesManager.AddArchitecture(new ArchitectureModel(
                 "Architecture1", 1432, "Ukraine", "Kharkov", "Address1", 172, 272,
-                State.Normal, architects[architectsIndex1].Id, styles[stylesIndex1].Id));
+                State.Bad, architects[architectsIndex1].Id, styles[stylesIndex1].Id));
 
             await _architecturesManager.AddArchitecture(new ArchitectureModel(
                 "Architecture2", 1112, "Ukraine", "Odessa", "Address2", 122, 112,
-                State.Normal, architects[architectsIndex2].Id, styles[stylesIndex2].Id));
+                State.Bad, architects[architectsIndex2].Id, styles[stylesIndex2].Id));
 
             await _architecturesManager.AddArchitecture(new ArchitectureModel(
                 "Architecture3", 1453, "Ukraine", "Kharkov", "Address3", 144, 254,
-                State.Normal, architects[architectsIndex3].Id, styles[stylesIndex3].Id));
+                State.Great, architects[architectsIndex3].Id, styles[stylesIndex3].Id));
 
             await _architecturesManager.AddArchitecture(new ArchitectureModel(
                 "Architecture4", 1112, "Ukraine", "Kiev", "Address4", 123, 343,
@@ -126,7 +126,7 @@ namespace Architecture.Managers
 
             await _architecturesManager.AddArchitecture(new ArchitectureModel(
                 "Architecture5", 1919, "Ukraine", "Kharkov", "Address5", 143, 123,
-                State.Normal, architects[architectsIndex3].Id, styles[stylesIndex2].Id));
+                State.Awful, architects[architectsIndex3].Id, styles[stylesIndex2].Id));
 
         }
 
