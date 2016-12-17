@@ -25,7 +25,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private List<RepairModel> _repairs;
 
         private List<object> _architectureCountryStateList;
-        private List<object> _architectureCountryStyleList;
+        private List<object> _architectureArchStyleList;
         private List<object> _restorationKindList;
         private List<object> _dateSumRepairList;
 
@@ -40,7 +40,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("ArchitectureInternal");
 
             _architectureCountryStateList = new List<object>();
-            _architectureCountryStyleList = new List<object>();
+            _architectureArchStyleList = new List<object>();
             _dateSumRepairList = new List<object>();
             DataList = new List<object>();
 
@@ -56,7 +56,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         public IList<string> StatisticsTypes => new List<string>
         {
             "Состояние сооружений по странам",
-            "Стиль сооружений по странам",
+            "Стиль сооружений по архитекторам",
             "Частота проведения разных видов реставрации",
             "Затраты по годам"
         };
@@ -76,9 +76,9 @@ namespace Architecture.Presentation.ViewModels.Architecture
                             DataList = _architectureCountryStateList;
                             break;
                         }
-                    case "Стиль сооружений по странам":
+                    case "Стиль сооружений по архитекторам":
                         {
-                            DataList = _architectureCountryStyleList;
+                            DataList = _architectureArchStyleList;
                             break;
                         }
 
@@ -123,18 +123,20 @@ namespace Architecture.Presentation.ViewModels.Architecture
             }
 
 
-        
-            foreach (var element in groupedByCountryList)
+            var groupedByArchList = _architectures.OrderBy(e => e.Architect.Surname)
+                .GroupBy(ar => ar.ArchitectId);
+            foreach (var element in groupedByArchList)
             {
-                var groupedByStyleList = element.GroupBy(e => e.Style.Title, e => e.StyleId)
+                var architectureArchStyleList = element.GroupBy(e => e.Style)
                     .Select(f1 => (object)new
                     {
-                        Страна = element.Key,
-                        Стиль = f1.Key,
+                        Архитектор = element.Key,
+                        Стиль = f1.Key, 
+                        Эпоха = f1.Key.Era,                   
                         Количество_сооружений = f1.Count()
                     });
-                foreach (var arch in groupedByStyleList)
-                    _architectureCountryStyleList.Add(arch);
+                foreach (var arch in architectureArchStyleList)
+                    _architectureArchStyleList.Add(arch);
             }
 
 
@@ -156,7 +158,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
                         Год_реставрации = element.Key.ToString(),
                         Количество_ремонтов = element.Count(),
                         Количество_сооружений = element.Select(ar => ar.ArchitectureId).Distinct().Count(),
-                        Затраченная_сумма = element.Sum(r => r.RestorationCost)
+                        Потраченная_сумма = element.Sum(r => r.RestorationCost)
                     });
                 foreach (var arch in dateSumRepairList)
                     _dateSumRepairList.Add(arch);
