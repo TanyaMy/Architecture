@@ -163,7 +163,7 @@ namespace Architecture.Presentation.ViewModels.Repair
             _restorationKindsList = Enum.GetValues(typeof(RestorationKind)).Cast<RestorationKind>().ToList();
         }
 
-        private async Task<List<RestorationKind>> GetRestorationKindByDateandArchId(IList<RepairModel> reps,
+        private List<RestorationKind> GetRestorationKindByDateandArchId(List<RepairModel> reps,
             int archId, DateTime restDate)
         {          
             List<RestorationKind> list = new List<RestorationKind>();
@@ -183,7 +183,7 @@ namespace Architecture.Presentation.ViewModels.Repair
                 .Where(a => (a.State == State.Bad || a.State == State.Awful) 
                   && !repairs.Any(x => x.ArchitectureId == a.Id && x.RestorationDate.Year == 2500
                   && x.RestorationDate > DateTime.Now
-                  && GetRestorationKindByDateandArchId(repairs, a.Id, x.RestorationDate) 
+                  && GetRestorationKindByDateandArchId(repairs.ToList(), a.Id, x.RestorationDate) 
                   .Contains(x.RestorationKind)))                
                 .Select(a => new ArchitecturesNeedRepairModel
                 {
