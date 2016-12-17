@@ -162,20 +162,20 @@ namespace Architecture.Managers
                 new Repair(
                     RestorationKind.Консервация,
                     architectures[architecturesIndex].Id,
-                    DateTime.Now.AddMonths(-20),
-                    22222));
+                    DateTime.Now.AddMonths(-20).Date,
+                    21111));
             await _repairsManager.AddRepair(
                 new Repair(
                     RestorationKind.Консервация,
                     architectures[architecturesIndex].Id,
-                    DateTime.Now.AddMonths(-20),
-                    22222));
+                    DateTime.Now.AddMonths(-19).AddDays(-1).Date,
+                    45555));
             await _repairsManager.AddRepair(
                 new Repair(
                     RestorationKind.Консервация,
                     architectures[architecturesIndex].Id,
-                    DateTime.Now.AddMonths(-20),
-                    22222));
+                    DateTime.Now.AddMonths(-20).AddDays(1).Date,
+                    99999));
         }
 
     }

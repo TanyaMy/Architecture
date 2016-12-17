@@ -20,7 +20,7 @@ namespace Architecture.Managers.Implementations
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitectures()
         {
             return _architecturesRepository.GetItemsAsync(x => 
-            x.Include(y => y.Architect).Include(y => y.Style));
+            x.Include(y => y.Architect).Include(y => y.Style).Include(y => y.Repairs));
         }
 
         public Task<IEnumerable<Data.Entities.Architecture>> GetArchitecturesByStyleId(int styleId)

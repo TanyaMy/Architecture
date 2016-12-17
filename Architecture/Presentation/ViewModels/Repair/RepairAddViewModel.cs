@@ -8,8 +8,8 @@ using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml;
 using RepairModel = Architecture.Data.Entities.Repair;
 
 namespace Architecture.Presentation.ViewModels.Repair
@@ -30,6 +30,7 @@ namespace Architecture.Presentation.ViewModels.Repair
         private RestorationKind _restorationKind;
         private DateTimeOffset _restorationDate;
         private double _restorationCost;
+        private readonly bool _isAddingMode;
 
 
         public RepairAddViewModel(
@@ -45,12 +46,14 @@ namespace Architecture.Presentation.ViewModels.Repair
 
             _repair = _customNavigationService.CurrentPageParams as RepairModel;
 
-            SaveCommand = _repair == null
+            _isAddingMode = _repair == null;
+
+            SaveCommand = _isAddingMode
                 ? new RelayCommand(AddRepair)
                 : new RelayCommand(UpdateRepair);
 
-            ActionText = _repair == null ? "Добавление" : "Редактирование";
-            ButtonText = _repair == null ? "Добавить" : "Сохранить изменения";
+            ActionText = _isAddingMode ? "Добавление" : "Редактирование";
+            ButtonText = _isAddingMode ? "Добавить" : "Сохранить изменения";
 
             InitData();
             SetupFields();
@@ -108,10 +111,12 @@ namespace Architecture.Presentation.ViewModels.Repair
             set { Set(() => RestorationCost, ref _restorationCost, value); }
         }
 
+        public bool IsAddingMode => _isAddingMode;
+
         private async void AddRepair()
         {
             var repair = new RepairModel(RestorationKind, 
-                Architecture.Id, RestorationDate.DateTime, RestorationCost);
+                Architecture.Id, RestorationDate.DateTime.Date, RestorationCost);
 
             await _repairsManager.AddRepair(repair);
 
@@ -120,13 +125,13 @@ namespace Architecture.Presentation.ViewModels.Repair
 
         private async void UpdateRepair()
         {
-            _repair.RestorationKind = RestorationKind;
-            _repair.ArchitectureId = Architecture.Id;
-            _repair.RestorationDate = RestorationDate.DateTime;
-            _repair.RestorationCost = RestorationCost;
+            var repair =
+                await _repairsManager.GetRepairById(Architecture.Id, RestorationKind, RestorationDate.DateTime.Date);
 
-            await _repairsManager.UpdateRepair(_repair);
+            repair.RestorationCost = RestorationCost;
 
+            await _repairsManager.UpdateRepair(repair);
+            
             _customNavigationService.NavigateTo(PageKeys.RepairMain);
         }
 

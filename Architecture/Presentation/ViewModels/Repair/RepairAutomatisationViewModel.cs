@@ -25,14 +25,15 @@ namespace Architecture.Presentation.ViewModels.Repair
         private List<Data.Entities.Architecture> _architectures;
         private List<Data.Entities.Restoration> _restorations;
         private List<RestorationKind> _restorationKindsList;
+        private List<RepairModel> _repairs;
 
         private List<ArchitecturesNeedRepairModel> _repairsList;
         private IEnumerable<IGrouping<AutomatisationListItem2, AutomatisationListItem1>> _combinations;
 
         public RepairAutomatisationViewModel(
-           IArchitecturesManager architecturesManager,
-           IRestorationsManager restorationsManager,
-           IRepairsManager repairsManager)
+            IArchitecturesManager architecturesManager,
+            IRestorationsManager restorationsManager,
+            IRepairsManager repairsManager)
         {
             _architecturesManager = architecturesManager;
             _restorationsManager = restorationsManager;
@@ -48,7 +49,7 @@ namespace Architecture.Presentation.ViewModels.Repair
         public ICommand CalcAutomatisationCommand { get; set; }
 
         public double AvailableSum { get; set; }
-        
+
         public IEnumerable<IGrouping<AutomatisationListItem2, AutomatisationListItem1>> Combinations
         {
             get { return _combinations; }
@@ -61,7 +62,7 @@ namespace Architecture.Presentation.ViewModels.Repair
         {
             foreach (var autoRepairModel in SelectedCombination.Key.Repairs)
             {
-                var repair = new Data.Entities.Repair()
+                var repair = new RepairModel()
                 {
                     ArchitectureId = autoRepairModel.ArchitectureId,
                     RestorationCost = autoRepairModel.RepairCost,
@@ -77,7 +78,7 @@ namespace Architecture.Presentation.ViewModels.Repair
 
         public async Task SaveSingleRepairToDatabase(ArchitecturesNeedRepairModel architecturesNeedRepairModel)
         {
-            Data.Entities.Repair repair = new Data.Entities.Repair
+            var repair = new RepairModel
             {
                 ArchitectureId = architecturesNeedRepairModel.ArchitectureId,
                 RestorationCost = architecturesNeedRepairModel.RepairCost,
@@ -88,7 +89,7 @@ namespace Architecture.Presentation.ViewModels.Repair
             await SaveSingleRepairToDatabase(repair);
         }
 
-        public async Task SaveSingleRepairToDatabase(Data.Entities.Repair repair)
+        public async Task SaveSingleRepairToDatabase(RepairModel repair)
         {
             repair.RestorationDate = new DateTime(2500, 1, 1);
             await _repairsManager.AddRepair(repair);
@@ -99,7 +100,8 @@ namespace Architecture.Presentation.ViewModels.Repair
         private async void CalcAutomatisation()
         {
             _repairsList = await LoadCombinations();
-            _repairsList = _repairsList.Where(x => x.RepairCost <= AvailableSum).OrderByDescending(x => x.RepairCost).ToList();
+            _repairsList =
+                _repairsList.Where(x => x.RepairCost <= AvailableSum).OrderByDescending(x => x.RepairCost).ToList();
 
             var resultList = new List<List<ArchitecturesNeedRepairModel>>();
             var tmpCollection = new List<ArchitecturesNeedRepairModel>();
@@ -134,7 +136,7 @@ namespace Architecture.Presentation.ViewModels.Repair
 
                         j = holdJPosition++;
 
-                        tmpCollection = new List<ArchitecturesNeedRepairModel> { _repairsList[i] };
+                        tmpCollection = new List<ArchitecturesNeedRepairModel> {_repairsList[i]};
                     }
                 }
             }
@@ -163,36 +165,22 @@ namespace Architecture.Presentation.ViewModels.Repair
             _restorationKindsList = Enum.GetValues(typeof(RestorationKind)).Cast<RestorationKind>().ToList();
         }
 
-        private List<RestorationKind> GetRestorationKindByDateandArchId(List<RepairModel> reps,
-            int archId, DateTime restDate)
-        {          
-            List<RestorationKind> list = new List<RestorationKind>();
-            foreach (var r in reps)
-                if (r.ArchitectureId != archId && r.RestorationDate != restDate)
-                    list.Add(r.RestorationKind);
-            return list;
-        }
-
         private async Task<List<ArchitecturesNeedRepairModel>> LoadCombinations()
         {
-            var tmpList = new List<ArchitecturesNeedRepairModel>();
+            _architectures = (await _architecturesManager.GetArchitectures()).ToList();
             _restorations = (await _restorationsManager.GetRestorations()).ToList();
 
-            var repairs = await _repairsManager.GetRepairs();
             var needRestorationList = _architectures
-                .Where(a => (a.State == State.Bad || a.State == State.Awful) 
-                  && !repairs.Any(x => x.ArchitectureId == a.Id && x.RestorationDate.Year == 2500
-                  && x.RestorationDate > DateTime.Now
-                  && GetRestorationKindByDateandArchId(repairs.ToList(), a.Id, x.RestorationDate) 
-                  .Contains(x.RestorationKind)))                
-                .Select(a => new ArchitecturesNeedRepairModel
+                .Where(a => a.State == State.Bad || a.State == State.Awful)
+                .Select(arch => new ArchitecturesNeedRepairModel
                 {
-                    ArchitectureId = a.Id,
-                    ArchitectureTitle = a.Title,
-                    ArchitectureState = a.State,
-                    Volume = a.Height * a.Square
+                    ArchitectureId = arch.Id,
+                    ArchitectureTitle = arch.Title,
+                    ArchitectureState = arch.State,
+                    Volume = arch.Height * arch.Square
                 }).ToList();
 
+            var tmpList = new List<ArchitecturesNeedRepairModel>();
             foreach (var rest in _restorationKindsList)
             {
                 var restoration = await _restorationsManager.GetRestorationByRestorationKind(rest);
@@ -202,11 +190,16 @@ namespace Architecture.Presentation.ViewModels.Repair
 
                 foreach (var arch in needRestorationList)
                 {
+                    var archi = _architectures.Find(x => x.Id == arch.ArchitectureId);
+                    var archRepairs = archi.Repairs.Where(x => x.RestorationDate < DateTime.Now);
+                    if (archRepairs.Any(x => x.RestorationKind == rest))
+                        continue;
+
                     ArchitecturesNeedRepairModel architecture = new ArchitecturesNeedRepairModel();
                     arch.Clone(architecture);
 
                     architecture.ArchitectureId = arch.ArchitectureId;
-                    architecture.RepairCost = Convert.ToInt32(restoration.Outlays * arch.Volume);
+                    architecture.RepairCost = Convert.ToInt32(restoration.Outlays*arch.Volume);
                     architecture.RestorationKind = rest;
 
                     tmpList.Add(architecture);
@@ -221,7 +214,7 @@ namespace Architecture.Presentation.ViewModels.Repair
             foreach (var el in mainList)
             {
                 if ((el.Count >= innerList.Count && el.Except(innerList).Count() == el.Count - innerList.Count)
-                 || (el.Count < innerList.Count && innerList.Except(el).Count() == innerList.Count - el.Count))
+                    || (el.Count < innerList.Count && innerList.Except(el).Count() == innerList.Count - el.Count))
                 {
                     return true;
                 }
