@@ -141,7 +141,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
             }
 
 
-            var groupedByDateList = _repairs.OrderBy(e => e.RestorationDate.Year)
+            var groupedByDateList = _repairs.OrderByDescending(e => e.RestorationDate.Year)
               .GroupBy(ar => ar.RestorationDate.Year);
             foreach (var element in groupedByDateList)
             {
@@ -154,6 +154,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
                     });
                 foreach (var arch in dateRestorList)
                     _restorationKindList.Add(arch);
+            
             }
 
             //_restorationKindList = _repairs.GroupBy(r => r.RestorationKind)
