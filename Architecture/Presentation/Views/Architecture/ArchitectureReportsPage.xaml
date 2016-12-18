@@ -8,6 +8,7 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:local="using:Architecture.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="using:Syncfusion.UI.Xaml.Controls.Input"
     xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid"
     DataContext="{Binding ArchitectureReports, Source={StaticResource Locator}}"
     mc:Ignorable="d">
@@ -56,15 +57,26 @@
             BorderBrush="Gray"
             BorderThickness="1"
             ItemsSource="{Binding ReportTypes}"
-            SelectedIndex="1"
-            SelectedItem="{Binding ReportType, Mode=TwoWay}">
+            SelectedItem="{Binding ReportType, Mode=TwoWay}" />
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="40,0,0,0"
+            Orientation="Horizontal"
+            Visibility="{Binding IsRepairAndExpensesReportVisibility, Mode=TwoWay}">
+            <my:SfNumericTextBox
+                Width="100"
+                Height="50"
+                VerticalAlignment="Center"
+                Value="{Binding ReportFor, Mode=TwoWay}" />
+            <TextBlock
+                Margin="20,0,0,0"
+                VerticalAlignment="Center"
+                FontSize="35">
+                лет
+            </TextBlock>
 
-
-            <!--  вид реставрации, название сооружения, дата ремонта не ранее 2006, затраты ремонта  -->
-            <TextBlock>Ремонты и затраты за 10 лет</TextBlock>
-            <!--  название сооружения, его состояние  -->
-            <TextBlock>Состояние сооружений</TextBlock>
-        </ComboBox>
+        </StackPanel>
 
 
         <syncfusion:SfDataGrid
