@@ -191,7 +191,7 @@ namespace Architecture.Presentation.ViewModels.Repair
                 foreach (var arch in needRestorationList)
                 {
                     var archi = _architectures.Find(x => x.Id == arch.ArchitectureId);
-                    var archRepairs = archi.Repairs.Where(x => x.RestorationDate < DateTime.Now);
+                    var archRepairs = archi.Repairs.Where(x => x.RestorationDate > DateTime.Now);
                     if (archRepairs.Any(x => x.RestorationKind == rest))
                         continue;
 
