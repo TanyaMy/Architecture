@@ -11,7 +11,7 @@ using Architecture.Data.Entities;
 
 namespace Architecture.Presentation.ViewModels.Architecture
 {
-     public class ArchitectureStatisticsViewModel : ViewModelBase
+    public class ArchitectureStatisticsViewModel : ViewModelBase
     {
         private readonly ICustomNavigationService _customNavigationService;
         private readonly IRepairsManager _repairsManager;
@@ -42,6 +42,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
             _architectureCountryStateList = new List<object>();
             _architectureArchStyleList = new List<object>();
             _dateSumRepairList = new List<object>();
+            _restorationKindList = new List<object>();
             DataList = new List<object>();
 
             LoadData();
@@ -61,7 +62,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
             "Затраты по годам"
         };
 
-    
+
         public string StatisticsType
         {
             get { return _statisticsType; }
@@ -101,7 +102,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         }
 
         private async void LoadData()
-        {           
+        {
 
             _architectures = (await _architecturesManager.GetArchitectures()).ToList();
             _repairs = (await _repairsManager.GetRepairs()).ToList();
@@ -131,8 +132,8 @@ namespace Architecture.Presentation.ViewModels.Architecture
                     .Select(f1 => (object)new
                     {
                         Архитектор = element.Key,
-                        Стиль = f1.Key, 
-                        Эпоха = f1.Key.Era,                   
+                        Стиль = f1.Key,
+                        Эпоха = f1.Key.Era,
                         Количество_сооружений = f1.Count()
                     });
                 foreach (var arch in architectureArchStyleList)
@@ -140,16 +141,30 @@ namespace Architecture.Presentation.ViewModels.Architecture
             }
 
 
-            _restorationKindList = _repairs.GroupBy(r => r.RestorationKind)
-                .Select(f => (object)new
-                {
-                    Вид_реставрации = f.Key.ToString(),
-                    Количество_сооружений = f.Count()
-                }).ToList();
+            var groupedByDateList = _repairs.OrderByDescending(e => e.RestorationDate.Year)
+              .GroupBy(ar => ar.RestorationDate.Year);
+            foreach (var element in groupedByDateList)
+            {
+                var dateRestorList = element.GroupBy(e => e.RestorationKind)
+                    .Select(f1 => (object)new
+                    {
+                        Год_реставрации = element.Key.ToString(),
+                        Вид_реставрации = f1.Key.ToString(),
+                        Количество_сооружений = f1.Count()
+                    });
+                foreach (var arch in dateRestorList)
+                    _restorationKindList.Add(arch);
+            
+            }
+
+            //_restorationKindList = _repairs.GroupBy(r => r.RestorationKind)
+            //    .Select(f => (object)new
+            //    {
+            //        Вид_реставрации = f.Key.ToString(),
+            //        Количество_сооружений = f.Count()
+            //    }).ToList();
 
 
-            var groupedByDateList = _repairs.OrderBy(e => e.RestorationDate.Year)
-                .GroupBy(ar => ar.RestorationDate.Year);
             foreach (var element in groupedByDateList)
             {
                 var dateSumRepairList = element.GroupBy(e => e.RestorationDate.Year)
