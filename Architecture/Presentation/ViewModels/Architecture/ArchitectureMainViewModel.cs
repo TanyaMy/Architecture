@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Architecture.Managers.Interfaces;
 using Architecture.Presentation.Helpers.Interfaces;
@@ -16,6 +18,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private readonly IArchitecturesManager _architecturesManager;
 
         private ObservableCollection<ArchitectureModel> _architectures;
+        private IList<ArchitectureModel> _filteredArchitectures;
         private ArchitectureModel _selectedTableItem;
 
         public ArchitectureMainViewModel(IArchitecturesManager architecturesManager)
@@ -31,6 +34,8 @@ namespace Architecture.Presentation.ViewModels.Architecture
             get { return _architectures; }
             set { Set(() => ArchitectureList, ref _architectures, value); }
         }
+
+        public IList<ArchitectureModel> FilteredArchitecturesList { get; set; }
 
         public ArchitectureModel SelectedTableItem
         {
@@ -55,9 +60,25 @@ namespace Architecture.Presentation.ViewModels.Architecture
             ArchitectureList.Remove(arch);
         }
 
+        public void FilterCollection(string filteringSubstring)
+        {
+            filteringSubstring = filteringSubstring.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(filteringSubstring))
+            {
+                FilteredArchitecturesList.Clear();
+                return;
+            }
+
+            FilteredArchitecturesList = ArchitectureList.Where(x =>
+                    x.Address.ToLower().Contains(filteringSubstring) || x.Title.ToLower().Contains(filteringSubstring)).ToList();
+        }
+
         private async void LoadData()
         {
             ArchitectureList = new ObservableCollection<ArchitectureModel>(await _architecturesManager.GetArchitectures());
+
+            FilteredArchitecturesList = new List<ArchitectureModel>();
         }
     }
 }

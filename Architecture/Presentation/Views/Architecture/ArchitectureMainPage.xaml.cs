@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -16,14 +18,13 @@ namespace Architecture.Presentation.Views.Architecture
     /// </summary>
     public sealed partial class ArchitectureMainPage : Page
     {
-
         private readonly ArchitectureMainViewModel _viewModel;
 
         public ArchitectureMainPage()
         {
             this.InitializeComponent();
 
-            _viewModel = (ArchitectureMainViewModel)DataContext;
+            _viewModel = (ArchitectureMainViewModel) DataContext;
         }
 
         private async void SfDataGrid_OnRecordDeleting(object sender, RecordDeletingEventArgs e)
@@ -39,7 +40,7 @@ namespace Architecture.Presentation.Views.Architecture
         private async void DeleteRowFlyoutItem_OnClick(object sender, RoutedEventArgs e)
         {
             var itemToDelete = _viewModel.SelectedTableItem;
-            if(!await Confirm($"Вы уверены, что хотите удалить архитектурное сооружение {itemToDelete.Title}?",
+            if (!await Confirm($"Вы уверены, что хотите удалить архитектурное сооружение {itemToDelete.Title}?",
                 "Подтверждение удаления"))
                 return;
 
@@ -66,7 +67,7 @@ namespace Architecture.Presentation.Views.Architecture
             //Cancel Button
             UICommand cancelBtn = new UICommand("Cancel") {Invoked = command => answer = false};
             msgDialog.Commands.Add(cancelBtn);
-            
+
             await msgDialog.ShowAsync();
             return answer;
         }
@@ -74,6 +75,25 @@ namespace Architecture.Presentation.Views.Architecture
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             SfDataGrid.ClearFilters();
+        }
+
+        private void TextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var selectedValues = SfDataGrid.SelectedItems;
+            _viewModel.FilterCollection(SearchTextBox.Text);
+            
+            var filteredArchColletion = _viewModel.FilteredArchitecturesList;
+            var collectionFromSfDataGrid = _viewModel.ArchitectureList;
+            
+            selectedValues.Clear();
+
+           if (!filteredArchColletion.Any())
+                return;
+
+            foreach (var element in collectionFromSfDataGrid.Intersect(filteredArchColletion))
+            {
+                selectedValues.Add(element);
+            }
         }
     }
 }

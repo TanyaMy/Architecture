@@ -45,6 +45,17 @@
             Click="ButtonBase_OnClick"
             Content="Сбросить фильтры" />
 
+
+        <TextBox
+            x:Name="SearchTextBox"
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            FontSize="25"
+            PlaceholderText="Search Here"
+            TextChanged="TextBox_OnTextChanged" />
+
         <syncfusion:SfDataGrid
             x:Name="SfDataGrid"
             Grid.Row="1"
@@ -56,7 +67,7 @@
             ItemsSource="{Binding ArchitectureList, Mode=TwoWay}"
             RecordDeleting="SfDataGrid_OnRecordDeleting"
             SelectedItem="{Binding SelectedTableItem, Mode=TwoWay}"
-            SelectionMode="Single">
+            SelectionMode="Multiple">
 
             <syncfusion:SfDataGrid.RecordContextMenu>
                 <MenuFlyout>
