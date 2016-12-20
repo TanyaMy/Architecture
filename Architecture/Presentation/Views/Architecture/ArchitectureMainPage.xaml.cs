@@ -95,5 +95,14 @@ namespace Architecture.Presentation.Views.Architecture
                 selectedValues.Add(element);
             }
         }
+
+        private void PrintButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            SfDataGrid.PrintSettings.PrintScaleOption = PrintScaleOptions.FitAllColumnsonOnePage;
+            SfDataGrid.PrintSettings.AllowColumnWidthFitToPrintPage = true;
+            SfDataGrid.PrintSettings.AllowRepeatHeaders = true;
+            
+            SfDataGrid.Print();
+        }
     }
 }

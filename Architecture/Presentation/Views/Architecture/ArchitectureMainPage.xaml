@@ -46,15 +46,27 @@
             Content="Сбросить фильтры" />
 
 
-        <TextBox
-            x:Name="SearchTextBox"
+        <StackPanel
             Grid.Row="0"
             Grid.Column="0"
-            HorizontalAlignment="Left"
+            Padding="20"
             VerticalAlignment="Bottom"
-            FontSize="25"
-            PlaceholderText="Search Here"
-            TextChanged="TextBox_OnTextChanged" />
+            Orientation="Horizontal">
+            <TextBox
+                x:Name="SearchTextBox"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                FontSize="25"
+                PlaceholderText="Search Here"
+                TextChanged="TextBox_OnTextChanged" />
+            <Button
+                x:Name="PrintButton"
+                Margin="40,0,0,0"
+                Padding="20"
+                Content="Print Table" 
+                Click="PrintButton_OnClick"/>
+
+        </StackPanel>
 
         <syncfusion:SfDataGrid
             x:Name="SfDataGrid"
