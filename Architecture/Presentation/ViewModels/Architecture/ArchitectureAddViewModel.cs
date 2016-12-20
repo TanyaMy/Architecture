@@ -27,7 +27,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private readonly ArchitectureModel _architecture;
 
         private string _title;
-        private int _createdDate;
+        private int _createdYear;
         private string _country;
         private string _city;
         private string _address;
@@ -94,10 +94,10 @@ namespace Architecture.Presentation.ViewModels.Architecture
             set { Set(() => Title, ref _title, value); }
         }
 
-        public int CreatedDate
+        public int CreatedYear
         {
-            get { return _createdDate; }
-            set { Set(() => CreatedDate, ref _createdDate, value); }
+            get { return _createdYear; }
+            set { Set(() => CreatedYear, ref _createdYear, value); }
         }
 
         public string Country
@@ -151,7 +151,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private async Task AddArchitecture()
         {
             var architecture = new ArchitectureModel(
-                Title, CreatedDate, Country, City, Address,
+                Title, CreatedYear, Country, City, Address,
                 Square, Heigth, State, Architect.Id, Style.Id);
 
             await _architecturesManager.AddArchitecture(architecture);
@@ -162,7 +162,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private async Task UpdateArchitecture()
         {
             _architecture.Title = Title;
-            _architecture.CreationYear = CreatedDate;
+            _architecture.CreationYear = CreatedYear;
             _architecture.Country = Country;
             _architecture.City = City;
             _architecture.Address = Address;
@@ -182,7 +182,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
             ArchitectureModel editableArch = _architecture;
 
             Title = editableArch?.Title ?? string.Empty;
-            CreatedDate = editableArch?.CreationYear ?? Convert.ToInt32(DateTime.Now.Year);
+            CreatedYear = editableArch?.CreationYear ?? Convert.ToInt32(DateTime.Now.Year);
             Country = editableArch?.Country ?? string.Empty;
             City = editableArch?.City ?? string.Empty;
             Address = editableArch?.Address ?? string.Empty;

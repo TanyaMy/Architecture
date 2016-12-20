@@ -63,8 +63,8 @@
                 x:Name="PrintButton"
                 Margin="40,0,0,0"
                 Padding="20"
-                Content="Print Table" 
-                Click="PrintButton_OnClick"/>
+                Click="PrintButton_OnClick"
+                Content="Print Table" />
 
         </StackPanel>
 

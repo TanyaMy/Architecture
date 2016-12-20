@@ -60,14 +60,15 @@
                     Header="Название"
                     Opacity="1"
                     Text="{Binding Title, Mode=TwoWay}" />
-                <TextBox
+                <my:SfNumericTextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     FontSize="14"
+                    FormatString="G"
                     Header="Год создания"
                     Opacity="1"
-                    Text="{Binding CreatedDate, Mode=TwoWay}" />
+                    Text="{Binding CreatedYear, Mode=TwoWay}" />
                 <TextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
