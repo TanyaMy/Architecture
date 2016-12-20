@@ -21,6 +21,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private readonly IStylesManager _stylesManager;
         private readonly IArchitectManager _architectsManager;
 
+        private List<Data.Entities.Style> _immutableStylesList;
         private List<Data.Entities.Style> _stylesList;
         private List<Data.Entities.Architect> _architectsList;
 
@@ -64,7 +65,8 @@ namespace Architecture.Presentation.ViewModels.Architecture
         {
             StatesList = Enum.GetValues(typeof(State)).Cast<State>().ToList();
 
-            StylesList = (await _stylesManager.GetStyles()).ToList();
+            _immutableStylesList = (await _stylesManager.GetStyles()).ToList();
+            StylesList = _immutableStylesList.ToList();
 
             ArchitectsList = (await _architectsManager.GetArchitects()).ToList();
         }
@@ -146,6 +148,19 @@ namespace Architecture.Presentation.ViewModels.Architecture
         {
             get { return _architect; }
             set { Set(() => Architect, ref _architect, value); }
+        }
+
+        public void FilterStylesForAutosuggest(string filterText)
+        {
+            filterText = filterText.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(filterText))
+            {
+                StylesList = _immutableStylesList.ToList();
+                return;
+            }
+
+            StylesList = _immutableStylesList.Where(x => x.Title.ToLower().Contains(filterText)).ToList();
         }
 
         private async Task AddArchitecture()
