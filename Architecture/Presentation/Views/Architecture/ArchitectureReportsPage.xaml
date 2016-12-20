@@ -66,13 +66,13 @@
             Visibility="{Binding IsRepairAndExpensesReportVisibility, Mode=TwoWay}">
             <my:SfNumericTextBox
                 Width="100"
-                Height="50"
+                Height="35"
                 VerticalAlignment="Center"
                 Value="{Binding ReportFor, Mode=TwoWay}" />
             <TextBlock
-                Margin="20,0,0,0"
+                Margin="15,0,0,0"
                 VerticalAlignment="Center"
-                FontSize="35">
+                FontSize="20">
                 лет
             </TextBlock>
 

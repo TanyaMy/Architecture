@@ -46,6 +46,8 @@ namespace Architecture.Presentation.ViewModels.Architecture
             DataList = new List<object>();
 
             LoadData();
+
+            StatisticsType = "Состояние сооружений по странам";
         }
 
         public List<object> DataList
