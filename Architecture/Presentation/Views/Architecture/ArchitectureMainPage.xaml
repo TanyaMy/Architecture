@@ -59,12 +59,6 @@
                 FontSize="20"
                 PlaceholderText="Название или адрес"
                 TextChanged="TextBox_OnTextChanged" />
-            <Button
-                x:Name="PrintButton"
-                Margin="40,0,0,0"
-                Padding="20"
-                Click="PrintButton_OnClick"
-                Content="Print Table" />
         </StackPanel>
 
         <Button

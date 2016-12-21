@@ -75,12 +75,22 @@
                 FontSize="20">
                 лет
             </TextBlock>
-
         </StackPanel>
 
+        <Button
+            x:Name="PrintButton"
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="20,0"
+            HorizontalAlignment="Right"
+            Background="LightBlue"
+            Click="PrintButton_OnClick"
+            Content="&#xE2F6;"
+            FontFamily="Segoe MDL2 Assets"
+            FontSize="40" />
 
         <syncfusion:SfDataGrid
-            x:Name="DataGrid"
+            x:Name="SfDataGrid"
             Grid.Row="2"
             Grid.ColumnSpan="3"
             Margin="10"
