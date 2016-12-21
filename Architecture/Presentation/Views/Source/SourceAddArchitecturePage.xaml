@@ -60,6 +60,7 @@
                 ItemsSource="{Binding ArchitecturesList}"
                 Opacity="1"
                 SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+                Text="{Binding Architecture.Title}"
                 TextChanged="AutoSuggestBox_OnTextChanged" />
             <Button
                 Height="40"
