@@ -78,11 +78,12 @@
                     Header="Автор"
                     Opacity="1"
                     Text="{Binding Author, Mode=TwoWay}" />
-                <TextBox
+                <my:SfNumericTextBox
                     Margin="0,10"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center"
                     FontSize="14"
+                    FormatString="G"
                     Header="Год создания"
                     Opacity="1"
                     Text="{Binding CreationYear, Mode=TwoWay}" />
