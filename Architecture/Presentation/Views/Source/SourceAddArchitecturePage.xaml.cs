@@ -33,6 +33,19 @@ namespace Architecture.Presentation.Views.Source
             var itemToDelete = _viewModel.SelectedTableItem;
 
             await _viewModel.DeleteSourceArchitecture(itemToDelete);
-        }        
+        }
+
+        private void AutoSuggestBox_OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            _viewModel.FilterArchitecturesForAutosuggest(sender.Text);
+        }
+
+        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            _viewModel.FilterArchitecturesForAutosuggest("");
+            _viewModel.Architecture = (Data.Entities.Architecture)args.SelectedItem;
+            sender.Text = _viewModel.Architecture.Title;
+            sender.UpdateTextOnSelect = false;
+        }
     }
 }

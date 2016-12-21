@@ -29,6 +29,7 @@ namespace Architecture.Presentation.ViewModels.Source
         private ObservableCollection<ArchitectureModel> _architecturesList;//для выпадающего списка
         private ObservableCollection<ArchitectureModel> _architectures;//для таблички
 
+        private ObservableCollection<Data.Entities.Architecture> _immutableArchitecturesList;
         private ArchitectureModel _architecture;
         private ArchitectureModel _selectedTableItem;
 
@@ -59,6 +60,9 @@ namespace Architecture.Presentation.ViewModels.Source
         {
             var x = (await _architecturesManager.GetArchitectures()).ToList();
             x.RemoveAll(a => Architectures.Contains(a));
+
+            _immutableArchitecturesList = new ObservableCollection<ArchitectureModel>(
+                await _architecturesManager.GetArchitectures());
 
             ArchitecturesList = new ObservableCollection<ArchitectureModel>(x);         
         }
@@ -121,6 +125,20 @@ namespace Architecture.Presentation.ViewModels.Source
             Architectures.Add(architecture);
 
             ArchitecturesList.Remove(architecture);
+        }
+
+        public void FilterArchitecturesForAutosuggest(string filterText)
+        {
+            filterText = filterText.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(filterText))
+            {
+                ArchitecturesList = _immutableArchitecturesList;
+                return;
+            }
+
+            ArchitecturesList = new ObservableCollection<ArchitectureModel>(
+                _immutableArchitecturesList.Where(x => x.Title.ToLower().Contains(filterText)));
         }
 
         public async Task DeleteSourceArchitecture(object arch)

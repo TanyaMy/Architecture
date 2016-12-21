@@ -48,7 +48,7 @@
                 FontSize="25"
                 Opacity="1"
                 Text="{Binding Title, Mode=TwoWay}" />
-            <ComboBox
+            <AutoSuggestBox
                 Margin="0,10"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
@@ -59,7 +59,8 @@
                 Header="Сооружение"
                 ItemsSource="{Binding ArchitecturesList}"
                 Opacity="1"
-                SelectedItem="{Binding Architecture, Mode=TwoWay}" />
+                SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+                TextChanged="AutoSuggestBox_OnTextChanged" />
             <Button
                 Height="40"
                 Margin="0,10"
