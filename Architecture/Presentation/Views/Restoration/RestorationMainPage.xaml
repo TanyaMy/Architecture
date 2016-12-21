@@ -20,7 +20,7 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid Background="White">
+    <Grid Background="AliceBlue">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -53,6 +53,7 @@
             AllowDeleting="True"
             AllowFiltering="True"
             AutoGenerateColumns="False"
+            Background="White"
             ColumnSizer="Star"
             ItemsSource="{Binding RestorationList, Mode=TwoWay}"
             SelectedItem="{Binding SelectedTableItem, Mode=TwoWay}"

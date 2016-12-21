@@ -20,7 +20,7 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid Background="White">
+    <Grid Background="AliceBlue">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -54,7 +54,7 @@
             VerticalAlignment="Bottom"
             Orientation="Horizontal">
             <AppBarButton
-                Margin="5"
+                Margin="5,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Background="Transparent"
@@ -64,6 +64,7 @@
                 x:Name="SearchTextBox"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
+                Background="White"
                 FontSize="20"
                 PlaceholderText="Название"
                 TextChanged="TextBox_OnTextChanged" />
@@ -76,8 +77,9 @@
             HorizontalAlignment="Right"
             Background="LightBlue"
             Click="ButtonBase_OnClick"
-            Content="Сбросить фильтры"
-            FontSize="20" />
+            Content="&#xE8E6;"
+            FontFamily="Segoe MDL2 Assets"
+            FontSize="30" />
 
         <syncfusion:SfDataGrid
             x:Name="SfDataGrid"
@@ -86,6 +88,7 @@
             AllowDeleting="False"
             AllowFiltering="True"
             AutoGenerateColumns="False"
+            Background="White"
             ColumnSizer="Star"
             ItemsSource="{Binding StyleList, Mode=TwoWay}"
             RecordDeleting="SfDataGrid_OnRecordDeleting"

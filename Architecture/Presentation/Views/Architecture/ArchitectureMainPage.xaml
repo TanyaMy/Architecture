@@ -58,7 +58,7 @@
             VerticalAlignment="Bottom"
             Orientation="Horizontal">
             <AppBarButton
-                Margin="5"
+                Margin="5,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Background="Transparent"
@@ -81,8 +81,9 @@
             HorizontalAlignment="Right"
             Background="White"
             Click="ButtonBase_OnClick"
-            Content="Сбросить фильтры"
-            FontSize="22" />
+            Content="&#xE8E6;"
+            FontFamily="Segoe MDL2 Assets"
+            FontSize="30" />
 
         <syncfusion:SfDataGrid
             x:Name="SfDataGrid"
