@@ -26,7 +26,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="7*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8*" />
         </Grid.RowDefinitions>
 
         <TextBlock
@@ -38,26 +39,25 @@
             Foreground="DarkBlue"
             Text="Сооружения" />
 
-        <Button
-            Margin="0,0,60,0"
-            HorizontalAlignment="Right"
-            Background="LightBlue"
-            Click="ButtonBase_OnClick"
-            Content="Сбросить фильтры" />
-
-
         <StackPanel
-            Grid.Row="0"
+            Grid.Row="1"
             Grid.Column="0"
-            Padding="20"
+            Padding="10"
             VerticalAlignment="Bottom"
             Orientation="Horizontal">
+            <AppBarButton
+                Margin="5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                FontSize="25"
+                Icon="Find" />
             <TextBox
                 x:Name="SearchTextBox"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                FontSize="25"
-                PlaceholderText="Search Here"
+                FontSize="20"
+                PlaceholderText="Название или адрес"
                 TextChanged="TextBox_OnTextChanged" />
             <Button
                 x:Name="PrintButton"
@@ -65,12 +65,21 @@
                 Padding="20"
                 Click="PrintButton_OnClick"
                 Content="Print Table" />
-
         </StackPanel>
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="20,0"
+            HorizontalAlignment="Right"
+            Background="LightBlue"
+            Click="ButtonBase_OnClick"
+            Content="Сбросить фильтры"
+            FontSize="20" />
 
         <syncfusion:SfDataGrid
             x:Name="SfDataGrid"
-            Grid.Row="1"
+            Grid.Row="2"
             Margin="10"
             AllowDeleting="False"
             AllowFiltering="True"
@@ -91,40 +100,46 @@
             </syncfusion:SfDataGrid.RecordContextMenu>
 
             <syncfusion:SfDataGrid.Columns>
-                <syncfusion:GridTextColumn HeaderText="Название" MappingName="Title" />
                 <syncfusion:GridTextColumn
-                    Width="110"
+                    HeaderText="Название"
+                    MappingName="Title"
+                    MinimumWidth="130" />
+                <syncfusion:GridTextColumn
                     HeaderText="Год создания"
                     MappingName="CreationYear"
+                    MinimumWidth="120"
                     TextAlignment="Center" />
                 <syncfusion:GridTextColumn
-                    Width="110"
                     HeaderText="Страна"
-                    MappingName="Country" />
+                    MappingName="Country"
+                    MinimumWidth="120" />
                 <syncfusion:GridTextColumn
-                    Width="110"
                     HeaderText="Город"
-                    MappingName="City" />
-                <syncfusion:GridTextColumn HeaderText="Адрес" MappingName="Address" />
+                    MappingName="City"
+                    MinimumWidth="120" />
                 <syncfusion:GridTextColumn
-                    Width="100"
+                    HeaderText="Адрес"
+                    MappingName="Address"
+                    MinimumWidth="190" />
+                <syncfusion:GridTextColumn
                     HeaderText="Площадь"
                     MappingName="Square"
+                    MinimumWidth="110"
                     TextAlignment="Center" />
                 <syncfusion:GridTextColumn
-                    Width="100"
                     HeaderText="Высота"
                     MappingName="Height"
+                    MinimumWidth="100"
                     TextAlignment="Center" />
                 <syncfusion:GridTextColumn
-                    Width="110"
                     HeaderText="Архитектор"
-                    MappingName="Architect.Surname" />
-                <syncfusion:GridTextColumn HeaderText="Стиль" MappingName="Style.Title" />
-                <syncfusion:GridComboBoxColumn
-                    Width="100"
-                    HeaderText="Состояние"
-                    MappingName="State" />
+                    MappingName="Architect.Surname"
+                    MinimumWidth="140" />
+                <syncfusion:GridTextColumn
+                    HeaderText="Стиль"
+                    MappingName="Style.Title"
+                    MinimumWidth="140" />
+                <syncfusion:GridComboBoxColumn HeaderText="Состояние" MappingName="State" />
             </syncfusion:SfDataGrid.Columns>
 
         </syncfusion:SfDataGrid>

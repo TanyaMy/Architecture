@@ -24,6 +24,7 @@ namespace Architecture.Presentation.ViewModels.Repair
         private List<Data.Entities.Architecture> _architecturesList;
         private List<Data.Entities.Restoration> _restorationsList;
 
+        private List<Data.Entities.Architecture> _immutableArchitecturesList;
         private readonly RepairModel _repair;
 
         private Data.Entities.Architecture _architecture;
@@ -64,6 +65,7 @@ namespace Architecture.Presentation.ViewModels.Repair
             RestorationKindsList = Enum.GetValues(typeof(RestorationKind)).Cast<RestorationKind>().ToList();
 
             ArchitecturesList = (await _architecturesManager.GetArchitectures()).ToList();
+            _immutableArchitecturesList = (await _architecturesManager.GetArchitectures()).ToList();
 
             RestorationsList = (await _restorationsManager.GetRestorations()).ToList();
         }
@@ -121,6 +123,19 @@ namespace Architecture.Presentation.ViewModels.Repair
             await _repairsManager.AddRepair(repair);
 
             _customNavigationService.NavigateTo(PageKeys.RepairMain);
+        }
+
+        public void FilterArchitecturesForAutosuggest(string filterText)
+        {
+            filterText = filterText.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(filterText))
+            {
+                ArchitecturesList = _immutableArchitecturesList.ToList();
+                return;
+            }
+
+            ArchitecturesList = _immutableArchitecturesList.Where(x => x.Title.ToLower().Contains(filterText)).ToList();
         }
 
         private async void UpdateRepair()

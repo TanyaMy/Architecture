@@ -27,6 +27,8 @@ namespace Architecture.Presentation.ViewModels.Repair
             LoadData();
         }
 
+        public IList<RepairModel> FilteredRepairsList { get; set; }
+
         public ObservableCollection<RepairModel> RepairList
         {
             get { return _repairs; }
@@ -54,6 +56,22 @@ namespace Architecture.Presentation.ViewModels.Repair
             await _repairsManager.RemoveRepair(rep.ArchitectureId, rep.RestorationKind, rep.RestorationDate);
 
             RepairList.Remove(rep);
+        }
+
+        public void FilterCollection(string filteringSubstring)
+        {
+            filteringSubstring = filteringSubstring.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(filteringSubstring))
+            {
+                FilteredRepairsList.Clear();
+                return;
+            }
+
+            FilteredRepairsList = RepairList.Where(x =>
+                    x.RestorationKind.ToString()
+                    .ToLower().Contains(filteringSubstring) || x.Architecture.Title.ToLower()
+                    .Contains(filteringSubstring)).ToList();
         }
 
         private async void LoadData()

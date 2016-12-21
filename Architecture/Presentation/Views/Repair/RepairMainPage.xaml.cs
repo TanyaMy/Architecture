@@ -1,6 +1,7 @@
 ﻿using Architecture.Presentation.ViewModels.Repair;
 using Syncfusion.UI.Xaml.Grid;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -75,6 +76,25 @@ namespace Architecture.Presentation.Views.Repair
 
             await msgDialog.ShowAsync();
             return answer;
+        }
+
+        private void TextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var selectedValues = SfDataGrid.SelectedItems;
+            _viewModel.FilterCollection(SearchTextBox.Text);
+
+            var filteredArchColletion = _viewModel.FilteredRepairsList;
+            var collectionFromSfDataGrid = _viewModel.RepairList;
+
+            selectedValues.Clear();
+
+            if (!filteredArchColletion.Any())
+                return;
+
+            foreach (var element in collectionFromSfDataGrid.Intersect(filteredArchColletion))
+            {
+                selectedValues.Add(element);
+            }
         }
     }
 }

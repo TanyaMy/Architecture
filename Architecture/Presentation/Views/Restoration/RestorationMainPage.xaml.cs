@@ -38,11 +38,6 @@ namespace Architecture.Presentation.Views.Restoration
             var itemToEdit = _viewModel.SelectedTableItem;
 
             _viewModel.EditRestoration(itemToEdit);
-        }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            SfDataGrid.ClearFilters();
-        }
+        }      
     }
 }

@@ -23,6 +23,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
 
         private List<Data.Entities.Style> _immutableStylesList;
         private List<Data.Entities.Style> _stylesList;
+        private List<Data.Entities.Architect> _immutableArchitectsList;
         private List<Data.Entities.Architect> _architectsList;
 
         private readonly ArchitectureModel _architecture;
@@ -68,6 +69,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
             _immutableStylesList = (await _stylesManager.GetStyles()).ToList();
             StylesList = _immutableStylesList.ToList();
 
+            _immutableArchitectsList = (await _architectsManager.GetArchitects()).ToList();
             ArchitectsList = (await _architectsManager.GetArchitects()).ToList();
         }
 
@@ -161,6 +163,19 @@ namespace Architecture.Presentation.ViewModels.Architecture
             }
 
             StylesList = _immutableStylesList.Where(x => x.Title.ToLower().Contains(filterText)).ToList();
+        }
+
+        public void FilterArchitectsForAutosuggest(string filterText)
+        {
+            filterText = filterText.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(filterText))
+            {
+                ArchitectsList = _immutableArchitectsList.ToList();
+                return;
+            }
+
+            ArchitectsList = _immutableArchitectsList.Where(x => x.Surname.ToLower().Contains(filterText)).ToList();
         }
 
         private async Task AddArchitecture()

@@ -17,8 +17,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
         private readonly ICustomNavigationService _customNavigationService;
         private readonly IArchitecturesManager _architecturesManager;
 
-        private ObservableCollection<ArchitectureModel> _architectures;
-        private IList<ArchitectureModel> _filteredArchitectures;
+        private ObservableCollection<ArchitectureModel> _architectures;        
         private ArchitectureModel _selectedTableItem;
 
         public ArchitectureMainViewModel(IArchitecturesManager architecturesManager)

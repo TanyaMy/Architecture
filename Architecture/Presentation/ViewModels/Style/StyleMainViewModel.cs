@@ -28,6 +28,8 @@ namespace Architecture.Presentation.ViewModels.Style
             LoadData();
         }
 
+        public IList<StyleModel> FilteredStylesList { get; set; }
+
         public ObservableCollection<StyleModel> StyleList
         {
             get { return _styles; }
@@ -55,6 +57,20 @@ namespace Architecture.Presentation.ViewModels.Style
             await _stylesManager.RemoveStyle(styl.Id);
 
             StyleList.Remove(styl);
+        }
+
+        public void FilterCollection(string filteringSubstring)
+        {
+            filteringSubstring = filteringSubstring.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(filteringSubstring))
+            {
+                FilteredStylesList.Clear();
+                return;
+            }
+
+            FilteredStylesList = StyleList.Where(x =>
+                    x.Title.ToLower().Contains(filteringSubstring)).ToList();
         }
 
         private async void LoadData()

@@ -26,7 +26,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="7*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8*" />
         </Grid.RowDefinitions>
 
         <TextBlock
@@ -38,16 +39,41 @@
             Foreground="DarkBlue"
             Text="Архитекторы" />
 
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            Padding="10"
+            VerticalAlignment="Bottom"
+            Orientation="Horizontal">
+            <AppBarButton
+                Margin="5"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                FontSize="25"
+                Icon="Find" />
+            <TextBox
+                x:Name="SearchTextBox"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                FontSize="20"
+                PlaceholderText="Фамилия"
+                TextChanged="TextBox_OnTextChanged" />
+        </StackPanel>
+
         <Button
-            Margin="0,0,60,0"
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="20,0"
             HorizontalAlignment="Right"
             Background="LightBlue"
             Click="ButtonBase_OnClick"
-            Content="Сбросить фильтры" />
+            Content="Сбросить фильтры"
+            FontSize="20" />
 
         <syncfusion:SfDataGrid
             x:Name="SfDataGrid"
-            Grid.Row="1"
+            Grid.Row="2"
             Margin="10"
             AllowDeleting="False"
             AllowFiltering="True"
@@ -56,7 +82,7 @@
             ItemsSource="{Binding ArchitectList, Mode=TwoWay}"
             RecordDeleting="SfDataGrid_OnRecordDeleting"
             SelectedItem="{Binding SelectedTableItem, Mode=TwoWay}"
-            SelectionMode="Single">
+            SelectionMode="Multiple">
 
             <syncfusion:SfDataGrid.RecordContextMenu>
                 <MenuFlyout>

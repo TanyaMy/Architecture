@@ -28,6 +28,8 @@ namespace Architecture.Presentation.ViewModels.Architect
             LoadData();
         }
 
+        public IList<ArchitectModel> FilteredArchitectsList { get; set; }
+
         public ObservableCollection<ArchitectModel> ArchitectList
         {
             get { return _architects; }
@@ -55,6 +57,20 @@ namespace Architecture.Presentation.ViewModels.Architect
             await _architectsManager.RemoveArchitect(arch.Id);
 
             ArchitectList.Remove(arch);
+        }
+
+        public void FilterCollection(string filteringSubstring)
+        {
+            filteringSubstring = filteringSubstring.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(filteringSubstring))
+            {
+                FilteredArchitectsList.Clear();
+                return;
+            }
+
+            FilteredArchitectsList = ArchitectList.Where(x =>
+                    x.Surname.ToLower().Contains(filteringSubstring)).ToList();
         }
 
         private async void LoadData()

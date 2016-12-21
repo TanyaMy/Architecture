@@ -32,8 +32,6 @@ namespace Architecture.Presentation.ViewModels.Source
 
             _customNavigationService = ServiceLocator.Current.GetInstance<ICustomNavigationService>("SourceInternal");
 
-         //   ShowArchitectures = new RelayCommand<IList<ArchitectureModel>>( x => ArchitectureListHandler(x));
-
             LoadData();
         }
         
@@ -43,8 +41,8 @@ namespace Architecture.Presentation.ViewModels.Source
             set { Set(() => SourceList, ref _sources, value); }
         }
 
-       // public ICommand ShowArchitectures { get; set; }        
 
+        public IList<SourceModel> FilteredSourcesList { get; set; }
 
         public async Task DeleteSource(object source)
         {
@@ -77,6 +75,20 @@ namespace Architecture.Presentation.ViewModels.Source
         public void AddArchitectureSource(SourceModel itemToAdd)
         {
             _customNavigationService.NavigateTo(PageKeys.SourceAddArchitecture, itemToAdd);
+        }
+
+        public void FilterCollection(string filteringSubstring)
+        {
+            filteringSubstring = filteringSubstring.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(filteringSubstring))
+            {
+                FilteredSourcesList.Clear();
+                return;
+            }
+
+            FilteredSourcesList = SourceList.Where(x =>
+                    x.Title.ToLower().Contains(filteringSubstring) || x.Author.ToLower().Contains(filteringSubstring)).ToList();
         }
 
         private async void LoadData()
