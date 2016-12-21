@@ -249,6 +249,8 @@
     <Content Include="Assets\Images\architectsIcon.png" />
     <Content Include="Assets\Images\houseIcon.png" />
     <Content Include="Assets\Images\mainBackground.jpeg" />
+    <Content Include="Assets\Images\background.jpg" />
+    <Content Include="Assets\Images\repairIcon.png" />
     <Content Include="Assets\Images\restorationIcon.png" />
     <Content Include="Assets\Images\sourceIcon.png" />
     <Content Include="Assets\Images\stylesIcon.png" />

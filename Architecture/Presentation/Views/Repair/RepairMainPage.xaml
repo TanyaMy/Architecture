@@ -34,10 +34,17 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontFamily="Segoe WP Black"
-            FontSize="30"
+            FontSize="35"
             FontWeight="Bold"
             Foreground="DarkBlue"
             Text="Ремонты" />
+        <Image
+            Grid.Row="0"
+            Grid.Column="0"
+            Width="80"
+            Margin="30,5"
+            HorizontalAlignment="Left"
+            Source="ms-appx:///Assets/Images/repairIcon.png" />
 
         <StackPanel
             Grid.Row="1"

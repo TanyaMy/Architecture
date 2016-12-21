@@ -38,6 +38,14 @@
             Foreground="DarkBlue"
             Text="Реставрации" />
 
+        <Image
+            Grid.Row="0"
+            Grid.Column="0"
+            Width="80"
+            Margin="30,5"
+            HorizontalAlignment="Left"
+            Source="ms-appx:///Assets/Images/restorationIcon.png" />
+
         <syncfusion:SfDataGrid
             x:Name="SfDataGrid"
             Grid.Row="1"
