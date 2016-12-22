@@ -134,8 +134,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
                     .Select(f1 => (object)new
                     {
                         Архитектор = element.Key,
-                        Стиль = f1.Key,
-                        Эпоха = f1.Key.Era,
+                        Стиль = f1.Key. Title,
                         Количество_сооружений = f1.Count()
                     });
                 foreach (var arch in architectureArchStyleList)
