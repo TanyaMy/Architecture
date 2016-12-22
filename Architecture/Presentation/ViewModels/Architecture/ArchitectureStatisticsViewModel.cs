@@ -127,7 +127,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
 
 
             var groupedByArchList = _architectures.OrderBy(e => e.Architect.Surname)
-                .GroupBy(ar => ar.ArchitectId);
+                .GroupBy(ar => ar.Architect.Surname);
             foreach (var element in groupedByArchList)
             {
                 var architectureArchStyleList = element.GroupBy(e => e.Style)
@@ -157,14 +157,7 @@ namespace Architecture.Presentation.ViewModels.Architecture
                 foreach (var arch in dateRestorList)
                     _restorationKindList.Add(arch);
             
-            }
-
-            //_restorationKindList = _repairs.GroupBy(r => r.RestorationKind)
-            //    .Select(f => (object)new
-            //    {
-            //        Вид_реставрации = f.Key.ToString(),
-            //        Количество_сооружений = f.Count()
-            //    }).ToList();
+            }      
 
 
             foreach (var element in groupedByDateList)
