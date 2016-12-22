@@ -95,7 +95,7 @@ namespace Architecture
                 Window.Current.Activate();
             }
 
-            await DbInitializer.Seed();
+           // await DbInitializer.Seed();
         }
 
         /// <summary>

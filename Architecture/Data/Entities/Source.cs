@@ -4,9 +4,11 @@ namespace Architecture.Data.Entities
 {
     public enum SourceKind
     {
-        Book,
-        Movie,
-        Picture
+        Книга,
+        Картина,
+        Фильм,
+        Музыка,
+        Другое
     }
 
     public class Source

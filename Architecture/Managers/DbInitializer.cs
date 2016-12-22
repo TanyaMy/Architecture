@@ -82,13 +82,13 @@ namespace Architecture.Managers
             if (sources != null && sources.Any())
                 return;
 
-            await _sourcesManager.AddSource(new Source(SourceKind.Picture, "Source1", "Author1", 1817));
-            await _sourcesManager.AddSource(new Source(SourceKind.Movie, "Source2", "Author2", 1818));
-            await _sourcesManager.AddSource(new Source(SourceKind.Book, "Source3", "Author3", 1928));
-            await _sourcesManager.AddSource(new Source(SourceKind.Movie, "Source4", "Author4", 1543));
-            await _sourcesManager.AddSource(new Source(SourceKind.Picture, "Source5", "Author5", 1991));
-            await _sourcesManager.AddSource(new Source(SourceKind.Picture, "Source6", "Author6", 1000));
-            await _sourcesManager.AddSource(new Source(SourceKind.Book, "Source7", "Author7", 1122));
+            await _sourcesManager.AddSource(new Source(SourceKind.Картина, "Source1", "Author1", 1817));
+            await _sourcesManager.AddSource(new Source(SourceKind.Фильм, "Source2", "Author2", 1818));
+            await _sourcesManager.AddSource(new Source(SourceKind.Книга, "Source3", "Author3", 1928));
+            await _sourcesManager.AddSource(new Source(SourceKind.Фильм, "Source4", "Author4", 1543));
+            await _sourcesManager.AddSource(new Source(SourceKind.Картина, "Source5", "Author5", 1991));
+            await _sourcesManager.AddSource(new Source(SourceKind.Картина, "Source6", "Author6", 1000));
+            await _sourcesManager.AddSource(new Source(SourceKind.Книга, "Source7", "Author7", 1122));
         }
 
         private static async Task FillArchitectures()

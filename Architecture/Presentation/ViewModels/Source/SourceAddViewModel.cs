@@ -127,7 +127,7 @@ namespace Architecture.Presentation.ViewModels.Source
         {
             SourceModel editableSource = _source;
 
-            SourceKind = editableSource?.SourceKind ?? SourceKind.Book;
+            SourceKind = editableSource?.SourceKind ?? SourceKind.Книга;
             Title = editableSource?.Title ?? string.Empty;
             Author = editableSource?.Author ?? "Неизвестен";
             CreationYear = editableSource?.CreationYear ?? 0;
